@@ -283,4 +283,58 @@
       @apply list-disc;
     }
   }
+
+  .custom-pagination {
+    height: 6px;
+  }
+
+  .custom-bullet {
+    width: 60px !important;
+    height: 6px !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 3px !important;
+    position: relative !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .custom-bullet:hover {
+    background: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .custom-bullet .progress-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #ffffff;
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.1s ease;
+  }
+
+  .custom-bullet.swiper-pagination-bullet-active .progress-bar {
+    animation: progressFill 5s linear forwards;
+  }
+
+  /* Reset animation when slide changes */
+  .custom-bullet:not(.swiper-pagination-bullet-active) .progress-bar {
+    width: 0%;
+    animation: none;
+  }
+
+  @keyframes progressFill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Optional: Add subtle glow effect */
+  .custom-bullet.swiper-pagination-bullet-active {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
 }

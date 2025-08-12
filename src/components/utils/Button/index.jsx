@@ -21,9 +21,9 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full has-[>svg, >img]:px-3",
+          "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-center has-[>svg, >img]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        lg: "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-center w-full h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full",
         icon: "size-9",
       },
     },

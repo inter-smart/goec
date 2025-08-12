@@ -171,7 +171,10 @@ export default function Header() {
                 </NavigationMenu>
               </div>
               <div>
-                <ActionButton className="min-w-[145px] bg-white/20 hover:bg-white/30">
+                <ActionButton
+                  size={"none"}
+                  className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center w-full  min-w-[145px] 2xl:min-w-[180px] 3xl:min-w-[200px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full bg-white/20 hover:bg-white/30"
+                >
                   Download App
                 </ActionButton>
               </div>

@@ -1,6 +1,8 @@
 const sizes = {
   text1:
     "text-[12px] sm:text-[14px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-normal font-normal",
+  text2:
+    "text-[12px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] leading-normal font-normal",
 };
 
 const Text = ({ children, className = "", as, size, ...restProps }) => {
