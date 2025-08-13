@@ -101,11 +101,7 @@ export default function SolutionsSection({ data = expertiseData }) {
                     </Text>
                   </div>
                   <div>
-                    <ActionButton
-                      variant="link"
-                      className="text-black bg-white"
-                      asChild
-                    >
+                    <ActionButton variant="link" className="text-black" asChild>
                       <Link href={item?.button?.link}>
                         {item?.button?.label}
                       </Link>
@@ -136,7 +132,6 @@ export default function SolutionsSection({ data = expertiseData }) {
         ))}
         <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[60px]">
           <ActionButton
-            // variant="link"
             size="lg"
             className="text-black bg-[#f5f5f5] hover:bg-[#dddddd]"
             asChild

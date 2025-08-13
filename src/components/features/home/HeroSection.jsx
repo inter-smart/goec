@@ -191,16 +191,19 @@ export default function HeroSection({ data = heroData }) {
                 <source src={item?.media?.path} type="video/mp4" />
               </video>
             ) : (
-              <Image
-                src={item?.media?.path}
-                alt={item?.media?.alt}
-                fill
-                sizes="100vw"
-                className="-z-2"
-                placeholder="blur"
-                blurDataURL={item?.media?.path}
-                priority
-              />
+              <picture className="absolute -z-2 inset-0">
+                <source media="(max-width: 640px)" srcSet={item?.media?.path} />
+                <Image
+                  src={item?.media?.path}
+                  alt={item?.media?.alt}
+                  fill
+                  sizes="100vw"
+                  className="-z-2"
+                  placeholder="blur"
+                  blurDataURL={item?.media?.path}
+                  priority
+                />
+              </picture>
             )}
             <div className="container">
               <div className="w-full min-h-screen flex items-center py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] xl:max-w-[720px] 2xl:max-w-[1080px]">
@@ -224,6 +227,7 @@ export default function HeroSection({ data = heroData }) {
                       buttonItem?.type === "primary" ? (
                         <ActionButton
                           key={index}
+                          size={"lg"}
                           className="max-w-[120px] xl:max-w-[145px] 2xl:max-w-[160px]"
                           asChild
                         >
@@ -234,6 +238,7 @@ export default function HeroSection({ data = heroData }) {
                       ) : (
                         <ActionButton
                           key={index}
+                          size={"lg"}
                           className="text-black bg-white max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
                           asChild
                         >

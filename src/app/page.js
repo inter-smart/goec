@@ -4,6 +4,8 @@ import SolutionsSection from "@/components/features/home/SolutionsSection";
 import HeroSection from "@/components/features/home/HeroSection";
 import TripSection from "@/components/features/home/TripSection";
 import AppInfoSection from "@/components/features/home/AppInfoSection";
+import InvestSection from "@/components/features/home/InvestSection";
+import PartnersSection from "@/components/features/home/PartnersSection";
 
 export default function Home() {
   return (
@@ -11,9 +13,11 @@ export default function Home() {
       {/* <HeroSection />
       <AboutInfoSection />
       <AboutGrowthSection /> */}
-      <TripSection />
-      <SolutionsSection />
+      {/* <TripSection />
+      <SolutionsSection /> */}
       <AppInfoSection />
+      <InvestSection />
+      <PartnersSection />
     </>
   );
 }
