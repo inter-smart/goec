@@ -97,7 +97,7 @@ export default function Header() {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <motion.header
         initial={{
           opacity: 1,
           y: -100,
@@ -193,7 +193,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </motion.header>
     </AnimatePresence>
   );
 }

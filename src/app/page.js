@@ -6,18 +6,22 @@ import TripSection from "@/components/features/home/TripSection";
 import AppInfoSection from "@/components/features/home/AppInfoSection";
 import InvestSection from "@/components/features/home/InvestSection";
 import PartnersSection from "@/components/features/home/PartnersSection";
+import LatestNewsSection from "@/components/features/home/LatestNewsSection";
+import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 
 export default function Home() {
   return (
     <>
       {/* <HeroSection />
       <AboutInfoSection />
-      <AboutGrowthSection /> */}
-      {/* <TripSection />
-      <SolutionsSection /> */}
+      <AboutGrowthSection />
+      <TripSection />
+      <SolutionsSection />
       <AppInfoSection />
       <InvestSection />
-      <PartnersSection />
+      <PartnersSection />  */}
+      <LatestNewsSection />
+      <LatestBlogSection />
     </>
   );
 }

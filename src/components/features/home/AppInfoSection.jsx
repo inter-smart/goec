@@ -67,7 +67,7 @@ export default function AppInfoSection({ data = appInfoData }) {
         src="/images/app_info-bg.svg"
         alt="app_info-bg"
         fill
-        sizes="100vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="-z-3 object-cover pointer-events-none"
       />
 

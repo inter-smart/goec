@@ -32,7 +32,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
         src="/images/about-bg-1.png"
         alt="about-count-png"
         fill
-        sizes="100vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="w-full h-auto absolute -z-1 inset-0"
       />
       <div className="container">

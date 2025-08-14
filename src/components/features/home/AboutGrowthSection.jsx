@@ -45,7 +45,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
             src={item?.media?.path}
             alt={item?.media?.alt}
             fill
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="-z-1"
           />
           <div className="container">

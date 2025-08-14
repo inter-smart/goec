@@ -89,7 +89,7 @@ export default function InvestSection({ data = investData }) {
               src={data?.media?.path}
               alt={data?.media?.alt}
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="-z-1 transition hover:scale-105"
             />
           </picture>
@@ -144,7 +144,7 @@ export default function InvestSection({ data = investData }) {
                   </div>
                 </AccordionContent>
 
-                {index !== data?.items_invest.length && (
+                {index + 1 !== data?.items_invest.length && (
                   <div className="w-full max-w-[88%] xl:max-w-[84%] h-[1px] ml-auto border border-dashed border-b-[#949494]" />
                 )}
               </AccordionItem>

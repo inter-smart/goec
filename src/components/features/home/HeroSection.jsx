@@ -177,8 +177,9 @@ export default function HeroSection({ data = heroData }) {
               src="/images/hero-overlay.png"
               alt="overlay"
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="-z-1 pointer-events-none"
+              quality={40}
             />
             {item?.media?.type === "video" ? (
               <video
@@ -197,11 +198,11 @@ export default function HeroSection({ data = heroData }) {
                   src={item?.media?.path}
                   alt={item?.media?.alt}
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="-z-2"
                   placeholder="blur"
-                  blurDataURL={item?.media?.path}
-                  priority
+                  blurDataURL="/images/placeholder.jpg"
+                  priority={index === 0}
                 />
               </picture>
             )}
