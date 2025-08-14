@@ -12,14 +12,14 @@ import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 export default function Home() {
   return (
     <>
-      {/* <HeroSection />
+      <HeroSection />
       <AboutInfoSection />
       <AboutGrowthSection />
       <TripSection />
       <SolutionsSection />
       <AppInfoSection />
       <InvestSection />
-      <PartnersSection />  */}
+      <PartnersSection />
       <LatestNewsSection />
       <LatestBlogSection />
     </>
