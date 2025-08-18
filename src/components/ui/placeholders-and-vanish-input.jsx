@@ -181,7 +181,7 @@ export function PlaceholdersAndVanishInput({
     >
       <canvas
         className={cn(
-          "absolute pointer-events-none text-base transform scale-50 top-[35%] left-2 sm:left-8 origin-top-left filter dark:invert-0 pr-20",
+          "absolute pointer-events-none text-base transform scale-50 top-[30%] left-[15px] xl:left-[20px] 2xl:left-[30px] 3xl:left-[40px] origin-top-left filter dark:invert-0 pr-20",
           !animating ? "opacity-0" : "opacity-100"
         )}
         ref={canvasRef}
@@ -242,7 +242,7 @@ export function PlaceholdersAndVanishInput({
       <ActionButton
         disabled={!value}
         type="submit"
-        className="text-black w-[180px] xl:w-[200px] 3xl:w-[220px] h-[25px] sm:h-[30px] xl:h-[40px] 2xl:h-[60px] 3xl:h-[80px] absolute right-2 top-1/2 z-50 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
+        className="text-black w-[180px] xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[50px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-50 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
       >
         <span>Get notified</span>
       </ActionButton>
