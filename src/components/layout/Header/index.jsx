@@ -109,9 +109,9 @@ export default function Header() {
         transition={{
           duration: 0.2,
         }}
-        className={
-          "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/10 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center"
-        }
+        className={`w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/10 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center *:
+          ${visible && "bg-[#030303]/20"}
+          `}
       >
         <div className="w-full h-px absolute z-0 inset-x-0 mx-auto -bottom-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="container">

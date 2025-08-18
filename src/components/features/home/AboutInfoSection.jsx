@@ -7,7 +7,7 @@ import CountUp from "react-countup";
 const aboutInfoData = {
   title:
     "We transform the future of electric automobiles by building a strategic and collective network of Electric Vehicle (EV) charging stations across India.",
-  items_specs: [
+  item_specs: [
     {
       title: "Hours of Charging",
       value: "85000",
@@ -32,7 +32,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
         src="/images/about-bg-1.png"
         alt="about-count-png"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
         className="w-full h-auto absolute -z-1 inset-0"
       />
       <div className="container">
@@ -44,7 +44,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
           {data?.title}
         </Heading>
         <div className="flex flex-wrap">
-          {data.items_specs.map((item, index) => (
+          {data.item_specs.map((item, index) => (
             <div key={"spec" + index} className="w-full sm:w-1/3">
               <div className="w-full h-auto flex items-center justify-center aspect-square relative z-1">
                 <Image

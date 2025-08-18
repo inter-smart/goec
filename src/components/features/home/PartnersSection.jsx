@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 const partnersData = {
   title: "Our Associate Partners",
-  items_partners: [
+  item_partners: [
     {
       media: {
         type: "image",
@@ -144,7 +144,7 @@ export default function PartnersSection({ data = partnersData }) {
         src="/images/partner-bg.svg"
         alt="partners-bg"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
         className="-z-1 translate-y-[0px]"
       />
       <div
@@ -160,7 +160,7 @@ export default function PartnersSection({ data = partnersData }) {
             "hover:[animation-play-state:paused]"
           )}
         >
-          {data?.items_partners.map((item, idx) => (
+          {data?.item_partners.map((item, idx) => (
             <li key={idx}>
               <div>
                 <Image

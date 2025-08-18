@@ -23,7 +23,7 @@ const investData = {
     link: "/",
     label: "Learn more",
   },
-  items_invest: [
+  item_invest: [
     {
       title: "FOCO",
       subtitle:
@@ -81,7 +81,7 @@ export default function InvestSection({ data = investData }) {
           </div>
         </div>
       </div>
-      <div className="w-full sm:max-w-[1080px] xl:max-w-[1200px] 2xl:max-w-[1320] 3xl:max-w-[1576px] mx-auto px-1.5 mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
+      <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-1.5 mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
         <div className="w-full aspect-[1820/420] overflow-hidden rounded-[30px] relative z-0">
           <picture className="absolute -z-1 inset-0">
             <source media="(max-width: 640px)" srcSet={data?.media?.path} />
@@ -89,7 +89,7 @@ export default function InvestSection({ data = investData }) {
               src={data?.media?.path}
               alt={data?.media?.alt}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 transition hover:scale-105"
             />
           </picture>
@@ -97,7 +97,7 @@ export default function InvestSection({ data = investData }) {
       </div>
       <div className="container">
         <Accordion type="single" collapsible>
-          {data?.items_invest.map((item, index) => {
+          {data?.item_invest.map((item, index) => {
             const sanitizedText = DOMPurify.sanitize(item?.description);
             return (
               <AccordionItem
@@ -144,7 +144,7 @@ export default function InvestSection({ data = investData }) {
                   </div>
                 </AccordionContent>
 
-                {index + 1 !== data?.items_invest.length && (
+                {index + 1 !== data?.item_invest.length && (
                   <div className="w-full max-w-[88%] xl:max-w-[84%] h-[1px] ml-auto border border-dashed border-b-[#949494]" />
                 )}
               </AccordionItem>

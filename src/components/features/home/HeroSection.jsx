@@ -13,7 +13,7 @@ import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useRef } from "react";
 
 const heroData = {
-  items_banner: [
+  item_banner: [
     {
       media: {
         type: "image",
@@ -121,8 +121,10 @@ export default function HeroSection({ data = heroData }) {
         effect={"creative"}
         creativeEffect={{
           prev: {
-            shadow: false,
-            translate: [0, 0, -400],
+            // shadow: false,
+            // translate: [0, 0, -400],
+            shadow: true,
+            translate: [0, 0, -1],
           },
           next: {
             translate: ["100%", 0, 0],
@@ -171,13 +173,13 @@ export default function HeroSection({ data = heroData }) {
           }, 100);
         }}
       >
-        {data?.items_banner?.map((item, index) => (
+        {data?.item_banner?.map((item, index) => (
           <SwiperSlide key={index}>
             <Image
               src="/images/hero-overlay.png"
               alt="overlay"
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 pointer-events-none"
               quality={40}
             />
@@ -198,7 +200,7 @@ export default function HeroSection({ data = heroData }) {
                   src={item?.media?.path}
                   alt={item?.media?.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
                   className="-z-2"
                   placeholder="blur"
                   blurDataURL="/images/placeholder.jpg"
@@ -207,19 +209,19 @@ export default function HeroSection({ data = heroData }) {
               </picture>
             )}
             <div className="container">
-              <div className="w-full min-h-screen flex items-center py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] xl:max-w-[720px] 2xl:max-w-[1080px]">
+              <div className="w-full min-h-screen flex items-center py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] xl:max-w-[720px] 2xl:max-w-[768px] 3xl:max-w-[1080px]">
                 <div>
                   <Heading
                     as="h1"
                     size="heading1"
-                    className="text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
+                    className="line-clamp-2 text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
                   >
                     {item?.title}
                   </Heading>
                   <Text
                     as="div"
                     size="text1"
-                    className="text-white max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
+                    className="line-clamp-2 text-white max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
                   >
                     {item?.description}
                   </Text>
