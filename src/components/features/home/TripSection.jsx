@@ -20,9 +20,9 @@ const tripData = {
 };
 export default function TripSection({ data = tripData }) {
   return (
-    <section className="w-full h-auto block bg-white relative z-0 py-[40px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
-      <div className="w-full h-1/2 bg-black absolute top-0 left-0 right-0s -z-1" />
-      <div className="container">
+    <section className="w-full h-auto block bg-white relative z-0 py-[40px_10px] sm:py-[80px_10px] xl:py-[100px_15px] 2xl:py-[120px_20px]">
+      <div className="w-full h-1/2 bg-black absolute top-[-2px] left-0 right-0s -z-1" />
+      <div className="max-sm:container sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] sm:mx-auto">
         <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[40px] p-[40px] sm:p-[60px] xl:p-[60px_80px] 2xl:p-[80px_100px] relative z-0">
           <Image
             src="/images/hero-overlay.png"

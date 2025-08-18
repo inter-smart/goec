@@ -3,8 +3,12 @@ const sizes = {
     "text-[24px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px] leading-tight font-normal",
   heading2:
     "text-[20px] sm:text-[24px] lg:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[52px] leading-tight font-normal",
+  heading3:
+    "text-[18px] sm:text-[22px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-tight font-normal",
   heading5:
     "text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-tight font-normal",
+  heading6:
+    "text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[24px] leading-tight font-normal",
 };
 
 const Heading = ({ children, className = "", size, as, ...restProps }) => {

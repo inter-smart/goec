@@ -12,7 +12,7 @@ const expertiseData = {
     link: "/",
     label: "Explore more",
   },
-  items_expertise: [
+  item_expertise: [
     {
       media: {
         type: "image",
@@ -60,7 +60,7 @@ const expertiseData = {
 
 export default function SolutionsSection({ data = expertiseData }) {
   return (
-    <section className="w-full h-auto block relative z-0 py-[40px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+    <section className="w-full h-auto block relative z-0 pb-[40px] sm:pb-[80px] xl:pb-[100px] 2xl:pb-[120px]">
       <Image
         src="/images/expertise-sec-bg.svg"
         alt="expertise-bg"
@@ -80,10 +80,10 @@ export default function SolutionsSection({ data = expertiseData }) {
             </Text>
           </div>
         </div>
-        {data?.items_expertise.map((item, index) => (
+        {data?.item_expertise.map((item, index) => (
           <div key={"expertise" + index} className="w-full">
             <div className="w-full h-auto bg-[#fcfcfc] border border-[#f0f0f0] rounded-[30px] overflow-hidden flex flex-wrap">
-              <div className="w-full sm:w-[320px] xl:w-[400px] 2xl:w-[576px] 3xl:w-[700px]">
+              <div className="w-full sm:w-[420px] md:w-[468px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
                 <div className="w-full h-full relative z-0 p-[20px] xl:p-[40px] 2xl:p-[60px] flex flex-col justify-between">
                   <div>
                     <div className="text-[48px] sm:text-[72px] lg:text-[168px] xl:text-[176px] 2xl:text-[220px] 3xl:text-[276px] leading-[0.8] font-semibold whitespace-nowrap text-ellipsis text-transparent bg-clip-text bg-gradient-to-b from-[#f2f2f2] to-[#fcfcfc]">
@@ -116,7 +116,7 @@ export default function SolutionsSection({ data = expertiseData }) {
                   />
                 </div>
               </div>
-              <div className="w-full sm:w-[calc(100%-320px)] xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]">
+              <div className="w-full sm:w-[calc(100%-420px)] md:w-[calc(100%-468px)] xl:w-[calc(100%-468px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]">
                 <div className="w-full aspect-square overflow-hidden rounded-[30px] relative z-1">
                   <Image
                     src={item?.media?.path}

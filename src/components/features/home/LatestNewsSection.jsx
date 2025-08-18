@@ -15,7 +15,7 @@ const newsData = {
     link: "/",
     label: "View all",
   },
-  items_news: [
+  item_news: [
     {
       timestamp: "2025-08-14T05:00:00.000000Z",
       media: {
@@ -116,7 +116,7 @@ export default function LatestNewsSection({ data = newsData }) {
           </div>
         </div>
         <div className="flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:p-[4px] xl:[&>*]:p-[6px] 2xl:[&>*]:p-[12px]">
-          {data?.items_news.map((item, index) => {
+          {data?.item_news.map((item, index) => {
             const formattedDate = format(
               new Date(item?.timestamp),
               "dd MMMM yyyy"

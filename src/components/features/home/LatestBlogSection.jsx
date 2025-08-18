@@ -14,7 +14,7 @@ const blogData = {
     link: "/",
     label: "View all",
   },
-  items_blog: [
+  item_blog: [
     {
       timestamp: "2025-08-14T05:00:00.000000Z",
       media: {
@@ -149,7 +149,7 @@ export default function LatestBlogSection({ data = blogData }) {
             },
           }}
         >
-          {data?.items_blog.map((item, index) => {
+          {data?.item_blog.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
                 <BlogCard data={item} />

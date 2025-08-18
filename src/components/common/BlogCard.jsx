@@ -7,21 +7,27 @@ import { Skeleton } from "../ui/skeleton";
 
 export default function BlogCard({ data }) {
   const formattedDate = format(new Date(data?.timestamp), "dd MMMM yyyy");
+
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Suspense fallback={<BlogCardSkeleton />}>
       <div className="w-full h-auto block rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]">
         <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
-        <Suspense fallback={<Skeleton className="w-full aspect-[4/2] rounded-[30px] bg-gray-400" />}>
-          <Image
-            src={data?.media?.path}
-            alt={data?.media?.alt}
-            fill
-            sizes="512px"
-            className="transition hover:scale-105"
-            // placeholder="/images/placeholder.jpg"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.jpg"
-          />
+          <Suspense
+            fallback={
+              <Skeleton className="w-full aspect-[4/2] rounded-[30px] bg-gray-400" />
+            }
+          >
+            <Image
+              src={data?.media?.path}
+              alt={data?.media?.alt}
+              fill
+              sizes="512px"
+              className="transition hover:scale-105"
+              // placeholder="/images/placeholder.jpg"
+              placeholder="blur"
+              blurDataURL="/images/placeholder.jpg"
+            />
           </Suspense>
         </div>
         <div className="flex flex-col justify-between p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
@@ -31,7 +37,7 @@ export default function BlogCard({ data }) {
             </div>
           </div>
           <div className="flex justify-between">
-            <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]  mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+            <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               {formattedDate}
             </div>
             <div>

@@ -43,7 +43,7 @@ const appInfoData = {
       },
     ],
   },
-  items_specs: [
+  item_specs: [
     "Locate Chargers",
     "Connect Charger",
     "Monitor charging session",
@@ -60,14 +60,14 @@ function splitIntoGroups(arr, groupCount = 4) {
 }
 
 export default function AppInfoSection({ data = appInfoData }) {
-  const groupedSpecs = splitIntoGroups(data?.items_specs || [], 4);
+  const groupedSpecs = splitIntoGroups(data?.item_specs || [], 4);
   return (
-    <section className="w-full h-auto min-h-screen flex items-center bg-[#303030] relative z-0 py-[40px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+    <section className="w-full h-auto min-h-[520px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-[#303030] relative z-0 py-[40px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
       <Image
         src="/images/app_info-bg.svg"
         alt="app_info-bg"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
         className="-z-3 object-cover pointer-events-none"
       />
 
