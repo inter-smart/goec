@@ -237,7 +237,7 @@ export default function Footer({ data = footerData }) {
                 >
                   <div className="w-full">
                     <Heading
-                      as="h6"
+                      as="div"
                       size="heading6"
                       className="font-medium text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
                     >

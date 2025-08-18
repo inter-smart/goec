@@ -264,6 +264,7 @@ export default function HeroSection({ data = heroData }) {
           alt="scroll-bottom"
           width={30}
           height={60}
+          unoptimized
         />
       </div>
       <div className="container absolute z-10 bottom-[20px] xl:bottom-[60px] 2xl:bottom-[80px] 3xl:bottom-[100px] left-0 right-0">
