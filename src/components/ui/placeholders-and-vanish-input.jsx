@@ -186,6 +186,7 @@ export function PlaceholdersAndVanishInput({
         )}
         ref={canvasRef}
       />
+      <label className="sr-only">subscribe</label>
       <input
         onChange={(e) => {
           if (!animating) {

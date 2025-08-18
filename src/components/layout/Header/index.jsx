@@ -182,7 +182,7 @@ export default function Header() {
                 <button className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
                   <Image
                     src="/images/header-hamburger.svg"
-                    alt="menu"
+                    alt="hamburger"
                     width={24}
                     height={10}
                     className="w-[15px] xl:w-[20px] 2xl:w-[24px] mr-[6px] xl:mr-[10px] 2xl:mr-[12px]"

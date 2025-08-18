@@ -121,7 +121,7 @@ export default function AppInfoSection({ data = appInfoData }) {
             </ActionButton>
             <div className="mt-[30px] xl:mt-[40px] 2xl:mt-[60px]">
               <Heading
-                as="h5"
+                as="h3"
                 size="heading5"
                 className="text-white mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
