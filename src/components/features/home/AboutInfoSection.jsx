@@ -55,13 +55,13 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
       <div className="container">
         <Heading
           as="h2"
-          className="text-[20px] sm:text-[24px] lg:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[52px] leading-tight font-normal text-center text-white max-w-[85%] mx-auto mb-[40px] sm:mb-[60px] xl:mb-[80px] 2xl:mb-[140px] 3xl:mb-[160px]"
+          className="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[52px] leading-tight font-normal text-center text-white max-w-[85%] mx-auto mb-[20px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px] 3xl:mb-[160px]"
         >
           {data?.title}
         </Heading>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
           {data.item_specs.map((item, index) => (
-            <div key={"spec" + index} className="w-full sm:w-1/3">
+            <div key={"spec" + index} className="w-1/2 sm:w-1/3">
               <div className="w-full h-auto flex items-center justify-center aspect-square relative z-1">
                 <Image
                   src="/images/about-count-bg.svg"
@@ -71,7 +71,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
                   className="w-full h-full object-contain absolute z-0 inset-0 pointer-events-none"
                 />
                 <div>
-                  <div className="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[40px] 2xl:text-[48px] 3xl:text-[64px] leading-none font-normal text-center whitespace-nowrap text-ellipsis text-white xl:max-w-[220px] 2xl:max-w-[268px] mx-auto overflow-hidden mb-[5px] xl:mb-[10px] 2xl:mb-[15px]">
+                  <div className="text-[16px] sm:text-[20px] lg:text-[28px] xl:text-[40px] 2xl:text-[48px] 3xl:text-[64px] leading-none font-normal text-center whitespace-nowrap text-ellipsis text-white xl:max-w-[220px] 2xl:max-w-[268px] mx-auto overflow-hidden mb-[5px] xl:mb-[10px] 2xl:mb-[15px]">
                     <CountUp
                       end={parseInt(item?.value)}
                       duration={2.75}

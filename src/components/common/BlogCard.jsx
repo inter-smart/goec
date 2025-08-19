@@ -10,7 +10,7 @@ export default function BlogCard({ data }) {
   // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Suspense fallback={<BlogCardSkeleton />}>
-      <div className="w-full h-auto block rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]">
+      <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]">
         <Link href={data?.button?.link}>
           <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
             <Image
@@ -19,16 +19,18 @@ export default function BlogCard({ data }) {
               fill
               sizes="512px"
               className="transition hover:scale-105"
+              placeholder="blur"
+              blurDataURL="/images/placeholder.jpg"
             />
           </div>
-          <div className="flex flex-col justify-between p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
+          <div className="flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
             <div>
-              <div className="text-[14px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+              <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                 {data?.title}
               </div>
             </div>
-            <div className="flex justify-between">
-              <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+            <div className="flex justify-between gap-[10px]">
+              <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
                 {formattedDate}
               </div>
             </div>

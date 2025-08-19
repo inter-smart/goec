@@ -174,7 +174,7 @@ export function PlaceholdersAndVanishInput({
   return (
     <form
       className={cn(
-        "w-full relative max-w-xl mx-auto bg-[#1e1e1e] dark:bg-zinc-800 h-[30px] sm:h-[40px] xl:h-[60px] 2xl:h-[80px] 3xl:h-[100px] rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 border border-white/30",
+        "w-full relative max-w-xl mx-auto bg-[#1e1e1e] dark:bg-zinc-800 h-[40px] sm:h-[40px] xl:h-[60px] 2xl:h-[80px] 3xl:h-[100px] rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 border border-white/30",
         value && "bg-black-50"
       )}
       onSubmit={handleSubmit}

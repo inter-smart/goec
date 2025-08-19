@@ -80,13 +80,13 @@ export default function SolutionsSection({ data = expertiseData }) {
         height={1820}
       />
       <div className="container">
-        <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[100px]">
-          <div className="flex-1">
+        <div className="flex flex-wrap mb-[80px] sm:mb-[40px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[100px]">
+          <div className="flex-1 max-sm:mb-[15px]">
             <Heading as="h2" size="heading2" className="text-[#303030] ">
               {data?.title}
             </Heading>
           </div>
-          <div className="w-full sm:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px]">
+          <div className="w-[80%] sm:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px]">
             <Text as="p" size="text2" className="text-[#373737]">
               {data?.description}
             </Text>

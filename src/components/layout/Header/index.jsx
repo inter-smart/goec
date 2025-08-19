@@ -113,7 +113,7 @@ export default function Header() {
           ${visible && "bg-[#030303]/20"}
           `}
       >
-        <div className="w-full h-px absolute z-0 inset-x-0 mx-auto -bottom-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
         <div className="container">
           <div className="flex justify-between">
             <div className="w-[80px] xl:w-[90px]">
@@ -127,48 +127,7 @@ export default function Header() {
             </div>
             <div className="flex items-center space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">
               <div>
-                <NavigationMenu viewport={false}>
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink
-                        asChild
-                        className={navigationMenuTriggerStyle}
-                      >
-                        <Link href="/">Home</Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger
-                        className={navigationMenuTriggerStyle}
-                      >
-                        Company
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <MegaNavigationMenuContent />
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger
-                        className={navigationMenuTriggerStyle}
-                      >
-                        Invest in GO EC
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <MegaNavigationMenuContent />
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <NavigationMenuTrigger
-                        className={navigationMenuTriggerStyle}
-                      >
-                        Solutions
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <MegaNavigationMenuContent />
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
+                <MegaNavigationMenubar />
               </div>
               <div>
                 <ActionButton
@@ -198,6 +157,43 @@ export default function Header() {
   );
 }
 
+function MegaNavigationMenubar() {
+  return (
+    <NavigationMenu viewport={false}>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle}>
+            <Link href="/">Home</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
+            Company
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <MegaNavigationMenuContent />
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
+            Invest in GO EC
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <MegaNavigationMenuContent />
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
+            Solutions
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <MegaNavigationMenuContent />
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
 function MegaNavigationMenuContent() {
   return (
     <div className="w-full min-w-[668px] bg-white rounded-[25px] p-[]">

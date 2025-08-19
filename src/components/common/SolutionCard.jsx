@@ -38,8 +38,8 @@ export default function SolutionCard({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className={`relative -top-[25%] origin-top w-full h-auto bg-[#fcfcfc] border border-[#f0f0f0] rounded-[30px] overflow-hidden flex flex-wrap shadow-[0_0_40px_0_rgba(0,0,0,0.05)]
-            ${index % 2 === 1 && "flex-row-reverse"}
+        className={`relative -top-[25%] origin-top w-full h-auto bg-[#fcfcfc] border border-[#f0f0f0] rounded-[20px] sm:rounded-[30px] overflow-hidden flex flex-wrap shadow-[0_0_40px_0_rgba(0,0,0,0.05)] max-sm:flex-col-reverse
+            ${index % 2 === 1 && "sm:flex-row-reverse"}
             `}
       >
         <div className="w-full sm:w-[420px] md:w-[468px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
@@ -74,7 +74,7 @@ export default function SolutionCard({
           </div>
         </div>
         <div className="w-full sm:w-[calc(100%-420px)] md:w-[calc(100%-468px)] xl:w-[calc(100%-468px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]">
-          <div className="w-full aspect-[4/3] overflow-hidden rounded-[30px] relative z-1">
+          <div className="w-full aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
             <motion.div style={{ scale: imageScale }} className="w-full h-full">
               <Image
                 src={item?.media?.path}
@@ -82,6 +82,8 @@ export default function SolutionCard({
                 width={876}
                 height={676}
                 className="w-full h-full object-cover hover:scale-105 transition"
+                placeholder="blur"
+                blurDataURL="/images/placeholder.jpg"
               />
             </motion.div>
           </div>

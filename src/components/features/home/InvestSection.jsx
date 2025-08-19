@@ -64,8 +64,8 @@ export default function InvestSection({ data = investData }) {
   return (
     <section className="w-full h-auto block py-[40px_30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
-        <div className="flex flex-wrap items-center mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px]">
-          <div className="flex-1">
+        <div className="flex flex-wrap sm:items-center mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
+          <div className="flex-1 max-sm:mb-[20px]">
             <Heading
               as="h2"
               size="heading2"
@@ -82,7 +82,7 @@ export default function InvestSection({ data = investData }) {
         </div>
       </div>
       <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-1.5 mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
-        <div className="w-full aspect-[1820/420] overflow-hidden rounded-[30px] relative z-0">
+        <div className="w-full aspect-[1820/420] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-0">
           <picture className="absolute -z-1 inset-0">
             <source media="(max-width: 640px)" srcSet={data?.media?.path} />
             <Image
@@ -107,13 +107,13 @@ export default function InvestSection({ data = investData }) {
               >
                 <AccordionTrigger className="hover:underline-none [&>svg]:w-0 [&>svg]:hidden py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[50px]">
                   <div className="w-full flex items-center space-x-[20px] xl:space-x-[60px] 2xl:space-x-[80px]">
-                    <div className="w-[12%]">
-                      <div className="text-[18px] sm:text-[22px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-none font-medium whitespace-nowrap text-ellipsis text-[#030303] w-[80px] sm:w-[80px] xl:w-[120px] 2xl:w-[140px] aspect-square bg-white border border-[#030303]/20 rounded-full flex items-center justify-center">
+                    <div className="w-[10%] sm:w-[12%]">
+                      <div className="text-[14px] sm:text-[22px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-none font-medium whitespace-nowrap text-ellipsis text-[#030303] w-[40px] sm:w-[80px] xl:w-[120px] 2xl:w-[140px] aspect-square bg-white border border-[#030303]/20 rounded-full flex items-center justify-center">
                         {index + 1 < 10 ? "0" + (index + 1) : index + 1}
                       </div>
                     </div>
-                    <div className="w-[38%]">
-                      <div className="text-[18px] sm:text-[22px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-none font-medium whitespace-nowrap text-ellipsis text-[#030303]">
+                    <div className="w-[40%] sm:w-[38%]">
+                      <div className="text-[14px] sm:text-[22px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-none font-medium whitespace-nowrap text-ellipsis text-[#030303]">
                         {item?.title}
                       </div>
                     </div>
@@ -125,7 +125,7 @@ export default function InvestSection({ data = investData }) {
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="w-[88%] xl:w-[84%] ml-auto bg-[#fbfbfb] rounded-[30px] p-[20px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px]">
+                  <div className="w-[85%] sm:w-[88%] xl:w-[84%] ml-auto bg-[#fbfbfb] rounded-[20px] sm:rounded-[30px] p-[20px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px]">
                     <div
                       className="typography"
                       dangerouslySetInnerHTML={{ __html: sanitizedText }}
@@ -145,7 +145,7 @@ export default function InvestSection({ data = investData }) {
                 </AccordionContent>
 
                 {index + 1 !== data?.item_invest.length && (
-                  <div className="w-full max-w-[88%] xl:max-w-[84%] h-[1px] ml-auto border border-dashed border-b-[#949494]" />
+                  <div className="w-full max-w-[85%] sm:max-w-[88%] xl:max-w-[84%] h-[1px] ml-auto border border-dashed border-b-[#949494]" />
                 )}
               </AccordionItem>
             );

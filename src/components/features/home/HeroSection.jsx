@@ -121,9 +121,9 @@ export default function HeroSection({ data = heroData }) {
         effect={"creative"}
         creativeEffect={{
           prev: {
-            // shadow: false,
+            shadow: false,
             // translate: [0, 0, -400],
-            shadow: true,
+            // shadow: true,
             translate: [0, 0, -1],
           },
           next: {
@@ -267,7 +267,7 @@ export default function HeroSection({ data = heroData }) {
           unoptimized
         />
       </div>
-      <div className="container absolute z-10 bottom-[20px] xl:bottom-[60px] 2xl:bottom-[80px] 3xl:bottom-[100px] left-0 right-0">
+      <div className="container absolute z-2 bottom-[100px] sm:bottom-[40px] xl:bottom-[60px] 2xl:bottom-[80px] 3xl:bottom-[100px] left-0 right-0">
         <div className="custom-pagination" />
       </div>
     </section>

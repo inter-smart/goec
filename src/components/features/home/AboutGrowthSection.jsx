@@ -50,7 +50,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
 
   return (
     <section className="w-full h-auto block relative z-0">
-      <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
+      <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
         <Swiper
           modules={[Thumbs]}
           onSwiper={setThumbsSwiper}
@@ -65,17 +65,17 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
           }}
           navigation={false}
           direction={"vertical"}
-          className="h-[276px] 2xl:h-[320px]"
+          className="h-[176px] sm:h-[276px] 2xl:h-[320px]"
         >
           {data?.map((item, index) => (
             <SwiperSlide key={"growth" + index}>
-              <div className="w-full h-auto flex relative z-0 pl-4">
+              <div className="w-full h-auto flex relative z-0 pl-3 sm:pl-4">
                 <Image
                   src="/images/about_growth-vector-2.svg"
                   alt="about_growth-vector-2"
                   width={10}
                   height={10}
-                  className={`w-[10px] aspect-square transition absolute z-0 left-0 top-[2px] xl:top-[7px]
+                  className={`w-[8px] sm:w-[10px] aspect-square transition absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px]
                         ${currentSlide === index ? "opacity-100" : "opacity-0"}
                         `}
                 />
@@ -84,7 +84,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                   alt="about_growth-vector-1"
                   width={14}
                   height={72}
-                  className="w-[16px] h-full object-contain mt-[5px] xl:mt-[10px] mr-[10px] xl:mr-[20px]"
+                  className="w-[10px] sm:w-[16px] h-full object-contain mt-[5px] xl:mt-[10px] mr-[5px] sm:mr-[10px] xl:mr-[20px]"
                 />
                 <div
                   className={`text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight font-semibold text-white cursor-pointer
@@ -121,7 +121,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
       >
         {data?.map((item, index) => (
           <SwiperSlide key={"growth" + index}>
-            <div className="w-full h-full min-h-[520px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[40px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+            <div className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
               {item?.media?.type === "video" ? (
                 <video
                   autoPlay
@@ -144,7 +144,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 80vw"
                     priority={index === 0}
-                    className="-z-2"
+                    className="-z-2 object-cover"
                   />
                 </picture>
               )}
@@ -152,13 +152,13 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                 <Heading
                   as="h3"
                   size="heading3"
-                  className="text-white xl:max-w-[60%] 2xl:max-w-[70%]"
+                  className="text-white max-w-[60%] xl:max-w-[60%] 2xl:max-w-[50%] max-sm:text-[14px]"
                 >
                   {item?.title}
                 </Heading>
               </div>
 
-              <div className="w-full h-full bg-black absolute -z-1 inset-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_20%,transparent_80%,white_100%)] [-webkit-mask-image:linear-gradient(to_bottom,white_0%,transparent_20%,transparent_80%,white_100%)]" />
+              <div className="w-full h-full bg-black absolute -z-1 inset-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)] [-webkit-mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)]" />
             </div>
           </SwiperSlide>
         ))}

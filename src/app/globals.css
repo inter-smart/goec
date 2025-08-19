@@ -139,10 +139,6 @@
   --breakpoint-4xl: 160rem; /* 2560px */
 
   /* Container Sizes */
-  --container-4xs: 20rem;
-  --container-3xs: 24rem;
-  --container-2xs: 28rem;
-  --container-xs: 36rem;
   --container-sm: 40rem;
   --container-md: 48rem;
   --container-lg: 64rem;
@@ -240,7 +236,7 @@
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
-    @apply sm:!max-w-[var(--container-sm)] md:!max-w-[var(--container-md)] lg:!max-w-[var(--container-lg)] xl:!max-w-[var(--container-xl)] 2xl:!max-w-[var(--container-2xl)] 3xl:!max-w-[var(--container-3xl)];
+    @apply !max-w-[var(--container-sm)] sm:!max-w-[var(--container-sm)] md:!max-w-[var(--container-md)] lg:!max-w-[var(--container-lg)] xl:!max-w-[var(--container-xl)] 2xl:!max-w-[var(--container-2xl)] 3xl:!max-w-[var(--container-3xl)];
   }
 
   .typography {
