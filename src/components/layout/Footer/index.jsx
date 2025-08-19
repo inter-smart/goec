@@ -205,8 +205,8 @@ export default function Footer({ data = footerData }) {
             <div className="flex-1">
               <Heading
                 as="h2"
-                size="heading2"
-                className="text-white xl:max-w-[468px] 2xl:max-w-[420px]"
+                size="heading3"
+                className="text-white xl:max-w-[368px] 2xl:max-w-[420px]"
               >
                 {data?.subscription?.title}
               </Heading>

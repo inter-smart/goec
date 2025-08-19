@@ -139,17 +139,17 @@ export default function PartnersSection({ data = partnersData }) {
     }
   };
   return (
-    <section className="w-full h-auto block bg-[#030303] relative z-0 py-[40px] sm:py-[100px_80px] xl:py-[160px_100px] 2xl:py-[180px_140px] overflow-hidden">
+    <section className="w-full h-auto block bg-[#030303] relative z-0 py-[40px_20px] sm:py-[100px_25px] xl:py-[120px_30px] 2xl:py-[180px_40px] overflow-hidden">
       <Image
         src="/images/partner-bg.svg"
         alt="partners-bg"
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
-        className="-z-1 translate-y-[0px]"
+        className="-z-1 translate-y-[12%] scale-105"
       />
       <div
         ref={containerRef}
-        className="scroller relative z-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] mb-[20px] xl:mb-[40px] 2xl:mb-[100px]"
+        className="scroller relative z-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] mb-[20px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[100px]"
       >
         {/* <div className="absolute -z-1 inset-0 bg-gradient-to-r from-white/10 via-white/30 to-white/10" /> */}
         <ul
@@ -168,7 +168,7 @@ export default function PartnersSection({ data = partnersData }) {
                   alt={item?.media?.alt}
                   width={220}
                   height={60}
-                  className="w-full h-[60px] aspect-[4/2] object-contain opacity-80"
+                  className="w-full h-[40px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain opacity-80"
                 />
               </div>
             </li>

@@ -74,7 +74,7 @@ export default function AppInfoSection({ data = appInfoData }) {
       <div className="w-[376px] sm:w-[376px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[620px] h-auto block absolute z-1 bottom-0 left-[45%] -translate-x-1/2 pointer-events-none">
         <div className="w-full h-full relative z-0">
           <div className="w-[50px] h-[14px] rounded-full bg-black absolute z-2 top-[12px] right-[23%] pointer-events-none" />
-          <div className="w-[120px] sm:w-[150px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[255px] aspect-[255/544] overflow-hidden rounded-[20px] xl:rounded-[25px] 2xl:rounded-[35px] absolute z-1 top-[1%] right-[7.5%]">
+          <div className="w-[120px] sm:w-[150px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
             {data?.media?.type === "video" ? (
               <video autoPlay loop muted playsInline className="w-full h-full">
                 <source src={data?.media?.path} type="video/mp4" />

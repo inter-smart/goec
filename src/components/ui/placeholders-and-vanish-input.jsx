@@ -242,7 +242,7 @@ export function PlaceholdersAndVanishInput({
       <ActionButton
         disabled={!value}
         type="submit"
-        className="text-black w-[180px] xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[50px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-50 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
+        className="text-black w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[45px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-50 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
       >
         <span>Get notified</span>
       </ActionButton>

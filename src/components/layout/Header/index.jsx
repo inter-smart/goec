@@ -116,13 +116,13 @@ export default function Header() {
         <div className="w-full h-px absolute z-0 inset-x-0 mx-auto -bottom-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="container">
           <div className="flex justify-between">
-            <div>
+            <div className="w-[80px] xl:w-[90px]">
               <Image
                 src="/images/header-logo.svg"
                 alt="logo"
                 width={90}
                 height={45}
-                className="w-[80px] xl:w-[90px]"
+                className="w-full h-full"
               />
             </div>
             <div className="flex items-center space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">

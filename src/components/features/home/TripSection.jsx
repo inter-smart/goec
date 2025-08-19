@@ -23,7 +23,7 @@ export default function TripSection({ data = tripData }) {
     <section className="w-full h-auto block bg-white relative z-0 py-[40px_10px] sm:py-[80px_10px] xl:py-[100px_15px] 2xl:py-[120px_20px]">
       <div className="w-full h-1/2 bg-black absolute top-[-2px] left-0 right-0s -z-1" />
       <div className="max-sm:container sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] sm:mx-auto">
-        <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[40px] p-[40px] sm:p-[60px] xl:p-[60px_80px] 2xl:p-[80px_100px] relative z-0">
+        <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[40px] p-[40px] sm:p-[60px] xl:p-[60px_80px] 2xl:p-[80px_100px] bg-black relative z-0">
           <Image
             src="/images/hero-overlay.png"
             alt="overlay"
@@ -40,11 +40,11 @@ export default function TripSection({ data = tripData }) {
           />
           {data?.media?.type === "video" ? (
             <video
-              //   autoPlay
+              autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover absolute -z-2 inset-0"
+              className="w-full h-full opacity-95 object-cover absolute -z-2 inset-0"
             >
               <source src={data?.media?.path} type="video/mp4" />
             </video>
@@ -54,17 +54,17 @@ export default function TripSection({ data = tripData }) {
               alt={data?.media?.alt}
               fill
               sizes="1820px"
-              className="-z-2"
+              className="-z-2 opacity-95"
             />
           )}
           <div>
             <Heading
               as="h2"
               size="heading1"
-              className="leading-tight text-white sm:max-w-[576px] xl:max-w-[420px] 2xl:max-w-[576px] 3xl:max-w-[620px] mb-[80px] sm:mb-[100px] xl:mb-[140px] 2xl:mb-[220px] 3xl:mb-[276px]"
+              className="font-medium leading-tight text-white sm:max-w-[576px] xl:max-w-[420px] 2xl:max-w-[576px] 3xl:max-w-[620px] mb-[80px] sm:mb-[100px] xl:mb-[180px] 2xl:mb-[220px] 3xl:mb-[276px]"
             >
               <span
-                className="[&>span]:text-primary"
+                className="[&>span]:text-primary [&>span]:italic"
                 dangerouslySetInnerHTML={{ __html: data?.title }}
               />
             </Heading>
@@ -74,7 +74,7 @@ export default function TripSection({ data = tripData }) {
               <Text
                 as="p"
                 size="text2"
-                className="text-white sm:max-w-[576px] xl:max-w-[576px] 2xl:max-w-[768px]"
+                className="text-white sm:max-w-[468px] xl:max-w-[520px] 2xl:max-w-[768px]"
               >
                 {data?.description}
               </Text>

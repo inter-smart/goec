@@ -69,7 +69,7 @@ export default function InvestSection({ data = investData }) {
             <Heading
               as="h2"
               size="heading2"
-              className="text-[#303030] xl:max-w-[840px]"
+              className="text-[#303030] xl:max-w-[568px] 2xl:max-w-[800px]"
             >
               {data?.title}
             </Heading>
@@ -133,7 +133,7 @@ export default function InvestSection({ data = investData }) {
                     <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
                       <ActionButton
                         size="lg"
-                        className="text-white bg-black "
+                        className="text-white bg-transparent bg-gradient-to-r from-[#0f51a9] via-[#0055e0] to-[#0f51a9]"
                         asChild
                       >
                         <Link href={data?.button?.link}>
