@@ -20,6 +20,15 @@ import {
 import Link from "next/link";
 import { ActionButton } from "@/components/utils/Button";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 const header = {
   brand: {
     media: {
@@ -73,7 +82,7 @@ const header = {
 };
 
 const navigationMenuTriggerStyle =
-  "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[15px_20px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10";
+  "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[15px_20px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10";
 
 export default function Header() {
   const { scrollYProgress } = useScroll();
@@ -126,7 +135,7 @@ export default function Header() {
               />
             </div>
             <div className="flex items-center space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">
-              <div>
+              <div className="hidden lg:block">
                 <MegaNavigationMenubar />
               </div>
               <div>
@@ -138,16 +147,31 @@ export default function Header() {
                 </ActionButton>
               </div>
               <div>
-                <button className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
-                  <Image
-                    src="/images/header-hamburger.svg"
-                    alt="hamburger"
-                    width={24}
-                    height={10}
-                    className="w-[15px] xl:w-[20px] 2xl:w-[24px] mr-[6px] xl:mr-[10px] 2xl:mr-[12px]"
-                  />
-                  <span>Menu</span>
-                </button>
+                <Sheet>
+                  <SheetTrigger>
+                    <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
+                      <Image
+                        src="/images/header-hamburger.svg"
+                        alt="hamburger"
+                        width={24}
+                        height={10}
+                        className="w-[15px] xl:w-[20px] 2xl:w-[24px] mr-[6px] xl:mr-[10px] 2xl:mr-[12px]"
+                      />
+                      <span>Menu</span>
+                    </div>
+                  </SheetTrigger>
+                  <SheetContent className="w-[368px] bg-[#030303]">
+                    <SheetHeader>
+                      <SheetTitle className={"sr-only"}>navigations</SheetTitle>
+                      <SheetDescription className={"sr-only"}>
+                        go ec navigations
+                      </SheetDescription>
+                      <div className="lg:hidden">
+                        <MegaNavigationMenubar />
+                      </div>
+                    </SheetHeader>
+                  </SheetContent>
+                </Sheet>
               </div>
             </div>
           </div>
@@ -159,8 +183,12 @@ export default function Header() {
 
 function MegaNavigationMenubar() {
   return (
-    <NavigationMenu viewport={false}>
-      <NavigationMenuList>
+    <NavigationMenu viewport={false} className={"max-w-full justify-normal"}>
+      <NavigationMenuList
+        className={
+          "max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px]"
+        }
+      >
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle}>
             <Link href="/">Home</Link>
@@ -196,7 +224,7 @@ function MegaNavigationMenubar() {
 }
 function MegaNavigationMenuContent() {
   return (
-    <div className="w-full min-w-[668px] bg-white rounded-[25px] p-[]">
+    <div className="w-full lg:min-w-[668px] bg-white rounded-[25px] p-[]">
       <div>mega</div>
     </div>
   );

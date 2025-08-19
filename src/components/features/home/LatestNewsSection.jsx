@@ -103,7 +103,7 @@ const newsData = {
 
 export default function LatestNewsSection({ data = newsData }) {
   const isMobile = useMediaQuery({
-    query: "(max-width: 640px)",
+    query: "(max-width: 1024px)",
   });
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
@@ -144,6 +144,8 @@ export default function LatestNewsSection({ data = newsData }) {
                 spaceBetween: 10,
               },
               640: {
+                slidesPerView: 2,
+                spaceBetween: 15,
                 autoplay: {
                   delay: 5000,
                   disableOnInteraction: false,

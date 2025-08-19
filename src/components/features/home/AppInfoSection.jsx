@@ -62,7 +62,7 @@ function splitIntoGroups(arr, groupCount = 4) {
 export default function AppInfoSection({ data = appInfoData }) {
   const groupedSpecs = splitIntoGroups(data?.item_specs || [], 4);
   return (
-    <section className="w-full h-auto sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[40px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+    <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[30px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px]">
       <Image
         src="/images/app_info-bg.svg"
         alt="app_info-bg"
@@ -71,10 +71,10 @@ export default function AppInfoSection({ data = appInfoData }) {
         className="-z-3 object-cover pointer-events-none"
       />
 
-      <div className="w-[220px] sm:w-[376px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[620px] h-auto block absolute z-1 bottom-0 left-[20%] sm:left-[45%] -translate-x-1/2 pointer-events-none">
+      <div className="w-[176px] 3xs:w-[220px] sm:w-[276px] md:w-[376px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[620px] h-auto block absolute z-1 bottom-0 left-[20%] sm:left-[45%] -translate-x-1/2 pointer-events-none">
         <div className="w-full h-full relative z-0">
           <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" />
-          <div className="w-[90px] sm:w-[150px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
+          <div className="w-[72px] 3xs:w-[90px] sm:w-[112px] md:w-[152px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
             {data?.media?.type === "video" ? (
               <video autoPlay loop muted playsInline className="w-full h-full">
                 <source src={data?.media?.path} type="video/mp4" />

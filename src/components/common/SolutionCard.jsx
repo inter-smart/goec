@@ -31,7 +31,7 @@ export default function SolutionCard({
   return (
     <div
       ref={container}
-      className="h-[auto] flex items-center justify-center sticky top-[15%]"
+      className="h-[auto] flex items-center justify-center sticky top-[10%] sm:top-[15%]"
     >
       <motion.div
         style={{
@@ -45,13 +45,13 @@ export default function SolutionCard({
         <div className="w-full sm:w-[420px] md:w-[468px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
           <div className="w-full h-full relative z-0 p-[20px] xl:p-[40px] 2xl:p-[60px] flex flex-col justify-between">
             <div>
-              <div className="text-[48px] sm:text-[72px] lg:text-[168px] xl:text-[176px] 2xl:text-[220px] 3xl:text-[276px] leading-[0.8] font-semibold whitespace-nowrap text-ellipsis text-transparent bg-clip-text bg-gradient-to-b from-[#f2f2f2] to-[#fcfcfc]">
+              <div className="text-[36px] sm:text-[48px] lg:text-[168px] xl:text-[176px] 2xl:text-[220px] 3xl:text-[276px] leading-[0.8] font-semibold whitespace-nowrap text-ellipsis text-transparent bg-clip-text bg-gradient-to-b from-[#f2f2f2] to-[#fcfcfc]">
                 {index + 1 < 10 ? "0" + (index + 1) : index + 1}
               </div>
               <Heading
                 as={"h4"}
                 size={"heading3"}
-                className="font-medium line-clamp-2 text-[#191a19] mb-[15px] sm:mb-[20px] xl:mb-[35px] 2xl:mb-[40px]"
+                className="font-medium line-clamp-2 text-[#191a19] mb-[15px] md:mb-[20px] xl:mb-[35px] 2xl:mb-[40px]"
               >
                 {item?.title}
               </Heading>
@@ -74,7 +74,7 @@ export default function SolutionCard({
           </div>
         </div>
         <div className="w-full sm:w-[calc(100%-420px)] md:w-[calc(100%-468px)] xl:w-[calc(100%-468px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]">
-          <div className="w-full aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
+          <div className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
             <motion.div style={{ scale: imageScale }} className="w-full h-full">
               <Image
                 src={item?.media?.path}

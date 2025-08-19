@@ -148,9 +148,8 @@
   --container-4xl: 160rem;
 
   /* Header Sizes */
-  --header-y: 65px;
-  --header-y-lg: 75px;
-  --header-y-xl: 82px;
+  --header-y-sm: 65px;
+  --header-y-lg: 82px;
   --header-y-2xl: 100px;
   --header-y-3xl: 100px;
 
@@ -187,7 +186,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    @apply [--header-y:var(--header-y)] lg:[--header-y:var(--header-y-lg)] xl:[--header-y:var(--header-y-xl)] 2xl:[--header-y:var(--header-y-2xl)] 3xl:[--header-y:var(--header-y-3xl)];
+    @apply [--header-y:var(--header-y-sm)] lg:[--header-y:var(--header-y-lg)] 2xl:[--header-y:var(--header-y-2xl)] 3xl:[--header-y:var(--header-y-3xl)];
   }
   /* Better scrollbar styling */
   ::-webkit-scrollbar {
