@@ -13,9 +13,16 @@ import { useRef, useState } from "react";
 const aboutGrowthData = [
   {
     media: {
-      type: "image",
-      path: "/images/about-growth-1.jpg",
-      alt: "about",
+      mobile: {
+        type: "image",
+        path: "/images/about-growth-1.jpg",
+        alt: "about",
+      },
+      desktop: {
+        type: "image",
+        path: "/images/about-growth-1.jpg",
+        alt: "about",
+      },
     },
     title:
       "GO EC started with one charging station in Kerala, sparking an electric revolution.",
@@ -23,9 +30,16 @@ const aboutGrowthData = [
   },
   {
     media: {
-      type: "image",
-      path: "/images/about-growth-1.jpg",
-      alt: "about",
+      mobile: {
+        type: "image",
+        path: "/images/about-growth-1.jpg",
+        alt: "about",
+      },
+      desktop: {
+        type: "image",
+        path: "/images/about-growth-1.jpg",
+        alt: "about",
+      },
     },
     title:
       "We're now Kerala's leading EV charging station and expanding across India.",
@@ -33,9 +47,16 @@ const aboutGrowthData = [
   },
   {
     media: {
-      type: "image",
-      path: "/images/about-growth-1.jpg",
-      alt: "about",
+      mobile: {
+        type: "image",
+        path: "/images/about-growth-1.jpg",
+        alt: "about",
+      },
+      desktop: {
+        type: "image",
+        path: "/images/about-growth-1.jpg",
+        alt: "about",
+      },
     },
     title:
       "By 2030, GOEC will power every state in India with EV charging stations.",
@@ -130,19 +151,20 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                   playsInline
                   className="w-full h-full object-cover absolute -z-2 inset-0"
                 >
+                  {/* <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> */}
                   <source src={item?.media?.path} type="video/mp4" />
                 </video>
               ) : (
                 <picture className="absolute -z-2 inset-0">
                   <source
                     media="(max-width: 640px)"
-                    srcSet={item?.media?.path}
+                    srcSet={item?.media?.mobile?.path}
                   />
                   <Image
-                    src={item?.media?.path}
-                    alt={item?.media?.alt}
+                    src={item?.media?.desktop?.path}
+                    alt={item?.media?.desktop?.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 80vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                     priority={index === 0}
                     className="-z-2 object-cover"
                   />

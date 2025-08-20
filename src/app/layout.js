@@ -17,16 +17,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${urbanist.className} antialiased min-h-screen flex flex-col`}
-      >
-        <LenisProvider>
+    <LenisProvider>
+      <html lang="en">
+        <body className={`${urbanist.className} antialiased`}>
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main>{children}</main>
           <Footer />
-        </LenisProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </LenisProvider>
   );
 }

@@ -28,8 +28,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Heading } from "@/components/utils/Heading";
 
-const header = {
+const headerData = {
   brand: {
     media: {
       type: "image",
@@ -37,48 +38,112 @@ const header = {
       alt: "logo",
     },
   },
-  navigation: {
-    about: [
-      {
-        title: "More about us",
-        path: "/about",
-      },
-      {
-        title: "Our Values",
-        path: "/about",
-      },
-      {
-        title: "Our Journey",
-        path: "/about",
-      },
-      {
-        title: "Meet our team",
-        path: "/about",
-      },
-      {
-        title: "Our Associates",
-        path: "/about",
-      },
-      {
-        title: "Media & Recognit",
-        path: "/about",
-      },
-    ],
-    shop: [
-      {
-        title: "GO EC Smartcharge",
-        path: "/",
-      },
-      {
-        title: "AC chargers",
-        path: "/",
-      },
-      {
-        title: "DC chargers",
-        path: "/",
-      },
-    ],
-  },
+  navigation: [
+    {
+      label: "Home",
+      link: "/",
+    },
+    {
+      label: "Company",
+      link: "/about",
+      item_company: [
+        {
+          label: "About us",
+          link: "/about",
+          item_about: [
+            {
+              label: "More about us",
+              link: "/about",
+            },
+            {
+              label: "Our Values",
+              link: "/about",
+            },
+            {
+              label: "Our Journey",
+              link: "/about",
+            },
+            {
+              label: "Meet our team",
+              link: "/about",
+            },
+            {
+              label: "Our Associates",
+              link: "/about",
+            },
+            {
+              label: "Media & Recognit",
+              link: "/about",
+            },
+          ],
+        },
+        {
+          label: "About us",
+          link: "/about",
+          item_about: [
+            {
+              label: "More about us",
+              link: "/about",
+            },
+            {
+              label: "Our Values",
+              link: "/about",
+            },
+            {
+              label: "Our Journey",
+              link: "/about",
+            },
+            {
+              label: "Meet our team",
+              link: "/about",
+            },
+            {
+              label: "Our Associates",
+              link: "/about",
+            },
+            {
+              label: "Media & Recognit",
+              link: "/about",
+            },
+          ],
+        },
+        {
+          label: "Careers",
+          link: "/career",
+        },
+        {
+          label: "Privacy Policy",
+          link: "/privacy-policy",
+        },
+        {
+          label: "Terms and conditions",
+          link: "/terms-conditions",
+        },
+      ],
+    },
+    {
+      label: "Invest in GO EC",
+      link: "/invest",
+    },
+    {
+      label: "Solutions",
+      link: "/solutions",
+      item_solution: [
+        {
+          label: "GOEC Charging Hub",
+          link: "/about",
+        },
+        {
+          label: "GOEC Exclusive",
+          link: "/about",
+        },
+        {
+          label: "Public Commercial Parking",
+          link: "/about",
+        },
+      ],
+    },
+  ],
 };
 
 const navigationMenuTriggerStyle =
@@ -222,10 +287,28 @@ function MegaNavigationMenubar() {
     </NavigationMenu>
   );
 }
-function MegaNavigationMenuContent() {
+
+function MegaNavigationMenuContent(data = headerData.navigation.item_company) {
+  console.log(data);
+
   return (
-    <div className="w-full lg:min-w-[668px] bg-white rounded-[25px] p-[]">
-      <div>mega</div>
+    <div className="w-full min-w-[468px] xl:min-w-[576px] 2xl:min-w-[640px] 3xl:min-w-[768px] bg-white rounded-[25px] xl:rounded-[30px] overflow-hidden">
+      <div className="flex flex-wrap">
+        <div className="w-full xl:w-[35%]">
+          <div className="flex flex-col p-10">
+            {data?.map((item, index) => (
+              <div key={index} className="mb-[15px]">
+                <Heading as="h3" size="heading3">
+                  {item?.label}
+                </Heading>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="w-full xl:w-[65%]">
+          <div className="w-full h-full bg-white">sdffdfs</div>
+        </div>
+      </div>
     </div>
   );
 }

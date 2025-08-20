@@ -9,11 +9,11 @@ import parse from "html-react-parser";
 import { Text } from "@/components/utils/Text";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useMediaQuery } from "react-responsive";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import useMedia from "use-media";
 
 const newsData = {
   title: "Latest News",
@@ -102,9 +102,7 @@ const newsData = {
 };
 
 export default function LatestNewsSection({ data = newsData }) {
-  const isMobile = useMediaQuery({
-    query: "(max-width: 1024px)",
-  });
+  const isMobile = useMedia("(max-width: 1024px)");
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
@@ -186,7 +184,7 @@ export default function LatestNewsSection({ data = newsData }) {
                           </div>
                         </div>
                         <div className="w-full sm:w-1/2">
-                          <div className="h-full flex flex-col justify-between p-[15px_20px_15px_0] xl:p-[20px_30px_20px_0] 2xl:p-[30px_40px_30px_0]">
+                          <div className="h-full flex flex-col justify-between p-[15px_20px_15px_10px] xl:p-[30px_30px_30px_15px] 2xl:p-[30px_40px_30px_20px]">
                             <div>
                               <div className="text-[14px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                                 {item?.title}
@@ -199,7 +197,7 @@ export default function LatestNewsSection({ data = newsData }) {
                                 {parse(item?.description)}
                               </Text>
                             </div>
-                            <div className="flex justify-between">
+                            <div className="flex justify-between items-center">
                               <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
                                 {formattedDate}
                               </div>

@@ -29,19 +29,19 @@ const footerData = {
       title: "Company",
       item_navigation: [
         {
-          url: "/about",
+          link: "/about",
           label: "About us",
         },
         {
-          url: "/contact",
+          link: "/contact",
           label: "Contact us",
         },
         {
-          url: "/privacy",
+          link: "/privacy",
           label: "Privacy policy",
         },
         {
-          url: "/terms",
+          link: "/terms",
           label: "Terms & Conditions",
         },
       ],
@@ -50,19 +50,19 @@ const footerData = {
       title: "Resources",
       item_navigation: [
         {
-          url: "/blog",
+          link: "/blog",
           label: "Blog",
         },
         {
-          url: "/",
+          link: "/",
           label: "How to charge",
         },
         {
-          url: "/blog",
+          link: "/blog",
           label: "News",
         },
         {
-          url: "/",
+          link: "/",
           label: "Help centre",
         },
       ],
@@ -71,19 +71,19 @@ const footerData = {
       title: "Misc",
       item_navigation: [
         {
-          url: "/",
+          link: "/",
           label: "GOEC application",
         },
         {
-          url: "/",
+          link: "/",
           label: "Solutions",
         },
         {
-          url: "/blog",
+          link: "/blog",
           label: "Shop",
         },
         {
-          url: "/",
+          link: "/",
           label: "Apply for charging station",
         },
       ],
@@ -92,15 +92,15 @@ const footerData = {
       title: "Discover",
       item_navigation: [
         {
-          url: "/",
+          link: "/",
           label: "Explore chargers",
         },
         {
-          url: "/",
+          link: "/",
           label: "Partner with us",
         },
         {
-          url: "/career",
+          link: "/career",
           label: "Careers",
         },
       ],
@@ -116,7 +116,7 @@ const footerData = {
           alt: "ios",
         },
         type: "ios",
-        url: "#",
+        link: "#",
       },
       {
         media: {
@@ -125,14 +125,14 @@ const footerData = {
           alt: "android",
         },
         type: "android",
-        url: "#",
+        link: "#",
       },
     ],
   },
   copyright: "© 2025 GOEC Pvt Ltd  All rights reserved",
   social_link: [
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-linkedin.svg",
@@ -140,7 +140,7 @@ const footerData = {
       },
     },
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-behance.svg",
@@ -148,7 +148,7 @@ const footerData = {
       },
     },
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-x.svg",
@@ -156,7 +156,7 @@ const footerData = {
       },
     },
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-dribble.svg",
@@ -164,7 +164,7 @@ const footerData = {
       },
     },
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-instagram.svg",
@@ -172,7 +172,7 @@ const footerData = {
       },
     },
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-facebook.svg",
@@ -180,7 +180,7 @@ const footerData = {
       },
     },
     {
-      url: "/",
+      link: "/",
       media: {
         type: "image",
         path: "/images/icon-youtube.svg",
@@ -284,7 +284,7 @@ export default function Footer({ data = footerData }) {
                           className="mb-[6px] sm:mb-[8px] xl:mb-[10px] "
                         >
                           <Link
-                            href={linkItem?.url}
+                            href={linkItem?.link}
                             className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] transition hover:text-primary block"
                           >
                             {linkItem?.label}

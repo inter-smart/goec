@@ -16,9 +16,16 @@ const heroData = {
   item_banner: [
     {
       media: {
-        type: "image",
-        path: "/images/hero-banner-1.jpg",
-        alt: "hero",
+        mobile: {
+          type: "image",
+          path: "/images/hero-banner-1.jpg",
+          alt: "hero",
+        },
+        desktop: {
+          type: "image",
+          path: "/images/hero-banner-1.jpg",
+          alt: "hero",
+        },
       },
       title: "Powering Your Journey with Lightning Charging Nationwide",
       description:
@@ -38,9 +45,16 @@ const heroData = {
     },
     {
       media: {
-        type: "image",
-        path: "/images/hero-banner-1.jpg",
-        alt: "hero",
+        mobile: {
+          type: "image",
+          path: "/images/hero-banner-1.jpg",
+          alt: "hero",
+        },
+        desktop: {
+          type: "image",
+          path: "/images/hero-banner-1.jpg",
+          alt: "hero",
+        },
       },
       title: "Powering Your Journey with Lightning Charging Nationwide 22",
       description:
@@ -195,10 +209,13 @@ export default function HeroSection({ data = heroData }) {
               </video>
             ) : (
               <picture className="absolute -z-2 inset-0">
-                <source media="(max-width: 640px)" srcSet={item?.media?.path} />
+                <source
+                  media="(max-width: 640px)"
+                  srcSet={item?.media?.mobile?.path}
+                />
                 <Image
-                  src={item?.media?.path}
-                  alt={item?.media?.alt}
+                  src={item?.media?.desktop?.path}
+                  alt={item?.media?.desktop?.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
                   className="-z-2"

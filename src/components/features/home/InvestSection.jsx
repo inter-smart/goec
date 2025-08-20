@@ -14,9 +14,16 @@ import {
 
 const investData = {
   media: {
-    type: "image",
-    path: "/images/invest-1.jpg",
-    alt: "invest",
+    mobile: {
+      type: "image",
+      path: "/images/invest-1.jpg",
+      alt: "invest",
+    },
+    desktop: {
+      type: "image",
+      path: "/images/invest-1.jpg",
+      alt: "invest",
+    },
   },
   title: "Invest in India's fast-growing electric vehicle infrastructure.",
   button: {
@@ -84,10 +91,13 @@ export default function InvestSection({ data = investData }) {
       <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-1.5 mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
         <div className="w-full aspect-[1820/420] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-0">
           <picture className="absolute -z-1 inset-0">
-            <source media="(max-width: 640px)" srcSet={data?.media?.path} />
+            <source
+              media="(max-width: 640px)"
+              srcSet={data?.media?.mobile?.path}
+            />
             <Image
-              src={data?.media?.path}
-              alt={data?.media?.alt}
+              src={data?.media?.desktop?.path}
+              alt={data?.media?.desktop?.alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 transition hover:scale-105"
@@ -133,7 +143,8 @@ export default function InvestSection({ data = investData }) {
                     <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
                       <ActionButton
                         size="lg"
-                        className="text-white bg-transparent bg-gradient-to-r from-[#0f51a9] via-[#0055e0] to-[#0f51a9]"
+                        variant={"blue"}
+                        className="w-full"
                         asChild
                       >
                         <Link href={data?.button?.link}>
