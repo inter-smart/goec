@@ -217,7 +217,7 @@ export default function HeroSection({ data = heroData }) {
                   src={item?.media?.desktop?.path}
                   alt={item?.media?.desktop?.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                   className="-z-2"
                   placeholder="blur"
                   blurDataURL="/images/placeholder.jpg"

@@ -4,7 +4,7 @@ const sizes = {
   heading2:
     "text-[20px] sm:text-[24px] lg:text-[28px] xl:text-[42px] 2xl:text-[46px] 3xl:text-[52px] leading-tight font-medium",
   heading3:
-    "text-[18px] sm:text-[20px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-tight font-normal",
+    "text-[16px] sm:text-[20px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-tight font-normal",
   heading4:
     "text-[14px] sm:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] leading-tight font-normal",
   heading5:

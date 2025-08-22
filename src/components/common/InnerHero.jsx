@@ -57,7 +57,7 @@ export default function InnerHero({ data = heroData }) {
       </picture>
       <div className="container">
         <div className="flex flex-wrap relative z-0">
-          <div className="w-full xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-468px)]">
+          <div className="w-full sm:w-[calc(100%-276px)] md:w-[calc(100%-320px)] xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-468px)]">
             <Heading
               as="h1"
               size="heading1"
@@ -72,14 +72,14 @@ export default function InnerHero({ data = heroData }) {
             >
               {data?.description}
             </Text>
-            <div className="flex space-x-[10px] xl:space-x-[15px]">
+            <div className="flex space-x-[5px] sm:space-x-[10px] xl:space-x-[15px]">
               {data?.button?.map((buttonItem, index) =>
                 buttonItem?.type === "primary" ? (
                   <ActionButton
                     key={index}
                     size={"lg"}
                     variant={"blue"}
-                    className="max-w-[180px] xl:max-w-[220px] 2xl:max-w-[240px]"
+                    className="max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
                     asChild
                   >
                     <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
@@ -88,7 +88,7 @@ export default function InnerHero({ data = heroData }) {
                   <ActionButton
                     key={index}
                     size={"lg"}
-                    className="text-black bg-white max-w-[120px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                    className="text-black bg-white max-w-[120px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
                     asChild
                   >
                     <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
@@ -97,7 +97,7 @@ export default function InnerHero({ data = heroData }) {
               )}
             </div>
           </div>
-          <div className="w-full xl:w-[400px] 2xl:w-[468px] absolute z-0 top-1/2 -translate-y-1/2 right-0">
+          <div className="w-full sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] absolute z-0 top-1/2 -translate-y-1/2 right-0">
             <div className="w-full h-full ">
               {data?.media?.type === "video" ? (
                 <video
@@ -116,8 +116,6 @@ export default function InnerHero({ data = heroData }) {
                   width={100}
                   height={100}
                   className="w-full h-full"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
                   priority={true}
                 />
               )}

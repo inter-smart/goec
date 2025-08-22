@@ -144,7 +144,7 @@ export default function PartnersSection({ data = partnersData }) {
         src="/images/partner-bg.svg"
         alt="partners-bg"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 60vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
         className="-z-1 translate-y-[5%] sm:translate-y-[12%] scale-105"
       />
       <div

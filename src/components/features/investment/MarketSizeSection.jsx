@@ -29,12 +29,13 @@ const futureData = {
     label: "Plan a trip now",
   },
 };
+
 export default function MarketSizeSection({ data = futureData }) {
   const sanitizedText = DOMPurify.sanitize(data?.description);
   return (
-    <section className="w-full h-auto block bg-white relative z-0">
+    <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
-        <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[40px] p-[30px] sm:p-[60px] xl:p-[100px_80px] 2xl:p-[120px_100px] bg-black relative z-0">
+        <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[25px] p-[20px] 3xs:p-[30px] sm:p-[30px] xl:p-[100px_80px] 2xl:p-[120px_100px] bg-black relative z-0">
           <Image
             src="/images/investment-future-bg.png"
             alt="overlay"
@@ -51,11 +52,11 @@ export default function MarketSizeSection({ data = futureData }) {
           />
 
           <div className="flex flex-wrap items-center justify-between mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:px-[4px] xl:[&>*]:px-[6px] 2xl:[&>*]:px-[12px]">
-            <div className="w-full sm:w-1/2 max-w-[320px] sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
+            <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
               <Heading
                 as="h2"
                 size="heading2"
-                className="leading-tight font-medium text-white mb-[80px] sm:mb-[100px] xl:mb-[120px] 2xl:mb-[140px] 3xl:mb-[160px]"
+                className="leading-tight font-medium text-white mb-[15px] sm:mb-[100px] xl:mb-[120px] 2xl:mb-[140px] 3xl:mb-[160px]"
               >
                 {data?.title}
               </Heading>
@@ -64,7 +65,7 @@ export default function MarketSizeSection({ data = futureData }) {
               </Text>
             </div>
 
-            <div className="w-full sm:w-1/2 max-w-[320px] sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
+            <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
               <div>
                 <Suspense fallback={<div>Loading...</div>}>
                   <MarketSizeChart />
