@@ -190,7 +190,7 @@ export default function Header() {
         <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
         <div className="container">
           <div className="flex justify-between">
-            <div className="w-[80px] xl:w-[90px]">
+            <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
               <Image
                 src="/images/header-logo.svg"
                 alt="logo"

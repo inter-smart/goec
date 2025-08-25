@@ -38,7 +38,7 @@ const heroData = {
   ],
 };
 
-export default function InnerHero({ data = heroData }) {
+export default function InnerHero({ data }) {
   return (
     <section className="w-full h-auto min-h-[468px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-center bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
       <picture className="absolute -z-2 inset-0">
@@ -50,9 +50,9 @@ export default function InnerHero({ data = heroData }) {
           src={data?.background_media?.desktop?.path}
           alt={data?.background_media?.desktop?.alt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-          className="-z-2 pointer-events-none"
-          quality={40}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+          className="-z-2 object-cover pointer-events-none"
+          // quality={40}
         />
       </picture>
       <div className="container">
@@ -61,7 +61,7 @@ export default function InnerHero({ data = heroData }) {
             <Heading
               as="h1"
               size="heading1"
-              className="line-clamp-2 text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
+              className="line-clamp-3 text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text xl:max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
             >
               {data?.title}
             </Heading>
