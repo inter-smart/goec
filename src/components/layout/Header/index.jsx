@@ -264,7 +264,7 @@ function MegaNavigationMenubar() {
             Company
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <MegaNavigationMenuContent />
+            <MegaNavigationMenuContent data={headerData.navigation.item_company} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -288,9 +288,7 @@ function MegaNavigationMenubar() {
   );
 }
 
-function MegaNavigationMenuContent(data = headerData.navigation.item_company) {
-  console.log(data);
-
+function MegaNavigationMenuContent({data}) {
   return (
     <div className="w-full min-w-[468px] xl:min-w-[576px] 2xl:min-w-[640px] 3xl:min-w-[768px] bg-white rounded-[25px] xl:rounded-[30px] overflow-hidden">
       <div className="flex flex-wrap">

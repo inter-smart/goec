@@ -1,5 +1,11 @@
 import InnerHero from "@/components/common/InnerHero";
 import AboutInfoSection from "@/components/features/about/AboutInfoSection";
+import AboutMoreSection from "@/components/features/about/AboutMoreSection";
+import AboutCompanySection from "@/components/features/about/AboutCompanySection";
+import AboutTeamSection from "@/components/features/about/AboutTeamSection";
+import AboutAssociateSection from "@/components/features/about/AboutAssociateSection";
+import AboutRecognitionSection from "@/components/features/about/AboutRecognitionSection";
+import AboutBecomePartnerSection from "@/components/features/about/AboutBecomePartnerSection";
 
 const heroData = {
   background_media: {
@@ -33,8 +39,14 @@ const heroData = {
 export default function Page() {
   return (
     <>
-      <InnerHero data={heroData} />
+      {/* <InnerHero data={heroData} />
       <AboutInfoSection />
+      <AboutMoreSection /> */}
+      <AboutCompanySection />
+      <AboutTeamSection />
+      <AboutAssociateSection />
+      <AboutRecognitionSection />
+      <AboutBecomePartnerSection />
     </>
   );
 }

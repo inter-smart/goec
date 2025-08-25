@@ -1,4 +1,3 @@
-import { Heading } from "@/components/utils/Heading";
 import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 
@@ -16,20 +15,20 @@ const aboutInfoData = {
     },
   },
   description:
-    "<h4>GO EC is envisioned to meet the opportunities for sustainable mobility through collaborations with wiling and progressive partners. Our focus remains on creating a chain of EV Charging Stations that are optimized within the best-given space and infrastructure capacities.</h4>",
+    "<h4>We’re not just building charging stations—we’re driving India’s transition to clean, smart, and sustainable mobility. Born in 2020 with a handful of chargers and a big dream, we’ve grown into one of India’s fastest-growing EV charging networks, committed to making electric vehicle charging effortless, reliable, and accessible.</h4>",
 };
 
 export default function AboutInfoSection({ data = aboutInfoData }) {
   const sanitizedText = DOMPurify.sanitize(data?.description);
   return (
-    <section className="w-full h-auto block pb-[40px] sm:pb-[60px] xl:pb-[100px] 2xl:pb-[120px]">
+    <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px]">
       <div className="container">
         <div
-          className="typography my-[40px_20px] sm:my-[80px_30px] xl:my-[120px_40px] 2xl:my-[140px_40px]"
+          className="typography mb-[40px] sm:mb-[80px] xl:mb-[100px] 2xl:mb-[140px]"
           dangerouslySetInnerHTML={{ __html: sanitizedText }}
         />
       </div>
-      <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto mb-[15px] sm:mb-[30px] xl:mb-[60px] 2xl:mb-[80px]">
+      <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full aspect-[1360/520] overflow-hidden rounded-[20px] xl:rounded-[25px] relative z-0">
           <Image
             src="/images/icon-play.svg"
@@ -59,7 +58,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
                 alt={data?.media?.desktop?.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-                className="-z-1 transition hover:scale-105"
+                className="-z-1 object-cover transition hover:scale-105"
                 placeholder="blur"
                 blurDataURL="/images/placeholder.jpg"
               />
