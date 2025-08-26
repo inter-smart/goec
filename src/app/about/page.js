@@ -39,9 +39,9 @@ const heroData = {
 export default function Page() {
   return (
     <>
-      {/* <InnerHero data={heroData} />
+      <InnerHero data={heroData} />
       <AboutInfoSection />
-      <AboutMoreSection /> */}
+      <AboutMoreSection />
       <AboutCompanySection />
       <AboutTeamSection />
       <AboutAssociateSection />

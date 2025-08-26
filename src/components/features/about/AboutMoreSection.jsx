@@ -84,9 +84,9 @@ const aboutMoreData = {
 
 export default function AboutMoreSection({ data = aboutMoreData }) {
   return (
-    <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
+    <section className="w-full h-auto block py-[20px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">
-        <div className="flex flex-wrap mx-[-20px] sm:mx-[-5px] xl:mx-[-10px] 2xl:mx-[-30px] [&>*]:p-[20px] sm:[&>*]:p-[20px_5px] xl:[&>*]:p-[30px_10px] 2xl:[&>*]:p-[40px_15px]">
+        <div className="flex flex-wrap mx-[-10px] sm:mx-[-10px] xl:mx-[-10px] 2xl:mx-[-30px] [&>*]:p-[10px] sm:[&>*]:p-[20px_10px] xl:[&>*]:p-[30px_10px] 2xl:[&>*]:p-[40px_15px]">
           <div className="w-full sm:w-1/2">
             <div>
               <Heading
@@ -107,7 +107,7 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
                 <ActionButton
                   size={"lg"}
                   variant={"blue"}
-                  className=" w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px]"
+                  className="w-[130px] sm:w-[140px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px]"
                   asChild
                 >
                   <Link href={data?.button?.link}>{data?.button?.label}</Link>
@@ -132,32 +132,34 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
             <div className="mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
               <div className="w-full flex flex-wrap items-center justify-between bg-white border border-[#f0f0f0] rounded-[20px] xl:rounded-[25px] overflow-hidden p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] ">
                 <ul className="flex flex-wrap gap-[4px] xl:gap-[6px] 2xl:gap-[10px] ">
-                  {data?.partner?.item_partner?.map((item, index) => {
-                    const scales = [
-                      "scale-70",
-                      "scale-100",
-                      "scale-80",
-                      "scale-105",
-                      "scale-60",
-                    ];
+                  {data?.partner?.item_partner
+                    ?.slice(0, 5)
+                    .map((item, index) => {
+                      const scales = [
+                        "scale-70",
+                        "scale-100",
+                        "scale-80",
+                        "scale-105",
+                        "scale-60",
+                      ];
 
-                    return (
-                      <li
-                        key={index}
-                        className={`
+                      return (
+                        <li
+                          key={index}
+                          className={`
                      origin-top-center
                      ${scales[index] || "scale-80"}`}
-                      >
-                        <Image
-                          src={item?.media?.path}
-                          alt={item?.media?.alt}
-                          width={60}
-                          height={60}
-                          className="w-[40px] xl:w-[50px] 2xl:w-[55px] aspect-square object-cover border border-white shadow-[0_10px_10px_0_rgba(0,0,0,0.2)] rounded-full transition hover:scale-105"
-                        />
-                      </li>
-                    );
-                  })}
+                        >
+                          <Image
+                            src={item?.media?.path}
+                            alt={item?.media?.alt}
+                            width={60}
+                            height={60}
+                            className="w-[30px] xl:w-[50px] 2xl:w-[55px] aspect-square object-cover border border-white shadow-[0_10px_10px_0_rgba(0,0,0,0.2)] rounded-full transition hover:scale-105"
+                          />
+                        </li>
+                      );
+                    })}
                 </ul>
                 <div>
                   <Heading
@@ -173,7 +175,7 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
             <div>
               <MiViCard
                 title={data?.mission?.title}
-                description={parse(data?.mission?.description)}
+                description={data?.mission?.description}
               />
             </div>
           </div>
@@ -181,7 +183,7 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
             <div className="mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
               <MiViCard
                 title={data?.vision?.title}
-                description={parse(data?.vision?.description)}
+                description={data?.vision?.description}
               />
             </div>
             <div>

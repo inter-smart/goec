@@ -81,7 +81,7 @@ export default function TripSection({ data = tripData }) {
             </div>
             <ActionButton
               size={"lg"}
-              className="text-black bg-[white] max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
+              className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
               asChild
             >
               <Link href={data?.button?.link}>{data?.button?.label}</Link>

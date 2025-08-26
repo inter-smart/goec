@@ -38,7 +38,7 @@ const heroData = {
   ],
 };
 
-export default function InnerHero({ data }) {
+export default function InnerHero({ data, childern }) {
   return (
     <section className="w-full h-auto min-h-[468px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-center bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
       <picture className="absolute -z-2 inset-0">
@@ -56,49 +56,75 @@ export default function InnerHero({ data }) {
         />
       </picture>
       <div className="container">
-        <div className="flex flex-wrap relative z-0">
+        <div className="flex flex-wrap max-sm:flex-col-reverse max-sm:items-center relative z-0">
           <div className="w-full sm:w-[calc(100%-276px)] md:w-[calc(100%-320px)] xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-468px)]">
             <Heading
               as="h1"
               size="heading1"
-              className="line-clamp-3 text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text xl:max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
+              className="line-clamp-3 text-center sm:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[40px] 2xl:mb-[60px]"
             >
               {data?.title}
             </Heading>
-            <Text
-              as="div"
-              size="text1"
-              className="line-clamp-2 text-white max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
-            >
-              {data?.description}
-            </Text>
-            <div className="flex space-x-[5px] sm:space-x-[10px] xl:space-x-[15px]">
-              {data?.button?.map((buttonItem, index) =>
-                buttonItem?.type === "primary" ? (
-                  <ActionButton
-                    key={index}
-                    size={"lg"}
-                    variant={"blue"}
-                    className="max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
-                    asChild
-                  >
-                    <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
-                  </ActionButton>
-                ) : (
-                  <ActionButton
-                    key={index}
-                    size={"lg"}
-                    className="text-black bg-white max-w-[120px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
-                    asChild
-                  >
-                    <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
-                  </ActionButton>
-                )
-              )}
-            </div>
+            {data?.description && (
+              <Text
+                as="div"
+                size="text1"
+                className="line-clamp-2 text-center sm:text-start text-white max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
+              >
+                {data?.description}
+              </Text>
+            )}
+            {data?.button && (
+              <div className="flex space-x-[5px] sm:space-x-[10px] xl:space-x-[15px] max-sm:justify-center">
+                {data?.button?.map((buttonItem, index) =>
+                  buttonItem?.type === "primary" ? (
+                    <ActionButton
+                      key={index}
+                      size={"lg"}
+                      variant={"blue"}
+                      className="max-w-[150px] 3xs:max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
+                      asChild
+                    >
+                      <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
+                    </ActionButton>
+                  ) : buttonItem?.type === "external" ? (
+                    <ActionButton
+                      key={index}
+                      size={"default"}
+                      className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[176px] 2xl:max-w-[200px]"
+                      asChild
+                    >
+                      <a
+                        href={buttonItem?.link}
+                        aria-label={buttonItem?.label}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src={buttonItem?.media?.path}
+                          alt={buttonItem?.media?.alt}
+                          width={176}
+                          height={64}
+                        />
+                      </a>
+                    </ActionButton>
+                  ) : (
+                    <ActionButton
+                      key={index}
+                      size={"lg"}
+                      className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                      asChild
+                    >
+                      <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
+                    </ActionButton>
+                  )
+                )}
+              </div>
+            )}
+            {childern}
           </div>
-          <div className="w-full sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] absolute z-0 top-1/2 -translate-y-1/2 right-0">
-            <div className="w-full h-full ">
+          <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px]">
+            <div className="w-full xl:max-w-[576px] 2xl:max-w-[668px] 3xl:max-w-[720px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
               {data?.media?.type === "video" ? (
                 <video
                   autoPlay
@@ -113,9 +139,9 @@ export default function InnerHero({ data }) {
                 <Image
                   src={data?.media?.path}
                   alt={data?.media?.alt}
-                  width={100}
-                  height={100}
-                  className="w-full h-full"
+                  width={868}
+                  height={868}
+                  className="w-full h-full object-contain"
                   priority={true}
                 />
               )}

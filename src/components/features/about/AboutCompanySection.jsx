@@ -111,9 +111,9 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
         className="-z-1 object-cover"
       />
-      <div className="w-full mb-[40px] sm:mb-[60px] xl:mb-[100px] 2xl:mb-[140px]">
+      <div className="w-full mb-[60px] sm:mb-[60px] xl:mb-[100px] 2xl:mb-[140px]">
         <div className="container">
-          <div className="flex flex-wrap mb-[80px] sm:mb-[70px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[90px] max-sm:flex-col">
+          <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">
               <Heading
                 as="h2"
@@ -170,7 +170,7 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
             {valueData?.item_value.map((item, index) => {
               return (
                 <SwiperSlide key={"value" + index} style={{ width: "33.333%" }}>
-                  <div className="group w-full h-full xl:min-h-[376px] 3xl:min-h-[468px] flex flex-col justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-sm backdrop-blur-sm">
+                  <div className="group w-full h-full min-h-[176px] sm:min-h-[268px] xl:min-h-[376px] 3xl:min-h-[468px] flex flex-col justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-md backdrop-blur-sm">
                     <Image
                       src="/images/about-value_card-bg.png"
                       alt="about-value-bg"
@@ -179,8 +179,8 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
                       className="w-[80px] xl:w-[100px] 2xl:w-[140px] absolute -z-1 top-[40%] right-0 -translate-y-1/2 opacity-5 transition duration-300 group-hover:scale-105 group-hover:opacity-10"
                     />
                     <Heading
-                      as="h4"
-                      size="heading4"
+                      as="h3"
+                      size="heading3"
                       className="font-medium text-white xl:max-w-[60%] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
                     >
                       {item?.title}
@@ -198,7 +198,7 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
 
       <div className="w-full">
         <div className="container">
-          <div className="flex flex-wrap mb-[80px] sm:mb-[70px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[90px] max-sm:flex-col">
+          <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">
               <Heading
                 as="h2"
@@ -214,26 +214,26 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
               </Text>
             </div>
           </div>
-          <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px]">
+          <div className="flex flex-wrap mx-[-5px] sm:mx-[-10px] xl:mx-[-15px] 2xl:mx-[-20px] [&>*]:p-[5px] sm:[&>*]:p-[10px] xl:[&>*]:p-[15px] 2xl:[&>*]:p-[20px]">
             {journeyData?.item_journey.map((item, index) => {
               return (
-                <div key={"journey" + index} className="w-full">
+                <div key={"journey" + index} className="w-full 3xs:w-1/2 sm:w-full">
                   <div
-                    className={`w-full h-full flex flex-wrap items-center border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 shadow-sm backdrop-blur-sm
+                    className={`w-full h-full flex flex-wrap items-center border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 shadow-md backdrop-blur-sm
                     ${index % 2 === 1 && "sm:flex-row-reverse"}
                     `}
                   >
-                    <div className="w-full sm:w-[calc(100%-420px)] md:w-[calc(100%-468px)] xl:w-[calc(100%-468px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]">
-                      <div className="w-full h-full relative z-0 p-[40px_20px_40px_60px] sm:p-[60px_40px_60px_100px] xl:p-[80px_60px_80px_120px] 2xl:p-[100px_80px_100px_160px] flex flex-col justify-between">
+                    <div className="w-full sm:w-[calc(100%-320px)] md:w-[calc(100%-368px)] xl:w-[calc(100%-468px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]">
+                      <div className="w-full h-full relative z-0 p-[20px_10px_20px_40px] sm:p-[40px_30px_40px_80px] md:p-[60px_40px_60px_100px] xl:p-[80px_60px_80px_120px] 2xl:p-[100px_80px_100px_160px] flex flex-col justify-between">
                         <div
-                          className={`text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight font-medium text-white absolute z-0 top-[27%] left-[20px] xl:left-[40px] 2xl:left-[50px]
+                          className={`text-[8px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight font-normal text-white absolute z-0 top-[20%] sm:top-[28%] left-[10px] sm:left-[30px] xl:left-[40px] 2xl:left-[50px]
                         `}
                         >
                           {item?.timestamp?.slice(0, 4)}
                         </div>
                         <Heading
-                          as={"h4"}
-                          size={"heading4"}
+                          as={"h3"}
+                          size={"heading3"}
                           className="font-medium line-clamp-2 text-white mb-[15px] md:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
                         >
                           {item?.title}
@@ -247,7 +247,7 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
                         </Text>
                       </div>
                     </div>
-                    <div className="w-full sm:w-[420px] md:w-[468px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
+                    <div className="w-full sm:w-[320px] md:w-[368px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
                       <div className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
                         <div className="w-full h-full">
                           <Image

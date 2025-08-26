@@ -167,7 +167,7 @@ export default function AboutAssociateSection({ data = AboutAssociateData }) {
   return (
     <section className="w-full h-auto block py-[20px_40px] sm:py-[30px_60px] xl:py-[50px_100px] 2xl:py-[70px_140px]">
       <div className="container">
-        <div className="flex flex-wrap mb-[80px] sm:mb-[70px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[90px] max-sm:flex-col">
+        <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">
             <Heading
               as="h2"
@@ -185,14 +185,14 @@ export default function AboutAssociateSection({ data = AboutAssociateData }) {
         </div>
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px]">
           {data?.item_associate?.map((item, index) => (
-            <div key={"associate" + index} className="w-full sm:w-1/5">
-              <div className="w-full aspect-[4/2] rounded-[20px] xl:rounded-[25px] flex items-center justify-center overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]">
+            <div key={"associate" + index} className="w-1/2 3xs:w-1/3 sm:w-1/5">
+              <div className="w-full aspect-[4/2] rounded-[20px] xl:rounded-[25px] flex items-center justify-center overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0] transition hover:bg-primary/10">
                 <Image
                   src={item?.media?.path}
                   alt={item?.media?.alt}
                   width={220}
                   height={60}
-                  className="w-full max-w-[120px] xl:w-[140px] 2xl:max-w-[176px] h-[25px] sm:h-[30px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain filter brightness-0 saturate-100"
+                  className="w-full max-w-[80px] sm:max-w-[120px] xl:w-[140px] 2xl:max-w-[176px] h-[25px] sm:h-[30px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain filter brightness-0 saturate-100"
                   placeholder="blur"
                   blurDataURL="/images/placeholder.jpg"
                 />
