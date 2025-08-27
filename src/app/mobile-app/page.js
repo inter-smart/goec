@@ -1,6 +1,6 @@
 import InnerHero from "@/components/common/InnerHero";
-import AppFeatureSection from "@/components/features/app/AppFeatureSection";
-import AppInfoSection from "@/components/features/app/AppInfoSection";
+import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
+import AppInfoSection from "@/components/features/mobile-app/AppInfoSection";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 

@@ -1,5 +1,6 @@
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
+import Image from "next/image";
 
 const AppFeatureData = {
   title: "Features to elevate your charging experience",
@@ -14,7 +15,7 @@ const AppFeatureData = {
     {
       media: {
         type: "image",
-        path: "/images/app-app_feature-1.png",
+        path: "/images/app-app_feature-1.svg",
         alt: "feature",
       },
       rating: 5,
@@ -54,7 +55,7 @@ const AppFeatureData = {
 
 export default function AppFeatureSection({ data = AppFeatureData }) {
   return (
-    <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px]">
+    <section className="w-full h-auto block py-[20px_40px] sm:py-[30px_60px] xl:py-[50px_100px] 2xl:py-[70px_140px]">
       <div className="container">
         <Heading
           as="h2"
@@ -66,7 +67,7 @@ export default function AppFeatureSection({ data = AppFeatureData }) {
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px]">
           {data?.item_feature?.map((item, index) => (
             <div key={"feature" + index} className="w-full 3xs:w-1/2 sm:w-1/3">
-              <div className="w-full h-auto block bg-transparent bg-gradient-to-br from-[#030303] to-[#21bfed] rounded-[20px] xl:rounded-[25px] p-[20px_10px] sm:p-[40px_20px] xl:p-[60px_40px] 2xl:p-[80px_50px]">
+              <div className="w-full h-auto block bg-transparent bg-gradient-to-br from-[#030303] to-[#21bfed] rounded-[20px] xl:rounded-[25px] p-[20px_10px] sm:p-[40px_20px] xl:p-[60px_40px] 2xl:p-[80px_50px] 3xl:p-[100px_50px]">
                 <div>
                   <Text
                     as="div"
@@ -82,6 +83,13 @@ export default function AppFeatureSection({ data = AppFeatureData }) {
                   >
                     {item?.title}
                   </Heading>
+                  <Image
+                    src={item?.media?.path}
+                    alt={item?.media?.alt}
+                    width={320}
+                    height={320}
+                    className="w-full h-auto block mx-auto"
+                  />
                 </div>
               </div>
             </div>
