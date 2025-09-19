@@ -110,8 +110,8 @@ export default function InvestNowSection({ data = investNowData }) {
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
         className="-z-2 object-cover"
-        placeholder="blur"
-        blurDataURL="/images/placeholder.jpg"
+        
+        
       />
       <div className="container">
         <div className="flex flex-wrap mx-[-20px] sm:mx-[-40px] xl:mx-[-60px] 2xl:mx-[-70px] [&>*]:px-[20px] sm:[&>*]:px-[40px] xl:[&>*]:px-[60px] 2xl:[&>*]:px-[70px] max-sm:flex-col-reverse">
@@ -166,8 +166,8 @@ export default function InvestNowSection({ data = investNowData }) {
                 width={320}
                 height={320}
                 className="w-[120px] sm:w-[268px] xl:w-[320px] 2xl:w-[368px] bg-blend-soft-light"
-                placeholder="blur"
-                blurDataURL="/images/placeholder.jpg"
+                
+                
               />
             </div>
           </div>
@@ -184,8 +184,8 @@ export default function InvestNowSection({ data = investNowData }) {
                       width={40}
                       height={40}
                       className="w-[20px] xl:w-[30px] 2xl:w-[40px] block"
-                      placeholder="blur"
-                      blurDataURL="/images/placeholder.jpg"
+                      
+                      
                     />
                   </div>
                   <Text as="div" size="text2" className="text-white">

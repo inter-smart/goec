@@ -101,7 +101,7 @@ const partnersData = {
   ],
 };
 
-export default function PartnersSection({ data = partnersData }) {
+export default function PartnersSection({ data = partnersData, title, partners }) {
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
 
@@ -181,7 +181,7 @@ export default function PartnersSection({ data = partnersData }) {
           size="none"
           className="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[32px] leading-tight font-light text-center text-transparent bg-clip-text bg-gradient-to-r from-white/50 via-white to-white/50 inline-block"
         >
-          {data?.title}
+          {title}
         </Heading>
       </div>
     </section>

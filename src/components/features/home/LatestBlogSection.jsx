@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 const blogData = {
   title: "Explore our Blogs.",
   button: {
-    link: "/",
+    link: "/blogs",
     label: "View all",
   },
   item_blog: [
@@ -93,7 +93,7 @@ const blogData = {
   ],
 };
 
-export default function LatestBlogSection({ data = blogData }) {
+export default function LatestBlogSection({ data = blogData, title, blogs }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
@@ -104,7 +104,7 @@ export default function LatestBlogSection({ data = blogData }) {
               size="heading2"
               className="text-[#303030] xl:max-w-[840px]"
             >
-              {data?.title}
+              {title}
             </Heading>
           </div>
           <div>
@@ -150,10 +150,10 @@ export default function LatestBlogSection({ data = blogData }) {
             },
           }}
         >
-          {data?.item_blog.map((item, index) => {
+          {blogs.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <BlogCard data={item} />
+                <BlogCard blog={item} />
               </SwiperSlide>
             );
           })}

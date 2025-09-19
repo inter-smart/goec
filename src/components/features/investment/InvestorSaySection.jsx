@@ -123,8 +123,7 @@ export default function InvestorSaySection({ data = investorSayData }) {
                           width={50}
                           height={50}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                          placeholder="blur"
-                          blurDataURL="/images/placeholder.jpg"
+                          
                         />
                       </div>
                       <div className="w-[calc(100%-40px)] md:w-[calc(100%-50px)] xl:w-[calc(100%-65px)] 2xl:w-[calc(100%-75px)] 3xl:w-[calc(100%-100px)] pl-[10px] xl:pl-[15px] 2xl:pl-[20px]">

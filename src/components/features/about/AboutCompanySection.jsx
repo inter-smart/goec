@@ -256,8 +256,8 @@ export default function AboutCompanySection({ data = aboutCompanyData }) {
                             width={876}
                             height={676}
                             className="w-full h-full object-cover hover:scale-105 transition"
-                            placeholder="blur"
-                            blurDataURL="/images/placeholder.jpg"
+                            
+                            
                           />
                         </div>
                       </div>

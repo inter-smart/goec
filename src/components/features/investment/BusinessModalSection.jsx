@@ -145,8 +145,8 @@ export default function BusinessModalSection({ data = businessModalData }) {
                       fill
                       sizes="512px"
                       className="object-cover transition hover:scale-105"
-                      placeholder="blur"
-                      blurDataURL="/images/placeholder.jpg"
+                      
+                      
                     />
                   </div>
 

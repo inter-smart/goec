@@ -53,8 +53,8 @@ export default function InvestmentInfoSection({ data = investmentData }) {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                 className="-z-1 transition hover:scale-105"
-                placeholder="blur"
-                blurDataURL="/images/placeholder.jpg"
+                
+                
               />
             </picture>
           )}

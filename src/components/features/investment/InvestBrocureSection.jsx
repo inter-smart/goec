@@ -95,8 +95,8 @@ export default function InvestBrocureSection({ data = investBrocureData }) {
                     width={476}
                     height={268}
                     className="w-full h-full"
-                    placeholder="blur"
-                    blurDataURL="/images/placeholder.jpg"
+                    
+                    
                   />
                 )}
               </div>

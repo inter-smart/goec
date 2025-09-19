@@ -193,8 +193,8 @@ export default function AboutAssociateSection({ data = AboutAssociateData }) {
                   width={220}
                   height={60}
                   className="w-full max-w-[80px] sm:max-w-[120px] xl:w-[140px] 2xl:max-w-[176px] h-[25px] sm:h-[30px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain filter brightness-0 saturate-100"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
+                  
+                  
                 />
               </div>
             </div>

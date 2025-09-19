@@ -11,6 +11,7 @@ import "swiper/css/effect-creative";
 import "swiper/css/pagination";
 import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useRef } from "react";
+import { MEDIA_URL } from "@/lib/api";
 
 const heroData = {
   item_banner: [
@@ -23,7 +24,7 @@ const heroData = {
         },
         desktop: {
           type: "image",
-          path: "/images/hero-banner-1.jpg",
+          path: "/images/hero-banner-1.jpg..",
           alt: "hero",
         },
       },
@@ -75,7 +76,7 @@ const heroData = {
   ],
 };
 
-export default function HeroSection({ data = heroData }) {
+export default function HeroSection({ heroBanner = heroData }) {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -187,7 +188,7 @@ export default function HeroSection({ data = heroData }) {
           }, 100);
         }}
       >
-        {data?.item_banner?.map((item, index) => (
+        {heroBanner?.map((item, index) => (
           <SwiperSlide key={index}>
             <Image
               src="/images/hero-overlay.png"
@@ -197,7 +198,7 @@ export default function HeroSection({ data = heroData }) {
               className="-z-1 pointer-events-none"
               quality={40}
             />
-            {item?.media?.type === "video" ? (
+            {item?.media?.desktop?.media_type === "video" ? (
               <video
                 autoPlay
                 loop
@@ -205,22 +206,25 @@ export default function HeroSection({ data = heroData }) {
                 playsInline
                 className="w-full h-full object-cover absolute -z-2 inset-0"
               >
-                <source src={item?.media?.path} type="video/mp4" />
+                <source
+                  src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
+                  type="video/mp4"
+                />
               </video>
             ) : (
               <picture className="absolute -z-2 inset-0">
                 <source
                   media="(max-width: 640px)"
-                  srcSet={item?.media?.mobile?.path}
+                  srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`}
                 />
                 <Image
-                  src={item?.media?.desktop?.path}
-                  alt={item?.media?.desktop?.alt}
+                  src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
+                  alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                   className="-z-2"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
+                  
+                  
                   priority={index === 0}
                 />
               </picture>
@@ -243,8 +247,8 @@ export default function HeroSection({ data = heroData }) {
                     {item?.description}
                   </Text>
                   <div className="flex space-x-[10px] xl:space-x-[15px]">
-                    {item?.button?.map((buttonItem, index) =>
-                      buttonItem?.type === "primary" ? (
+                    {item?.buttons?.map((buttonItem, index) =>
+                      buttonItem[0] ? (
                         <ActionButton
                           key={index}
                           size={"lg"}
@@ -252,7 +256,7 @@ export default function HeroSection({ data = heroData }) {
                           asChild
                         >
                           <Link href={buttonItem?.link}>
-                            {buttonItem?.label}
+                            {buttonItem?.text}
                           </Link>
                         </ActionButton>
                       ) : (
@@ -263,7 +267,7 @@ export default function HeroSection({ data = heroData }) {
                           asChild
                         >
                           <Link href={buttonItem?.link}>
-                            {buttonItem?.label}
+                            {buttonItem?.text}
                           </Link>
                         </ActionButton>
                       )
