@@ -29,7 +29,7 @@ export default async function Home() {
     app_feature_section,
     blog_section,
     investment_section,
-    partners_section,
+    associates_section,
     news_section
   } = data;
 
@@ -75,9 +75,9 @@ export default async function Home() {
        investList = {investment_section.list}
       />
       
-      <PartnersSection 
-        title={partners_section?.title || ''}
-        partners={partners_section?.list || []}
+      <PartnersSection
+        title={associates_section?.title || ''}
+        associates={associates_section?.list || []}
       />
       
       <LatestNewsSection 

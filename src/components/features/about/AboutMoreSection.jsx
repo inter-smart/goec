@@ -7,6 +7,7 @@ import { Text } from "@/components/utils/Text";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 import CountUp from "react-countup";
+import { MEDIA_URL } from "@/lib/api";
 
 const aboutMoreData = {
   media: {
@@ -82,7 +83,8 @@ const aboutMoreData = {
   },
 };
 
-export default function AboutMoreSection({ data = aboutMoreData }) {
+export default function AboutMoreSection({ data = aboutMoreData, aboutMore, partners, mission, vision, leadingTheGame  }) {
+  console.log(aboutMore)
   return (
     <section className="w-full h-auto block py-[20px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">
@@ -94,14 +96,14 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
                 size={"heading2"}
                 className="text-[#303030] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
               >
-                {data?.title}
+                {aboutMore?.title}
               </Heading>
               <Text
                 as="div"
                 size={"text2"}
                 className="text-[#303030] mb-[20px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px]"
               >
-                {parse(data?.description)}
+                {parse(aboutMore?.description)}
               </Text>
               <div>
                 <ActionButton
@@ -118,8 +120,8 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
           <div className="w-full sm:w-1/2">
             <div className="w-full aspect-[576/476] rounded-[20px] xl:rounded-[25px] overflow-hidden bg-black relative z-0">
               <Image
-                src={data?.media?.path}
-                alt={data?.media?.alt}
+                src={`${MEDIA_URL}${aboutMore?.media?.media_path}`}
+                alt={aboutMore?.media?.media_alt}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                 className="-z-1 object-cover transition hover:scale-105"
@@ -132,7 +134,7 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
             <div className="mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
               <div className="w-full flex flex-wrap items-center justify-between bg-white border border-[#f0f0f0] rounded-[20px] xl:rounded-[25px] overflow-hidden p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] ">
                 <ul className="flex flex-wrap gap-[4px] xl:gap-[6px] 2xl:gap-[10px] ">
-                  {data?.partner?.item_partner
+                  {partners?.partners_list
                     ?.slice(0, 5)
                     .map((item, index) => {
                       const scales = [
@@ -151,8 +153,8 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
                      ${scales[index] || "scale-80"}`}
                         >
                           <Image
-                            src={item?.media?.path}
-                            alt={item?.media?.alt}
+                            src={`${MEDIA_URL}${item?.media?.media_path}`}
+                            alt={item?.media?.media_alt}
                             width={60}
                             height={60}
                             className="w-[30px] xl:w-[50px] 2xl:w-[55px] aspect-square object-cover border border-white shadow-[0_10px_10px_0_rgba(0,0,0,0.2)] rounded-full transition hover:scale-105"
@@ -167,23 +169,23 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
                     size={"heading5"}
                     className="font-medium text-[#959595]"
                   >
-                    {data?.partner?.title}
+                    {partners?.partners_count}+ partners
                   </Heading>
                 </div>
               </div>
             </div>
             <div>
               <MiViCard
-                title={data?.mission?.title}
-                description={data?.mission?.description}
+                title={mission?.title}
+                description={mission?.description}
               />
             </div>
           </div>
           <div className="w-full sm:w-1/2">
             <div className="mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
               <MiViCard
-                title={data?.vision?.title}
-                description={data?.vision?.description}
+                title={vision?.title}
+                description={vision?.description}
               />
             </div>
             <div>
@@ -194,17 +196,17 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
                     size={"heading5"}
                     className="font-medium text-[#959595]"
                   >
-                    {data?.charging_station?.title}
+                    {leadingTheGame?.title}
                   </Heading>
                 </div>
                 <div>
                   <div className="w-full h-auto block">
                     <div className="text-[16px] sm:text-[20px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] leading-none font-semibold text-right whitespace-nowrap text-ellipsis text-[#030303]">
                       <CountUp
-                        end={parseInt(data?.charging_station?.count?.value)}
+                        end={parseInt(leadingTheGame?.count)}
                         duration={2.75}
                         separator=","
-                        suffix={data?.charging_station?.count?.sufix}
+                        suffix={leadingTheGame?.count?.sufix || "+"}
                         enableScrollSpy
                       />
                     </div>
@@ -213,7 +215,7 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
                       size="text2"
                       className="whitespace-nowrap text-ellipsis text-[#030303] overflow-hidden"
                     >
-                      {data?.charging_station?.count?.title}
+                      {leadingTheGame?.sub_title}
                     </Text>
                   </div>
                 </div>

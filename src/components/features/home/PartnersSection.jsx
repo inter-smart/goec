@@ -102,7 +102,7 @@ const partnersData = {
   ],
 };
 
-export default function PartnersSection({ data = partnersData, title, partners }) {
+export default function PartnersSection({ data = partnersData, title, associates }) {
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
 
@@ -161,7 +161,7 @@ export default function PartnersSection({ data = partnersData, title, partners }
             "hover:[animation-play-state:paused]"
           )}
         >
-          {partners?.map((item, idx) => (
+          {associates?.map((item, idx) => (
             <li key={idx}>
               <div>
                 <Image
