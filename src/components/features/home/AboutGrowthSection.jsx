@@ -144,7 +144,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
         {growthData?.map((item, index) => (
           <SwiperSlide key={"growth" + index}>
             <div className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
-              {/* {item?.media?.type === "video" ? (
+            {item?.media?.type === "video" ? (
                 <video
                   autoPlay
                   loop
@@ -152,10 +152,10 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                   playsInline
                   className="w-full h-full object-cover absolute -z-2 inset-0"
                 >
-                  {/* <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> 
+                  <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> 
                   <source src={item?.media?.path} type="video/mp4" />
                 </video>
-              ) : */}
+              ) :
                 <picture className="absolute -z-2 inset-0">
                   <source
                     media="(max-width: 640px)"
@@ -170,7 +170,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                     className="-z-2 object-cover"
                   />
                 </picture>
-              {/* )} */}
+               } 
               <div className="container px-[80px] sm:px-[120px] xl:px-[180px]">
                 <Heading
                   as="h3"

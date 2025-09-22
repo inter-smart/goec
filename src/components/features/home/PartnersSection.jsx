@@ -1,5 +1,6 @@
 "use client";
 import { Heading } from "@/components/utils/Heading";
+import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -160,12 +161,12 @@ export default function PartnersSection({ data = partnersData, title, partners }
             "hover:[animation-play-state:paused]"
           )}
         >
-          {data?.item_partners.map((item, idx) => (
+          {partners?.map((item, idx) => (
             <li key={idx}>
               <div>
                 <Image
-                  src={item?.media?.path}
-                  alt={item?.media?.alt}
+                  src={`${MEDIA_URL}${item?.media?.media_path}`}
+                  alt={item?.media?.media_alt}
                   width={220}
                   height={60}
                   className="w-full h-[25px] sm:h-[30px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain opacity-80"
