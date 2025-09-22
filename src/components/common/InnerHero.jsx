@@ -153,7 +153,7 @@ export default function InnerHero({
                   />
                   <Image
                     src={`${MEDIA_URL}${media?.desktop?.media_path}`}
-                    alt={data?.media?.alt}
+                    alt={media?.desktop?.media_alt}
                     width={868}
                     height={868}
                     className="w-full h-full object-contain"

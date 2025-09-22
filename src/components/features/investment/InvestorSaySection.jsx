@@ -12,6 +12,7 @@ import parse from "html-react-parser";
 import Image from "next/image";
 import { Text } from "@/components/utils/Text";
 import SwiperNavigation from "@/components/common/SwiperNavigation";
+import { MEDIA_URL } from "@/lib/api";
 
 const investorSayData = {
   title: "Hear what our current Investors say! ",
@@ -58,7 +59,11 @@ const investorSayData = {
   ],
 };
 
-export default function InvestorSaySection({ data = investorSayData }) {
+export default function InvestorSaySection({
+  data = investorSayData,
+  title,
+  testimonials,
+}) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const swiperRef = useRef(null);
   return (
@@ -66,8 +71,12 @@ export default function InvestorSaySection({ data = investorSayData }) {
       <div className="container">
         <div className="flex flex-wrap mx-[-5px] sm:mx-[-10px] xl:mx-[-15px] 2xl:mx-[-20px] [&>*]:px-[5px] sm:[&>*]:px-[10px] xl:[&>*]:px-[15px] 2xl:[&>*]:px-[20px]">
           <div className="w-full sm:w-[calc(100%-420px)] md:w-[calc(100%-540px)] xl:w-[calc(100%-576px)] 2xl:w-[calc(100%-768px)] 3xl:w-[calc(100%-940px)] flex flex-col justify-between">
-            <Heading as="h2" size="heading2" className="text-[#030303] max-sm:text-center">
-              {data?.title}
+            <Heading
+              as="h2"
+              size="heading2"
+              className="text-[#030303] max-sm:text-center"
+            >
+              {title}
             </Heading>
 
             <div className="mt-[20px] flex justify-center sm:justify-start max-sm:mb-[20px]">
@@ -97,7 +106,7 @@ export default function InvestorSaySection({ data = investorSayData }) {
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
             >
-              {data?.item_investor?.map((item, index) => (
+              {testimonials?.map((item, index) => (
                 <SwiperSlide key={"investor" + index}>
                   <div className="group w-full h-full block rounded-[20px] xl:rounded-[25px] p-[40px_20px_20px_40px] sm:p-[40px_20px_20px_60px] xl:p-[50px_30px_30px_60px] 2xl:p-[60px_30px_30px_80px] bg-[#fcfcfc] border border-[#f0f0f0] overflow-hidden">
                     <Image
@@ -118,12 +127,11 @@ export default function InvestorSaySection({ data = investorSayData }) {
                     <div className="w-full h-auto flex items-center">
                       <div className="w-[40px] md:w-[50px] xl:w-[65px] 2xl:w-[75px] 3xl:w-[100px] h-auto aspect-square rounded-full overflow-hidden relative z-0 bg-white/20">
                         <Image
-                          src={item?.author?.media?.path}
-                          alt={item?.author?.media?.alt}
+                          src={`${MEDIA_URL}${item?.media?.media_path}`}
+                          alt={item?.media?.media_alt}
                           width={50}
                           height={50}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                          
                         />
                       </div>
                       <div className="w-[calc(100%-40px)] md:w-[calc(100%-50px)] xl:w-[calc(100%-65px)] 2xl:w-[calc(100%-75px)] 3xl:w-[calc(100%-100px)] pl-[10px] xl:pl-[15px] 2xl:pl-[20px]">
@@ -131,7 +139,7 @@ export default function InvestorSaySection({ data = investorSayData }) {
                           {item?.author?.title}
                         </div>
                         <Text as="div" size="text2" className="text-[#373737]">
-                          {item?.author?.description}
+                          {item?.description?.description}
                         </Text>
                       </div>
                     </div>

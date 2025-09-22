@@ -3,6 +3,7 @@ import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
+import { MEDIA_URL } from "@/lib/api";
 
 const investBrocureData = {
   media: {
@@ -26,7 +27,11 @@ const investBrocureData = {
   ],
 };
 
-export default function InvestBrocureSection({ data = investBrocureData }) {
+export default function InvestBrocureSection({
+  data = investBrocureData,
+  title,
+  media,
+}) {
   return (
     <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
@@ -47,7 +52,7 @@ export default function InvestBrocureSection({ data = investBrocureData }) {
                   size="heading2"
                   className="leading-tight font-medium text-white mb-[20px] sm:mb-[40px] xl:mb-[50px] 2xl:mb-[60px]"
                 >
-                  {data?.title}
+                  {title}
                 </Heading>
                 <div className="flex space-x-[10px] xl:space-x-[15px]">
                   {data?.button?.map((item, index) =>
@@ -90,13 +95,11 @@ export default function InvestBrocureSection({ data = investBrocureData }) {
                   </video>
                 ) : (
                   <Image
-                    src={data?.media?.path}
-                    alt={data?.media?.alt}
+                    src={`${MEDIA_URL}${media?.media_path}`}
+                    alt={media?.media_alt}
                     width={476}
                     height={268}
                     className="w-full h-full"
-                    
-                    
                   />
                 )}
               </div>
