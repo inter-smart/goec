@@ -51,10 +51,10 @@ export default function InnerHero({
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
-          srcSet='/images/hero-investment-bg-1.jpg'
+          srcSet={data?.background_media?.mobile?.path}
         />
         <Image
-          src='/images/hero-investment-bg-1.jpg'
+          src={data?.background_media?.desktop?.path }
           alt={data?.background_media?.desktop?.alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"

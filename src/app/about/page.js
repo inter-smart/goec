@@ -11,6 +11,37 @@ import { fetchFromAPI } from "@/lib/api";
 export default async function AboutPage() {
   const { data, error } = await fetchFromAPI("about");
 
+  const heroData = {
+  background_media: {
+    mobile: {
+      type: "image",
+      path: "/images/hero-about-bg-1.jpg",
+      alt: "hero",
+    },
+    desktop: {
+      type: "image",
+      path: "/images/hero-about-bg-1.jpg",
+      alt: "hero",
+    },
+  },
+  media: {
+    type: "image",
+    path: "/images/about-hero-1.svg",
+    alt: "hero",
+  },
+  title: "We Power Up your Journey with Lightning Charging Nationwide",
+  description: null,
+  button: [
+    {
+      type: "secondary",
+      label: "Become a partner ",
+      link: "/",
+    },
+  ],
+};
+
+
+
   if (error) {
     return <div>Something went wrong</div>;
   }
@@ -32,6 +63,7 @@ export default async function AboutPage() {
     <>
       {/* Hero Section */}
       <InnerHero
+      data={heroData}
         title={banner_section?.title || ""}
         media={banner_section?.media || {}}
       />
