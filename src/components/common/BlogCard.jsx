@@ -5,7 +5,23 @@ import { Suspense } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { MEDIA_URL } from "@/lib/api";
 
-export default function BlogCard({ blog }) {
+const data = [
+  {
+    title: "The Advantages of Having an EV Charging Station in 2025",
+    slug: "The Advantages of Having an EV Charging Station in 2025",
+    description:
+      "Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy,",
+    published_on: "2025-09-19T10:52:45.000Z",
+    media: {
+      media_path: "uploads/blog/1758516388631-254300881.webp",
+      media_alt: "thumbnail_alt",
+    },
+  },
+];
+
+export default function BlogCard({ blog = data, type }) {
+
+  console.log(type)
   let formattedDate = "";
   if (blog?.published_on) {
     const date = new Date(blog.published_on);
@@ -14,7 +30,7 @@ export default function BlogCard({ blog }) {
     }
   }
 
-  console.log(blog)
+  console.log(blog);
   // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Suspense fallback={<BlogCardSkeleton />}>
@@ -34,9 +50,20 @@ export default function BlogCard({ blog }) {
               <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                 {blog?.title}
               </div>
+
+              {type === "similar_blogs" && (
+                <p className="text-[#373737] text-[12px] mb-[10px] lg:mb-[24px] line-clamp-2 leading-tight">
+                  {blog?.description}
+                </p>
+              )}
             </div>
             <div className="flex justify-between gap-[10px]">
-              <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
+              {type === "similar_blogs" && (
+                <div className="text-[10px] sm:text-[12px] mt-0 xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#757575] leading-none font-normal">
+                  <span>Blog - 10 mins read</span>
+                </div>
+              )}
+              <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
                 {formattedDate}
               </div>
             </div>

@@ -88,6 +88,7 @@ export default async function Home() {
       <LatestBlogSection 
         title={blog_section?.title || ''}
         blogs={blog_section?.list || []}
+        type="home"
       />
     </>
   );
