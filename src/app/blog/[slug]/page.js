@@ -2,6 +2,7 @@
 
 import BlogDetails from "@/components/features/blog/BlogDetais";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
+import FooterCard from "@/components/common/FooterCard";
 
 const data = [
   {
@@ -69,13 +70,16 @@ export default function BlogPage() {
         details={data[0].details}
       />
 
-      <div className="mx-5 md:mx-20 lg:mx-[40px] border-b border-gray-300">
+      <div className="mx-5 md:mx-20 lg:mx-[120px] border-b border-gray-300">
         <LatestBlogSection
           title="Similar Blogs"
           blogs={data}
           type="similar_blogs"
         />
       </div>
+      
+      <FooterCard />
+
     </div>
   );
 }
