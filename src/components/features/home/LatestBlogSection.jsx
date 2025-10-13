@@ -38,8 +38,7 @@ const blogData = {
         alt: "blog",
       },
       title: "Benefit of owning an EV Charging station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/blog/blog-detail",
         label: "Read now",
@@ -53,8 +52,7 @@ const blogData = {
         alt: "blog",
       },
       title: "Things you should to know about the EV Chargers",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/blog/blog-detail",
         label: "Read now",
@@ -68,8 +66,7 @@ const blogData = {
         alt: "blog",
       },
       title: "The Advantages of Having an EV Charging Station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/blog/blog-detail",
         label: "Read now",
@@ -83,8 +80,7 @@ const blogData = {
         alt: "blog",
       },
       title: "The Advantages of Having an EV Charging Station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/blog/blog-detail",
         label: "Read now",
@@ -93,25 +89,23 @@ const blogData = {
   ],
 };
 
-export default function LatestBlogSection({ data = blogData }) {
+export default function LatestBlogSection({ data = blogData, title, blogs = [], type = "home" }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
-          <div className="flex-1">
-            <Heading
-              as="h2"
-              size="heading2"
-              className="text-[#303030] xl:max-w-[840px]"
-            >
+          <div className={type === "similar_blogs" ? "w-full flex justify-center text-[40px] text-center" : "flex-1"}>
+            <Heading as="h2" size="heading2" className="text-[#303030] xl:max-w-[840px]">
               {data?.title}
             </Heading>
           </div>
-          <div>
-            <ActionButton variant="link" className="text-black" asChild>
-              <Link href={data?.button?.link}>{data?.button?.label}</Link>
-            </ActionButton>
-          </div>
+          {type === "home" && (
+            <div>
+              <ActionButton variant="link" className="text-black" asChild>
+                <Link href={data?.button?.link}>{data?.button?.label}</Link>
+              </ActionButton>
+            </div>
+          )}
         </div>
         <Swiper
           loop
@@ -153,7 +147,7 @@ export default function LatestBlogSection({ data = blogData }) {
           {data?.item_blog.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <BlogCard data={item} />
+                <BlogCard blog={item} type={type} />
               </SwiperSlide>
             );
           })}

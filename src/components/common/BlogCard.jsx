@@ -28,9 +28,18 @@ export default function BlogCard({ data }) {
               <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                 {data?.title}
               </div>
+
+              {type === "similar_blogs" && (
+                <p className="text-[#373737] text-[12px] mb-[10px] lg:mb-[24px] line-clamp-2 leading-tight">{blog?.description}</p>
+              )}
             </div>
             <div className="flex justify-between gap-[10px]">
-              <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
+              {type === "similar_blogs" && (
+                <div className="text-[10px] sm:text-[12px] mt-0 xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] text-[#757575] leading-none font-normal">
+                  <span>Blog - 10 mins read</span>
+                </div>
+              )}
+              <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
                 {formattedDate}
               </div>
             </div>
