@@ -11,10 +11,10 @@ export default function StationCard({ data, btn }) {
         <Image
           src={data?.media?.path}
           alt={data?.media?.alt}
-          height={320}
-          width={320}
-          sizes="500px"
-          className="object-contain w-full"
+          height={100}
+          width={100}
+          sizes="320px"
+          className="w-full"
           placeholder="blur"
           blurDataURL="/images/placeholder.jpg"
         />
@@ -23,15 +23,13 @@ export default function StationCard({ data, btn }) {
       <div className="m-[48px]">
         <div className="flex flex-col gap-[24px]">
           {/* Title */}
-          <Heading as="h2" size={"heading2"} className="text-[#303030] font-bold">
-            {data?.title}
-          </Heading>
+          <div className="text-[#303030] font-medium text-[20px] md:text-[36px]">{data?.title}</div>
 
           {/* Features List */}
           <div className={data?.isSuper ? "flex flex-wrap gap-[24px]" : "flex flex-col sm:gap-[8px]"}>
             {data?.features?.slice(0, 2).map((feature, index) => (
               <div key={index} className="rounded-full border border-black/5 px-3 sm:px-3 py-2 w-fit ">
-                <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight  text-black line-clamp-2">
+                <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] tracking-tighter  text-black line-clamp-2">
                   {feature}
                 </div>
               </div>

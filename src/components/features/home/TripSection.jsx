@@ -24,13 +24,7 @@ export default function TripSection({ data = tripData }) {
       <div className="w-full h-1/2 bg-black absolute -z-1 top-[-2px] left-0 right-0" />
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[40px] p-[30px] sm:p-[60px] xl:p-[60px_80px] 2xl:p-[80px_100px] bg-black relative z-0">
-          <Image
-            src="/images/hero-overlay.png"
-            alt="overlay"
-            fill
-            sizes="1820px"
-            className="-z-1 pointer-events-none"
-          />
+          <Image src="/images/hero-overlay.png" alt="overlay" fill sizes="1820px" className="-z-1 pointer-events-none" />
           <Image
             src="/images/logo-vector.svg"
             alt="logo-vector"
@@ -39,23 +33,11 @@ export default function TripSection({ data = tripData }) {
             className="w-[220px] sm:w-[576px] xl:w-[768px] 2xl:w-[1080px] aspect-square opacity-5 absolute -z-1 top-1/2 right-[-15%] -translate-y-1/2 object-contain object-center "
           />
           {data?.media?.type === "video" ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full opacity-90 object-cover absolute -z-2 inset-0"
-            >
+            <video autoPlay loop muted playsInline className="w-full h-full opacity-90 object-cover absolute -z-2 inset-0">
               <source src={data?.media?.path} type="video/mp4" />
             </video>
           ) : (
-            <Image
-              src={data?.media?.path}
-              alt={data?.media?.alt}
-              fill
-              sizes="1820px"
-              className="-z-2 opacity-90"
-            />
+            <Image src={data?.media?.path} alt={data?.media?.alt} fill sizes="1820px" className="-z-2 opacity-90" />
           )}
           <div>
             <Heading
@@ -63,27 +45,16 @@ export default function TripSection({ data = tripData }) {
               size="heading1"
               className="font-medium leading-tight text-white max-w-[320px] sm:max-w-[376px] xl:max-w-[420px] 2xl:max-w-[576px] 3xl:max-w-[620px] mb-[80px] sm:mb-[100px] xl:mb-[180px] 2xl:mb-[220px] 3xl:mb-[276px]"
             >
-              <span
-                className="[&>span]:text-primary [&>span]:italic"
-                dangerouslySetInnerHTML={{ __html: data?.title }}
-              />
+              <span className="[&>span]:text-primary [&>span]:italic" dangerouslySetInnerHTML={{ __html: data?.title }} />
             </Heading>
           </div>
           <div className="flex flex-wrap justify-between items-end gap-[20px]">
             <div className="flex">
-              <Text
-                as="p"
-                size="text2"
-                className="text-white max-w-full sm:max-w-[468px] xl:max-w-[520px] 2xl:max-w-[576px] 3xl:max-w-[768px]"
-              >
+              <Text as="p" size="text2" className="text-white max-w-full sm:max-w-[468px] xl:max-w-[520px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
                 {data?.description}
               </Text>
             </div>
-            <ActionButton
-              size={"lg"}
-              className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
-              asChild
-            >
+            <ActionButton size={"lg"} className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]" asChild>
               <Link href={data?.button?.link}>{data?.button?.label}</Link>
             </ActionButton>
           </div>

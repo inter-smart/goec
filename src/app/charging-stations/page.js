@@ -14,7 +14,7 @@ const heroData = {
       alt: "hero",
     },
   },
-  title: "Discover and shop our range of EV Chargers Chargers Chargers Chargers",
+  title: "Discover and shop our range of EV Chargers",
   description: null,
 };
 
