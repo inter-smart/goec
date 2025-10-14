@@ -14,11 +14,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import useMedia from "use-media";
+import { MEDIA_URL } from "@/lib/api";
 
 const newsData = {
   title: "Latest News",
   button: {
-    link: "/",
+    link: "/news",
     label: "View all",
   },
   item_news: [
@@ -101,7 +102,8 @@ const newsData = {
   ],
 };
 
-export default function LatestNewsSection({ data = newsData }) {
+export default function LatestNewsSection({ data = newsData, title, news }) {
+
   const isMobile = useMedia("(max-width: 1024px)");
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
@@ -113,7 +115,7 @@ export default function LatestNewsSection({ data = newsData }) {
               size="heading2"
               className="text-[#303030] xl:max-w-[840px]"
             >
-              {data?.title}
+              {title}
             </Heading>
           </div>
           <div>
@@ -152,19 +154,19 @@ export default function LatestNewsSection({ data = newsData }) {
               },
             }}
           >
-            {data?.item_news.map((item, index) => {
+            {news?.map((item, index) => {
               return (
                 <SwiperSlide key={"news" + index} style={{ width: "33.333%" }}>
-                  <NewsCard data={item} />
+                  <NewsCard news={item} />
                 </SwiperSlide>
               );
             })}
           </Swiper>
         ) : (
           <div className="flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:p-[4px] xl:[&>*]:p-[6px] 2xl:[&>*]:p-[12px]">
-            {data?.item_news.map((item, index) => {
+            {news.map((item, index) => {
               const formattedDate = format(
-                new Date(item?.timestamp),
+                new Date(item?.published_on),
                 "dd MMMM yyyy"
               );
               return index === 0 ? (
@@ -175,8 +177,8 @@ export default function LatestNewsSection({ data = newsData }) {
                         <div className="w-full sm:w-1/2">
                           <div className="w-full h-full aspect-[4/2] rounded-[30px] overflow-hidden relative z-0">
                             <Image
-                              src={item?.media?.path}
-                              alt={item?.media?.alt}
+                              src={`${MEDIA_URL}${item?.media?.media_path}`}
+                              alt={item?.media?.media_alt}
                               fill
                               sizes="512px"
                               className="transition hover:scale-105"
@@ -207,8 +209,9 @@ export default function LatestNewsSection({ data = newsData }) {
                                   className="text-black"
                                   asChild
                                 >
-                                  <Link href={item?.button?.link}>
-                                    {item?.button?.label}
+                                <Link href={`/news/${item?.slug}`}>
+                                  Read Now
+                                    {/* {item?.button?.label} */}
                                   </Link>
                                 </ActionButton>
                               </div>
@@ -221,7 +224,7 @@ export default function LatestNewsSection({ data = newsData }) {
                 </div>
               ) : (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-1/3">
-                  <NewsCard data={item} />
+                  <NewsCard news={item} />
                 </div>
               );
             })}

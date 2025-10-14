@@ -1,6 +1,7 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
+import { MEDIA_URL } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,7 +19,8 @@ const tripData = {
     label: "Plan a trip now",
   },
 };
-export default function TripSection({ data = tripData }) {
+export default function TripSection({ title, highlightTitle, description, makeRideMedia }) {
+
   return (
     <section className="w-full h-auto block bg-white relative z-0 py-[20px_10px] sm:py-[80px_10px] xl:py-[100px_15px] 2xl:py-[120px_20px]">
       <div className="w-full h-1/2 bg-black absolute -z-1 top-[-2px] left-0 right-0" />
@@ -38,7 +40,7 @@ export default function TripSection({ data = tripData }) {
             height={100}
             className="w-[220px] sm:w-[576px] xl:w-[768px] 2xl:w-[1080px] aspect-square opacity-5 absolute -z-1 top-1/2 right-[-15%] -translate-y-1/2 object-contain object-center "
           />
-          {data?.media?.type === "video" ? (
+          {makeRideMedia?.desktop?.media_type === "video" ? (
             <video
               autoPlay
               loop
@@ -46,16 +48,22 @@ export default function TripSection({ data = tripData }) {
               playsInline
               className="w-full h-full opacity-90 object-cover absolute -z-2 inset-0"
             >
-              <source src={data?.media?.path} type="video/mp4" />
+              <source src={makeRideMedia?.desktop?.media_path ? `${MEDIA_URL}${makeRideMedia?.desktop?.media_path}` : 'videos/trip-bg.mp4'} type="video/mp4" />
             </video>
           ) : (
+             <picture className="absolute -z-2 inset-0">
+                <source
+                  media="(max-width: 640px)"
+                  srcSet={`${MEDIA_URL}${makeRideMedia?.mobile?.media_path}`}
+                />
             <Image
-              src={data?.media?.path}
-              alt={data?.media?.alt}
+              src={`${MEDIA_URL}${makeRideMedia?.desktop?.media_path}`}
+              alt={makeRideMedia?.desktop?.media_alt}
               fill
               sizes="1820px"
               className="-z-2 opacity-90"
             />
+            </picture>
           )}
           <div>
             <Heading
@@ -65,7 +73,7 @@ export default function TripSection({ data = tripData }) {
             >
               <span
                 className="[&>span]:text-primary [&>span]:italic"
-                dangerouslySetInnerHTML={{ __html: data?.title }}
+                dangerouslySetInnerHTML={{ __html: title }}
               />
             </Heading>
           </div>
@@ -76,7 +84,7 @@ export default function TripSection({ data = tripData }) {
                 size="text2"
                 className="text-white max-w-full sm:max-w-[468px] xl:max-w-[520px] 2xl:max-w-[576px] 3xl:max-w-[768px]"
               >
-                {data?.description}
+                {description}
               </Text>
             </div>
             <ActionButton
@@ -84,7 +92,7 @@ export default function TripSection({ data = tripData }) {
               className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
               asChild
             >
-              <Link href={data?.button?.link}>{data?.button?.label}</Link>
+              <Link href="/">Plan a Trip Now</Link>
             </ActionButton>
           </div>
         </div>
