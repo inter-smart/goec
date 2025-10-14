@@ -6,7 +6,6 @@ import { ActionButton } from "../utils/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { Heading } from "../utils/Heading";
-import { MEDIA_URL } from "@/lib/api";
 
 export default function SolutionCard({
   i,
@@ -17,7 +16,6 @@ export default function SolutionCard({
   item,
 }) {
   const container = useRef(null);
-
 
   // local scroll for image zoom
   const { scrollYProgress } = useScroll({
@@ -63,7 +61,7 @@ export default function SolutionCard({
             </div>
             <div>
               <ActionButton variant="link" className="text-black" asChild>
-                <Link href={item?.buttons[0]?.link}>{item?.buttons[0]?.text}</Link>
+                <Link href={item?.button?.link}>{item?.button?.label}</Link>
               </ActionButton>
             </div>
             <Image
@@ -79,13 +77,13 @@ export default function SolutionCard({
           <div className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
             <motion.div style={{ scale: imageScale }} className="w-full h-full">
               <Image
-                src={`${MEDIA_URL}${item?.media?.media_path}`}
-                alt={item?.media?.media_alt}
+                src={item?.media?.path}
+                alt={item?.media?.alt}
                 width={876}
                 height={676}
                 className="w-full h-full object-cover hover:scale-105 transition"
-                
-                
+                placeholder="blur"
+                blurDataURL="/images/placeholder.jpg"
               />
             </motion.div>
           </div>

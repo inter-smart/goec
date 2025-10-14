@@ -30,8 +30,8 @@ const futureData = {
   },
 };
 
-export default function MarketSizeSection({ data = futureData, title, description, media }) {
-  const sanitizedText = DOMPurify.sanitize(description);
+export default function MarketSizeSection({ data = futureData }) {
+  const sanitizedText = DOMPurify.sanitize(data?.description);
   return (
     <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
@@ -58,7 +58,7 @@ export default function MarketSizeSection({ data = futureData, title, descriptio
                 size="heading2"
                 className="leading-tight font-medium text-white mb-[15px] sm:mb-[100px] xl:mb-[120px] 2xl:mb-[140px] 3xl:mb-[160px]"
               >
-                {title}
+                {data?.title}
               </Heading>
               <Text as="div" size="text2" className="text-[#ced1d0]">
                 {parse(sanitizedText)}

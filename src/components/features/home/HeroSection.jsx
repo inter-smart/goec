@@ -11,7 +11,6 @@ import "swiper/css/effect-creative";
 import "swiper/css/pagination";
 import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useRef } from "react";
-import { MEDIA_URL } from "@/lib/api";
 
 const heroData = {
   item_banner: [
@@ -24,7 +23,7 @@ const heroData = {
         },
         desktop: {
           type: "image",
-          path: "/images/hero-banner-1.jpg..",
+          path: "/images/hero-banner-1.jpg",
           alt: "hero",
         },
       },
@@ -74,7 +73,7 @@ const heroData = {
   ],
 };
 
-export default function HeroSection({ heroBanner = heroData }) {
+export default function HeroSection({ data = heroData }) {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -180,7 +179,7 @@ export default function HeroSection({ heroBanner = heroData }) {
           }, 100);
         }}
       >
-        {heroBanner?.map((item, index) => (
+        {data?.item_banner?.map((item, index) => (
           <SwiperSlide key={index}>
             <Image
               src="/images/hero-overlay.png"
@@ -190,19 +189,21 @@ export default function HeroSection({ heroBanner = heroData }) {
               className="-z-1 pointer-events-none"
               quality={40}
             />
-            {item?.media?.desktop?.media_type === "video" ? (
+            {item?.media?.type === "video" ? (
               <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
-                <source src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`} type="video/mp4" />
+                <source src={item?.media?.path} type="video/mp4" />
               </video>
             ) : (
               <picture className="absolute -z-2 inset-0">
                 <source media="(max-width: 640px)" srcSet={item?.media?.mobile?.path} />
                 <Image
-                  src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
-                  alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
+                  src={item?.media?.desktop?.path}
+                  alt={item?.media?.desktop?.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                   className="-z-2"
+                  placeholder="blur"
+                  blurDataURL="/images/placeholder.jpg"
                   priority={index === 0}
                 />
               </picture>

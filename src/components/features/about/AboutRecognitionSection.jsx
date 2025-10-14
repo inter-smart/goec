@@ -9,7 +9,6 @@ import "swiper/css/navigation";
 
 import Image from "next/image";
 import { Autoplay } from "swiper/modules";
-import { MEDIA_URL } from "@/lib/api";
 
 const AboutRecognitionData = {
   title: "Media & Recognition",
@@ -105,9 +104,6 @@ const AboutRecognitionData = {
 
 export default function AboutRecognitionSection({
   data = AboutRecognitionData,
-  title,
-  description,
-  list,
 }) {
   return (
     <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
@@ -119,12 +115,12 @@ export default function AboutRecognitionSection({
               size="heading2"
               className="text-[#030303] max-sm:text-center"
             >
-              {title}
+              {data?.title}
             </Heading>
           </div>
           <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
             <Text as="div" size="text2" className="text-[#373737]">
-              {parse(description)}
+              {parse(data?.description)}
             </Text>
           </div>
         </div>
@@ -141,6 +137,7 @@ export default function AboutRecognitionSection({
           disableOnInteraction: false,
           pauseOnMouseEnter: true, // Keeps sliding even on hover
         }}
+
         modules={[Autoplay]} // Add Autoplay to modules array
         breakpoints={{
           320: {
@@ -165,7 +162,7 @@ export default function AboutRecognitionSection({
           },
         }}
       >
-        {list?.map((item, index) => {
+        {data?.item_recognition?.map((item, index) => {
           return (
             <SwiperSlide
               key={"value" + index}
@@ -173,8 +170,8 @@ export default function AboutRecognitionSection({
             >
               <div className="group w-full aspect-[960/540] rounded-[20px] xl:rounded-[25px] overflow-hidden">
                 <Image
-                  src={`${MEDIA_URL}${item?.thumbnail?.media_path}`}
-                  alt={item?.thumbnail?.media_alt}
+                  src={item?.media?.path}
+                  alt={item?.media?.alt}
                   width={960}
                   height={540}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-300"

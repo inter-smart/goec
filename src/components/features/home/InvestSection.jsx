@@ -11,7 +11,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MEDIA_URL } from "@/lib/api";
 
 const investData = {
   media: {
@@ -68,8 +67,7 @@ const investData = {
   ],
 };
 
-export default function InvestSection({ data = investData, milestoneDescription, investMedia, investList }) {
-
+export default function InvestSection({ data = investData }) {
   return (
     <section className="w-full h-auto block py-[40px_30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
@@ -80,12 +78,12 @@ export default function InvestSection({ data = investData, milestoneDescription,
               size="heading2"
               className="text-[#303030] xl:max-w-[568px] 2xl:max-w-[800px]"
             >
-              {milestoneDescription}
+              {data?.title}
             </Heading>
           </div>
           <div>
             <ActionButton variant="link" className="text-black" asChild>
-              <Link href='/'>Lern More</Link>
+              <Link href={data?.button?.link}>{data?.button?.label}</Link>
             </ActionButton>
           </div>
         </div>
@@ -95,11 +93,11 @@ export default function InvestSection({ data = investData, milestoneDescription,
           <picture className="absolute -z-1 inset-0">
             <source
               media="(max-width: 640px)"
-              srcSet={`${MEDIA_URL}${investMedia?.mobile?.media_path}`}
+              srcSet={data?.media?.mobile?.path}
             />
             <Image
-            src={`${MEDIA_URL}${investMedia?.desktop?.media_path}`}
-              alt={investMedia?.desktop?.media_alt}
+              src={data?.media?.desktop?.path}
+              alt={data?.media?.desktop?.alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 transition hover:scale-105"
@@ -109,7 +107,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
       </div>
       <div className="container">
         <Accordion type="single" collapsible>
-          {investList.map((item, index) => {
+          {data?.item_invest.map((item, index) => {
             const sanitizedText = DOMPurify.sanitize(item?.description);
             return (
               <AccordionItem
@@ -149,15 +147,15 @@ export default function InvestSection({ data = investData, milestoneDescription,
                         className="w-full"
                         asChild
                       >
-                        <Link href={item?.buttons[0]?.link}>
-                          {item?.buttons[0]?.text}
+                        <Link href={data?.button?.link}>
+                          {data?.button?.label}
                         </Link>
                       </ActionButton>
                     </div>
                   </div>
                 </AccordionContent>
 
-                {index + 1 !== investList.length && (
+                {index + 1 !== data?.item_invest.length && (
                   <div className="w-full max-w-[85%] sm:max-w-[88%] xl:max-w-[84%] h-[1px] ml-auto border border-dashed border-b-[#949494]" />
                 )}
               </AccordionItem>
