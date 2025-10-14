@@ -10,7 +10,7 @@ const data = [
       "India is quickly becoming a key investment hub, attracting entrepreneurs to launch their ventures. In line with Vision 2030, the country is prioritising electric vehicle (EV) infrastructure.",
     slug: "The Advantages of Having an EV Charging Station in 2025",
     description:
-      "Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy,",
+      "Embark on a journey of discovery as we navigate the intricacies of entrepreneurship. From the initial spark of an idea to the establishment and growth of your business, Entrepreneurial Insights provides a compass for emerging entrepreneurs, offering valuable perspectives to help you chart a successful c",
     published_on: "2025-09-19T10:52:45.000Z",
     media: {
       media_path: "uploads/blog/1758516388631-254300881.webp",
@@ -58,7 +58,7 @@ const data = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen mt-[80px] md:mt-[100px] lg:mt-[152px] bg-white">
+    <div className="min-h-screen mt-[80px] md:mt-[100px] lg:mt-[150px] xl:[136px] bg-white">
       {/* Main Content */}
       {/* Breadcrumb */}
 
@@ -70,7 +70,7 @@ export default function BlogPage() {
         details={data[0].details}
       />
 
-      <div className="mx-5 md:mx-20 lg:mx-[120px] border-b border-gray-300">
+      <div className="mx-5 md:mx-20 lg:mx-[10px]">
         <LatestBlogSection
           title="Similar Blogs"
           blogs={data}

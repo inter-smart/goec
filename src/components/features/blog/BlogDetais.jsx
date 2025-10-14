@@ -16,7 +16,7 @@ export default function BlogDetails({
   return (
     <>
       {/* Article Container */}
-      <article className="max-w-[calc(100%-80px)] pt-[10px] mx-auto px-[24px] md:max-w-[calc(100%-200px)] lg:max-w-[calc(100%-500px)]">
+      <article className="max-w-[calc(100%-80px)] mt-[10px] mx-auto px-[24px] md:max-w-[calc(100%-200px)] lg:max-w-[calc(100%-500px)]">
         <BreadCrumb
           items={[
             { label: "Insights", href: "/" },
@@ -28,18 +28,18 @@ export default function BlogDetails({
         {/* Article Title */}
         <Heading
           as="h1"
-          className=" mt-[20px] md:mt-[40px] lg:text-[40px] text-[24px] md:text-[32px] font-regular text-[#373737] leading-tight mb-[24px] lg:mb-[32px]"
+          className=" mt-[20px] md:mt-[40px] lg:text-[40px] xl:text-[48px] text-[24px] md:text-[32px] font-regular text-[#373737] leading-tight mb-[24px] lg:mb-[32px]"
         >
           {title}
         </Heading>
 
         {/* Intro Paragraph */}
-        <p className="text-[#373737] text-[14px] lg:text-[18px] mb-[24px]">
+        <p className="text-[#373737] text-[12px] lg:text-[20px] mb-[24px] leading-tight">
           {description}
         </p>
 
         {/* Date under description */}
-        <div className="flex items-center gap-3 text-[#373737] text-[14px] lg:text-[18px] mb-[24px]">
+        <div className="flex items-center gap-2 text-[#373737] text-[12px] lg:text-[18px] mb-[24px]">
           <Image
             src="/images/calendar.jpg"
             alt="calendar"
@@ -52,13 +52,13 @@ export default function BlogDetails({
         </div>
 
         {/* Featured Image */}
-        <div className="mb-12 rounded-[24px] overflow-hidden">
+        <div className="mb-12 rounded-[12px] xl:rounded-[24px] overflow-hidden">
           <Image
             src={"/images/Blog_1.png"}
             alt="Featured"
              width={1200}
             height={600}
-            className="w-full rounded-[24px] h-auto object-cover"
+            className="w-full rounded-[12px] lg:rounded-[24px] h-auto object-cover"
           />
         </div>
 

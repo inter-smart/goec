@@ -168,10 +168,10 @@ export default function AllBlogsSection() {
   };
 
   return (
-    <section className="px-[24px] lg:px-[120px] bg-white mb-[40px]">
+    <section className="px-[24px] lg:px-[86px] xl:px-[120px] bg-white mb-[40px]">
       <div className="max-w-[1440px] mx-auto">
         {/* Section Title */}
-        <h2 className=" text-2xl lg:text-[40px] font-Medium text-black mb-6 sm:mb-8 lg:mb-[40px]">
+        <h2 className=" text-2xl lg:text-[30px] xl:text-[40px] font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
           All Blogs
         </h2>
 

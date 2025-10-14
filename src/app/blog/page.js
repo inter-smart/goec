@@ -7,7 +7,6 @@ export default async function BlogPage() {
     <>
       <BlogInsights />
       <AllBlogsSection />
-      <BlogCard />
     </>
   );
 }
