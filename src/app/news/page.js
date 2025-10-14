@@ -18,8 +18,6 @@ export default function Page() {
     },
   };
 
-  console.log("Test");
-
   return (
     <>
       <HeroBanner data={data?.bannerData} />
