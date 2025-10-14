@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 export default function FooterCard() {
   return (
@@ -22,7 +22,9 @@ export default function FooterCard() {
             Wish to know more about GO EC?
           </h2>
           <p className="text-[#CED1D0] xl:text-[20px] text-[16px] leading-tight">
-            Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial insights reveals down the importance of having a well-thought-out strategy.
+            Uncover the art of strategic planning and decision-making in the
+            business world. Entrepreneurial insights reveals down the importance
+            of having a well-thought-out strategy.
           </p>
         </div>
         {/* CTA Button */}

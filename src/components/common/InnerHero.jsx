@@ -40,7 +40,7 @@ const heroData = {
 };
 
 export default function InnerHero({
-  data,
+  data= heroData,
   childern,
   title,
   description,

@@ -148,7 +148,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                 <video
                   autoPlay
                   loop
-                  muted
+                  mutedc
                   playsInline
                   className="w-full h-full object-cover absolute -z-2 inset-0"
                 >

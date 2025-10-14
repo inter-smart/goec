@@ -20,7 +20,6 @@ const investmentData = {
 };
 
 export default function InvestmentInfoSection({
-  data = investmentData,
   description,
   media,
 }) {

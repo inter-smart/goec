@@ -66,7 +66,7 @@ export default function BlogInsights() {
   };
 
   return (
-    <section className="mt-[100px] px-[24px] lg:mx-[86px] xl:mx-[240px] 2xl:mx-[160px] lg:mt-[109px] bg-white">
+    <section className="mt-[100px] mx-[24px] lg:mx-[86px] xl:mx-[240px] 2xl:mx-[160px] lg:mt-[109px] bg-white">
       <div className="mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-[24px] lg:py-[6px] lg:mb-[43px]">
