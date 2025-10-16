@@ -94,11 +94,9 @@ const stationsData = {
 
 export default function StationsList({ data }) {
   return (
-    <div className="w-full flex flex-wrap mx-[-4px] sm:mx-[-6px] xl:mx-[-10px] 2xl:mx-[-12px] [&>*]:p-[4px] sm:[&>*]:p-[6px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
+    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-[12px] lg:gap-[18px] xl:gap-[21px] 2xl:gap-[24px] ">
       {stationsData?.stations?.map((station) => (
-        <div key={station.id} className={station.isSuper ? "w-full" : "w-full sm:w-1/2"}>
-          <StationCard data={station} btn={stationsData.button} />
-        </div>
+        <StationCard data={station} btn={stationsData.button} />
       ))}
     </div>
   );

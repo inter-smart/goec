@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Title({ title, description, date, slug }) {
   return (
-    <section>
+    <section className="container mt-[80px]">
       <BreadCrumb
         items={[
           { label: "News", href: "/news" },

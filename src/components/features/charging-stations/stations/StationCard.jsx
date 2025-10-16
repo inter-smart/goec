@@ -5,7 +5,9 @@ import Link from "next/link";
 
 export default function StationCard({ data, btn }) {
   return (
-    <div className="w-full  h-auto  rounded-[20px] sm:rounded-[24px] border border-[#e5e5e5] overflow-hidden">
+    <div
+      className={`w-full mb-[12px] lg:mb-[16px] xl:mb-[20px] 2xl:mb-[24px] sm:min-w-[260px] md:min-w-[320px] lg:min-w-[420px] xl:min-w-[520px] rounded-[20px] sm:rounded-[24px] border border-[#e5e5e5] overflow-hidden`}
+    >
       {/* Image Container */}
       <div className="w-full  relative">
         <Image
@@ -20,16 +22,18 @@ export default function StationCard({ data, btn }) {
         />
       </div>
 
-      <div className="m-[48px]">
+      <div className="p-[25px] xl:p-[42px] 2xl:p-[48px]">
         <div className="flex flex-col gap-[24px]">
           {/* Title */}
-          <div className="text-[#303030] font-medium text-[20px] md:text-[36px]">{data?.title}</div>
+          <div className="text-[16px] sm:text-[20px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-tight font-medium">
+            {data?.title}
+          </div>
 
           {/* Features List */}
-          <div className={data?.isSuper ? "flex flex-wrap gap-[24px]" : "flex flex-col sm:gap-[8px]"}>
+          <div className={data?.isSuper ? "flex flex-wrap gap-[24px]" : "flex md:flex-col sm:gap-[8px]"}>
             {data?.features?.slice(0, 2).map((feature, index) => (
               <div key={index} className="rounded-full border border-black/5 px-3 sm:px-3 py-2 w-fit ">
-                <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] tracking-tighter  text-black line-clamp-2">
+                <div className="sm:text-[8px] md:text-[10px] lg:text-[12px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] tracking-tighter  text-black line-clamp-2">
                   {feature}
                 </div>
               </div>

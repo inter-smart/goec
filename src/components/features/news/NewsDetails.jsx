@@ -7,9 +7,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
   return (
     <div>
-      <div className=" mt-[20px] md:mt-[40px] text-[32px] font-medium text-[#373737] leading-tight mb-[24px] lg:mb-[32px]">
-        Navigating the Entrepreneurial Journey
-      </div>
+      <div className="text-[32px] font-medium text-[#373737] leading-tight mb-[24px] lg:mb-[32px]">Navigating the Entrepreneurial Journey</div>
       <p className="text-[#373737] text-[14px] lg:text-[18px] mb-[24px]">{desc}</p>
     </div>
   );

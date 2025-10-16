@@ -37,8 +37,9 @@ export default function BlogCard({ blog = data, type }) {
         <Link href={`/blog/${blog?.slug}`} key={blog?.slug}>
           <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
             <Image
-              src={`${MEDIA_URL}${blog?.media?.media_path}`}
-              alt={blog?.media?.media_alt}
+              // src={`${MEDIA_URL}${blog?.media?.media_path}`}
+              src={`${blog?.media?.path}`}
+              alt={blog?.media?.alt}
               fill
               sizes="512px"
               className="transition hover:scale-105"

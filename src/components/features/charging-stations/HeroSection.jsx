@@ -19,7 +19,7 @@ export default function HeroSection({ data }) {
         <Heading
           as="h1"
           size="heading1"
-          className="line-clamp-2 text-center text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mx-auto max-w-[50%] mb-[15px] sm:mb-[20px] xl:mb-[40px] 2xl:mb-[60px]"
+          className="line-clamp-2 text-center text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mx-auto lg:max-w-[50%]"
         >
           {data?.title}
         </Heading>

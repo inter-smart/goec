@@ -29,13 +29,13 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <NewsDetailBanner data={data?.banner} />
-      <div className="container mt-[80px] mb-[140px]">
-        <Title slug={slug} title={data?.news?.title} description={data?.news?.desc} date={data?.banner?.published_at} />
+      <Title slug={slug} title={data?.news?.title} description={data?.news?.desc} date={data?.banner?.published_at} />
+      <NewsDetailBanner banner={data?.banner} />
+      <section className="container mt-[30px] mb-[30px]">
         <NewsDetails />
         <NewsDetails />
         <NewsDetails />
-      </div>
+      </section>
       <SimiliarNews />
     </>
   );
