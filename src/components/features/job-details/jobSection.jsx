@@ -4,6 +4,7 @@ import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
 import Link from "next/link";
+import { HiArrowLongRight } from "react-icons/hi2";
 
 export default function JobSection() {
   return (
@@ -48,13 +49,17 @@ export default function JobSection() {
             </ActionButton>
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] lg:text-[13px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[24px] bg-[#FCFCFC] text-black border rounded-full p-[12px_18px]">
+        <Text
+          as={"div"}
+          size={"text2"}
+          className="flex flex-wrap items-center gap-2 sm:gap-3 bg-[#FCFCFC] text-[#030303] border rounded-full p-[10px_16px] lg:p-[12px_18px] xl:p-[15px_22px] 2xl:p-[17px_24px] 3xl:p-[22px_32px] "
+        >
           <span>Fresher</span>
-          <span className="text-[#CCCCCC]">|</span>
+          <span className="text-[#373737]">|</span>
           <span>Part Time</span>
-          <span className="text-[#CCCCCC]">|</span>
+          <span className="text-[#373737]">|</span>
           <span>Kochi</span>
-        </div>
+        </Text>
         {/* Job Info Sections */}
 
         <div className="flex flex-col gap-8 text-gray-700 mt-[26px] lg:mt-[30px] xl:mt-[56px] 2xl:mt-[60px] 3xl:mt-[75px]">
@@ -63,11 +68,11 @@ export default function JobSection() {
             <Heading
               as={"h2"}
               size={"heading2"}
-              className="mb-[18px] lg:mb-[23px] 2xl:mb-[35px] 3xl:mb-[43px] text-[#030303] font-semibold"
+              className="mb-[18px] lg:mb-[23px] 2xl:mb-[35px] 3xl:mb-[43px] text-[#030303]"
             >
               About
             </Heading>
-            <Text as="p" size="text" className="leading-tight font-light">
+            <Text as="div" size="text1" className="leading-tight font-light">
               Lorem ipsum dolor sit amet consectetur. Lorem velit tempus a sit.
               Porta risus in eget egestas quisque tellus eu nulla convallis.
               Bibendum ut faucibus bibendum enim bibendum mattis diam. A
@@ -125,9 +130,10 @@ export default function JobSection() {
         <ActionButton
           as={"default"}
           variant={"blue"}
-          className=" flex items-center justify-center w-[100%] mt-[40px] lg:mt-[50px] xl:mt-[80px] 2xl:mt-[90px] 3xl:mt-[120px] py-[10px] rounded-full text-sm sm:text-base font-medium"
+          className=" flex items-center justify-center w-[100%] mt-[40px] lg:mt-[50px] xl:mt-[80px] 2xl:mt-[90px] 3xl:mt-[120px] py-[10px] rounded-full font-medium"
         >
           <Link href="/">Apply Now</Link>
+          <HiArrowLongRight />
         </ActionButton>
       </div>
     </div>

@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ActionButton } from "@/components/utils/Button";
+import { Heading } from "@/components/utils/Heading";
+import { Text } from "@/components/utils/Text";
 
 // Blog data
 const blogs = [
@@ -66,13 +68,13 @@ export default function BlogInsights() {
   };
 
   return (
-    <section className="mt-[100px] mx-[24px] lg:mx-[86px] xl:mx-[240px] 2xl:mx-[160px] lg:mt-[109px] bg-white">
-      <div className="mx-auto">
+    <section className="mt-[100px] lg:mt-[109px] bg-white">
+      <div className="mx-auto container">
         {/* Header */}
-        <div className="flex justify-between items-center mb-[24px] lg:py-[6px] lg:mb-[43px]">
-          <h1 className="text-[30px] lg:text-[40px] font-[600] text-[030303]">
+        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center mb-[24px] lg:py-[6px] lg:mb-[43px]">
+          <Heading as={"h1"} size={"heading1"} className="semibold max-sm:mb-[12px] text-[030303]">
             Insights
-          </h1>
+          </Heading>
 
           <div className="flex gap-[13px] lg:gap-[18px] justify-center items-center">
             <ActionButton
@@ -93,12 +95,12 @@ export default function BlogInsights() {
         </div>
 
         {/* Content Grid */}
-        <div className="flex flex-col lg:flex-row mx-auto w-full gap-[12px] lg:gap-[18px] xl:gap-[24px] justify-between items-start lg:items-center lg:mb-[43px]">
+        <div className="flex flex-col md:flex-row mx-auto w-full gap-[12px] lg:gap-[18px] 2xl:gap-[24px] justify-between items-start lg:items-center lg:mb-[43px]">
           {/* Featured Blog - Takes 2 columns */}
-          <div className="w-full xl:min-w-[920px]">
+          <div className="w-full">
             <div
               // onClick={() => handleBlogClick(featuredBlog.slug)}
-              className="rounded-[24px] overflow-hidden w-full h-auto cursor-pointer transition-transform duration-300 shadow-md hover:shadow-xl"
+              className="rounded-[12px] 2xl:rounded-[24px] overflow-hidden w-full h-auto cursor-pointer transition-transform duration-300 shadow-md hover:shadow-lg"
             >
               <div className="relative w-full h-auto">
                 <Image
@@ -106,18 +108,18 @@ export default function BlogInsights() {
                   alt={featuredBlog.title}
                   width={640}
                   height={328}
-                  className="w-full h-auto object-cover rounded-[24px]"
+                  className="w-full h-full object-cover rounded-[12px] 2xl:rounded-[24px]"
                   priority
                 />
               </div>
 
               <div className="p-[12px] lg:p-[23px] md:p-[32px]">
-                <h2 className="text-[20px] lg:text-[26px] xl:text-[36px] 3xl:text-[48px] font-semibold lg:mb-[12px] xl:mb-[16px] text-black leading-snug">
+                <Heading as={"h3"} size={"heading3"} className="font-semibold lg:mb-[12px] xl:mb-[16px] text-black">
                   {featuredBlog.title}
-                </h2>
-                <p className="text-[#373737] text-[10px] lg:text-[12px]  lg:mb-[18px] xl:mb-[24px] line-clamp-2 leading-relaxed">
+                </Heading>
+                <Text as={"p"} size={"text2"} className="text-[#373737] lg:mb-[18px] xl:mb-[24px] line-clamp-2">
                   {featuredBlog.description}
-                </p>
+                </Text>
 
                 <div className="flex flex-row justify-between items-center sm:items-center gap-4">
                   <div className="flex items-center gap-[8px]">
