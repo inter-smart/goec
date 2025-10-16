@@ -100,7 +100,7 @@ const aboutCompanyData = {
   },
 };
 
-export default function AboutCompanySection({ data = aboutCompanyData, ourValues, ourJourney }) {
+export default function AboutCompanySection({ data = aboutCompanyData, ourValues=[], ourJourney=[] }) {
   const valueData = ourValues;
   const journeyData = ourJourney;
   return (

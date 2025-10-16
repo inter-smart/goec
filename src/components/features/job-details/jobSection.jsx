@@ -1,7 +1,9 @@
 import { BreadCrumb } from "@/components/Breadcrumb";
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
+import { Text } from "@/components/utils/Text";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function JobSection() {
   return (
@@ -18,7 +20,8 @@ export default function JobSection() {
         <div className="flex flex-col xs:flex-row justify-between items-start sm:items-center gap-4 my-[30px_18px] lg:my-[30_24px] xl:my-[56px_33px] 2xl:my-[60px_36px] 3xl:my-[75px_44px]">
           <Heading
             as={"h1"}
-            className="text-lg md:text-[26px] lg:text-[35px] xl:text-[48px] 2xl:text-[52px] 3xl:text-[64px] font-medium text-[#030303]"
+            size={"heading1"}
+            className=" font-medium text-[#030303]"
           >
             Marketing Intern
           </Heading>
@@ -59,11 +62,12 @@ export default function JobSection() {
           <section>
             <Heading
               as={"h2"}
-              className="text-xl md:text-2xl lg:text-[26px] xl:text-[35px] 2xl:text-[48px] 3xl:text-[52px] mb-[18px] lg:mb-[23px] 2xl:mb-[35px] 3xl:mb-[43px] text-[#030303] font-semibold "
+              size={"heading2"}
+              className="mb-[18px] lg:mb-[23px] 2xl:mb-[35px] 3xl:mb-[43px] text-[#030303] font-semibold"
             >
               About
             </Heading>
-            <p className="leading-tight text-sm md:text-[11px] lg:text-[15px] xl:text-[20px] 2xl:text-[22px] 3xl:text-[27px] font-light">
+            <Text as="p" size="text" className="leading-tight font-light">
               Lorem ipsum dolor sit amet consectetur. Lorem velit tempus a sit.
               Porta risus in eget egestas quisque tellus eu nulla convallis.
               Bibendum ut faucibus bibendum enim bibendum mattis diam. A
@@ -75,14 +79,14 @@ export default function JobSection() {
               proin morbi vel faucibus. Turpis magna maecenas commodo potenti
               vitae enim pretium congue. Vitae quis malesuada amet ut. Potenti
               at gravida lectus consectetur amet ac egestas.
-            </p>
+            </Text>
           </section>
 
           {/* Responsibilities */}
           <section>
-            <h2 className="text-xl md:text-2xl font-semibold mb-3">
+            <Heading as={"h2"} size={"heading3"} className="font-semibold mb-3">
               Responsibilities
-            </h2>
+            </Heading>
             <ul className="list-disc list-inside space-y-2 leading-relaxed text-sm md:text-base">
               <li>
                 Assist in social media campaigns and marketing strategies.
@@ -100,9 +104,9 @@ export default function JobSection() {
 
           {/* Requirements */}
           <section>
-            <h2 className="text-xl md:text-2xl font-semibold mb-3">
+            <Heading as={"h2"} size={"heading3"} className="font-semibold mb-3">
               Requirements
-            </h2>
+            </Heading>
             <ul className="list-disc list-inside space-y-2 leading-relaxed text-sm md:text-base">
               <li>
                 Pursuing a degree in Marketing, Business, or related field.
@@ -119,11 +123,11 @@ export default function JobSection() {
         </div>
 
         <ActionButton
-          as={"lg"}
+          as={"default"}
           variant={"blue"}
-          className=" flex items-center justify-center w-[100%] mt-[40px] lg:mt-[50px] xl:mt-[80px] 2xl:mt-[90px] 3xl:mt-[120px] rounded-full text-sm sm:text-base font-medium p-[10px_20px] text-white transition-all duration-300"
+          className=" flex items-center justify-center w-[100%] mt-[40px] lg:mt-[50px] xl:mt-[80px] 2xl:mt-[90px] 3xl:mt-[120px] py-[10px] rounded-full text-sm sm:text-base font-medium"
         >
-          Apply Now
+          <Link href="/">Apply Now</Link>
         </ActionButton>
       </div>
     </div>

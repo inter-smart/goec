@@ -20,8 +20,7 @@ const data = [
 ];
 
 export default function BlogCard({ blog = data, type }) {
-
-  console.log(type)
+  console.log(type);
   let formattedDate = "";
   if (blog?.published_on) {
     const date = new Date(blog.published_on);
@@ -38,7 +37,11 @@ export default function BlogCard({ blog = data, type }) {
         <Link href={`/blog/${blog?.slug}`} key={blog?.slug}>
           <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
             <Image
-              src={`${MEDIA_URL}${blog?.media?.media_path}`}
+              src={
+                blog?.media?.media_path
+                  ? `${MEDIA_URL}${blog?.media?.media_path}`
+                  : "/images/Blog_1.png"
+              }
               alt={blog?.media?.media_alt}
               fill
               sizes="512px"
@@ -66,6 +69,11 @@ export default function BlogCard({ blog = data, type }) {
               <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
                 {formattedDate}
               </div>
+              {type == "all_blogs" && (
+                <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-medium text-[##151515]">
+                  Read Now
+                </div>
+              )}
             </div>
           </div>
         </Link>

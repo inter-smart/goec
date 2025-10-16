@@ -80,7 +80,7 @@ export default function BlogInsights() {
               size={"md"}
               asChild
             >
-              <Link href="/blogs">Blogs</Link>
+              <Link href="/blog">Blogs</Link>
             </ActionButton>
             <ActionButton
               className={`px-[35px] py-[6px] lg:px-[47px] lg:py-[8px] rounded-[35px] lg:text-[15px]  transition-all text-black border border-[#F0F0F0] duration-300 font-medium`}
@@ -104,9 +104,9 @@ export default function BlogInsights() {
                 <Image
                   src={featuredBlog.image}
                   alt={featuredBlog.title}
-                  width={1200}
-                  height={600}
-                  className="w-full h-full object-cover rounded-[24px]"
+                  width={640}
+                  height={328}
+                  className="w-full h-auto object-cover rounded-[24px]"
                   priority
                 />
               </div>

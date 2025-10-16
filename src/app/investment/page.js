@@ -60,9 +60,9 @@ export default async function Page() {
   return (
     <>
       <InnerHero
-        // data={heroData}
-        // title={banner_section?.title}
-        // media={banner_section?.media}
+        data={heroData}
+        title={banner_section?.title}
+        media={banner_section?.media}
       />
 
       <InvestmentInfoSection

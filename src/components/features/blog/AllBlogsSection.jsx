@@ -12,7 +12,7 @@ const allBlogPosts = [
     id: 1,
     title: "Ensuring Safety While Charging Your EV",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "6 mins",
     slug: "ensuring-safety-while-charging-your-ev",
   },
@@ -20,7 +20,7 @@ const allBlogPosts = [
     id: 2,
     title: "Smart EV Charging Solutions for Businesses",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "10 mins",
     slug: "smart-ev-charging-solutions-for-businesses",
   },
@@ -28,7 +28,7 @@ const allBlogPosts = [
     id: 3,
     title: "Cost Analysis: Home vs Public EV Charging",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "10 mins",
     slug: "cost-analysis-home-vs-public-ev-charging",
   },
@@ -36,7 +36,7 @@ const allBlogPosts = [
     id: 4,
     title: "The Impact of Grid Infrastructure on EV Charging",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "6 mins",
     slug: "impact-of-grid-infrastructure-on-ev-charging",
   },
@@ -44,7 +44,7 @@ const allBlogPosts = [
     id: 5,
     title: "The Future of Fast Charging Technology",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "10 mins",
     slug: "future-of-fast-charging-technology",
   },
@@ -52,7 +52,7 @@ const allBlogPosts = [
     id: 6,
     title: "Debunking Myths About EV Charging",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "10 mins",
     slug: "debunking-myths-about-ev-charging",
   },
@@ -60,7 +60,7 @@ const allBlogPosts = [
     id: 7,
     title: "Exploring Different EV Charger Types",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "6 mins",
     slug: "exploring-different-ev-charger-types",
   },
@@ -68,7 +68,7 @@ const allBlogPosts = [
     id: 8,
     title: "Maximizing Your EV's Charging Efficiency",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "10 mins",
     slug: "maximizing-your-evs-charging-efficiency",
   },
@@ -76,7 +76,7 @@ const allBlogPosts = [
     id: 9,
     title: "Smart EV Charging Solutions for Businesses",
     image: "/images/Blog_1.png",
-    date: "21 Jan, 2025",
+    published_on: "21 Jan, 2025",
     readTime: "10 mins",
     slug: "smart-ev-charging-solutions-for-businesses-2",
   },
@@ -84,7 +84,7 @@ const allBlogPosts = [
     id: 10,
     title: "Understanding EV Battery Technology",
     image: "/images/Blog_1.png",
-    date: "22 Jan, 2025",
+    published_on: "22 Jan, 2025",
     readTime: "8 mins",
     slug: "understanding-ev-battery-technology",
   },
@@ -92,7 +92,7 @@ const allBlogPosts = [
     id: 11,
     title: "EV Charging Station Installation Guide",
     image: "/images/Blog_1.png",
-    date: "23 Jan, 2025",
+    published_on: "23 Jan, 2025",
     readTime: "12 mins",
     slug: "ev-charging-station-installation-guide",
   },
@@ -100,7 +100,7 @@ const allBlogPosts = [
     id: 12,
     title: "The Environmental Impact of Electric Vehicles",
     image: "/images/Blog_1.png",
-    date: "24 Jan, 2025",
+    published_on: "24 Jan, 2025",
     readTime: "7 mins",
     slug: "environmental-impact-of-electric-vehicles",
   },
@@ -184,7 +184,7 @@ export default function AllBlogsSection() {
               className="group bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl shadow-md"
             >
               {/* Blog Image */}
-              <div className="relative w-full aspect-[16/10] overflow-hidden bg-gray-100">
+              <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
                 <Image
                   src={blog.image}
                   alt={blog.title}
@@ -204,7 +204,7 @@ export default function AllBlogsSection() {
                 <div className="flex items-center justify-between text-[10px] lg:text-[14px]">
                   {/* Date and Read Time */}
                   <div className="flex items-center gap-1 font-light text-[#757575]">
-                    <span className="whitespace-nowrap">{blog.date}</span>
+                    <span className="whitespace-nowrap">{blog.published_on}</span>
                     <span>•</span>
                     <span className="whitespace-nowrap">{blog.readTime}</span>
                   </div>
@@ -219,6 +219,14 @@ export default function AllBlogsSection() {
             </article>
           ))}
         </div>
+
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[24px]">
+          {currentPosts.map((item, key) => (
+            <div key={key}>
+              <BlogCard blog={item} type={"all_blogs"} />
+            </div>
+          ))}
+        </div> */}
 
         <Pagination
           currentPage={currentPage}
