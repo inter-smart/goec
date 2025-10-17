@@ -96,9 +96,9 @@ const aboutCompanyData = {
   },
 };
 
-export default function AboutCompanySection({ data = aboutCompanyData }) {
-  const valueData = data?.value;
-  const journeyData = data?.journey;
+export default function AboutCompanySection({ data = aboutCompanyData, ourValues = [], ourJourney = [] }) {
+  const valueData = ourValues;
+  const journeyData = ourJourney;
   return (
     <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#0048bf] relative z-0">
       <Image

@@ -38,7 +38,7 @@ const heroData = {
   ],
 };
 
-export default function InnerHero({ data, childern }) {
+export default function InnerHero({ data = heroData, childern, title, description, media }) {
   return (
     <section className="w-full h-auto min-h-[468px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-center bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
       <picture className="absolute -z-2 inset-0">
