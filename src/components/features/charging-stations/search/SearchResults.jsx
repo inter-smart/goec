@@ -58,7 +58,7 @@ const ChargingStationList = () => {
           {/* Desktop Table View */}
           <div className="hidden lg:block bg-white  overflow-hidden">
             {/* Update the table element */}
-            <table className="w-full border-separate border-spacing-0">
+            <table className="w-full ">
               <thead>
                 <tr className="text-left">
                   <th className="pb-2 px-6 text-sm font-medium text-gray-500">Station</th>
@@ -71,8 +71,8 @@ const ChargingStationList = () => {
               </thead>
               <tbody>
                 {stationsData.map((station) => (
-                  <tr key={station.id} className="bg-white shadow-md rounded-xl hover:shadow-lg transition-shadow border-[2px] border-[#F0F0F0]">
-                    <td className="py-5 px-6 text-sm text-gray-900 border-[2px] border-[#F0F0F0] rounded-[25px]">{station.station}</td>
+                  <tr key={station.id} className="bg-white shadow-md rounded-xl hover:shadow-lg transition-shadow">
+                    <td className="py-5 px-6 text-sm text-gray-900">{station.station}</td>
                     <td className="py-5 px-6 text-sm text-gray-600">{station.location}</td>
                     <td className="py-5 px-6 text-sm text-gray-900 font-medium">{station.power}</td>
                     <td className="py-5 px-6 text-sm text-gray-900">{station.socketType}</td>

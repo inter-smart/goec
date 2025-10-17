@@ -5,7 +5,7 @@ import { Search, ChevronDown } from "lucide-react";
 export default function HeroWithCard({ children }) {
   return (
     <>
-      <section className="w-full h-auto min-h-[468px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] mb-[100px] flex items-start bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
+      <section className="w-full h-auto min-h-[468px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] mb-[150px] flex items-start bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
         <picture className="absolute -z-2 inset-0">
           <source media="(max-width: 640px)" srcSet={"/images/find-charger-banner.png"} />
           <Image
@@ -23,7 +23,7 @@ export default function HeroWithCard({ children }) {
           >
             Find Your Nearest EV Charging Station in Seconds
           </Heading>
-          <div className="bg-white z-10 relative rounded-[24px] shadow-xl xl:p-[28px] p-6 mb-[0px] absolute z-1 bottom-[-200px] left-0 right-0 mx-auto">
+          <div className="bg-white z-10 relative rounded-[24px] shadow-xl xl:p-[28px] p-6 mb-[0px]  bottom-[-200px] left-0 right-0 mx-auto">
             <div className="mb-8">
               <Heading as="h2" size="heading3" className="text-black text-center">
                 Search Charging Stations
