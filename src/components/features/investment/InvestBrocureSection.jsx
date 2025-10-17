@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
 
 const investBrocureData = {
+  title: "Invest in GO EC. Empower progress. Spark a greener India.",
   media: {
     type: "image",
     path: "/images/investment-brochure-1.png",
@@ -52,7 +53,7 @@ export default function InvestBrocureSection({
                   size="heading2"
                   className="leading-tight font-medium text-white mb-[20px] sm:mb-[40px] xl:mb-[50px] 2xl:mb-[60px]"
                 >
-                  {title}
+                  {title ? title: data.title}
                 </Heading>
                 <div className="flex space-x-[10px] xl:space-x-[15px]">
                   {data?.button?.map((item, index) =>

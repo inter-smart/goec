@@ -35,7 +35,7 @@ const lifeImages = [
 
 export default function LifeAtGoEC() {
   return (
-    <section className="w-full bg-[#FAFAFA] pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
+    <section className="w-full bg-[#FAFAFA] py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]">
       {/* Heading */}
       <div className="container mx-auto">
         <Heading

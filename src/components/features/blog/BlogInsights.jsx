@@ -15,7 +15,7 @@ const blogs = [
     title: "Understanding the Basics of EV Charging",
     description:
       "Uncover the art of strategic planning & decision-making in the business world.",
-    image: "/images/Blog_1.png",
+    media_path: "/images/Blog_1.png",
     category: "Blog",
     readTime: "10 mins read",
     date: "16 Sep, 2025",
@@ -26,7 +26,7 @@ const blogs = [
     title: "Public EV Charging Etiquette",
     description:
       "Uncover the art of strategic planning & decision-making in the business world.",
-    image: "/images/Blog_1.png",
+    media_path: "/images/Blog_1.png",
     category: "Blog",
     readTime: "10 mins read",
     date: "16 Sep, 2025",
@@ -37,7 +37,7 @@ const blogs = [
     title: "Home EV Charger Installation Guide",
     description:
       "Uncover the art of strategic planning & decision-making in the business world.",
-    image: "/images/Blog_1.png",
+    media_path: "/images/Blog_1.png",
     category: "Blog",
     readTime: "10 mins read",
     date: "16 Sep, 2025",
@@ -51,10 +51,10 @@ const featuredBlog = {
   description:
     "Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strate...",
   author: "Mary Freund",
-  authorImage: "/images/Blog_1.png",
+  auth_media_path: "/images/Blog_1.png",
   date: "21 January, 2025",
   readTime: "10 mins read",
-  image: "/images/Blog_1.png",
+  media_Path: "/images/Blog_1.png",
   category: "Blog",
   slug: "important-things-about-ev-chargers",
 };
@@ -78,8 +78,9 @@ export default function BlogInsights() {
 
           <div className="flex gap-[13px] lg:gap-[18px] justify-center items-center">
             <ActionButton
-              className={`px-[35px] py-[6px] lg:px-[47px] lg:py-[8px] rounded-[35px] lg:text-[15px] font-medium bg-[#0055E0]`}
+              className={`px-[35px] py-[6px] lg:px-[47px] lg:py-[8px] rounded-[35px] lg:text-[15px] font-medium`}
               size={"md"}
+              variant={"blue"}
               asChild
             >
               <Link href="/blog">Blogs</Link>
@@ -87,6 +88,7 @@ export default function BlogInsights() {
             <ActionButton
               className={`px-[35px] py-[6px] lg:px-[47px] lg:py-[8px] rounded-[35px] lg:text-[15px]  transition-all text-black border border-[#F0F0F0] duration-300 font-medium`}
               size={"md"}
+              variant={"default"}
               asChild
             >
               <Link href="/news">News</Link>
@@ -97,14 +99,14 @@ export default function BlogInsights() {
         {/* Content Grid */}
         <div className="flex flex-col md:flex-row mx-auto w-full gap-[12px] lg:gap-[18px] 2xl:gap-[24px] justify-between items-start lg:items-center lg:mb-[43px]">
           {/* Featured Blog - Takes 2 columns */}
-          <div className="w-full">
+          <div className="w-full h0">
             <div
-              // onClick={() => handleBlogClick(featuredBlog.slug)}
+              onClick={() => handleBlogClick(featuredBlog.slug)}
               className="rounded-[12px] 2xl:rounded-[24px] overflow-hidden w-full h-auto cursor-pointer transition-transform duration-300 shadow-md hover:shadow-lg"
             >
               <div className="relative w-full h-auto">
                 <Image
-                  src={featuredBlog.image}
+                  src={featuredBlog.media_Path}
                   alt={featuredBlog.title}
                   width={640}
                   height={328}
@@ -114,9 +116,9 @@ export default function BlogInsights() {
               </div>
 
               <div className="p-[12px] lg:p-[23px] md:p-[32px]">
-                <Heading as={"h3"} size={"heading3"} className="font-semibold lg:mb-[12px] xl:mb-[16px] text-black">
+                <div className="font-semibold lg:mb-[12px] xl:mb-[16px] text-black">
                   {featuredBlog.title}
-                </Heading>
+                </div>
                 <Text as={"p"} size={"text2"} className="text-[#373737] lg:mb-[18px] xl:mb-[24px] line-clamp-2">
                   {featuredBlog.description}
                 </Text>
@@ -125,11 +127,12 @@ export default function BlogInsights() {
                   <div className="flex items-center gap-[8px]">
                     <div className="relative w-[36px] h-[36px] rounded-full overflow-hidden">
                       <Image
-                        src={featuredBlog.authorImage}
+                        src={featuredBlog.auth_media_path}
                         alt={featuredBlog.author}
                         width={36}
                         height={36}
                         className="w-full h-full rounded-full object-cover"
+                        quality={100}
                       />
                     </div>
                     <span className="font-medium text-[12px] lg:text-[16px] text-[#030303]">
@@ -148,7 +151,7 @@ export default function BlogInsights() {
           </div>
 
           {/* Popular Blogs Sidebar */}
-          <div className="w-full">
+          <div className="w-full mb-[24px]">
             <h2 className="text-[13px] lg:text-[18px] 3xl:text-[32px] font-medium mt-[10px] lg:mt-[0] mb-[11px] lg:mb-[15px] 3xl:mb-[24px] text-black">
               Popular Blogs
             </h2>
@@ -157,15 +160,17 @@ export default function BlogInsights() {
               {blogs.map((blog) => (
                 <div
                   key={blog.id}
-                  className="flex gap-[13px] lg:gap-[18px] xl:gap-[24px] rounded-[12px] lg:rounded-[24px] shadow-sm overflow-hidden cursor-pointer transition-transform duration-300 hover:translate-x-1 hover:shadow-md"
+                    onClick={() => handleBlogClick(blog.slug)}
+                  className="flex gap-[12px] lg:gap-[18px] xl:gap-[20px] 2xl:gap-[24px] rounded-[12px] lg:rounded-[24px] shadow-sm overflow-hidden cursor-pointer transition-transform duration-300 hover:translate-x-1 hover:shadow-md"
                 >
                   {/* Image */}
-                  <div className="relative w-[100px] md:w-[120px] lg:w-[128px] 3xl:w-[238px] aspect-[1/1] rounded-[12px] lg:rounded-[24px] overflow-hidden">
+                  <div className="relative aspect-[1/1] rounded-[12px] lg:rounded-[24px] overflow-hidden">
                     <Image
-                      src={blog.image}
+                      src={blog.media_path}
                       alt={blog.title}
-                      fill
-                      className="object-cover"
+                      width={120}
+                      height={120}
+                      className="object-cover w-full h-full"
                       quality={100}
                       priority
                     />
