@@ -53,7 +53,7 @@ export default function TestimonialSection() {
   const swiperRef = useRef(null);
 
   return (
-    <section className="w-full h-auto block  pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
+    <section className="w-full h-auto block bg-white pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
       <div className="container mx-auto">
         {/* Header Section */}
         <div className="flex items-start justify-between mb-[60px] lg:mb-[64px] 2xl:mb-[72px]">

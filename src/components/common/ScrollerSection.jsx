@@ -33,9 +33,11 @@ const lifeImages = [
   },
 ];
 
-export default function LifeAtGoEC() {
+export default function ScrollerSection(
+  { title, list }
+) {
   return (
-    <section className="w-full bg-[#FAFAFA] pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
+    <section className="w-full bg-[#FAFAFA] py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]">
       {/* Heading */}
       <div className="container mx-auto">
         <Heading
@@ -43,7 +45,7 @@ export default function LifeAtGoEC() {
           size={"heading2"}
           className="font-semibold text-gray-900  mb-[40px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px]"
         >
-          Life at GO EC
+          {title}
         </Heading>
       </div>
       {/* Image grid */}
@@ -114,7 +116,7 @@ export default function LifeAtGoEC() {
         }}
       >
         {" "}
-        {lifeImages.map((img, index) => {
+        {list.map((img, index) => {
           return (
             <SwiperSlide key={"value" + index}>
               <div className="relative w-full aspect-[640/360] rounded-[24px] overflow-hidden">

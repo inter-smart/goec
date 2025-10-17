@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Pagination from "@/components/ui/paginations";
 import Link from "next/link";
-import { Text } from "@/components/utils/Text";
-import { Heading } from "@/components/utils/Heading";
+import BlogCard from "@/components/common/BlogCard";
 
 // Blog posts data
 const allBlogPosts = [
@@ -174,39 +173,26 @@ export default function AllBlogsSection({ type = "blogs" }) {
     <section className="bg-white xl:mb-[40px] xl:mt-[60px]">
       <div className="container mx-auto">
         {/* Section Title */}
-        <Heading as={"h2"} size={"heading2"} className="font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
+        <h2 className=" text-2xl lg:text-[30px] xl:text-[40px] font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
           {type == "news" ? "All News" : "All Blogs"}
-        </Heading>
+        </h2>
 
-        {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[24px]">
           {currentPosts.map((blog) => (
             <article
               key={blog.id}
               // onClick={() => handleBlogClick(blog.slug)}
-              className="group bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl shadow-md"
+              className="w-full h-auto block rounded-[20px] sm:rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]"
             >
-              {/* Blog Image */}
               <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
-                <Image
-                  src={blog.image}
-                  alt={blog.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="384px"
-                />
+                <Image src={blog.image} alt={blog.title} fill sizes="512px" className="transition hover:scale-105" />
               </div>
-
-              {/* Blog Content */}
-              <div className="h-full p-[12px] xl:p-[24px] 2xl:p-[32px]">
-                {/* Title */}
-                <Heading as={"h4"} size={"h4"} className="font-medium text-black sm:mb-4 leading-tight line-clamp-2">
+              <div className="h-full flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
+                <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                   {blog.title}
-                </Heading>
-                {/* Meta Information and Read More */}
+                </div>
                 <div className="flex  items-center justify-between text-[10px] lg:text-[14px]">
-                  {/* Date and Read Time */}
-                  <div className="flex items-center gap-1 font-light text-[#757575]">
+                  <div className="text-[10px] sm:text-[12px] mt-0 xl:text-[14px] 2xl:text-[16px] flex items-center gap-1 3xl:text-[20px] text-[#757575] leading-none font-normal">
                     <span className="whitespace-nowrap">{blog.published_on}</span>
                     <span>•</span>
                     <span className="whitespace-nowrap">{blog.readTime}</span>
