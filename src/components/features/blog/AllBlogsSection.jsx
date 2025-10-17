@@ -111,7 +111,7 @@ const allBlogPosts = [
 
 const POSTS_PER_PAGE = 9;
 
-export default function AllBlogsSection() {
+export default function AllBlogsSection({ type = "blogs" }) {
   const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
 
@@ -171,11 +171,11 @@ export default function AllBlogsSection() {
   };
 
   return (
-    <section className="bg-white mb-[40px]">
+    <section className="bg-white xl:mb-[40px] xl:mt-[60px]">
       <div className="container mx-auto">
         {/* Section Title */}
         <Heading as={"h2"} size={"heading2"} className="font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
-          All Blogs
+          {type == "news" ? "All News" : "All Blogs"}
         </Heading>
 
         {/* Blog Grid */}
@@ -198,18 +198,16 @@ export default function AllBlogsSection() {
               </div>
 
               {/* Blog Content */}
-              <div className="p-[12px] xl:p-[24px] 2xl:p-[32px]">
+              <div className="h-full p-[12px] xl:p-[24px] 2xl:p-[32px]">
                 {/* Title */}
                 <Heading as={"h4"} size={"h4"} className="font-medium text-black sm:mb-4 leading-tight line-clamp-2">
                   {blog.title}
                 </Heading>
                 {/* Meta Information and Read More */}
-                <div className="flex items-center justify-between text-[10px] lg:text-[14px]">
+                <div className="flex  items-center justify-between text-[10px] lg:text-[14px]">
                   {/* Date and Read Time */}
                   <div className="flex items-center gap-1 font-light text-[#757575]">
-                    <span className="whitespace-nowrap">
-                      {blog.published_on}
-                    </span>
+                    <span className="whitespace-nowrap">{blog.published_on}</span>
                     <span>•</span>
                     <span className="whitespace-nowrap">{blog.readTime}</span>
                   </div>
@@ -221,12 +219,7 @@ export default function AllBlogsSection() {
                     className="flex items-center justify-center gap-[8px] text-[#151515] group hover:text-[#0048BF] shadow-none font-medium"
                   >
                     <Link href="/">Read More</Link>
-                    <Image
-                      src="/images/Arrow.png"
-                      alt="arrow"
-                      width={18}
-                      height={18}
-                    />
+                    <Image src="/images/Arrow.png" alt="arrow" width={18} height={18} />
                   </Text>
                 </div>
               </div>
@@ -242,11 +235,7 @@ export default function AllBlogsSection() {
           ))}
         </div> */}
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
       </div>
     </section>
   );

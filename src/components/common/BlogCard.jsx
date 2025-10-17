@@ -39,10 +39,10 @@ export default function BlogCard({ blog = data, type }) {
           <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
             <Image
               // src={
-                blog?.media?.media_path
-                  ? `${MEDIA_URL}${blog?.media?.media_path}`
-                  : "/images/Blog_1.png"
-              }
+              //   blog?.media?.media_path
+              //     ? `${MEDIA_URL}${blog?.media?.media_path}`
+              //     : "/images/Blog_1.png"
+              // }
               src={`${blog?.media?.path}`}
               alt={blog?.media?.alt}
               fill
@@ -72,7 +72,6 @@ export default function BlogCard({ blog = data, type }) {
               {type == "all_blogs" && (
                 <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-medium text-[##151515]">
                   <Link href={`/blog/${blog?.slug}`}>Read Now</Link>
-                  
                 </div>
               )}
             </div>

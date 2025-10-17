@@ -29,8 +29,7 @@ const newsData = {
         path: "/images/news-1.jpg",
         alt: "news",
       },
-      title:
-        "New super charger hub Inaugurated, LULU Mall TVM New super charger hub Inaugurated, LULU Mall TVM",
+      title: "New super charger hub Inaugurated, LULU Mall TVM New super charger hub Inaugurated, LULU Mall TVM",
       description:
         "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
@@ -46,8 +45,7 @@ const newsData = {
         alt: "news",
       },
       title: "The Advantages of Having an EV Charging Station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/news/news-detail",
         label: "Read now",
@@ -61,8 +59,7 @@ const newsData = {
         alt: "news",
       },
       title: "The Advantages of Having an EV Charging Station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/news/news-detail",
         label: "Read now",
@@ -76,8 +73,7 @@ const newsData = {
         alt: "news",
       },
       title: "The Advantages of Having an EV Charging Station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/news/news-detail",
         label: "Read now",
@@ -91,8 +87,7 @@ const newsData = {
         alt: "news",
       },
       title: "The Advantages of Having an EV Charging Station in 2025",
-      description:
-        "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+      description: "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
       button: {
         link: "/news/news-detail",
         label: "Read now",
@@ -108,11 +103,7 @@ export default function LatestNewsSection({ data = newsData }) {
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
           <div className="flex-1">
-            <Heading
-              as="h2"
-              size="heading2"
-              className="text-[#303030] xl:max-w-[840px]"
-            >
+            <Heading as="h2" size="heading2" className="text-[#303030] xl:max-w-[840px]">
               {data?.title}
             </Heading>
           </div>
@@ -163,10 +154,7 @@ export default function LatestNewsSection({ data = newsData }) {
         ) : (
           <div className="flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:p-[4px] xl:[&>*]:p-[6px] 2xl:[&>*]:p-[12px]">
             {data?.item_news.map((item, index) => {
-              const formattedDate = format(
-                new Date(item?.timestamp),
-                "dd MMMM yyyy"
-              );
+              const formattedDate = format(new Date(item?.timestamp), "dd MMMM yyyy");
               return index === 0 ? (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-2/3">
                   <Suspense fallback={<NewsLgCardSkeleton />}>
@@ -174,13 +162,7 @@ export default function LatestNewsSection({ data = newsData }) {
                       <div className="h-full flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:px-[4px] xl:[&>*]:px-[6px] 2xl:[&>*]:px-[12px]">
                         <div className="w-full sm:w-1/2">
                           <div className="w-full h-full aspect-[4/2] rounded-[30px] overflow-hidden relative z-0">
-                            <Image
-                              src={item?.media?.path}
-                              alt={item?.media?.alt}
-                              fill
-                              sizes="512px"
-                              className="transition hover:scale-105"
-                            />
+                            <Image src={item?.media?.path} alt={item?.media?.alt} fill sizes="512px" className="transition hover:scale-105" />
                           </div>
                         </div>
                         <div className="w-full sm:w-1/2">
@@ -189,11 +171,7 @@ export default function LatestNewsSection({ data = newsData }) {
                               <div className="text-[14px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                                 {item?.title}
                               </div>
-                              <Text
-                                as="div"
-                                size="text2"
-                                className="line-clamp-3 text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
-                              >
+                              <Text as="div" size="text2" className="line-clamp-3 text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                                 {parse(item?.description)}
                               </Text>
                             </div>
@@ -202,14 +180,8 @@ export default function LatestNewsSection({ data = newsData }) {
                                 {formattedDate}
                               </div>
                               <div>
-                                <ActionButton
-                                  variant="link"
-                                  className="text-black"
-                                  asChild
-                                >
-                                  <Link href={item?.button?.link}>
-                                    {item?.button?.label}
-                                  </Link>
+                                <ActionButton variant="link" className="text-black" asChild>
+                                  <Link href={item?.button?.link}>{item?.button?.label}</Link>
                                 </ActionButton>
                               </div>
                             </div>
