@@ -1,5 +1,4 @@
-"use client";
-
+import FooterCard from "@/components/common/FooterCard";
 import BlogDetails from "@/components/features/blog/BlogDetais";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 
@@ -57,25 +56,24 @@ const data = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen mt-[80px] md:mt-[100px] lg:mt-[152px] bg-white">
-      {/* Main Content */}
-      {/* Breadcrumb */}
+    <>
+      <div className="min-h-screen mt-[80px] md:mt-[100px] lg:mt-[152px] bg-white">
+        {/* Main Content */}
+        {/* Breadcrumb */}
 
-      <BlogDetails
-        title={data[0].title}
-        description={data[0].description}
-        date={data[0].date}
-        image={data[0].media.media_path}
-        details={data[0].details}
-      />
-
-      <div className="mx-5 md:mx-20 lg:mx-[40px] border-b border-gray-300">
-        <LatestBlogSection
-          title="Similar Blogs"
-          blogs={data}
-          type="similar_blogs"
+        <BlogDetails
+          title={data[0].title}
+          description={data[0].description}
+          date={data[0].date}
+          image={data[0].media.media_path}
+          details={data[0].details}
         />
+
+        <div className="mx-5 md:mx-20 lg:mx-[40px]  border-gray-300">
+          <LatestBlogSection title="Similar Blogs" blogs={data} type="similar_blogs" />
+        </div>
+        <FooterCard />
       </div>
-    </div>
+    </>
   );
 }

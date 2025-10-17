@@ -32,18 +32,10 @@ export default function FooterCard({ data = footerDetails }) {
         <div className="relative z-20 p-[50px] lg:p-[57px] xl:p-[72px] 2xl:p-[80px] 3xl:p-[107px] flex flex-col sm:flex-row items-start sm:items-center justify-between lg:gap-[140px] gap-8">
           {/* Text Content */}
           <div className="text-white">
-            <Heading
-              as={"h3"}
-              size={"heading3"}
-              className="font-medium mb-[10px] sm:mb-[12px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[22px]"
-            >
+            <Heading as={"h3"} size={"heading3"} className="font-medium mb-[10px] sm:mb-[12px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[22px]">
               {data?.title}
             </Heading>
-            <Text
-              as={"div"}
-              size={"text2"}
-              className="text-[#E6E6E6] xl:text-[20px] text-[16px] leading-tight"
-            >
+            <Text as={"div"} size={"text2"} className="text-[#E6E6E6] xl:text-[20px] text-[16px] leading-tight">
               {parse(data?.paragraph)}
             </Text>
           </div>
