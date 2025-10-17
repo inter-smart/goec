@@ -11,6 +11,7 @@ export default function BlogDetails({
   date,
   image,
   details,
+  slug
 }) {
   console.log(image);
   return (
@@ -22,7 +23,7 @@ export default function BlogDetails({
             { label: "Insights", href: "/" },
             { label: "Blog", href: "/blog" },
             { label: "Recent BLogs", href: "/blog" },
-            { label: "slug", isCurrent: true },
+            { label: slug, isCurrent: true },
           ]}
         />
         {/* Article Title */}

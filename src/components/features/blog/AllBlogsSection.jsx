@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Pagination from "@/components/ui/paginations";
+import Link from "next/link";
+import { Text } from "@/components/utils/Text";
+import { Heading } from "@/components/utils/Heading";
 
 // Blog posts data
 const allBlogPosts = [
@@ -171,9 +174,9 @@ export default function AllBlogsSection() {
     <section className="bg-white mb-[40px]">
       <div className="container mx-auto">
         {/* Section Title */}
-        <h2 className=" text-2xl lg:text-[30px] xl:text-[40px] font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
+        <Heading as={"h2"} size={"heading2"} className="font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
           All Blogs
-        </h2>
+        </Heading>
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[24px]">
@@ -195,25 +198,36 @@ export default function AllBlogsSection() {
               </div>
 
               {/* Blog Content */}
-              <div className="p-[16px] sm:p-[24px] lg:p-[32px]">
+              <div className="p-[12px] xl:p-[24px] 2xl:p-[32px]">
                 {/* Title */}
-                <h3 className="text-[16px] md:text-[18px] lg:text-[20px] mb-[12px] lg:mb-[16px] font-medium text-black sm:mb-4 leading-tight line-clamp-2">
+                <Heading as={"h4"} size={"h4"} className="font-medium text-black sm:mb-4 leading-tight line-clamp-2">
                   {blog.title}
-                </h3>
+                </Heading>
                 {/* Meta Information and Read More */}
                 <div className="flex items-center justify-between text-[10px] lg:text-[14px]">
                   {/* Date and Read Time */}
                   <div className="flex items-center gap-1 font-light text-[#757575]">
-                    <span className="whitespace-nowrap">{blog.published_on}</span>
+                    <span className="whitespace-nowrap">
+                      {blog.published_on}
+                    </span>
                     <span>•</span>
                     <span className="whitespace-nowrap">{blog.readTime}</span>
                   </div>
 
                   {/* Read More Link */}
-                  <div className="flex items-center gap-1 font-medium text-[#151515] whitespace-nowrap">
-                    <span>Read now</span>
-                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
+                  <Text
+                    as={"text2"}
+                    size={"text2"}
+                    className="flex items-center justify-center gap-[8px] text-[#151515] group hover:text-[#0048BF] shadow-none font-medium"
+                  >
+                    <Link href="/">Read More</Link>
+                    <Image
+                      src="/images/Arrow.png"
+                      alt="arrow"
+                      width={18}
+                      height={18}
+                    />
+                  </Text>
                 </div>
               </div>
             </article>

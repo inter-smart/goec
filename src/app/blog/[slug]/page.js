@@ -1,5 +1,3 @@
-"use client";
-
 import BlogDetails from "@/components/features/blog/BlogDetais";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import FooterCard from "@/components/common/FooterCard";
@@ -56,7 +54,9 @@ const data = [
   },
 ];
 
-export default function BlogPage() {
+export default async function BlogPage({params}) {
+
+  const {slug} = await params
   return (
     <div className="min-h-screen mt-[80px] md:mt-[100px] lg:mt-[150px] xl:[136px] bg-white">
       {/* Main Content */}
@@ -68,6 +68,7 @@ export default function BlogPage() {
         date={data[0].date}
         image={data[0].media.media_path}
         details={data[0].details}
+        slug={slug}
       />
 
       <div className="mx-5 md:mx-20 lg:mx-[10px]">

@@ -71,7 +71,8 @@ export default function BlogCard({ blog = data, type }) {
               </div>
               {type == "all_blogs" && (
                 <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-medium text-[##151515]">
-                  Read Now
+                  <Link href={`/blog/${blog?.slug}`}>Read Now</Link>
+                  
                 </div>
               )}
             </div>
