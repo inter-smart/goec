@@ -69,7 +69,7 @@ export default function IndustySection({ data = ourValues }) {
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
         className="-z-1 object-cover"
       />
-      <div className="w-full mb-[60px] sm:mb-[60px] xl:mb-[100px] 2xl:mb-[140px]">
+      <div className="w-full">
         <div className="container">
           <div className="flex flex-wrap items-center justify-between mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:px-[4px] xl:[&>*]:px-[6px] 2xl:[&>*]:px-[12px] mb-[120px]">
             <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">

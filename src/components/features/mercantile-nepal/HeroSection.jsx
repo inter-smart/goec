@@ -28,7 +28,7 @@ const heroBanner = {
     },
     {
       text: "Get a free consulation",
-      link: "/",
+      link: "/contact",
       type: "secondary",
     },
   ],

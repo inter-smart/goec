@@ -41,7 +41,7 @@ export default async function CareerPage() {
       <Hero />
       <CareersPage />
       <Benifits />
-      <ScrollerSection title={LifeImages.title} list={LifeImages.list} />
+      <ScrollerSection title={LifeImages.title} list={LifeImages.list} page="career" />
       <TestimonialSection />
       <FooterCard />
     </div>

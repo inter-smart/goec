@@ -23,17 +23,36 @@ export default function JobCard({ job }) {
         <div className="flex items-center gap-6 text-[15px] text-gray-600">
           <span className="flex items-center gap-2 p-[12px] rounded-full border border-[#EEEEEE]">
             <Image src="/images/Time.jpg" alt="clock" width={18} height={18} />
-            <Text size={"text2"} className="font-normal text-[#373737]">{job.type}</Text>
+            <Text size={"text2"} className="font-normal text-[#373737]">
+              {job.type}
+            </Text>
           </span>
           <span className="flex items-center gap-2 p-[12px] rounded-full border border-[#EEEEEE]">
-            <Image src="/images/Suitcase.jpg" alt="experience" width={18} height={18} />
-            <Text size={"text2"} as={"p"} className="font-normal text-[#373737]">8+ Years</Text>
+            <Image
+              src="/images/Suitcase.jpg"
+              alt="experience"
+              width={18}
+              height={18}
+            />
+            <Text
+              size={"text2"}
+              as={"p"}
+              className="font-normal text-[#373737]"
+            >
+              8+ Years
+            </Text>
           </span>
         </div>
-         <Text as={"text2"} size={"text2"} className="flex items-center justify-center gap-[8px] text-[#151515] group hover:text-[#0048BF] shadow-none font-medium">
-          <Link href="/">Read More</Link>
-          <Image src="/images/Arrow.png" alt="arrow" width={18} height={18} />
-        </Text>
+        <Link href="/job-details">
+          <Text
+            as={"text2"}
+            size={"text2"}
+            className="flex items-center justify-center gap-[8px] text-[#151515] group hover:text-[#0048BF] shadow-none font-medium"
+          >
+            Read More
+            <Image src="/images/Arrow.png" alt="arrow" width={18} height={18} />
+          </Text>
+        </Link>
       </div>
     </div>
   );

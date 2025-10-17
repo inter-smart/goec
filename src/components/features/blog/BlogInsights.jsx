@@ -236,10 +236,3 @@ export function TabButtons() {
     </div>
   );
 }
-
-// Usage in layout or page:
-// import BlogInsights from '@/components/BlogInsights';
-//
-// export default function InsightsPage() {
-//   return <BlogInsights />;
-// }
