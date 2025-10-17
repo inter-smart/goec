@@ -106,9 +106,9 @@ export default function Faqs() {
 
   return (
     <section className="container my-[70px] sm:my-[140px] xl:my-[124px]">
-      <div className="w-full flex flex-col gap-3 sm:gap-[24px] sm:flex-row">
-        <div className="min-w-[280px] xl:min-w-[248px] 2xl:min-w-[280px] 3xl:min-w-[373px] hidden sm:flex ">
-          <div className="w-full flex flex-col items-center gap-1">
+      <div className="w-full flex flex-col  sm:flex-row">
+        <div className="w-full  xl:w-[248px] 2xl:min-w-[280px] 3xl:min-w-[373px]  sm:flex ">
+          <div className="w-full flex flex-row  sm:flex-col  items-center gap-1 overflow-x-auto">
             {categories?.map((category) => (
               <button
                 key={category?.id}
@@ -126,7 +126,7 @@ export default function Faqs() {
             ))}
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="w-full flex items-center gap-1 sm:hidden overflow-x-auto pb-2">
             {categories?.map((category) => (
               <button
@@ -142,8 +142,8 @@ export default function Faqs() {
               </button>
             ))}
           </div>
-        </div>
-        <div className="flex-1 ">
+        </div> */}
+        <div className="w-[calc(100%-280px)] xl:min-w-[calc(100%-248px)] ] pl-[24px] ">
           <FaqItems data={filteredFaqs} key={filteredFaqs?.[0]?.id} />
         </div>
       </div>
