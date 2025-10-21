@@ -109,10 +109,10 @@ export default function CareersPage() {
             <picture className="absolute inset-0 -z-10">
               <source
                 media="(max-width: 640px)"
-                srcSet="/images/hero-banner-1.jpg"
+                srcSet="/images/career_banner_image.png"
               />
               <Image
-                src="/images/hero-banner-1.jpg"
+                src="/images/career_banner_image.png"
                 alt="hero"
                 fill
                 sizes="100vw"

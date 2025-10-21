@@ -15,7 +15,9 @@ export function InvestmentCard({ image, title, subtitle, description, link }) {
         <Image
           src={image}
           alt={title}
-          fill
+          // fill
+          width={520}
+          height={326}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>

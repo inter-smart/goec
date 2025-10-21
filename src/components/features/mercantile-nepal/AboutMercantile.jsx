@@ -67,7 +67,7 @@ export default function AboutMercantile() {
         {/* --- Bottom Boxes --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 mt-[20px] lg:mt-[30px] xl:mt-[40px] 3xl:mt-[55px] gap-[24px]">
           {/* --- Box 1 --- */}
-           <div className="bg-[#FCFCFC] p-[20px] 2xl:p-[40px] rounded-[24px] shadow-sm border-[#F0F0F0E5] transition-shadow">
+           <div className="bg-[#FCFCFC] p-[20px] 2xl:p-[40px] rounded-[24px]  border-1 border-[#F0F0F0E5] transition-shadow">
       <Image
         src={aboutData?.vision_media_path}
         alt={aboutData.vision_media_alt}
@@ -84,7 +84,7 @@ export default function AboutMercantile() {
       </Text>
     </div>
           {/* --- Box 2 --- */}
-           <div className="bg-[#FCFCFC] p-[20px] 2xl:p-[40px] rounded-[24px] shadow-sm border-[#F0F0F0E5] transition-shadow">
+           <div className="bg-[#FCFCFC] p-[20px] 2xl:p-[40px] rounded-[24px] border-1 border-[#F0F0F0E5] transition-shadow">
       <Image
         src={aboutData?.mission_media_path}
         alt={aboutData.mission_media_alt}
