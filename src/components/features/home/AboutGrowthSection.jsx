@@ -9,7 +9,6 @@ import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 
 import { useRef, useState } from "react";
-import { MEDIA_URL } from "@/lib/api";
 
 const aboutGrowthData = [
   {
@@ -65,7 +64,7 @@ const aboutGrowthData = [
   },
 ];
 
-export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
+export default function AboutGrowthSection({ data = aboutGrowthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -89,7 +88,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
           direction={"vertical"}
           className="h-[176px] sm:h-[276px] 2xl:h-[320px]"
         >
-          {growthData?.map((item, index) => (
+          {data?.map((item, index) => (
             <SwiperSlide key={"growth" + index}>
               <div className="w-full h-auto flex relative z-0 pl-3 sm:pl-4">
                 <Image
@@ -113,7 +112,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                         ${currentSlide === index ? "opacity-100" : "opacity-60"}
                         `}
                 >
-                  {item?.year}
+                  {item?.timestamp?.slice(0, 4)}
                 </div>
               </div>
             </SwiperSlide>
@@ -141,10 +140,10 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
         longSwipes={false}
         className="max-h-[1080px]"
       >
-        {growthData?.map((item, index) => (
+        {data?.map((item, index) => (
           <SwiperSlide key={"growth" + index}>
             <div className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
-            {item?.media?.type === "video" ? (
+              {item?.media?.type === "video" ? (
                 <video
                   autoPlay
                   loop
@@ -152,25 +151,25 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                   playsInline
                   className="w-full h-full object-cover absolute -z-2 inset-0"
                 >
-                  <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> 
+                  {/* <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> */}
                   <source src={item?.media?.path} type="video/mp4" />
                 </video>
-              ) :
+              ) : (
                 <picture className="absolute -z-2 inset-0">
                   <source
                     media="(max-width: 640px)"
-                    srcSet={`${MEDIA_URL}${item?.media?.media_path}`}
+                    srcSet={item?.media?.mobile?.path}
                   />
                   <Image
-                    src={`${MEDIA_URL}${item?.media?.media_path}`}
-                    alt={item?.media?.media_alt}
+                    src={item?.media?.desktop?.path}
+                    alt={item?.media?.desktop?.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                     priority={index === 0}
                     className="-z-2 object-cover"
                   />
                 </picture>
-               } 
+              )}
               <div className="container px-[80px] sm:px-[120px] xl:px-[180px]">
                 <Heading
                   as="h3"

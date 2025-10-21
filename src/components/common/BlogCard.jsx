@@ -21,6 +21,7 @@ const data = [
 
 export default function BlogCard({ blog = data, type }) {
   console.log(type);
+  console.log(type);
   let formattedDate = "";
   if (blog?.published_on) {
     const date = new Date(blog.published_on);
@@ -37,12 +38,13 @@ export default function BlogCard({ blog = data, type }) {
         <Link href={`/blog/${blog?.slug}`} key={blog?.slug}>
           <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
             <Image
-              src={
-                blog?.media?.media_path
-                  ? `${MEDIA_URL}${blog?.media?.media_path}`
-                  : "/images/Blog_1.png"
-              }
-              alt={blog?.media?.media_alt}
+              // src={
+              //   blog?.media?.media_path
+              //     ? `${MEDIA_URL}${blog?.media?.media_path}`
+              //     : "/images/Blog_1.png"
+              // }
+              src={`${blog?.media?.path}`}
+              alt={blog?.media?.alt}
               fill
               sizes="512px"
               className="transition hover:scale-105"
@@ -55,9 +57,7 @@ export default function BlogCard({ blog = data, type }) {
               </div>
 
               {type === "similar_blogs" && (
-                <p className="text-[#373737] text-[12px] mb-[10px] lg:mb-[24px] line-clamp-2 leading-tight">
-                  {blog?.description}
-                </p>
+                <p className="text-[#373737] text-[12px] mb-[10px] lg:mb-[24px] line-clamp-2 leading-tight">{blog?.description}</p>
               )}
             </div>
             <div className="flex justify-between gap-[10px]">

@@ -62,7 +62,7 @@ const expertiseData = {
   ],
 };
 
-export default function SolutionsSection({ title, description, solutions }) {
+export default function SolutionsSection({ data = expertiseData }) {
   const container = useRef(null);
 
   // global scroll progress
@@ -83,18 +83,18 @@ export default function SolutionsSection({ title, description, solutions }) {
         <div className="flex flex-wrap mb-[80px] sm:mb-[70px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">
             <Heading as="h2" size="heading2" className="text-[#303030] max-sm:text-center">
-              {title}
+              {data?.title}
             </Heading>
           </div>
           <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
             <Text as="p" size="text2" className="text-[#373737]">
-              {description}
+              {data?.description}
             </Text>
           </div>
         </div>
         <div ref={container}>
-          {solutions.map((item, i) => {
-            const targetScale = 1 - (solutions.length - i) * 0.05;
+          {data?.item_expertise.map((item, i) => {
+            const targetScale = 1 - (data?.item_expertise.length - i) * 0.05;
             return (
               <SolutionCard
                 key={i}
@@ -114,7 +114,7 @@ export default function SolutionsSection({ title, description, solutions }) {
             className="text-black bg-[#f5f5f5] hover:bg-[#dddddd]"
             asChild
           >
-            <Link href="/">Explore</Link>
+            <Link href={data?.button?.link}>{data?.button?.label}</Link>
           </ActionButton>
         </div>
       </div>

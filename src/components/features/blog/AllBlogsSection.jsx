@@ -110,7 +110,7 @@ const allBlogPosts = [
 
 const POSTS_PER_PAGE = 9;
 
-export default function AllBlogsSection() {
+export default function AllBlogsSection({ type = "blogs" }) {
   const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
 
@@ -170,11 +170,11 @@ export default function AllBlogsSection() {
   };
 
   return (
-    <section className="bg-white mb-[40px]">
+    <section className="bg-white xl:mb-[40px] xl:mt-[60px]">
       <div className="container mx-auto">
         {/* Section Title */}
         <h2 className=" text-2xl lg:text-[30px] xl:text-[40px] font-Medium text-black mb-6 sm:mb-8 lg:mb-[30px] xl:mb-[40px]">
-          All Blogs
+          {type == "news" ? "All News" : "All Blogs"}
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[24px]">
@@ -185,41 +185,28 @@ export default function AllBlogsSection() {
               className="w-full h-auto block rounded-[20px] sm:rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]"
             >
               <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
-                <Image
-                  src={blog.image}
-                  alt={blog.title}
-                  fill
-                  sizes="512px"
-                  className="transition hover:scale-105"
-                />
+                <Image src={blog.image} alt={blog.title} fill sizes="512px" className="transition hover:scale-105" />
               </div>
-              <div className="flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
+              <div className="h-full flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
                 <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                   {blog.title}
                 </div>
-                <div className="flex items-center justify-between text-[10px] lg:text-[14px]">
+                <div className="flex  items-center justify-between text-[10px] lg:text-[14px]">
                   <div className="text-[10px] sm:text-[12px] mt-0 xl:text-[14px] 2xl:text-[16px] flex items-center gap-1 3xl:text-[20px] text-[#757575] leading-none font-normal">
-                    <span className="whitespace-nowrap">
-                      {blog.published_on}
-                    </span>
+                    <span className="whitespace-nowrap">{blog.published_on}</span>
                     <span>•</span>
                     <span className="whitespace-nowrap">{blog.readTime}</span>
                   </div>
 
-                  <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-medium text-[##151515]">
-                    <Link
-                      href={`/blog/${blog?.slug}`}
-                      className="flex items-center gap-1"
-                    >
-                      Read Now
-                      <Image
-                        src="/images/Arrow.png"
-                        alt="arrow"
-                        width={18}
-                        height={18}
-                      />
-                    </Link>
-                  </div>
+                  {/* Read More Link */}
+                  <Text
+                    as={"text2"}
+                    size={"text2"}
+                    className="flex items-center justify-center gap-[8px] text-[#151515] group hover:text-[#0048BF] shadow-none font-medium"
+                  >
+                    <Link href="/">Read More</Link>
+                    <Image src="/images/Arrow.png" alt="arrow" width={18} height={18} />
+                  </Text>
                 </div>
               </div>
             </article>
@@ -234,11 +221,7 @@ export default function AllBlogsSection() {
           ))}
         </div> */}
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
       </div>
     </section>
   );

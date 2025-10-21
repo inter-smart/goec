@@ -7,7 +7,6 @@ import { Text } from "@/components/utils/Text";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 import CountUp from "react-countup";
-import { MEDIA_URL } from "@/lib/api";
 
 const aboutMoreData = {
   media: {
@@ -83,8 +82,7 @@ const aboutMoreData = {
   },
 };
 
-export default function AboutMoreSection({ data = aboutMoreData, aboutMore, partners, mission, vision, leadingTheGame  }) {
-  console.log(aboutMore)
+export default function AboutMoreSection({ data = aboutMoreData }) {
   return (
     <section className="w-full h-auto block py-[20px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">
@@ -96,14 +94,14 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
                 size={"heading2"}
                 className="text-[#303030] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
               >
-                {aboutMore?.title}
+                {data?.title}
               </Heading>
               <Text
                 as="div"
                 size={"text2"}
                 className="text-[#303030] mb-[20px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px]"
               >
-                {parse(aboutMore?.description)}
+                {parse(data?.description)}
               </Text>
               <div>
                 <ActionButton
@@ -120,13 +118,13 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
           <div className="w-full sm:w-1/2">
             <div className="w-full aspect-[576/476] rounded-[20px] xl:rounded-[25px] overflow-hidden bg-black relative z-0">
               <Image
-                src={`${MEDIA_URL}${aboutMore?.media?.media_path}`}
-                alt={aboutMore?.media?.media_alt}
+                src={data?.media?.path}
+                alt={data?.media?.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                 className="-z-1 object-cover transition hover:scale-105"
-                
-                
+                placeholder="blur"
+                blurDataURL="/images/placeholder.jpg"
               />
             </div>
           </div>
@@ -134,7 +132,7 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
             <div className="mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
               <div className="w-full flex flex-wrap items-center justify-between bg-white border border-[#f0f0f0] rounded-[20px] xl:rounded-[25px] overflow-hidden p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] ">
                 <ul className="flex flex-wrap gap-[4px] xl:gap-[6px] 2xl:gap-[10px] ">
-                  {partners?.partners_list
+                  {data?.partner?.item_partner
                     ?.slice(0, 5)
                     .map((item, index) => {
                       const scales = [
@@ -153,8 +151,8 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
                      ${scales[index] || "scale-80"}`}
                         >
                           <Image
-                            src={`${MEDIA_URL}${item?.media?.media_path}`}
-                            alt={item?.media?.media_alt}
+                            src={item?.media?.path}
+                            alt={item?.media?.alt}
                             width={60}
                             height={60}
                             className="w-[30px] xl:w-[50px] 2xl:w-[55px] aspect-square object-cover border border-white shadow-[0_10px_10px_0_rgba(0,0,0,0.2)] rounded-full transition hover:scale-105"
@@ -169,23 +167,23 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
                     size={"heading5"}
                     className="font-medium text-[#959595]"
                   >
-                    {partners?.partners_count}+ partners
+                    {data?.partner?.title}
                   </Heading>
                 </div>
               </div>
             </div>
             <div>
               <MiViCard
-                title={mission?.title}
-                description={mission?.description}
+                title={data?.mission?.title}
+                description={data?.mission?.description}
               />
             </div>
           </div>
           <div className="w-full sm:w-1/2">
             <div className="mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[25px]">
               <MiViCard
-                title={vision?.title}
-                description={vision?.description}
+                title={data?.vision?.title}
+                description={data?.vision?.description}
               />
             </div>
             <div>
@@ -196,17 +194,17 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
                     size={"heading5"}
                     className="font-medium text-[#959595]"
                   >
-                    {leadingTheGame?.title}
+                    {data?.charging_station?.title}
                   </Heading>
                 </div>
                 <div>
                   <div className="w-full h-auto block">
                     <div className="text-[16px] sm:text-[20px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] leading-none font-semibold text-right whitespace-nowrap text-ellipsis text-[#030303]">
                       <CountUp
-                        end={parseInt(leadingTheGame?.count)}
+                        end={parseInt(data?.charging_station?.count?.value)}
                         duration={2.75}
                         separator=","
-                        suffix={leadingTheGame?.count?.sufix || "+"}
+                        suffix={data?.charging_station?.count?.sufix}
                         enableScrollSpy
                       />
                     </div>
@@ -215,7 +213,7 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
                       size="text2"
                       className="whitespace-nowrap text-ellipsis text-[#030303] overflow-hidden"
                     >
-                      {leadingTheGame?.sub_title}
+                      {data?.charging_station?.count?.title}
                     </Text>
                   </div>
                 </div>

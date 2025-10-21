@@ -42,15 +42,11 @@ export default function TestimonialSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    );
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
-    );
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   };
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -104,7 +100,7 @@ export default function TestimonialSection() {
                   <Image
                     src={testimonials[currentIndex].image}
                     alt={testimonials[currentIndex].name}
-                    className="aspect-square md:aspect-[5/6] w-full lg:min-w-[340px] xl:min-w-[355px] 2xl:min-w-[400px] 3xl:min-w-[534px] rounded-[18px] lg:rounded-[20px] xl:rounded-[24px] 2xl:rounded-[28px] 3xl:rounded-[36px] object-cover"
+                    className="aspect-square md:aspect-[5/6] w-full h-full lg:min-w-[340px] xl:min-w-[355px] 2xl:min-w-[400px] 3xl:min-w-[534px] rounded-[18px] lg:rounded-[20px] xl:rounded-[24px] 2xl:rounded-[28px] 3xl:rounded-[36px] object-cover"
                     width={400}
                     height={600}
                     priority
@@ -115,21 +111,11 @@ export default function TestimonialSection() {
                 {/* Content */}
                 <div className="flex-1 flex flex-col justify-center lg:py-[70px] xl:py-[88px] 2xl:py-[98px] 3xl:py-[130px]">
                   {/* Quote Mark */}
-                  <Image
-                    src="/images/icon-quote.svg"
-                    alt="quote"
-                    width={30}
-                    height={30}
-                    className="w-[20px] xl:w-[25px] 2xl:w-[30px]"
-                  />
+                  <Image src="/images/icon-quote.svg" alt="quote" width={30} height={30} className="w-[20px] xl:w-[25px] 2xl:w-[30px]" />
 
                   <div className="px-[50px_48px]">
                     {/* Testimonial Text */}
-                    <Text
-                      as="p"
-                      size="text1"
-                      className="text-[#373737] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
-                    >
+                    <Text as="p" size="text1" className="text-[#373737] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
                       {parse(item?.text)}
                     </Text>
                     {/* Author Info */}
@@ -142,34 +128,15 @@ export default function TestimonialSection() {
                         >
                           {item.name}
                         </Heading>
-                        <Text
-                          as={"p"}
-                          size={"text2"}
-                          className="text-[#373737]"
-                        >
+                        <Text as={"p"} size={"text2"} className="text-[#373737]">
                           {item.role}
                         </Text>
                       </div>
 
                       {/* LinkedIn Badge */}
-                      <a
-                        href={item.linkedinUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        <Image
-                          src={"/images/linkedin.png"}
-                          alt="linkedin"
-                          width={20}
-                          height={20}
-                          className="w-[15px] xl:w-[20px] 2xl:w-[25px]"
-                        />
-                        <Text
-                          as={"p"}
-                          className="text-[#373737]"
-                          size={"text2"}
-                        >
+                      <a href={item.linkedinUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        <Image src={"/images/linkedin.png"} alt="linkedin" width={20} height={20} className="w-[15px] xl:w-[20px] 2xl:w-[25px]" />
+                        <Text as={"p"} className="text-[#373737]" size={"text2"}>
                           LinkedIn profile
                         </Text>
                       </a>
