@@ -1,4 +1,5 @@
 "use client";
+
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
@@ -123,7 +124,7 @@ export default function ChargingStationHero({
         </div>
       </div>
 
-      <div className="absolute w-full left-0 -bottom-[40px] z-20">
+      <div className="absolute w-full left-0 -bottom-[40px] xl:bottom-[-60px] 2xl:bottom-[-90px] z-20">
         <div className="container mx-auto">
           <div className="bg-white rounded-[24px] shadow-xl  p-[20px_10px] xl:p-[40px_23px]  2xl:p-[45px_32px]">
           <div className="flex w-full">
@@ -133,14 +134,14 @@ export default function ChargingStationHero({
                   <div className="text-center sm:flex sm:items-center sm:gap-[16px]">
                     <Text
                       as="p"
-                      size={"text1"}
+                      size={"text2"}
                       className="text-[#A9A9A9] font-regular  tracking-wide"
                     >
                       {item.label}
                     </Text>
                     <Text
                       as={"p"}
-                      size={"text1"}
+                      size={"text2"}
                       className="text-[#030303] font-medium"
                     >
                       {item.value}

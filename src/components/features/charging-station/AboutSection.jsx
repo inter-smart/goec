@@ -1,4 +1,5 @@
 // components/AboutUsSection.jsx
+"use client";
 
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
@@ -46,3 +47,5 @@ export default function AboutUsSection({
     </section>
   );
 }
+
+
