@@ -6,6 +6,7 @@ import InvestNowSection from "@/components/features/investment/InvestNowSection"
 import InvestorSaySection from "@/components/features/investment/InvestorSaySection";
 import MarketSizeSection from "@/components/features/investment/MarketSizeSection";
 import { fetchFromAPI } from "@/lib/api";
+import Error from "../error";
 
 const heroData = {
   background_media: {
@@ -44,7 +45,7 @@ const heroData = {
 export default async function Page() {
   const { data, error } = await fetchFromAPI("invest-in-go-ec");
   if (error) {
-    return <div>Something went wrong</div>;
+    return  <Error path={"/invest-in-go-ec"} />
   }
 
   const {

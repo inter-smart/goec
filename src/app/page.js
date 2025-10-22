@@ -9,6 +9,7 @@ import PartnersSection from "@/components/features/home/PartnersSection";
 import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
+import Error from "./error";
 
 export default async function Home() {
 
@@ -16,7 +17,7 @@ export default async function Home() {
 
     
     if (error) {
-    return <div>Something went wrong</div>;
+    return <Error path="/" />
   }
 
 
@@ -32,10 +33,6 @@ export default async function Home() {
     associates_section,
     news_section
   } = data;
-
-
-
-
 
    return (
     <>

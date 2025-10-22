@@ -7,6 +7,7 @@ import AboutAssociateSection from "@/components/features/about/AboutAssociateSec
 import AboutRecognitionSection from "@/components/features/about/AboutRecognitionSection";
 import AboutBecomePartnerSection from "@/components/features/about/AboutBecomePartnerSection";
 import { fetchFromAPI } from "@/lib/api";
+import Error from "../error";
 
 export default async function AboutPage() {
   const { data, error } = await fetchFromAPI("about");
@@ -43,7 +44,7 @@ export default async function AboutPage() {
 
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return <Error path={"/about"} />
   }
 
   const {
