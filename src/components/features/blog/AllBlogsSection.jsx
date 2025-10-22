@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Pagination from "@/components/ui/paginations";
 import Link from "next/link";
 import BlogCard from "@/components/common/BlogCard";
+import { Text } from "@/components/utils/Text";
 
 // Blog posts data
 const allBlogPosts = [

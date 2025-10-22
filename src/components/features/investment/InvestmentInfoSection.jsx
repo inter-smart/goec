@@ -18,7 +18,7 @@ const investmentData = {
     "<h4>GO EC is envisioned to meet the opportunities for sustainable mobility through collaborations with wiling and progressive partners. Our focus remains on creating a chain of EV Charging Stations that are optimized within the best-given space and infrastructure capacities.</h4>",
 };
 
-export default function InvestmentInfoSection({ description, media }) {
+export default function InvestmentInfoSection({ description, data = investmentData }) {
   const sanitizedText = DOMPurify.sanitize(description);
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px]">

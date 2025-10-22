@@ -109,7 +109,7 @@ export default function InnerHero({ data = heroData, childern, title, descriptio
             )}
             {childern}
           </div>
-          <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px] bg-black">
+          <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px]">
             <div className="w-full xl:max-w-[576px] 2xl:max-w-[668px] 3xl:max-w-[720px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
               {data?.media?.type === "video" ? (
                 <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
