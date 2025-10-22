@@ -42,7 +42,7 @@ export default function InvestBrocureSection({ data = investBrocureData }) {
                 </Heading>
                 <div className="flex space-x-[10px] xl:space-x-[15px]">
                   {data?.button?.map((item, index) =>
-                    item?.type === "primary" ? (
+                   item?.type === "primary" ? (
                       <ActionButton
                         key={"primary" + index}
                         size={"lg"}
@@ -75,8 +75,8 @@ export default function InvestBrocureSection({ data = investBrocureData }) {
                   </video>
                 ) : (
                   <Image
-                    src={data?.media?.path}
-                    alt={data?.media?.alt}
+                    src={media?.nedia_path? `${MEDIA_URL}${media?.media_path}` : "/images/investment-brochure-1.png"}
+                    alt={media?.media_alt}
                     width={476}
                     height={268}
                     className="w-full h-full"

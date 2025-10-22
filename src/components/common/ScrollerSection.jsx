@@ -33,11 +33,12 @@ const lifeImages = [
   },
 ];
 
+
 export default function ScrollerSection(
-  { title, list }
+  { title, list, page}
 ) {
   return (
-    <section className="w-full bg-[#FAFAFA] py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]">
+    <section className={`w-full py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px] ${page == "career" ? "bg-[#fafafa]" : "bg-white" }`}>
       {/* Heading */}
       <div className="container mx-auto">
         <Heading
@@ -49,6 +50,9 @@ export default function ScrollerSection(
         </Heading>
       </div>
       {/* Image grid */}
+
+      {
+        page==='career'? 
       <Swiper
         loop={true}
         modules={[]}
@@ -133,6 +137,92 @@ export default function ScrollerSection(
           );
         })}
       </Swiper>
+      :
+      <Swiper
+        loop={true}
+        modules={[]}
+        spaceBetween={30}
+        slidesPerView={1.9}
+        speed={5000}
+        allowTouchMove={true}
+        simulateTouch={true}
+        loopAdditionalSlides={3}
+        loopedSlides={lifeImages.length}
+        autoplay={{
+          delay: 0, // No delay between slides
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false, // Don't pause on hover
+          reverseDirection: false,
+        }}
+        freeMode={true} // Enable free mode for smooth continuous scrolling
+        freeModeMomentum={false}
+        breakpoints={{
+          320: {
+            slidesPerView: 2.5,
+            spaceBetween: 10,
+          },
+          384: {
+            slidesPerView: 2.5,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: 2.5,
+            spaceBetween: 15,
+          },
+          1024: {
+            slidesPerView: 2.5,
+            spaceBetween: 30,
+          },
+          1536: {
+            slidesPerView: 2.5,
+            spaceBetween: 30,
+          },
+        }}
+        onInit={(swiper) => {
+          // Start continuous auto-scroll
+          const autoScroll = () => {
+            if (swiper && !swiper.destroyed) {
+              swiper.setTransition(0);
+              swiper.translateTo(swiper.translate - 1, 0);
+
+              // Reset position when reaching end
+              if (Math.abs(swiper.translate) >= swiper.virtualSize / 2) {
+                swiper.setTransition(0);
+                swiper.translateTo(0, 0);
+              }
+            }
+          };
+
+          const interval = setInterval(autoScroll, 16); // ~60fps
+
+          // Store interval ID to clear later
+          swiper.autoScrollInterval = interval;
+        }}
+        onDestroy={(swiper) => {
+          if (swiper.autoScrollInterval) {
+            clearInterval(swiper.autoScrollInterval);
+          }
+        }}
+      >
+        {list.map((img, index) => {
+          return (
+            <SwiperSlide key={"value" + index}>
+              <div className="relative w-full aspect-[640/360] rounded-[24px] overflow-hidden">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={640}
+                  height={360}
+                  className="object-cover w-full h-full"
+                  quality={100}
+                />
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      }
+
     </section>
   );
 }

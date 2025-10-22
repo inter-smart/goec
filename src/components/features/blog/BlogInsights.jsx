@@ -148,3 +148,36 @@ export default function BlogInsights({ type, items, featured }) {
     </section>
   );
 }
+
+// Alternative: If you want to use Server Components with client interactivity
+// Create a separate client component for the tabs:
+
+// components/TabButtons.tsx
+export function TabButtons() {
+  const [activeTab, setActiveTab] = useState("blogs");
+
+  return (
+    <div className="flex gap-4">
+      <button
+        onClick={() => setActiveTab("blogs")}
+        className={`px-8 py-3 rounded-full transition-all duration-300 font-medium ${
+          activeTab === "blogs"
+            ? "bg-blue-600 text-white shadow-lg"
+            : "bg-transparent text-black hover:bg-blue-600 hover:text-white"
+        }`}
+      >
+        Blogs
+      </button>
+      <button
+        onClick={() => setActiveTab("news")}
+        className={`px-8 py-3 rounded-full transition-all duration-300 font-medium ${
+          activeTab === "news"
+            ? "bg-blue-600 text-white shadow-lg"
+            : "bg-transparent text-black hover:bg-blue-600 hover:text-white"
+        }`}
+      >
+        News
+      </button>
+    </div>
+  );
+}
