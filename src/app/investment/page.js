@@ -5,6 +5,8 @@ import InvestmentInfoSection from "@/components/features/investment/InvestmentIn
 import InvestNowSection from "@/components/features/investment/InvestNowSection";
 import InvestorSaySection from "@/components/features/investment/InvestorSaySection";
 import MarketSizeSection from "@/components/features/investment/MarketSizeSection";
+import { fetchFromAPI } from "@/lib/api";
+import Error from "../error";
 
 const heroData = {
   background_media: {

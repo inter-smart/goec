@@ -6,37 +6,58 @@ import AboutTeamSection from "@/components/features/about/AboutTeamSection";
 import AboutAssociateSection from "@/components/features/about/AboutAssociateSection";
 import AboutRecognitionSection from "@/components/features/about/AboutRecognitionSection";
 import AboutBecomePartnerSection from "@/components/features/about/AboutBecomePartnerSection";
+import { fetchFromAPI } from "@/lib/api";
+import Error from "../error";
 
-const heroData = {
-  background_media: {
-    mobile: {
+export default async function AboutPage() {
+  const { data, error } = await fetchFromAPI("about");
+
+  const heroData = {
+    background_media: {
+      mobile: {
+        type: "image",
+        path: "/images/hero-about-bg-1.jpg",
+        alt: "hero",
+      },
+      desktop: {
+        type: "image",
+        path: "/images/hero-about-bg-1.jpg",
+        alt: "hero",
+      },
+    },
+    media: {
       type: "image",
-      path: "/images/hero-about-bg-1.jpg",
+      path: "/images/about-hero-1.svg",
       alt: "hero",
     },
-    desktop: {
-      type: "image",
-      path: "/images/hero-about-bg-1.jpg",
-      alt: "hero",
-    },
-  },
-  media: {
-    type: "image",
-    path: "/images/about-hero-1.svg",
-    alt: "hero",
-  },
-  title: "We Power Up your Journey with Lightning Charging Nationwide",
-  description: null,
-  button: [
-    {
-      type: "secondary",
-      label: "Become a partner ",
-      link: "/",
-    },
-  ],
-};
+    title: "We Power Up your Journey with Lightning Charging Nationwide",
+    description: null,
+    button: [
+      {
+        type: "secondary",
+        label: "Become a partner ",
+        link: "/",
+      },
+    ],
+  };
 
-export default function Page() {
+  if (error) {
+    return <Error path={"/about"} />;
+  }
+
+  const {
+    banner_section,
+    about_section,
+    learn_more_section,
+    mission_vision_section,
+    our_values_section,
+    our_journey_section,
+    meet_team_section,
+    our_associates_section,
+    media_recognition_section,
+    partner_section,
+  } = data;
+
   return (
     <>
       <InnerHero data={heroData} />

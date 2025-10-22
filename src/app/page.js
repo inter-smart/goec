@@ -8,6 +8,8 @@ import InvestSection from "@/components/features/home/InvestSection";
 import PartnersSection from "@/components/features/home/PartnersSection";
 import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
+import { fetchFromAPI } from "@/lib/api";
+import Error from "./error";
 
 export default function Home() {
   return (
