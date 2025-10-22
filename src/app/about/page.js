@@ -40,13 +40,13 @@ export default function Page() {
   return (
     <>
       <InnerHero data={heroData} />
-      {/* <AboutInfoSection />
+      <AboutInfoSection />
       <AboutMoreSection />
       <AboutCompanySection />
       <AboutTeamSection />
       <AboutAssociateSection />
       <AboutRecognitionSection />
-      <AboutBecomePartnerSection /> */}
+      <AboutBecomePartnerSection />
     </>
   );
 }

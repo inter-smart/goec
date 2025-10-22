@@ -96,7 +96,7 @@ const aboutCompanyData = {
   },
 };
 
-export default function AboutCompanySection({ data = aboutCompanyData, ourValues = [], ourJourney = [] }) {
+export default function AboutCompanySection({ ourValues = aboutCompanyData?.value, ourJourney = aboutCompanyData?.journey }) {
   const valueData = ourValues;
   const journeyData = ourJourney;
   return (
