@@ -35,16 +35,15 @@ const Gallery = {
   ],
 };
 
-
 export default async function MerchantileNepalPage() {
   return (
     <div>
       <HeroSection />
       <AboutMercantile />
-      <IndustySection />
+      {/* <IndustySection /> */}
       <InvestmentSection />
       <FooterCard />
-      <ScrollerSection  title={Gallery.title} list={Gallery.list} />
+      <ScrollerSection title={Gallery.title} list={Gallery.list} />
     </div>
   );
 }
