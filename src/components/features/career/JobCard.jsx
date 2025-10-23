@@ -31,7 +31,7 @@ export default function JobCard({ job }) {
           </span>
         </div>
          <Text as={"text2"} size={"text2"} className="flex items-center justify-center gap-[8px] text-[#151515] group hover:text-[#0048BF] shadow-none font-medium">
-          <Link href="/">Read More</Link>
+          <Link href={`/career/${job.slug}`}>Read More</Link>
           <Image src="/images/Arrow.png" alt="arrow" width={18} height={18} />
         </Text>
       </div>
