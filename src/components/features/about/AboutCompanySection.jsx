@@ -11,7 +11,8 @@ import Image from "next/image";
 const aboutCompanyData = {
   value: {
     title: "Our Values ",
-    description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+    description:
+      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
     item_value: [
       {
         media: null,
@@ -26,7 +27,8 @@ const aboutCompanyData = {
       {
         media: null,
         title: "Honesty & Transparency",
-        description: "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
+        description:
+          "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
         button: {
           link: "/",
           label: "Learn more",
@@ -46,7 +48,8 @@ const aboutCompanyData = {
   },
   journey: {
     title: "Our Journey ",
-    description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+    description:
+      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
     item_journey: [
       {
         timestamp: "2025-08-14T05:00:00.000000Z",
@@ -112,7 +115,11 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
         <div className="container">
           <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">
-              <Heading as="h2" size="heading2" className="text-white max-sm:text-center">
+              <Heading
+                as="h2"
+                size="heading2"
+                className="text-white max-sm:text-center"
+              >
                 {valueData?.title}
               </Heading>
             </div>
@@ -193,7 +200,11 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
         <div className="container">
           <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">
-              <Heading as="h2" size="heading2" className="text-white max-sm:text-center">
+              <Heading
+                as="h2"
+                size="heading2"
+                className="text-white max-sm:text-center"
+              >
                 {journeyData?.title}
               </Heading>
             </div>
@@ -227,7 +238,11 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
                         >
                           {item?.title}
                         </Heading>
-                        <Text as="div" size="text2" className="line-clamp-3 text-[#ced1d0]">
+                        <Text
+                          as="div"
+                          size="text2"
+                          className="line-clamp-3 text-[#ced1d0]"
+                        >
                           {parse(item?.description)}
                         </Text>
                       </div>
