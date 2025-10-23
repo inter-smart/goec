@@ -54,7 +54,7 @@ export default function InnerHero({
           srcSet={data?.background_media?.mobile?.path}
         />
         <Image
-          src={data?.background_media?.desktop?.path }
+          src={data?.background_media?.desktop?.path}
           alt={data?.background_media?.desktop?.alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
@@ -140,17 +140,11 @@ export default function InnerHero({
                   playsInline
                   className="w-full h-full object-cover absolute -z-2 inset-0"
                 >
-                  <source
-                    src={`${MEDIA_URL}${media?.desktop?.media_path}`}
-                    type="video/mp4"
-                  />
+                  <source src={data?.media?.path} type="video/mp4" />
                 </video>
               ) : (
                 <picture className="absolute -z-2 inset-0">
-                  <source
-                    media="(max-width: 640px)"
-                    src={`${MEDIA_URL}${media?.mobile?.media_path}`}
-                  />
+                  <source media="(max-width: 640px)" src={`${MEDIA_URL}${media?.mobile?.media_path}`} />
                   <Image
                     src={`${MEDIA_URL}${media?.desktop?.media_path}`}
                     alt={media?.desktop?.media_alt}

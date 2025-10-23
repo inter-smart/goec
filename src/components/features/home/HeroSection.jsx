@@ -29,8 +29,7 @@ const heroData = {
         },
       },
       title: "Powering Your Journey with Lightning Charging Nationwide",
-      description:
-        "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
+      description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
       button: [
         {
           type: "primary",
@@ -58,8 +57,7 @@ const heroData = {
         },
       },
       title: "Powering Your Journey with Lightning Charging Nationwide 22",
-      description:
-        "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
+      description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
       button: [
         {
           type: "primary",
@@ -161,16 +159,12 @@ export default function HeroSection({ heroBanner = heroData }) {
         modules={[EffectCreative, Pagination, Autoplay]}
         onSlideChange={() => {
           setTimeout(() => {
-            const bullets = document.querySelectorAll(
-              ".custom-pagination .swiper-pagination-bullet .progress-bar"
-            );
+            const bullets = document.querySelectorAll(".custom-pagination .swiper-pagination-bullet .progress-bar");
             bullets.forEach((bar) => {
               bar.classList.remove("progress-active");
               bar.style.width = "0%";
             });
-            const activeBullet = document.querySelector(
-              ".custom-pagination .swiper-pagination-bullet-active .progress-bar"
-            );
+            const activeBullet = document.querySelector(".custom-pagination .swiper-pagination-bullet-active .progress-bar");
             if (activeBullet) {
               activeBullet.classList.add("progress-active");
             }
@@ -179,9 +173,7 @@ export default function HeroSection({ heroBanner = heroData }) {
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
           setTimeout(() => {
-            const firstBullet = document.querySelector(
-              ".custom-pagination .swiper-pagination-bullet-active .progress-bar"
-            );
+            const firstBullet = document.querySelector(".custom-pagination .swiper-pagination-bullet-active .progress-bar");
             if (firstBullet) {
               firstBullet.classList.add("progress-active");
             }
@@ -199,32 +191,18 @@ export default function HeroSection({ heroBanner = heroData }) {
               quality={40}
             />
             {item?.media?.desktop?.media_type === "video" ? (
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover absolute -z-2 inset-0"
-              >
-                <source
-                  src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
-                  type="video/mp4"
-                />
+              <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
+                <source src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`} type="video/mp4" />
               </video>
             ) : (
               <picture className="absolute -z-2 inset-0">
-                <source
-                  media="(max-width: 640px)"
-                  srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`}
-                />
+                <source media="(max-width: 640px)" srcSet={item?.media?.mobile?.path} />
                 <Image
                   src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
                   alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                   className="-z-2"
-                  
-                  
                   priority={index === 0}
                 />
               </picture>
@@ -239,25 +217,14 @@ export default function HeroSection({ heroBanner = heroData }) {
                   >
                     {item?.title}
                   </Heading>
-                  <Text
-                    as="div"
-                    size="text1"
-                    className="line-clamp-2 text-white max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
-                  >
+                  <Text as="div" size="text1" className="line-clamp-2 text-white max-w-[80%] mb-[15px] xl:mb-[20px] 2xl:mb-[40px]">
                     {item?.description}
                   </Text>
                   <div className="flex space-x-[10px] xl:space-x-[15px]">
-                    {item?.buttons?.map((buttonItem, index) =>
-                      buttonItem[0] ? (
-                        <ActionButton
-                          key={index}
-                          size={"lg"}
-                          className="max-w-[120px] xl:max-w-[145px] 2xl:max-w-[160px]"
-                          asChild
-                        >
-                          <Link href={buttonItem?.link}>
-                            {buttonItem?.text}
-                          </Link>
+                    {item?.button?.map((buttonItem, index) =>
+                      buttonItem?.type === "primary" ? (
+                        <ActionButton key={index} size={"lg"} className="max-w-[120px] xl:max-w-[145px] 2xl:max-w-[160px]" asChild>
+                          <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
                         </ActionButton>
                       ) : (
                         <ActionButton
@@ -266,9 +233,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                           className="text-black bg-white max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
                           asChild
                         >
-                          <Link href={buttonItem?.link}>
-                            {buttonItem?.text}
-                          </Link>
+                          <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
                         </ActionButton>
                       )
                     )}
@@ -280,13 +245,7 @@ export default function HeroSection({ heroBanner = heroData }) {
         ))}
       </Swiper>
       <div className="w-[20px] xl:w-[25px] 2xl:w-[30px] aspect-[6/11] mx-auto absolute z-2 bottom-[20px] xl:bottom-[40px] 2xl:bottom-[60px] left-0 right-0">
-        <Image
-          src={"/images/hero-scroll-bottom.gif"}
-          alt="scroll-bottom"
-          width={30}
-          height={60}
-          unoptimized
-        />
+        <Image src={"/images/hero-scroll-bottom.gif"} alt="scroll-bottom" width={30} height={60} unoptimized />
       </div>
       <div className="container absolute z-2 bottom-[100px] sm:bottom-[40px] xl:bottom-[60px] 2xl:bottom-[80px] 3xl:bottom-[100px] left-0 right-0">
         <div className="custom-pagination" />
