@@ -6,11 +6,11 @@ import AboutTeamSection from "@/components/features/about/AboutTeamSection";
 import AboutAssociateSection from "@/components/features/about/AboutAssociateSection";
 import AboutRecognitionSection from "@/components/features/about/AboutRecognitionSection";
 import AboutBecomePartnerSection from "@/components/features/about/AboutBecomePartnerSection";
-import { fetchFromAPI } from "@/lib/api";
+// import { fetchFromAPI } from "@/lib/api";
 import Error from "../error";
 
 export default async function AboutPage() {
-  const { data, error } = await fetchFromAPI("about");
+  // const { data, error } = await fetchFromAPI("about");
 
   const heroData = {
     background_media: {
@@ -41,22 +41,22 @@ export default async function AboutPage() {
     ],
   };
 
-  if (error) {
-    return <Error path={"/about"} />;
-  }
+  // if (error) {
+  //   return <Error path={"/about"} />;
+  // }
 
-  const {
-    banner_section,
-    about_section,
-    learn_more_section,
-    mission_vision_section,
-    our_values_section,
-    our_journey_section,
-    meet_team_section,
-    our_associates_section,
-    media_recognition_section,
-    partner_section,
-  } = data;
+  // const {
+  //   banner_section,
+  //   about_section,
+  //   learn_more_section,
+  //   mission_vision_section,
+  //   our_values_section,
+  //   our_journey_section,
+  //   meet_team_section,
+  //   our_associates_section,
+  //   media_recognition_section,
+  //   partner_section,
+  // } = data;
 
   return (
     <>
