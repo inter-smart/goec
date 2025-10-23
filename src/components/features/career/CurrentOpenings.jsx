@@ -5,7 +5,6 @@ import { Text } from "@/components/utils/Text";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useState, useMemo } from "react";
-import { useState, useMemo } from "react";
 import { FaCaretRight } from "react-icons/fa";
 import JobCard from "./JobCard";
 
