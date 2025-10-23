@@ -1,4 +1,4 @@
-import JobSection from "@/components/features/job-details/jobSection";
+import JobSection from "@/components/features/career/jobSection";
 
 export default async function JobDetailsPage({ params }) {
   const { slug } = await params;

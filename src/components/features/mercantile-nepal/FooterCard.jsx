@@ -12,7 +12,7 @@ const footerData = {
 export default function FooterCard({ data = footerData, title = null }) {
   return (
     <div>
-      <section className="w-full h-auto block py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]">
+      <section className="w-full h-auto block pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
         <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
           <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[25px] bg-black relative">
             <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-t from-[#003894] to-[#0055E0] opacity-40 z-10"></div>

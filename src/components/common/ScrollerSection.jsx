@@ -34,10 +34,10 @@ const lifeImages = [
 ];
 
 export default function ScrollerSection(
-  { title, list }
+  { title, list, page="career" }
 ) {
   return (
-    <section className="w-full bg-[#FAFAFA] py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]">
+    <section className={`w-full py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]  ${page==="career"?" bg-[#FAFAFA]":"bg-white"}`}>
       {/* Heading */}
       <div className="container mx-auto">
         <Heading

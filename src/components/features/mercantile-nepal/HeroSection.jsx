@@ -154,7 +154,7 @@ export default function HeroSection() {
                     <ActionButton
                       key={index}
                       size={"lg"}
-                      className="bg-white text-[#151515] w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                      className="bg-white text-[#151515] w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:min-w-[280px]"
                       asChild
                     >
                       <Link href={buttonItem?.link}>{buttonItem?.text}</Link>
@@ -164,7 +164,7 @@ export default function HeroSection() {
                       key={index}
                       size={"lg"}
                       variant={"blue"}
-                      className="w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                      className="w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[243px]"
                       asChild
                     >
                       <Link href={buttonItem?.link}>{buttonItem?.text}</Link>
