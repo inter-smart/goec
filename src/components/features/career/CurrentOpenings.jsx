@@ -26,7 +26,7 @@ const allJobs = [
     position: "Engineering",
   },
   {
-    title: "UI/UX Designer",  
+    title: "UI/UX Designer",
     slug: "ui-ux-designer",
     location: "Remote",
     type: "Contract",
@@ -76,7 +76,8 @@ export default function CareersPage() {
     const activeDepartment = departments[selected].label;
     return allJobs.filter((job) => {
       const matchesDepartment =
-        activeDepartment === "All positions" || job.position === activeDepartment;
+        activeDepartment === "All positions" ||
+        job.position === activeDepartment;
       const matchesSearch = job.title
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
@@ -135,14 +136,14 @@ export default function CareersPage() {
             <Heading as="h1" size="heading1" className="text-[#030303]">
               Current Openings
             </Heading>
-            <div className="w-full bg-[#F0F0F0] rounded-full max-w-[355px] px-[16px] py-[12px] flex items-center gap-[12px]">
+            <div className="w-full bg-[#F0F0F0] rounded-full sm:max-w-[355px] px-[16px] py-[12px] flex items-center gap-[12px]">
               <Search />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search jobs..."
-                className="w-full text-sm focus:outline-none text-[#030303] placeholder:text-[#A9A9A9]"
+                className="w-full text-xs focus:outline-none text-[#030303] placeholder:text-[#A9A9A9]"
               />
             </div>
           </div>
@@ -150,13 +151,29 @@ export default function CareersPage() {
           {/* Content Grid */}
           <div className="flex flex-col sm:flex-row gap-6">
             {/* Sidebar */}
-            <aside className="lg:w-[288px] flex-shrink-0">
+
+            {/* Department Dropdown (visible only on small screens) */}
+            <div className="sm:hidden mb-4 px-4 py-2.5 rounded-full border border-[#F0F0F0] ">
+              <select
+                value={selected}white
+                onChange={(e) => setSelected(Number(e.target.value))}
+                className="w-full rounded-lg bg-white relative outline-none"
+              >
+                {departments.map((dep, index) => (
+                  <option key={dep.label} value={index}>
+                    {dep.label} ({departmentCounts[dep.label] || 0})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <aside className="hidden sm:block lg:w-[288px] flex-shrink-0">
               <ul className="sticky top-20">
                 {departments.map((dep, index) => (
                   <div
                     key={dep.label}
                     onClick={() => setSelected(index)}
-                    className={`flex justify-between items-center text-sm py-2.5 px-3 rounded-md cursor-pointer transition-colors ${
+                    className={`flex justify-between items-center text-xs py-2.5 px-3 rounded-md cursor-pointer transition-colors ${
                       index === selected
                         ? "text-[#0055E0] bg-[#F3F7FF]"
                         : "text-[#030303] hover:bg-gray-50"

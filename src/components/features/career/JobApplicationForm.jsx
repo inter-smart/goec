@@ -1,10 +1,11 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { X, Upload, AlertCircle } from "lucide-react";
+import { X, Upload, AlertCircle, ChevronDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Heading } from "@/components/utils/Heading";
 import { ActionButton } from "@/components/utils/Button";
 import Image from "next/image";
+import { FaCaretDown } from "react-icons/fa";
 
 export default function JobApplicationForm({ isOpen, onClose }) {
   const modalRef = useRef(null);
@@ -113,7 +114,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
   const labelClass =
     "block text-sm text-[#373737] text-[#373737] text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]";
   const inputClass =
-    "w-full p-[10px_12px] xl:p-[12px_14px] 2xl:p-[14px_16px] 3xl:p-[17px_22px] border border-[#A2A2A2] rounded-[8px] text-[#A9A9A9] focus:outline-none transition-all duration-200";
+    "w-full p-[10px_12px] xl:p-[12px_14px] 2xl:p-[14px_16px] 3xl:p-[17px_22px] border border-[#A2A2A2] text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] rounded-[8px] text-[#A9A9A9] focus:outline-none transition-all duration-200";
   const inputErrorClass = "border-red-500";
 
   return (
@@ -146,8 +147,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
           <div className="flex justify-between items-center">
             <Heading
               as={"h2"}
-              size={"heading2"}
-              className="text-2xl sm:text-3xl font-bold text-gray-900"
+              className=" text-[30px] lg:text-[35px] xl:text-[43px] 2xl:text-[48px] 3xl:text-[64px] font-medium text-gray-900"
             >
               Apply Now!
             </Heading>
@@ -167,7 +167,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
             className="space-y-5 px-[40px] lg:px-[46px] xl:px-[57px] 2xl:px-[64px] 3xl:px-[86px] pb-[40px] lg:pb-[46px] xl:pb-[57px] 2xl:pb-[64px] 3xl:pb-[86px]"
           >
             {/* Name Fields */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 space-y-5 sm:gap-[24px]">
               <div>
                 <label className={labelClass}>First name</label>
                 <input
@@ -181,7 +181,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
                 />
 
                 {errors.firstName && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" />{" "}
                     {errors.firstName.message}
                   </p>
@@ -200,7 +200,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
                   className={`${inputClass} ${errors.lastName ? inputErrorClass : ""}`}
                 />
                 {errors.lastName && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" />{" "}
                     {errors.lastName.message}
                   </p>
@@ -209,7 +209,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
             </div>
 
             {/* Email and Phone */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 space-y-5 sm:gap-[24px]">
               <div>
                 <label className={labelClass}>Email id</label>
                 <input
@@ -225,7 +225,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
                   className={`${inputClass} ${errors.email ? inputErrorClass : ""}`}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" /> {errors.email.message}
                   </p>
                 )}
@@ -246,7 +246,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
                   className={`${inputClass} ${errors.phone ? inputErrorClass : ""}`}
                 />
                 {errors.phone && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" /> {errors.phone.message}
                   </p>
                 )}
@@ -254,24 +254,31 @@ export default function JobApplicationForm({ isOpen, onClose }) {
             </div>
 
             {/* Designation and Experience */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 space-y-5 sm:gap-[24px]">
               <div>
                 <label className={labelClass}>Designation</label>
-                <select
-                  {...register("designation", {
-                    required: "Please select a designation",
-                  })}
-                  className={`${inputClass} ${errors.designation ? inputErrorClass : ""}`}
+
+                <div
+                  className={`${inputClass} ${errors.designation ? inputErrorClass : ""} flex items-center justify-between w-full`}
                 >
-                  <option value="">Select designation</option>
-                  {designations.map((designation) => (
-                    <option key={designation} value={designation}>
-                      {designation}
-                    </option>
-                  ))}
-                </select>
+                  <select
+                    {...register("designation", {
+                      required: "Please select a designation",
+                    })}
+                    className={`appearance-none w-full outline-none`}
+                  >
+                    <option value="">Select designation</option>
+                    {designations.map((designation) => (
+                      <option key={designation} value={designation}>
+                        {designation}
+                      </option>
+                    ))}
+                  </select>
+                  <FaCaretDown className="pointer-events-none w-4 h-4 text-[#030303]" />
+                </div>
+
                 {errors.designation && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" />{" "}
                     {errors.designation.message}
                   </p>
@@ -290,25 +297,30 @@ export default function JobApplicationForm({ isOpen, onClose }) {
             </div>
 
             {/* State and City */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 space-y-5 sm:gap-[24px]">
               <div>
                 <label className={labelClass}>State</label>
-                <select
-                  {...register("state", {
-                    required: "Please select a state",
-                    onChange: () => setValue("city", ""),
-                  })}
-                  className={`${inputClass} ${errors.state ? inputErrorClass : ""}`}
+                <div
+                  className={`${inputClass} ${errors.designation ? inputErrorClass : ""} flex items-center justify-between w-full`}
                 >
-                  <option value="">Select state</option>
-                  {states.map((state) => (
-                    <option key={state} value={state}>
-                      {state}
-                    </option>
-                  ))}
-                </select>
+                  <select
+                    {...register("state", {
+                      required: "Please select a state",
+                      onChange: () => setValue("city", ""),
+                    })}
+                    className={`appearance-none w-full outline-none`}
+                  >
+                    <option value="">Select state</option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>
+                        {state}
+                      </option>
+                    ))}
+                  </select>
+                  <FaCaretDown className="pointer-events-none w-4 h-4 text-[#030303]" />
+                </div>
                 {errors.state && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" /> {errors.state.message}
                   </p>
                 )}
@@ -316,21 +328,26 @@ export default function JobApplicationForm({ isOpen, onClose }) {
 
               <div>
                 <label className={labelClass}>City</label>
-                <select
-                  {...register("city", { required: "Please select a city" })}
-                  disabled={!selectedState}
-                  className={`${inputClass} ${errors.city ? inputErrorClass : ""}`}
+                <div
+                  className={`${inputClass} ${errors.designation ? inputErrorClass : ""} flex items-center justify-between w-full`}
                 >
-                  <option value="">Select city</option>
-                  {selectedState &&
-                    cities[selectedState]?.map((city) => (
-                      <option key={city} value={city}>
-                        {city}
-                      </option>
-                    ))}
-                </select>
+                  <select
+                    {...register("city", { required: "Please select a city" })}
+                    disabled={!selectedState}
+                    className={`appearance-none w-full outline-none`}
+                  >
+                    <option value="">Select city</option>
+                    {selectedState &&
+                      cities[selectedState]?.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
+                  </select>
+                  <FaCaretDown className="pointer-events-none w-4 h-4 text-[#030303]" />
+                </div>
                 {errors.city && (
-                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+                  <p className="mt-1 text-xs text-red-500 flex items-center gap-1 text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] mb-[8px]">
                     <AlertCircle className="w-3 h-3" /> {errors.city.message}
                   </p>
                 )}
@@ -350,21 +367,20 @@ export default function JobApplicationForm({ isOpen, onClose }) {
 
             {/* File Upload */}
             <div>
-              <label className="flex items-center cursor-pointer">
+              <label className="flex items-center cursor-pointer gap-[8px]">
                 <Image
                   src="/images/FIle_Attachment.png"
                   alt="upload"
-                  width={15}
-                  height={15}
-                  className="mr-2"
+                  width={10}
+                  height={10}
                   onClick={() => fileInputRef.current.click()}
                   style={{ cursor: "pointer" }}
                   priority
                 />
-                <span className="text-[#030303] font-medium">
+                <span className="text-[#030303] text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] font-medium">
                   Add an attachment*
                 </span>
-                <span className="text-[#373737] text-sm ml-2">
+                <span className="text-[#373737] text-[10px] lg:text-[11px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[22px]">
                   Max. 10 MB. (Type: pdf, doc, png, jpeg, docx)
                 </span>
                 <input
@@ -382,7 +398,7 @@ export default function JobApplicationForm({ isOpen, onClose }) {
                 variant={"blue"}
                 size={"lg"}
                 type="submit"
-                className="max-w-[240px]"
+                className="max-w-[1000px] lg:max-w-[124px] xl:max-w-[124px] 2xl:max-w-[139px] 3xl:max-w-[185px] font-medium text-[10px] lg:text-[13px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px]"
               >
                 Submit
               </ActionButton>
