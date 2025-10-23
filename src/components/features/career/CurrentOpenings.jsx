@@ -5,12 +5,14 @@ import { Text } from "@/components/utils/Text";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { FaCaretRight } from "react-icons/fa";
 import JobCard from "./JobCard";
 
 const allJobs = [
   {
     title: "Senior Sales Consultant – DACH Region",
+    slug: "senior-sales-consultant-dach-region",
     location: "Remote",
     type: "Full Time",
     posted: "Posted 15 days ago",
@@ -18,6 +20,7 @@ const allJobs = [
   },
   {
     title: "Frontend Engineer (React)",
+    slug: "frontend-engineer-react",
     location: "Bangalore, India",
     type: "Full Time",
     posted: "Posted 5 days ago",
@@ -25,6 +28,7 @@ const allJobs = [
   },
   {
     title: "UI/UX Designer",
+    slug: "ui-ux-designer",
     location: "Remote",
     type: "Contract",
     posted: "Posted 12 days ago",
@@ -32,6 +36,7 @@ const allJobs = [
   },
   {
     title: "Marketing Executive",
+    slug: "marketing-executive",
     location: "Mumbai, India",
     type: "Full Time",
     posted: "Posted 9 days ago",
@@ -39,6 +44,7 @@ const allJobs = [
   },
   {
     title: "Backend Engineer (Node.js)",
+    slug: "backend-engineer-nodejs",
     location: "Remote",
     type: "Full Time",
     posted: "Posted 3 days ago",
@@ -46,6 +52,7 @@ const allJobs = [
   },
   {
     title: "Sales Development Representative",
+    slug: "sales-development-representative",
     location: "Remote",
     type: "Full Time",
     posted: "Posted 20 days ago",
@@ -53,13 +60,7 @@ const allJobs = [
   },
 ];
 
-const departments = [
-  { label: "All positions" },
-  { label: "Engineering" },
-  { label: "Design" },
-  { label: "Sales" },
-  { label: "Marketing" },
-];
+const departments = [{ label: "All positions" }, { label: "Engineering" }, { label: "Design" }, { label: "Sales" }, { label: "Marketing" }];
 
 export default function CareersPage() {
   const [selected, setSelected] = useState(0);
@@ -69,11 +70,8 @@ export default function CareersPage() {
   const filteredJobs = useMemo(() => {
     const activeDepartment = departments[selected].label;
     return allJobs.filter((job) => {
-      const matchesDepartment =
-        activeDepartment === "All positions" || job.position === activeDepartment;
-      const matchesSearch = job.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+      const matchesDepartment = activeDepartment === "All positions" || job.position === activeDepartment;
+      const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesDepartment && matchesSearch;
     });
   }, [selected, searchTerm]);
@@ -84,16 +82,10 @@ export default function CareersPage() {
     departments.forEach((dep) => {
       if (dep.label === "All positions") {
         // total number of jobs matching search
-        counts[dep.label] = allJobs.filter((job) =>
-          job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length;
+        counts[dep.label] = allJobs.filter((job) => job.title.toLowerCase().includes(searchTerm.toLowerCase())).length;
       } else {
         // number of jobs matching both search and department
-        counts[dep.label] = allJobs.filter(
-          (job) =>
-            job.position === dep.label &&
-            job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length;
+        counts[dep.label] = allJobs.filter((job) => job.position === dep.label && job.title.toLowerCase().includes(searchTerm.toLowerCase())).length;
       }
     });
 
@@ -107,17 +99,8 @@ export default function CareersPage() {
         <div className="relative w-full aspect-[7/2] mt-[-12%]">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full aspect-[7/2] overflow-hidden rounded-[10px] lg:rounded-[24px] z-0">
             <picture className="absolute inset-0 -z-10">
-              <source
-                media="(max-width: 640px)"
-                srcSet="/images/career_banner_image.png"
-              />
-              <Image
-                src="/images/career_banner_image.png"
-                alt="hero"
-                fill
-                sizes="100vw"
-                className="object-cover"
-              />
+              <source media="(max-width: 640px)" srcSet="/images/career_banner_image.png" />
+              <Image src="/images/career_banner_image.png" alt="hero" fill sizes="100vw" className="object-cover" />
             </picture>
           </div>
         </div>
@@ -151,15 +134,11 @@ export default function CareersPage() {
                     key={dep.label}
                     onClick={() => setSelected(index)}
                     className={`flex justify-between items-center text-sm py-2.5 px-3 rounded-md cursor-pointer transition-colors ${
-                      index === selected
-                        ? "text-[#0055E0] bg-[#F3F7FF]"
-                        : "text-[#030303] hover:bg-gray-50"
+                      index === selected ? "text-[#0055E0] bg-[#F3F7FF]" : "text-[#030303] hover:bg-gray-50"
                     }`}
                   >
                     <Text as="p" size="text2" className="flex items-center">
-                      <span className="w-4 flex justify-center">
-                        {index === selected && <FaCaretRight />}
-                      </span>
+                      <span className="w-4 flex justify-center">{index === selected && <FaCaretRight />}</span>
                       <span className="ml-2 mr-1">{dep.label}</span>
                       <span>({departmentCounts[dep.label] || 0})</span>
                     </Text>

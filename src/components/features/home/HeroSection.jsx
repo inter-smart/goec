@@ -29,6 +29,7 @@ const heroData = {
       },
       title: "Powering Your Journey with Lightning Charging Nationwide",
       description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
+      description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
       button: [
         {
           type: "primary",

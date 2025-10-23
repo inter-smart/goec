@@ -35,6 +35,36 @@ const Gallery = {
   ],
 };
 
+const Gallery = {
+  title: "Gallery",
+  list: [
+    {
+      src: "/images/gallery_1.png", // replace with your image path
+      alt: "Team photo 1",
+    },
+    {
+      src: "/images/gallery_2.png", // replace with your image path
+      alt: "Team photo 2",
+    },
+    {
+      src: "/images/gallery_3.png", // replace with your image path
+      alt: "Team photo 1",
+    },
+    {
+      src: "/images/gallery_1.png", // replace with your image path
+      alt: "Team photo 2",
+    },
+    {
+      src: "/images/gallery_2.png", // replace with your image path
+      alt: "Team photo 1",
+    },
+    {
+      src: "/images/gallery_3.png", // replace with your image path
+      alt: "Team photo 2",
+    },
+  ],
+};
+
 export default async function MerchantileNepalPage() {
   return (
     <div>
@@ -43,7 +73,7 @@ export default async function MerchantileNepalPage() {
       {/* <IndustySection /> */}
       <InvestmentSection />
       <FooterCard />
-      <ScrollerSection title={Gallery.title} list={Gallery.list} />
+      <ScrollerSection title={Gallery.title} list={Gallery.list} page="mercantile-nepal" />
     </div>
   );
 }
