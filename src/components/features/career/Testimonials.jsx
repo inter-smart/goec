@@ -56,7 +56,7 @@ export default function TestimonialSection() {
     <section className="w-full h-auto block bg-white pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
       <div className="container mx-auto">
         {/* Header Section */}
-        <div className="flex items-start justify-between mb-[60px] lg:mb-[64px] 2xl:mb-[72px]">
+        <div className="flex items-start justify-between mb-[20px] lg:mb-[64px] 2xl:mb-[72px]">
           <Heading as={"h2"} size={"heading2"} className="text-[#030303]">
             Hear what our current
             <br />
@@ -111,9 +111,17 @@ export default function TestimonialSection() {
                 {/* Content */}
                 <div className="flex-1 flex flex-col justify-center lg:py-[70px] xl:py-[88px] 2xl:py-[98px] 3xl:py-[130px]">
                   {/* Quote Mark */}
-                  <Image src="/images/icon-quote.svg" alt="quote" width={30} height={30} className="w-[20px] xl:w-[25px] 2xl:w-[30px]" />
+                  <div className="">
+                    <Image
+                      src="/images/icon-quote.svg"
+                      alt="quote"
+                      width={30}
+                      height={30}
+                      className="w-[10px] xl:w-[25px] 2xl:w-[30px] max-sm:ml-[10px] mb-[10px]"
+                    />
+                  </div>
 
-                  <div className="px-[50px_48px]">
+                  <div className=" px-[20px_30px] lg:px-[50px_48px] max-sm:mb-[20px]">
                     {/* Testimonial Text */}
                     <Text as="p" size="text1" className="text-[#373737] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
                       {parse(item?.text)}
@@ -124,7 +132,7 @@ export default function TestimonialSection() {
                         <Heading
                           as={"h3"}
                           size={"heading3"}
-                          className="font-normal text-[#030303] mb-[10px] lg:mb-[13px] xl:mb-[15px] 2xl:mb-[16px] 3xl:mb-[22px]"
+                          className="font-normal text-[#030303] mb-[5px] lg:mb-[13px] xl:mb-[15px] 2xl:mb-[16px] 3xl:mb-[22px]"
                         >
                           {item.name}
                         </Heading>

@@ -189,9 +189,9 @@ export default function HeroSection({ data = heroData }) {
               className="-z-1 pointer-events-none"
               quality={40}
             />
-            {item?.media?.type === "video" ? (
+            {item?.media?.desktop?.media_type === "video" ? (
               <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
-                <source src={item?.media?.path} type="video/mp4" />
+                <source src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`} type="video/mp4" />
               </video>
             ) : (
               <picture className="absolute -z-2 inset-0">
@@ -202,8 +202,6 @@ export default function HeroSection({ data = heroData }) {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                   className="-z-2"
-                  placeholder="blur"
-                  blurDataURL="/images/placeholder.jpg"
                   priority={index === 0}
                 />
               </picture>

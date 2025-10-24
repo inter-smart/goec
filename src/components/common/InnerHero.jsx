@@ -136,14 +136,17 @@ export default function InnerHero({ data = heroData, childern, title, descriptio
                   <source src={data?.media?.path} type="video/mp4" />
                 </video>
               ) : (
-                <Image
-                  src={data?.media?.path}
-                  alt={data?.media?.alt}
-                  width={868}
-                  height={868}
-                  className="w-full h-full object-contain"
-                  priority={true}
-                />
+                <picture className="absolute -z-2 inset-0">
+                  <source media="(max-width: 640px)" src={`${MEDIA_URL}${media?.mobile?.media_path}`} />
+                  <Image
+                    src={`${MEDIA_URL}${media?.desktop?.media_path}`}
+                    alt={media?.desktop?.media_alt}
+                    width={868}
+                    height={868}
+                    className="w-full h-full object-contain"
+                    priority={true}
+                  />
+                </picture>
               )}
             </div>
           </div>
