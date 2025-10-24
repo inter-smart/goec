@@ -3,6 +3,8 @@ const sizes = {
     "text-[12px] sm:text-[14px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[26px] leading-normal font-normal",
   text2:
     "text-[10px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] leading-normal font-normal",
+  text3:
+    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[22px] leading-normal font-normal",
 };
 
 const Text = ({ children, className = "", as, size, ...restProps }) => {

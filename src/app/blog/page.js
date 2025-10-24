@@ -1,3 +1,4 @@
+import BlogListSection from "@/components/features/blog/BlogListSection";
 import AllBlogsSection from "@/components/features/blog/AllBlogsSection";
 import BlogInsights from "@/components/features/blog/BlogInsights";
 
@@ -5,7 +6,8 @@ const blogs = [
   {
     id: 1,
     title: "Understanding the Basics of EV Charging",
-    description: "Uncover the art of strategic planning & decision-making in the business world.",
+    description:
+      "Uncover the art of strategic planning & decision-making in the business world.",
     image: "/images/Blog_1.png",
     category: "Blog",
     readTime: "10 mins read",
@@ -15,7 +17,8 @@ const blogs = [
   {
     id: 2,
     title: "Public EV Charging Etiquette",
-    description: "Uncover the art of strategic planning & decision-making in the business world.",
+    description:
+      "Uncover the art of strategic planning & decision-making in the business world.",
     image: "/images/Blog_1.png",
     category: "Blog",
     readTime: "10 mins read",
@@ -25,7 +28,8 @@ const blogs = [
   {
     id: 3,
     title: "Home EV Charger Installation Guide",
-    description: "Uncover the art of strategic planning & decision-making in the business world.",
+    description:
+      "Uncover the art of strategic planning & decision-making in the business world.",
     image: "/images/Blog_1.png",
     category: "Blog",
     readTime: "10 mins read",
@@ -48,9 +52,10 @@ const featured = {
   slug: "important-things-about-ev-chargers",
 };
 
-export default async function BlogPage() {
+export default function Page() {
   return (
     <>
+      <BlogListSection />
       <BlogInsights type={"blogs"} featured={featured} items={blogs} />
       <AllBlogsSection />
     </>
