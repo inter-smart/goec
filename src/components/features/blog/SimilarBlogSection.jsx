@@ -63,8 +63,6 @@ export default function SimilarBlogSection({ data }) {
           {data?.item_blog.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                {/* <BlogCard blog={item} /> */}
-
                 <NewsCard data={item} variant={"blog-detail"} />
               </SwiperSlide>
             );

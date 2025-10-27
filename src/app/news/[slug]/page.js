@@ -1,42 +1,126 @@
-import NewsDetailBanner from "@/components/features/news-old/NewsDetailBanner";
-import NewsDetails from "@/components/features/news-old/NewsDetails";
-import Title from "@/components/features/news-old/NewsDetailTitleSection";
-import SimiliarNews from "@/components/features/news-old/SimiliarNews";
+import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import SimilarBlogSection from "@/components/features/blog/SimilarBlogSection";
 
-export default async function Page({ params }) {
-  const data = {
-    banner: {
-      background_media: {
-        desktop: {
-          path: "/images/news-detail-banner.png",
-          alt: "hero",
+const local_data = {
+  timestamp: "2025-08-14T05:00:00.000000Z",
+  media: {
+    type: "image",
+    path: "/images/newsdetail-1.jpg",
+    alt: "news",
+  },
+  category: "Blog",
+  duration: "10 mins read",
+  title: "India's EV Revolution: Paving the Way for a Sustainable Future",
+  description:
+    "<p>Embark on a journey of discovery as we navigate the intricacies of entrepreneurship. From the initial spark of an idea to the establishment and growth of your business, Entrepreneurial Insights provides a compass for emerging entrepreneurs, offering valuable perspectives to help you chart a successful c</p>",
+  sub_description:
+    "<h4>Navigating the Entrepreneurial Journey</h4><p>Embark on a journey of discovery as we navigate the intricacies of entrepreneurship. From the initial spark of an idea to the establishment and growth of your business, Entrepreneurial Insights provides a compass for emerging entrepreneurs, offering valuable perspectives to help you chart a successful course. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla</p><h4>Innovate or Stagnate: The Power of Entrepreneurial Creativity</h4><p>Dive into the realm of innovation and creativity, where we explore how thinking outside the box can be the catalyst for business success. Learn from the experiences of trailblazing entrepreneurs who have harnessed the power of innovation to propel their ventures forward. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe</p><h4>Strategic Moves: Crafting a Roadmap for Business Success</h4><p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy, offering actionable tips and case studies to inspire strategic thinking in every aspect of your entrepreneurial journey. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et ultrices neque ornare aenean euismod. Orci nulla pellentesque dignissim enim sit amet venenatis urna cursus. In nibh mauris cursus mattis molestie a iaculis at. Mauris a diam maecenas sed enim ut sem viverra aliquet. Bibendum ut tristique et egestas quis ipsum suspendisse. At risus viverra adipiscing at in tellus integer. Quam quisque id diam vel quam elementum. Fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Viverra suspendisse potenti nullam ac tortor. Nec sagittis aliquam malesuada bibendum. Aliquam sem fringilla ut morbi tincidunt augue interdum. Aliquet sagittis id consectetur purus. Cursus euismod quis viverra nibh cras pulvinar mattis. Nunc sed blandit libero volutpat sed cras ornare arcu.</p>",
+  similar_data: {
+    title: "Similar Blogs.",
+    item_blog: [
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-1.jpg",
+          alt: "blog",
+        },
+        category: "News",
+        duration: "10 mins read",
+        title: "The Advantages of Having an EV Charging Station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
         },
       },
-      title: "India's EV Industry Sees Remarkable Growth: Our Insights",
-      category: "News",
-      published_at: "Dec 29,2025",
-      time: "4 min read",
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-2.jpg",
+          alt: "blog",
+        },
+        category: "News",
+        duration: "10 mins read",
+        title: "Benefit of owning an EV Charging station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-3.jpg",
+          alt: "blog",
+        },
+        category: "News",
+        duration: "10 mins read",
+        title: "Things you should to know about the EV Chargers",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-1.jpg",
+          alt: "blog",
+        },
+        category: "News",
+        duration: "10 mins read",
+        title: "The Advantages of Having an EV Charging Station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-2.jpg",
+          alt: "blog",
+        },
+        category: "News",
+        duration: "10 mins read",
+        title: "The Advantages of Having an EV Charging Station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+    ],
+    enquiry: {
+      title: "Wish to know more about GO EC?",
+      description:
+        "<p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy.</p>",
+      button: {
+        link: "/",
+        label: "Get in touch",
+      },
     },
-    news: {
-      title:
-        "India is quickly becoming a key investment hub, attracting entrepreneurs to launch their ventures. In line with Vision 2030, the country is prioritising electric vehicle (EV) infrastructure.",
-      desc: "Embark on a journey of discovery as we navigate the intricacies of entrepreneurship. From the initial spark of an idea to the establishment and growth of your business, Entrepreneurial Insights provides a compass for emerging entrepreneurs, offering valuable perspectives to help you chart a successful c",
-    },
-    content: "",
-  };
+  },
+};
 
-  const slug = (await params?.slug) || "News";
-
+export default function Page() {
   return (
     <>
-      <Title slug={slug} title={data?.news?.title} description={data?.news?.desc} date={data?.banner?.published_at} />
-      <NewsDetailBanner banner={data?.banner} />
-      <section className="container mt-[30px] mb-[30px]">
-        <NewsDetails />
-        <NewsDetails />
-        <NewsDetails />
-      </section>
-      <SimiliarNews />
+      <BlogDetailSection variant="blog" data={local_data} />
+      <SimilarBlogSection data={local_data.similar_data} />
     </>
   );
 }
