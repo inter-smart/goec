@@ -136,16 +136,14 @@
   --breakpoint-xl: 80rem; /* 1280px */
   --breakpoint-2xl: 96rem; /* 1536px */
   --breakpoint-3xl: 120rem; /* 1920px */
-  --breakpoint-4xl: 160rem; /* 2560px */
 
   /* Container Sizes */
   --container-sm: 40rem;
   --container-md: 48rem;
   --container-lg: 64rem;
   --container-xl: 1080px;
-  --container-2xl: 1280px;
-  --container-3xl: 1536px;
-  --container-4xl: 160rem;
+  --container-2xl: 1300px;
+  --container-3xl: 1620px;
 
   /* Header Sizes */
   --header-y-sm: 65px;
@@ -250,7 +248,7 @@
     p,
     &,
     li {
-      @apply text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-normal font-normal text-[var(--text-color)];
+      @apply text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-normal font-normal text-[var(--text-color)];
     }
 
     h1 {
@@ -264,7 +262,7 @@
     h3 {
       @apply text-[18px] sm:text-[20px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-tight font-normal text-[var(--text-color)];
     }
-    
+
     h4 {
       @apply text-[14px] sm:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] leading-tight font-normal text-[var(--text-color)];
     }

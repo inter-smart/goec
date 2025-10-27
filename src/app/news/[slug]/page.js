@@ -1,7 +1,7 @@
-import NewsDetailBanner from "@/components/features/news/NewsDetailBanner";
-import NewsDetails from "@/components/features/news/NewsDetails";
-import Title from "@/components/features/news/NewsDetailTitleSection";
-import SimiliarNews from "@/components/features/news/SimiliarNews";
+import NewsDetailBanner from "@/components/features/news-old/NewsDetailBanner";
+import NewsDetails from "@/components/features/news-old/NewsDetails";
+import Title from "@/components/features/news-old/NewsDetailTitleSection";
+import SimiliarNews from "@/components/features/news-old/SimiliarNews";
 
 export default async function Page({ params }) {
   const data = {

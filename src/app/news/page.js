@@ -1,7 +1,7 @@
-import AllBlogsSection from "@/components/features/blog/AllBlogsSection";
-import BlogInsights from "@/components/features/blog/BlogInsights";
-import AllNews from "@/components/features/news/AllNews";
-import InsightsSection from "@/components/features/news/InsightsSection";
+import AllBlogsSection from "@/components/features/blog-old/AllBlogsSection";
+import BlogInsights from "@/components/features/blog-old/BlogInsights";
+import AllNews from "@/components/features/news-old/AllNews";
+import InsightsSection from "@/components/features/news-old/InsightsSection";
 
 const news = [
   {

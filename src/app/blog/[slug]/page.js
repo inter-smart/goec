@@ -1,79 +1,117 @@
-import FooterCard from "@/components/common/FooterCard";
-import BlogDetails from "@/components/features/blog/BlogDetais";
-import LatestBlogSection from "@/components/features/home/LatestBlogSection";
+import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import SimilarBlogSection from "@/components/features/blog/SimilarBlogSection";
 
-const data = [
-  {
-    title:
-      "India is quickly becoming a key investment hub, attracting entrepreneurs to launch their ventures. In line with Vision 2030, the country is prioritising electric vehicle (EV) infrastructure.",
-    slug: "The Advantages of Having an EV Charging Station in 2025",
-    description:
-      "Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy,",
-    published_on: "2025-09-19T10:52:45.000Z",
-    media: {
-      media_path: "uploads/blog/1758516388631-254300881.webp",
-      media_alt: "thumbnail_alt",
-    },
-    date: "21 Jan, 2025",
-    readTime: "6 mins",
-    slug: "ensuring-safety-while-charging-your-ev",
-    details:
-      "<p>Uncover the art of strategic planning and decision-making in the business world. <strong>Entrepreneurial Insights</strong> breaks down the importance of having a well-thought-out strategy,</p>",
+const local_data = {
+  timestamp: "2025-08-14T05:00:00.000000Z",
+  media: {
+    type: "image",
+    path: "/images/blogdetail-1.jpg",
+    alt: "news",
   },
-  {
-    title: "The Advantages of Having an EV Charging Station in 2025",
-    slug: "The Advantages of Having an EV Charging Station in 2025",
-    description:
-      "Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy,",
-    published_on: "2025-09-19T10:52:45.000Z",
-    media: {
-      media_path: "uploads/blog/1758516388631-254300881.webp",
-      media_alt: "thumbnail_alt",
+  category: "Blog",
+  duration: "10 mins read",
+  title:
+    "India is quickly becoming a key investment hub, attracting entrepreneurs to launch their ventures. In line with Vision 2030, the country is prioritising electric vehicle (EV) infrastructure.",
+  description:
+    "<p>Embark on a journey of discovery as we navigate the intricacies of entrepreneurship. From the initial spark of an idea to the establishment and growth of your business, Entrepreneurial Insights provides a compass for emerging entrepreneurs, offering valuable perspectives to help you chart a successful c</p>",
+  sub_description:
+    "<h4>Navigating the Entrepreneurial Journey</h4><p>Embark on a journey of discovery as we navigate the intricacies of entrepreneurship. From the initial spark of an idea to the establishment and growth of your business, Entrepreneurial Insights provides a compass for emerging entrepreneurs, offering valuable perspectives to help you chart a successful course. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla</p><h4>Innovate or Stagnate: The Power of Entrepreneurial Creativity</h4><p>Dive into the realm of innovation and creativity, where we explore how thinking outside the box can be the catalyst for business success. Learn from the experiences of trailblazing entrepreneurs who have harnessed the power of innovation to propel their ventures forward. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe</p><h4>Strategic Moves: Crafting a Roadmap for Business Success</h4><p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy, offering actionable tips and case studies to inspire strategic thinking in every aspect of your entrepreneurial journey. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et ultrices neque ornare aenean euismod. Orci nulla pellentesque dignissim enim sit amet venenatis urna cursus. In nibh mauris cursus mattis molestie a iaculis at. Mauris a diam maecenas sed enim ut sem viverra aliquet. Bibendum ut tristique et egestas quis ipsum suspendisse. At risus viverra adipiscing at in tellus integer. Quam quisque id diam vel quam elementum. Fermentum odio eu feugiat pretium nibh ipsum consequat nisl. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Viverra suspendisse potenti nullam ac tortor. Nec sagittis aliquam malesuada bibendum. Aliquam sem fringilla ut morbi tincidunt augue interdum. Aliquet sagittis id consectetur purus. Cursus euismod quis viverra nibh cras pulvinar mattis. Nunc sed blandit libero volutpat sed cras ornare arcu.</p>",
+  similar_data: {
+    title: "Similar Blogs.",
+    item_blog: [
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-1.jpg",
+          alt: "blog",
+        },
+        title: "The Advantages of Having an EV Charging Station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-2.jpg",
+          alt: "blog",
+        },
+        title: "Benefit of owning an EV Charging station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-3.jpg",
+          alt: "blog",
+        },
+        title: "Things you should to know about the EV Chargers",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-1.jpg",
+          alt: "blog",
+        },
+        title: "The Advantages of Having an EV Charging Station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+      {
+        timestamp: "2025-08-14T05:00:00.000000Z",
+        media: {
+          type: "image",
+          path: "/images/blog-2.jpg",
+          alt: "blog",
+        },
+        title: "The Advantages of Having an EV Charging Station in 2025",
+        description:
+          "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
+        button: {
+          link: "/blog/blog-detail",
+          label: "Read now",
+        },
+      },
+    ],
+    enquiry: {
+      title: "Wish to know more about GO EC?",
+      description:
+        "<p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy.</p>",
+      button: {
+        link: "/",
+        label: "Get in touch",
+      },
     },
-    date: "21 Jan, 2025",
-    readTime: "6 mins",
-    slug: "ensuring-safety-while-charging-your-ev",
-    details:
-      "<p>Uncover the art of strategic planning and decision-making in the business world. <strong>Entrepreneurial Insights</strong> breaks down the importance of having a well-thought-out strategy,</p>",
   },
-  {
-    title: "The Advantages of Having an EV Charging Station in 2025",
-    slug: "The Advantages of Having an EV Charging Station in 2025",
-    description:
-      "Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy,",
-    published_on: "2025-09-19T10:52:45.000Z",
-    media: {
-      media_path: "uploads/blog/1758516388631-254300881.webp",
-      media_alt: "thumbnail_alt",
-    },
-    date: "21 Jan, 2025",
-    readTime: "6 mins",
-    slug: "ensuring-safety-while-charging-your-ev",
-    details:
-      "<p>Uncover the art of strategic planning and decision-making in the business world. <strong>Entrepreneurial Insights</strong> breaks down the importance of having a well-thought-out strategy,</p>",
-  },
-];
+};
 
-export default function BlogPage() {
+export default function Page() {
   return (
     <>
-      <div className="min-h-screen mt-[80px] md:mt-[100px] lg:mt-[152px] bg-white">
-        {/* Main Content */}
-        {/* Breadcrumb */}
-
-        <BlogDetails
-          title={data[0].title}
-          description={data[0].description}
-          date={data[0].date}
-          image={data[0].media.media_path}
-          details={data[0].details}
-        />
-
-        <div className="mx-5 md:mx-20 lg:mx-[40px]  border-gray-300">
-          <LatestBlogSection title="Similar Blogs" blogs={data} type="similar_blogs" />
-        </div>
-        <FooterCard />
-      </div>
+      <BlogDetailSection variant="blog" data={local_data} />
+      <SimilarBlogSection data={local_data.similar_data} />
     </>
   );
 }

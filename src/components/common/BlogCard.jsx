@@ -20,8 +20,6 @@ const data = [
 ];
 
 export default function BlogCard({ blog = data, type }) {
-  console.log(type);
-  console.log(type);
   let formattedDate = "";
   if (blog?.published_on) {
     const date = new Date(blog.published_on);
@@ -30,8 +28,6 @@ export default function BlogCard({ blog = data, type }) {
     }
   }
 
-  console.log(blog);
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Suspense fallback={<BlogCardSkeleton />}>
       <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]">
@@ -57,7 +53,9 @@ export default function BlogCard({ blog = data, type }) {
               </div>
 
               {type === "similar_blogs" && (
-                <p className="text-[#373737] text-[12px] mb-[10px] lg:mb-[24px] line-clamp-2 leading-tight">{blog?.description}</p>
+                <p className="text-[#373737] text-[12px] mb-[10px] lg:mb-[24px] line-clamp-2 leading-tight">
+                  {blog?.description}
+                </p>
               )}
             </div>
             <div className="flex justify-between gap-[10px]">
