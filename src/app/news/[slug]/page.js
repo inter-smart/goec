@@ -119,7 +119,7 @@ const local_data = {
 export default function Page() {
   return (
     <>
-      <BlogDetailSection variant="blog" data={local_data} />
+      <BlogDetailSection variant="news" data={local_data} />
       <SimilarBlogSection data={local_data.similar_data} />
     </>
   );

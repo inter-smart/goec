@@ -38,7 +38,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/bloglist-2.jpg",
+          path: "/images/newsdetail-2.jpg",
           alt: "news",
         },
         category: "News",
@@ -55,7 +55,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/bloglist-3.jpg",
+          path: "/images/newsdetail-3.jpg",
           alt: "news",
         },
         category: "News",
@@ -72,7 +72,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/bloglist-4.jpg",
+          path: "/images/newsdetail-4.jpg",
           alt: "news",
         },
         category: "News",
@@ -94,7 +94,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-5.jpg",
           alt: "news",
         },
         category: "News",
@@ -111,7 +111,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-6.jpg",
           alt: "news",
         },
         category: "News",
@@ -128,7 +128,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-7.jpg",
           alt: "news",
         },
         category: "News",
@@ -145,7 +145,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-8.jpg",
           alt: "news",
         },
         category: "News",
@@ -162,7 +162,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-9.jpg",
           alt: "news",
         },
         category: "News",
@@ -179,7 +179,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-10.jpg",
           alt: "news",
         },
         category: "News",
@@ -196,7 +196,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-11.jpg",
           alt: "news",
         },
         category: "News",
@@ -213,7 +213,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-12.jpg",
           alt: "news",
         },
         category: "News",
@@ -230,7 +230,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-13.jpg",
           alt: "news",
         },
         category: "News",
@@ -247,7 +247,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-5.jpg",
           alt: "news",
         },
         category: "News",
@@ -264,7 +264,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-6.jpg",
           alt: "news",
         },
         category: "News",
@@ -281,7 +281,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-7.jpg",
           alt: "news",
         },
         category: "News",
@@ -298,7 +298,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-8.jpg",
           alt: "news",
         },
         category: "News",
@@ -315,7 +315,7 @@ const local_data = {
         timestamp: "2025-08-14T05:00:00.000000Z",
         media: {
           type: "image",
-          path: "/images/Blog_1.png",
+          path: "/images/newsdetail-9.jpg",
           alt: "news",
         },
         category: "News",
