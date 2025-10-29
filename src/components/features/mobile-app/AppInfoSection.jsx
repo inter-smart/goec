@@ -1,4 +1,5 @@
-import DOMPurify from "isomorphic-dompurify";
+
+import parse from "html-react-parser";
 
 const AppInfoData = {
   description:
@@ -6,14 +7,12 @@ const AppInfoData = {
 };
 
 export default function AppInfoSection({ data = AppInfoData }) {
-  const sanitizedText = DOMPurify.sanitize(data?.description);
   return (
-    <section className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_50px] 2xl:py-[140px_70px]">
+    <section className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_60px] 2xl:py-[140px_70px]">
       <div className="container">
-        <div
-          className="typography [&_h2]:font-normal mb-[40px] sm:mb-[80px] xl:mb-[100px] 2xl:mb-[140px]"
-          dangerouslySetInnerHTML={{ __html: sanitizedText }}
-        />
+        <div className="typography [&_h2]:font-normal">
+          {parse(data?.description)}
+        </div>
       </div>
     </section>
   );

@@ -141,7 +141,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
               <source src={data?.media?.desktop?.path} type="video/mp4" />
             </video>
           ) : (
-            <picture className="absolute -z-1 inset-0">
+            <picture className="w-full h-full absolute -z-1 inset-0">
               <source
                 media="(max-width: 640px)"
                 srcSet={data?.media?.mobile?.path}

@@ -16,7 +16,9 @@ export default function NewsCard({ data, variant }) {
           href={data?.button?.link}
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
-            variant === "blog" || variant === "blog-detail"
+            variant === "blog" ||
+              variant === "blog-detail" ||
+              variant === "home"
               ? "rounded-t-[20px] sm:rounded-t-[30px]"
               : "rounded-[20px] sm:rounded-[30px]"
           )}

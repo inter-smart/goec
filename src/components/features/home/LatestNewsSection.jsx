@@ -99,7 +99,7 @@ const newsData = {
 export default function LatestNewsSection({ data = newsData }) {
   const isMobile = useMedia("(max-width: 1024px)");
   return (
-    <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
+    <section className="w-full h-auto block py-[30px] sm:py-[80px_40px] xl:py-[100px_60px] 2xl:py-[120px_80px]">
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
           <div className="flex-1">

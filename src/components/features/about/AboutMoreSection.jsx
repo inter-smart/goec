@@ -88,7 +88,7 @@ export default function AboutMoreSection({ data = aboutMoreData }) {
       <div className="container">
         <div className="flex flex-wrap mx-[-10px] sm:mx-[-10px] xl:mx-[-10px] 2xl:mx-[-30px] [&>*]:p-[10px] sm:[&>*]:p-[20px_10px] xl:[&>*]:p-[30px_10px] 2xl:[&>*]:p-[40px_15px]">
           <div className="w-full sm:w-1/2">
-            <div>
+            <div className="w-full max-w-[95%]">
               <Heading
                 as="h2"
                 size={"heading2"}
