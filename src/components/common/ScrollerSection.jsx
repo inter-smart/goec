@@ -35,16 +35,10 @@ const lifeImages = [
 
 export default function ScrollerSection({ title, list, page = "career" }) {
   return (
-    <section
-      className={`w-full py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]  ${page === "career" ? " bg-[#FAFAFA]" : "bg-white"}`}
-    >
+    <section className={`w-full py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px]  ${page === "career" ? " bg-[#FAFAFA]" : "bg-white"}`}>
       {/* Heading */}
       <div className="container mx-auto">
-        <Heading
-          as={"h2"}
-          size={"heading2"}
-          className="font-semibold text-gray-900  mb-[40px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px]"
-        >
+        <Heading as={"h2"} size={"heading2"} className="font-semibold text-gray-900  mb-[40px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px]">
           {title}
         </Heading>
       </div>
@@ -122,14 +116,7 @@ export default function ScrollerSection({ title, list, page = "career" }) {
             return (
               <SwiperSlide key={"value" + index}>
                 <div className="relative w-full aspect-[640/360] rounded-[24px] overflow-hidden">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    width={640}
-                    height={360}
-                    className="object-cover w-full h-full"
-                    quality={100}
-                  />
+                  <Image src={img.src} alt={img.alt} width={640} height={360} className="object-cover w-full h-full" quality={100} />
                 </div>
               </SwiperSlide>
             );
@@ -206,14 +193,7 @@ export default function ScrollerSection({ title, list, page = "career" }) {
             return (
               <SwiperSlide key={"value" + index}>
                 <div className="relative w-full aspect-[640/360] rounded-[24px] overflow-hidden">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    width={640}
-                    height={360}
-                    className="object-cover w-full h-full"
-                    quality={100}
-                  />
+                  <Image src={img.src} alt={img.alt} width={640} height={360} className="object-cover w-full h-full" quality={100} />
                 </div>
               </SwiperSlide>
             );

@@ -6,7 +6,7 @@ import AboutTeamSection from "@/components/features/about/AboutTeamSection";
 import AboutAssociateSection from "@/components/features/about/AboutAssociateSection";
 import AboutRecognitionSection from "@/components/features/about/AboutRecognitionSection";
 import AboutBecomePartnerSection from "@/components/features/about/AboutBecomePartnerSection";
-import { fetchFromAPI } from "@/lib/api";
+// import { fetchFromAPI } from "@/lib/api";
 import Error from "../error";
 
 export default async function AboutPage() {

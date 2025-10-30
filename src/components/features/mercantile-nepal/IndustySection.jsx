@@ -17,44 +17,36 @@ const ourValues = {
 <br/>
 <p>Chinese vehicle imports. After a fuel crisis in 2015, Nepal significantly reduced import tariffs and offered favorable financing, making EVs much cheaper than their petrol-powered counterparts. </p>`,
   value_title: "Our Values",
-  value_description:
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+  value_description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
 
   list: [
     {
       title: "Future Focused",
-      description:
-        "We unite today for a sustainable future, aligning our strategies with future needs and ensuring efficiency in all operations.",
+      description: "We unite today for a sustainable future, aligning our strategies with future needs and ensuring efficiency in all operations.",
     },
     {
       title: "Honesty & Transparency",
-      description:
-        "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
+      description: "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
     },
     {
       title: "Collaborative Power",
-      description:
-        "<p>We harness the collective power of our associates to drive innovation and innovation to drive transformation.</p>",
+      description: "<p>We harness the collective power of our associates to drive innovation and innovation to drive transformation.</p>",
     },
     {
       title: "Innovative Way of Thinking",
-      description:
-        "Lorem ipsum dolor sit amet consectetur. In risus sit non aliquet.",
+      description: "Lorem ipsum dolor sit amet consectetur. In risus sit non aliquet.",
     },
     {
       title: "Honesty & Transparency",
-      description:
-        "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
+      description: "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
     },
     {
       title: "Collaborative Power",
-      description:
-        "<p>We harness the collective power of our associates to drive innovation and innovation to drive transformation.</p>",
+      description: "<p>We harness the collective power of our associates to drive innovation and innovation to drive transformation.</p>",
     },
   ],
 
-  tag_desription:
-    "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
+  tag_desription: "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
 };
 
 export default function IndustySection({ data = ourValues }) {
@@ -88,10 +80,7 @@ export default function IndustySection({ data = ourValues }) {
             <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
               <div>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <MarketSizeChart
-                    bottomColor={"#0047AB"}
-                    topColor={"rgba(255, 255, 255, 0.7)"}
-                  />
+                  <MarketSizeChart bottomColor={"#0047AB"} topColor={"rgba(255, 255, 255, 0.7)"} />
                 </Suspense>
                 {/* if media */}
                 {/* {data?.media?.type === "video" ? (
@@ -127,11 +116,7 @@ export default function IndustySection({ data = ourValues }) {
 
           <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">
-              <Heading
-                as="h2"
-                size="heading2"
-                className="text-white max-sm:text-center"
-              >
+              <Heading as="h2" size="heading2" className="text-white max-sm:text-center">
                 {data?.value_title}
               </Heading>
             </div>

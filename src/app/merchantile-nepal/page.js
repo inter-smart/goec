@@ -40,14 +40,10 @@ export default async function MerchantileNepalPage() {
     <div>
       <HeroSection />
       <AboutMercantile />
-      <IndustySection />
+      {/* <IndustySection /> */}
       <InvestmentSection />
       <FooterCard />
-      <ScrollerSection
-        title={Gallery.title}
-        list={Gallery.list}
-        page="mercantile-nepal"
-      />
+      <ScrollerSection title={Gallery.title} list={Gallery.list} page="mercantile-nepal" />
     </div>
   );
 }

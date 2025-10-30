@@ -127,28 +127,18 @@ export default function InnerHero({ data = heroData, childern }) {
           <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px]">
             <div className="w-full xl:max-w-[468px] 2xl:max-w-[668px] 3xl:max-w-[676px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
               {data?.media?.type === "video" ? (
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls={false}
-                  className="w-full h-full object-cover absolute -z-2 inset-0"
-                >
+                <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
                   <source src={data?.media?.path} type="video/mp4" />
                 </video>
               ) : (
-                <picture className="w-full h-full">
-                  <source media="(max-width: 640px)" src={data?.media?.path} />
-                  <Image
-                    src={data?.media?.path}
-                    alt={data?.media?.alt}
-                    width={868}
-                    height={868}
-                    className="w-full h-full object-contain"
-                    priority={true}
-                  />
-                </picture>
+                <Image
+                  src={data?.media?.path}
+                  alt={data?.media?.alt}
+                  width={868}
+                  height={868}
+                  className="w-full h-full object-contain"
+                  priority={true}
+                />
               )}
             </div>
           </div>
