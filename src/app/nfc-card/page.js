@@ -1,8 +1,5 @@
 import InnerHero from "@/components/common/InnerHero";
 import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
-import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
-import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
-import AppDownloadSection from "@/components/features/mobile-app/AppDownloadSection";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 
@@ -21,30 +18,15 @@ const heroData = {
   },
   media: {
     type: "image",
-    path: "/images/app-hero-1.png",
+    path: "/images/nfccard-hero-1.png",
     alt: "hero",
   },
-  title: "Charge on the Go effortlessly with the GO EC App",
+  title: "Simplify Your Charging Experience with One Tap",
   description: null,
   button: [
     {
-      media: {
-        type: "image",
-        path: "/images/icon-app_store.svg",
-        alt: "app",
-      },
-      type: "external",
-      label: "app store ",
-      link: "/",
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/icon-play_store.svg",
-        alt: "play",
-      },
-      type: "external",
-      label: "play store ",
+      type: "secondary",
+      label: "Get GO EC NFC Card",
       link: "/",
     },
   ],
@@ -55,8 +37,7 @@ const app_detail_data = {
     "<h4>With the GOEC mobile app, finding an electric vehicle charging station is just a tap away. Our smart locator helps users discover the nearest available chargers in real-time eliminating range anxiety and removing the guesswork from EV travel.</h4>",
 };
 
-export default function Page() {
-  const data = heroData;
+export default function Page({ data = heroData }) {
   return (
     <>
       <InnerHero data={heroData}>
@@ -86,9 +67,6 @@ export default function Page() {
         </div>
       </InnerHero>
       <AppDetailSection data={app_detail_data} />
-      <AppFeatureSection />
-      <HowChargeSection />
-      <AppDownloadSection />
     </>
   );
 }

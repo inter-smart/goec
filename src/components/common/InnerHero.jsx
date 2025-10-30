@@ -92,7 +92,7 @@ export default function InnerHero({ data = heroData, childern }) {
                     <ActionButton
                       key={index}
                       size={"default"}
-                      className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[176px] 2xl:max-w-[200px]"
+                      className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[130px] 3xs:max-w-[140px] sm:max-w-[140px] xl:max-w-[176px] 2xl:max-w-[200px]"
                       asChild
                     >
                       <a
@@ -125,7 +125,7 @@ export default function InnerHero({ data = heroData, childern }) {
             {childern}
           </div>
           <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px]">
-            <div className="w-full xl:max-w-[468px] 2xl:max-w-[668px] 3xl:max-w-[676px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
+            <div className="w-full sm:max-w-[200px] lg:max-w-[320px] xl:max-w-[468px] 2xl:max-w-[668px] 3xl:max-w-[676px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
               {data?.media?.type === "video" ? (
                 <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
                   <source src={data?.media?.path} type="video/mp4" />
