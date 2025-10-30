@@ -1,6 +1,7 @@
 import InnerHero from "@/components/common/InnerHero";
 import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
 import AppInfoSection from "@/components/features/mobile-app/AppInfoSection";
+import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 
@@ -80,6 +81,7 @@ export default function Page() {
       </InnerHero>
       <AppInfoSection />
       <AppFeatureSection />
+      <HowChargeSection />
     </>
   );
 }
