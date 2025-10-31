@@ -82,6 +82,9 @@ export default async function Home() {
         news={news_section?.list || []}
       />
       
+
+
+      
       <LatestBlogSection 
         title={blog_section?.title || ''}
         blogs={blog_section?.list || []}
@@ -90,3 +93,4 @@ export default async function Home() {
     </>
   );
 }
+
