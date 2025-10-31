@@ -14,16 +14,60 @@ import Error from "./error";
 export default function Home() {
   return (
     <>
-      <HeroSection />
-      <AboutInfoSection />
-      <AboutGrowthSection />
-      <TripSection />
-      <SolutionsSection />
-      <AppInfoSection />
-      <InvestSection />
-      <PartnersSection />
-      <LatestNewsSection />
-      <LatestBlogSection />
+      <HeroSection 
+        heroBanner={banner_section?.list || []}
+      />
+      
+      <AboutInfoSection 
+        description={milestone_section?.description || ''}
+        milestones={milestone_section?.list || []}
+      />
+      
+      <AboutGrowthSection 
+        growthData={company_growth_section?.list || []}
+      />
+      
+      <TripSection 
+        title={make_ride_section?.title || ''}
+        highlightTitle={make_ride_section?.highlight_title || ''}
+        description={make_ride_section?.description || ''}
+        makeRideMedia={make_ride_section?.media || []}
+      />
+      
+      <SolutionsSection 
+        title={explore_section?.title || ''}
+        description={explore_section?.description || ''}
+        solutions={explore_section?.list || []}
+      />
+      
+      <AppInfoSection 
+        appFeatures = {app_feature_section || []}
+      />
+      
+      <InvestSection
+       milestoneDescription ={investment_section.milestone_description}
+       investMedia = {investment_section.media}
+       investList = {investment_section.list}
+      />
+      
+      <PartnersSection
+        title={associates_section?.title || ''}
+        associates={associates_section?.list || []}
+      />
+      
+      <LatestNewsSection 
+        title={news_section?.title || ''}
+        news={news_section?.list || []}
+      />
+      
+
+
+      
+      <LatestBlogSection 
+        title={blog_section?.title || ''}
+        blogs={blog_section?.list || []}
+        type="home"
+      />
     </>
   );
 }
