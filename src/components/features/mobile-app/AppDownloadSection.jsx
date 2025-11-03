@@ -1,9 +1,5 @@
-import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
-import { Text } from "@/components/utils/Text";
 import Image from "next/image";
-import Link from "next/link";
-import parse from "html-react-parser";
 
 const local_data = {
   media: {
@@ -19,7 +15,7 @@ const local_data = {
         path: "/images/app_info-ios.svg",
         alt: "ios",
       },
-      type: "ios",
+      type: "external",
       link: "#",
     },
     {
@@ -28,7 +24,7 @@ const local_data = {
         path: "/images/app_info-android.svg",
         alt: "android",
       },
-      type: "android",
+      type: "external",
       link: "#",
     },
   ],
