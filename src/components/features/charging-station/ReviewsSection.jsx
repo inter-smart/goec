@@ -167,7 +167,7 @@ export default function ReviewsSection({
           </div>
         </div>
         <div className="w-full mx-auto">
-          <RatingSection summary={summary} getStarColor={getStarColor} />
+          {/* <RatingSection summary={summary} getStarColor={getStarColor} /> */}
         </div>
       </div>
     </section>

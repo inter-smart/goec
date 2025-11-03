@@ -13,12 +13,12 @@ const footerData={
   button_text_link: "/contact",
 }
 
-export default function page() {
+export default function Page() {
   return (
     <div>
       <ChargingStationHero />
       <AboutSection />
-      <ReviewsSection />
+      {/* <ReviewsSection /> */}
       <FooterCard data={footerData} />
     </div>
   )

@@ -5,7 +5,6 @@ import HowChargeSection from "@/components/features/mobile-app/HowChargeSection"
 import AppDownloadSection from "@/components/features/mobile-app/AppDownloadSection";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
-import { de } from "zod/v4/locales";
 
 const heroData = {
   background_media: {
