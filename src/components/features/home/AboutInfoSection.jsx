@@ -25,7 +25,7 @@ const aboutInfoData = {
     },
   ],
 };
-export default function AboutInfoSection({ data = aboutInfoData }) {
+export default function AboutInfoSection({ description, milestones = aboutInfoData}) {
   return (
     <section className="w-full h-auto block bg-black overflow-hidden relative z-0 pt-[40px] sm:pt-[80px] xl:pt-[140px] 2xl:pt-[180px] 3xl:pt-[200px]">
       <Image
@@ -57,10 +57,10 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
           as="h2"
           className="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[52px] leading-tight font-normal text-center text-white max-w-[85%] mx-auto mb-[20px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px] 3xl:mb-[160px]"
         >
-          {data?.title}
+          {description}
         </Heading>
         <div className="flex flex-wrap justify-center">
-          {data.item_specs.map((item, index) => (
+          {milestones.map((item, index) => (
             <div key={"spec" + index} className="w-1/2 sm:w-1/3">
               <div className="w-full h-auto flex items-center justify-center aspect-square relative z-1">
                 <Image
@@ -76,7 +76,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
                       end={parseInt(item?.value)}
                       duration={2.75}
                       separator=","
-                      suffix={item?.sufix}
+                      suffix='+'
                       enableScrollSpy
                     />
                   </div>

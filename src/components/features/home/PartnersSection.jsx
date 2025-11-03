@@ -1,5 +1,6 @@
 "use client";
 import { Heading } from "@/components/utils/Heading";
+import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -101,7 +102,7 @@ const partnersData = {
   ],
 };
 
-export default function PartnersSection({ data = partnersData }) {
+export default function PartnersSection({ data = partnersData, title, associates }) {
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
 
@@ -160,12 +161,12 @@ export default function PartnersSection({ data = partnersData }) {
             "hover:[animation-play-state:paused]"
           )}
         >
-          {data?.item_partners.map((item, idx) => (
+          {associates?.map((item, idx) => (
             <li key={idx}>
               <div>
                 <Image
-                  src={item?.media?.path}
-                  alt={item?.media?.alt}
+                  src={`${MEDIA_URL}${item?.media?.media_path}`}
+                  alt={item?.media?.media_alt}
                   width={220}
                   height={60}
                   className="w-full h-[25px] sm:h-[30px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain opacity-80"
@@ -181,7 +182,7 @@ export default function PartnersSection({ data = partnersData }) {
           size="none"
           className="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[20px] 2xl:text-[24px] 3xl:text-[32px] leading-tight font-light text-center text-transparent bg-clip-text bg-gradient-to-r from-white/50 via-white to-white/50 inline-block"
         >
-          {data?.title}
+          {title}
         </Heading>
       </div>
     </section>

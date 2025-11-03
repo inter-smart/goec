@@ -11,8 +11,30 @@ import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 import Error from "./error";
 
-export default function Home() {
-  return (
+export default async function Home() {
+
+    const { data, error } = await fetchFromAPI("home");
+
+    
+    if (error) {
+    return <Error path="/" />
+  }
+
+
+    const {
+    banner_section,
+    milestone_section,
+    company_growth_section,
+    make_ride_section,
+    explore_section,
+    app_feature_section,
+    blog_section,
+    investment_section,
+    associates_section,
+    news_section
+  } = data;
+
+   return (
     <>
       <HeroSection 
         heroBanner={banner_section?.list || []}
@@ -71,3 +93,4 @@ export default function Home() {
     </>
   );
 }
+
