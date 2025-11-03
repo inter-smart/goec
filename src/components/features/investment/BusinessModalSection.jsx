@@ -1,5 +1,6 @@
 "use client";
 import { Heading } from "@/components/utils/Heading";
+import { MEDIA_URL } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -47,7 +48,11 @@ const businessModalData = {
   ],
 };
 
-export default function BusinessModalSection({ data = businessModalData }) {
+export default function BusinessModalSection({
+  data = businessModalData,
+  title,
+  list,
+}) {
   const [activeId, setActiveId] = useState(data.item_business[0].id);
 
   useEffect(() => {
@@ -66,13 +71,13 @@ export default function BusinessModalSection({ data = businessModalData }) {
       }
     );
 
-    data.item_business.forEach((item) => {
+    list.forEach((item) => {
       const el = document.getElementById(item.id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, [data.item_business]);
+  }, [list]);
 
   const isMobile = useMedia("(max-width: 640px)");
 
@@ -84,13 +89,13 @@ export default function BusinessModalSection({ data = businessModalData }) {
           size="heading2"
           className="text-[#030303] mb-[15px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
         >
-          {data?.title}
+          {title}
         </Heading>
         <div className="flex flex-wrap mx-[-15px] sm:mx-[-20px] xl:mx-[-25px] 2xl:mx-[-30px] [&>*]:px-[15px] sm:[&>*]:px-[20px] xl:[&>*]:px-[25px] 2xl:[&>*]:px-[30px]">
           {!isMobile && (
             <div className="w-full h-full sm:w-[200px] md:w-[276px] xl:w-[300px] 2xl:w-[420px] 3xl:w-[476px] sticky top-[var(--header-y)]">
               <div className="w-full h-full">
-                {data?.item_business?.map((item, index) => (
+                {list?.map((item, index) => (
                   <div key={"business-modal" + index} className="w-full">
                     <Link
                       href={`#${item.id}`}
@@ -112,7 +117,7 @@ export default function BusinessModalSection({ data = businessModalData }) {
                         }
                         `}
                     >
-                      <span>{item?.tag}</span>
+                      <span>{item?.name}</span>
                       <span>
                         <Image
                           src="/images/icon-arrow-right.svg"
@@ -129,7 +134,7 @@ export default function BusinessModalSection({ data = businessModalData }) {
             </div>
           )}
           <div className="w-full sm:w-[calc(100%-200px)] md:w-[calc(100%-276px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-420px)] 3xl:w-[calc(100%-476px)]">
-            {data?.item_business?.map((item, index) => (
+            {list?.map((item, index) => (
               <div
                 key={"business-modal" + index}
                 className="not-last:mb-[20px] xl:not-last:mb-[60px] 2xl:not-last:mb-[60px]"
@@ -140,13 +145,11 @@ export default function BusinessModalSection({ data = businessModalData }) {
                 >
                   <div className="w-full h-auto aspect-[768/268] overflow-hidden relative z-0">
                     <Image
-                      src={item?.media?.path}
-                      alt={item?.media?.alt}
+                      src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
+                      alt={item?.media?.desktop?.media_alt}
                       fill
                       sizes="512px"
                       className="object-cover transition hover:scale-105"
-                      placeholder="blur"
-                      blurDataURL="/images/placeholder.jpg"
                     />
                   </div>
 

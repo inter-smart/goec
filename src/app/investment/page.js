@@ -42,16 +42,63 @@ const heroData = {
   ],
 };
 
-export default function Page() {
+export default async function Page() {
+  const { data, error } = await fetchFromAPI("invest-in-go-ec");
+  if (error) {
+    return  <Error path={"/invest-in-go-ec"} />
+  }
+
+  const {
+    banner_section,
+    about_section,
+    growth_section,
+    explore_section,
+    why_invest_section,
+    testimonial_section,
+    invest_in_goec_section,
+  } = data || {};
+
   return (
     <>
-      <InnerHero data={heroData} />
-      <InvestmentInfoSection />
-      <MarketSizeSection />
-      <BusinessModalSection />
-      <InvestNowSection />
-      <InvestorSaySection />
-      <InvestBrocureSection />
+      <InnerHero
+        data={heroData}
+        title={banner_section?.title}
+        media={banner_section?.media}
+      />
+
+      <InvestmentInfoSection
+        description={about_section?.description}
+        media={about_section?.media}
+      />
+
+      <MarketSizeSection
+        title={growth_section?.title}
+        description={growth_section?.description}
+        media={growth_section?.media}
+      />
+
+      <BusinessModalSection
+        title={explore_section?.title}
+        list={explore_section?.list}
+      />
+
+      <InvestNowSection
+        title={why_invest_section?.title}
+        description={why_invest_section?.description}
+        media={why_invest_section?.media}
+        milestones={why_invest_section?.milestone_list}
+        features={why_invest_section?.feature_list}
+
+      />
+
+      <InvestorSaySection
+      title={testimonial_section?.title}
+      testimonials={testimonial_section?.list}
+      />
+      
+      <InvestBrocureSection
+      title={invest_in_goec_section?.title}
+      media={invest_in_goec_section?.media} />
     </>
   );
 }
