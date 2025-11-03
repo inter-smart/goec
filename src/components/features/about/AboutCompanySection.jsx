@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
+import { MEDIA_URL } from "@/lib/api";
 
 const aboutCompanyData = {
   value: {
@@ -99,7 +100,7 @@ const aboutCompanyData = {
   },
 };
 
-export default function AboutCompanySection({ ourValues = aboutCompanyData?.value, ourJourney = aboutCompanyData?.journey }) {
+export default function AboutCompanySection({ data = aboutCompanyData, ourValues=[], ourJourney=[] }) {
   const valueData = ourValues;
   const journeyData = ourJourney;
   return (
@@ -167,7 +168,7 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
               },
             }}
           >
-            {valueData?.item_value.map((item, index) => {
+            {valueData?.list?.map((item, index) => {
               return (
                 <SwiperSlide key={"value" + index} style={{ width: "33.333%" }}>
                   <div className="group w-full h-full min-h-[176px] sm:min-h-[268px] xl:min-h-[376px] 3xl:min-h-[468px] flex flex-col justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-md backdrop-blur-sm">
@@ -215,7 +216,7 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
             </div>
           </div>
           <div className="flex flex-wrap mx-[-5px] sm:mx-[-10px] xl:mx-[-15px] 2xl:mx-[-20px] [&>*]:p-[5px] sm:[&>*]:p-[10px] xl:[&>*]:p-[15px] 2xl:[&>*]:p-[20px]">
-            {journeyData?.item_journey.map((item, index) => {
+            {journeyData?.list?.map((item, index) => {
               return (
                 <div key={"journey" + index} className="w-full 3xs:w-1/2 sm:w-full">
                   <div
@@ -229,7 +230,7 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
                           className={`text-[8px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight font-normal text-white absolute z-0 top-[20%] sm:top-[28%] left-[10px] sm:left-[30px] xl:left-[40px] 2xl:left-[50px]
                         `}
                         >
-                          {item?.timestamp?.slice(0, 4)}
+                          {item?.year}
                         </div>
                         <Heading
                           as={"h3"}
@@ -251,13 +252,13 @@ export default function AboutCompanySection({ ourValues = aboutCompanyData?.valu
                       <div className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
                         <div className="w-full h-full">
                           <Image
-                            src={item?.media?.path}
-                            alt={item?.media?.alt}
+                            src={`${MEDIA_URL}${item?.media?.media_path}`}
+                            alt={item?.media?.media_alt}
                             width={876}
                             height={676}
                             className="w-full h-full object-cover hover:scale-105 transition"
-                            placeholder="blur"
-                            blurDataURL="/images/placeholder.jpg"
+                            
+                            
                           />
                         </div>
                       </div>
