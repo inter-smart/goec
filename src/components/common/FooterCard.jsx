@@ -14,7 +14,7 @@ const footerDetails = {
   button_text_link: "/contact",
 };
 
-export default function FooterCard({ data = footerDetails }) {
+export default function FooterCard({ title, description }) {
   return (
     <div className="px-[10px] sm:px-[15px] xl:p-[20px]">
       <div className="w-full my-[90px] lg:my-[100px] 2xl:my-[140px] 3xl:my-[187px] relative rounded-[24px] overflow-hidden">
@@ -33,10 +33,10 @@ export default function FooterCard({ data = footerDetails }) {
           {/* Text Content */}
           <div className="text-white">
             <Heading as={"h3"} size={"heading3"} className="font-medium mb-[10px] sm:mb-[12px] xl:mb-[14px] 2xl:mb-[16px] 3xl:mb-[22px]">
-              {data?.title}
+              {title}
             </Heading>
             <Text as={"div"} size={"text2"} className="text-[#E6E6E6] xl:text-[20px] text-[16px] leading-tight">
-              {parse(data?.paragraph)}
+              {parse(description)}
             </Text>
           </div>
           {/* CTA Button */}
@@ -45,7 +45,7 @@ export default function FooterCard({ data = footerDetails }) {
               size={"lg"}
               className="xl:p-[25.5px_80px] p-[10px_20px] font-medium rounded-full bg-white text-[#0C030A] transition-all duration-300 shadow-lg hover:bg-white"
             >
-              <Link href={data?.button_text_link}>{data?.button_text}</Link>
+              <Link href="/contact">Get in touch</Link>
             </ActionButton>
           </div>
         </div>

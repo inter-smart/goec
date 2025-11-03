@@ -8,24 +8,23 @@ export default function JobCard({ job }) {
   return (
     <div>
       <Heading as={"h2"} size={"heading2"} className="">
-        {job.title}
+        {job?.title}
       </Heading>
       <Text as={"p"} size={"text1"} className="text-[#757575] my-[16px] lg:my-[22px] xl:py-[24px] 3xl:my-[32px]">
-        Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial insights breaks down the importance of having
-        a well-thought-out strategy.
+        {job?.description}
       </Text>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-6 text-[15px] text-gray-600">
           <span className="flex items-center gap-2 p-[12px] rounded-full border border-[#EEEEEE]">
             <Image src="/images/Time.jpg" alt="clock" width={18} height={18} />
             <Text size={"text2"} className="font-normal text-[#373737]">
-              {job.type}
+              {job?.job_type}
             </Text>
           </span>
           <span className="flex items-center gap-2 p-[12px] rounded-full border border-[#EEEEEE]">
             <Image src="/images/Suitcase.jpg" alt="experience" width={18} height={18} />
             <Text size={"text2"} as={"p"} className="font-normal text-[#373737]">
-              8+ Years
+              {job?.experience}+ Years
             </Text>
           </span>
         </div>

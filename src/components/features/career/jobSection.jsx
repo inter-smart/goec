@@ -10,7 +10,7 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import JobApplicationForm from "./JobApplicationForm";
 import { useState } from "react";
 
-export default function JobSection({ slug }) {
+export default function JobSection({ slug, career_detail_section }) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -31,7 +31,7 @@ export default function JobSection({ slug }) {
               size={"heading1"}
               className=" font-medium text-[#030303]"
             >
-              Marketing Intern
+              {career_detail_section?.title}
             </Heading>
 
             <div className="flex gap-3">

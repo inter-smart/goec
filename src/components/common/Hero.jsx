@@ -6,6 +6,7 @@ import Link from "next/link";
 
 // Pass the path to your spotlight bg image and logo bg image props as needed
 export default function Hero({
+  banner_section,
   title = "Let's join & Grow Together",
   description = "At GOEC, we are dedicated to making a meaningful impact in the EV industry. If you share this passion, we could be the perfect match for you.",
   bglogo = "/images/goec_bg_logo.png", // Replace with actual
@@ -48,11 +49,11 @@ export default function Hero({
             size="heading1"
             className="text-white text-center font-bold mb-[22px] lg:mb-[30px] xl:mb-[40px] 2xl:mb-[50px]"
           >
-            {title}
+            {banner_section?.title}
           </Heading>
         </div>
         <Text size="text1" className="text-white text-center">
-          {description}
+          {banner_section?.description}
         </Text>
       </div>
     </section>

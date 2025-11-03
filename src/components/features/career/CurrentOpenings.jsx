@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 import { FaCaretRight } from "react-icons/fa";
 import JobCard from "./JobCard";
+import { MEDIA_URL } from "@/lib/api";
 
 const allJobs = [
   {
@@ -61,35 +62,51 @@ const allJobs = [
 
 const departments = [{ label: "All positions" }, { label: "Engineering" }, { label: "Design" }, { label: "Sales" }, { label: "Marketing" }];
 
-export default function CareersPage() {
-  const [selected, setSelected] = useState(0);
+export default function CareersPage({
+  current_opening,
+  desktop_media_path,
+  mobile_media_path,
+  alt,
+  job_categories,
+  jobs
+}) {
+   const [selected, setSelected] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // 🧮 Filter jobs based on search & department
-  const filteredJobs = useMemo(() => {
-    const activeDepartment = departments[selected].label;
-    return allJobs.filter((job) => {
-      const matchesDepartment = activeDepartment === "All positions" || job.position === activeDepartment;
-      const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesDepartment && matchesSearch;
-    });
-  }, [selected, searchTerm]);
+  // ✅ Build dynamic category list
+  const departments = useMemo(() => {
+    return [{ id: 0, label: "All positions" }, ...job_categories.map((cat) => ({ id: cat.id, label: cat.title }))];
+  }, [job_categories]);
 
+  // ✅ Filter jobs by category & search
+  const filteredJobs = useMemo(() => {
+    const selectedCategory = departments[selected];
+    return jobs.filter((job) => {
+      const matchesCategory =
+        selectedCategory.label === "All positions" || job.category === selectedCategory.id;
+      const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [selected, searchTerm, jobs, departments]);
+
+  // ✅ Count jobs for each department
   const departmentCounts = useMemo(() => {
     const counts = {};
-
     departments.forEach((dep) => {
       if (dep.label === "All positions") {
-        // total number of jobs matching search
-        counts[dep.label] = allJobs.filter((job) => job.title.toLowerCase().includes(searchTerm.toLowerCase())).length;
+        counts[dep.label] = jobs.filter((job) =>
+          job.title.toLowerCase().includes(searchTerm.toLowerCase())
+        ).length;
       } else {
-        // number of jobs matching both search and department
-        counts[dep.label] = allJobs.filter((job) => job.position === dep.label && job.title.toLowerCase().includes(searchTerm.toLowerCase())).length;
+        counts[dep.label] = jobs.filter(
+          (job) =>
+            job.category === dep.id &&
+            job.title.toLowerCase().includes(searchTerm.toLowerCase())
+        ).length;
       }
     });
-
     return counts;
-  }, [searchTerm]);
+  }, [departments, jobs, searchTerm]);
 
   return (
     <div className="w-full">
@@ -98,8 +115,8 @@ export default function CareersPage() {
         <div className="relative w-full aspect-[7/2] mt-[-12%]">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full aspect-[7/2] overflow-hidden rounded-[10px] lg:rounded-[24px] z-0">
             <picture className="absolute inset-0 -z-10">
-              <source media="(max-width: 640px)" srcSet="/images/career_banner_image.png" />
-              <Image src="/images/career_banner_image.png" alt="hero" fill sizes="100vw" className="object-cover" />
+              <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${mobile_media_path}`} />
+              <Image src={`${MEDIA_URL}${desktop_media_path}`} alt={alt} fill sizes="100vw" className="object-cover" />
             </picture>
           </div>
         </div>

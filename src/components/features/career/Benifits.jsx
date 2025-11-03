@@ -46,7 +46,9 @@ const benifits = {
   ],
 };
 
-export default function Benifits() {
+export default function Benifits({
+  innovative_section
+}) {
   return (
     <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#0048bf] relative z-0">
       <div className="container mx-auto">
@@ -64,18 +66,18 @@ export default function Benifits() {
               size="heading2"
               className="text-white max-sm:text-center"
             >
-              {benifits?.title}
+              {innovative_section?.title}
             </Heading>
           </div>
           <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
             <Text as="div" size="text2" className="text-[#ced1c0]">
-              {parse(benifits?.description)}
+              {parse(innovative_section?.description)}
             </Text>
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[32px] mt-4">
-          {benifits?.list?.map((item, index) => {
+          {innovative_section?.ideas?.map((item, index) => {
             return (
               <div
                 key={index}

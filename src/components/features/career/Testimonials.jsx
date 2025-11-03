@@ -10,6 +10,7 @@ import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import parse from "html-react-parser";
+import { MEDIA_URL } from "@/lib/api";
 
 const testimonials = [
   {
@@ -38,15 +39,17 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialSection() {
+export default function TestimonialSection({
+  title, list
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? list.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === list.length - 1 ? 0 : prev + 1));
   };
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -58,9 +61,7 @@ export default function TestimonialSection() {
         {/* Header Section */}
         <div className="flex items-start justify-between mb-[20px] lg:mb-[64px] 2xl:mb-[72px]">
           <Heading as={"h2"} size={"heading2"} className="text-[#030303]">
-            Hear what our current
-            <br />
-            Team members say!
+           {title}
           </Heading>
 
           {/* Navigation Buttons */}
@@ -92,14 +93,14 @@ export default function TestimonialSection() {
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
         >
-          {testimonials?.map((item, index) => (
+          {list?.map((item, index) => (
             <SwiperSlide key={"testimonial-" + index}>
               <div className="flex flex-col sm:flex-row gap-[32px] items-stretch bg-[#FCFCFC] border border-[#F0F0F0] overflow-hidden h-full rounded-[18px] lg:rounded-[20px] xl:rounded-[24px] 2xl:rounded-[28px] 3xl:rounded-[36px] ">
                 {/* Image with rounded corners */}
                 <div className="flex-shrink-0">
                   <Image
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
+                    src={`${MEDIA_URL}${list[currentIndex].media?.media_path}`}
+                    alt={list[currentIndex].meida?.media_alt}
                     className="aspect-square md:aspect-[5/6] w-full h-full lg:min-w-[340px] xl:min-w-[355px] 2xl:min-w-[400px] 3xl:min-w-[534px] rounded-[18px] lg:rounded-[20px] xl:rounded-[24px] 2xl:rounded-[28px] 3xl:rounded-[36px] object-cover"
                     width={400}
                     height={600}
@@ -124,7 +125,7 @@ export default function TestimonialSection() {
                   <div className=" px-[20px_30px] lg:px-[50px_48px] max-sm:mb-[20px]">
                     {/* Testimonial Text */}
                     <Text as="p" size="text1" className="text-[#373737] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
-                      {parse(item?.text)}
+                      {parse(item?.testimonial)}
                     </Text>
                     {/* Author Info */}
                     <div className="flex items-center justify-between flex-wrap gap-4">
@@ -134,15 +135,15 @@ export default function TestimonialSection() {
                           size={"heading3"}
                           className="font-normal text-[#030303] mb-[5px] lg:mb-[13px] xl:mb-[15px] 2xl:mb-[16px] 3xl:mb-[22px]"
                         >
-                          {item.name}
+                          {item?.name}
                         </Heading>
                         <Text as={"p"} size={"text2"} className="text-[#373737]">
-                          {item.role}
+                          {item?.designation}
                         </Text>
                       </div>
 
                       {/* LinkedIn Badge */}
-                      <a href={item.linkedinUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <a href={item?.linkedin_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                         <Image src={"/images/linkedin.png"} alt="linkedin" width={20} height={20} className="w-[15px] xl:w-[20px] 2xl:w-[25px]" />
                         <Text as={"p"} className="text-[#373737]" size={"text2"}>
                           LinkedIn profile
