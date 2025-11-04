@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { Rating } from "react-simple-star-rating";
+import { MEDIA_URL } from "@/lib/api";
 
 const local_data = {
   title: "Features to elevate your charging experience",
@@ -87,11 +88,11 @@ const local_data = {
   ],
 };
 
-export default function AppFeatureSection({ data = local_data }) {
+export default function AppFeatureSection({ title, list }) {
   // ✅ Group features in sets of 2
   const grouped = [];
-  for (let i = 0; i < data.item_feature.length; i += 2) {
-    grouped.push(data.item_feature.slice(i, i + 2));
+  for (let i = 0; i < list?.length; i += 2) {
+    grouped.push(list?.slice(i, i + 2));
   }
 
   return (
@@ -102,7 +103,7 @@ export default function AppFeatureSection({ data = local_data }) {
           size="heading2"
           className="text-center text-[#030303] max-w-[468px] xl:max-w-[500px] 2xl:max-w-[600px] mb-[20px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px] mx-auto"
         >
-          {data?.title}
+          {title}
         </Heading>
 
         <div className="flex flex-wrap 3xs:mx-[-4px] xl:mx-[-10px] 3xl:mx-[-15px] 3xs:[&>*]:p-[4px] xl:[&>*]:p-[10px] 3xl:[&>*]:p-[15px]">
@@ -136,14 +137,14 @@ export default function AppFeatureSection({ data = local_data }) {
                       )}
                     >
                       <Image
-                        src={item?.bg_media?.path}
-                        alt={item?.bg_media?.alt}
+                        src={`${MEDIA_URL}${item?.image_one_path}`}
+                        alt={item?.title}
                         width={568}
                         height={800}
                         className="w-full h-full absolute -z-1 inset-0"
                       />
                       <div>
-                        {item?.rating && (
+                        {item?.image_two_path && (
                           <div className="w-full h-auto flex justify-center">
                             <Rating
                               readonly
@@ -155,7 +156,7 @@ export default function AppFeatureSection({ data = local_data }) {
                           </div>
                         )}
 
-                        {item?.description && (
+                        {item?.highlight_title && (
                           <Text
                             as="div"
                             size="text2"
@@ -168,7 +169,7 @@ export default function AppFeatureSection({ data = local_data }) {
                                 : ""
                             )}
                           >
-                            {item?.description}
+                            {item?.highlight_title}
                           </Text>
                         )}
                         {item?.title && (
@@ -188,7 +189,7 @@ export default function AppFeatureSection({ data = local_data }) {
                           </Heading>
                         )}
                       </div>
-                      {item?.media && (
+                      {item?.image_one_path && (
                         <div
                           className={cn(
                             "mt-[15px] sm:mt-[20px] xl:mt-[30px] 2xl:mt-[40px]",
@@ -200,8 +201,8 @@ export default function AppFeatureSection({ data = local_data }) {
                           )}
                         >
                           <Image
-                            src={item?.media?.path}
-                            alt={item?.media?.alt}
+                            src={`${MEDIA_URL}${item?.image_one_path}`}
+                            alt={item?.title}
                             width={260}
                             height={360}
                             className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition "
