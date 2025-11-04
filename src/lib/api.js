@@ -25,7 +25,6 @@ export async function fetchFromAPI(endpoint, options = {}) {
   try {
     const response = await fetch(url, defaultOptions);
 
-    console.log(response)
     if (!response.ok) {
       return {
         data: null,
@@ -34,6 +33,7 @@ export async function fetchFromAPI(endpoint, options = {}) {
     }
 
     const data = await response.json();
+
 
     return {
       data: data?.success ? data?.data : null,

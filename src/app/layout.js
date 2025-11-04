@@ -3,6 +3,7 @@ import "./globals.css";
 import { LenisProvider } from "@/components/utils/LenisProvider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Toaster } from "sonner";
 
 const urbanist = Urbanist({
   variable: "--font-urbanist",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <Toaster position="top-right" richColors />
         </body>
       </html>
     </LenisProvider>

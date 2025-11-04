@@ -99,7 +99,7 @@ export default function TestimonialSection({
                 {/* Image with rounded corners */}
                 <div className="flex-shrink-0">
                   <Image
-                    src={`${MEDIA_URL}${list[currentIndex].media?.media_path}`}
+                    src={`${MEDIA_URL}${list[currentIndex]?.media?.media_path}`}
                     alt={list[currentIndex].meida?.media_alt}
                     className="aspect-square md:aspect-[5/6] w-full h-full lg:min-w-[340px] xl:min-w-[355px] 2xl:min-w-[400px] 3xl:min-w-[534px] rounded-[18px] lg:rounded-[20px] xl:rounded-[24px] 2xl:rounded-[28px] 3xl:rounded-[36px] object-cover"
                     width={400}
