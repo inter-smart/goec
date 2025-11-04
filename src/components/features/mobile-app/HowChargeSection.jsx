@@ -72,7 +72,7 @@ const local_data = {
   ],
 };
 
-export default function HowChargeSection({ title, list }) {
+export default function HowChargeSection({ data = local_data }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -96,15 +96,32 @@ export default function HowChargeSection({ title, list }) {
   };
 
   return (
-    <section className="w-full h-auto block py-[20px] sm:py-[30px] xl:py-[60px] 2xl:py-[70px]">
+    <section
+      className={cn(
+        "w-full h-auto block ",
+        variant === "nfc-card" ? "bg-[#fafafa] py-[40px_30px] sm:py-[80px_60px] xl:py-[100px] 2xl:py-[120px]" : "bg-white py-[20px] sm:py-[30px] xl:py-[60px] 2xl:py-[70px]"
+      )}
+    >
       <div className="container">
-        <Heading
-          as="h2"
-          size="heading2"
-          className="text-[#303030] mb-[15px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[100px] xl:max-w-[568px] 2xl:max-w-[800px]"
-        >
-          {title}
-        </Heading>
+        <div className="flex flex-wrap items-center mb-[15px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[100px] max-sm:flex-col">
+          <div className="flex-1 max-sm:mb-[15px]">
+            <Heading
+              as="h2"
+              size="heading2"
+              className="text-[#303030] max-sm:text-center"
+            >
+              {parse(data?.title)}
+            </Heading>
+          </div>
+          {data?.description && (
+            <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[40%]  max-sm:mx-auto max-sm:text-center">
+              <Text as="div" size="text2" className="text-[#373737]">
+                {parse(data?.description)}
+              </Text>
+            </div>
+          )}
+        </div>
+
         <div className="w-full">
           {list?.map((item, index) => (
             <div
@@ -131,7 +148,7 @@ export default function HowChargeSection({ title, list }) {
                 <div className="w-[calc(100%-var(--bx-xy))] pl-[15px] sm:pl-[20px] xl:pl-[40px] 2xl:pl-[50px]">
                   <div
                     className={cn(
-                      "w-full border-b border-[#f0f0f0] relative z-0 pb-[15px] sm:pb-[20px] xl:pb-[40px] 2xl:pb-[50px]",
+                      "w-full border-b border-[#f0f0f0] relative z-0 pb-[15px] sm:pb-[20px] xl:pb-[40px] 2xl:pb-[50px] max-sm:flex max-sm:flex-col-reverse",
                       index === list?.length - 1 && "border-0"
                     )}
                   >
@@ -149,7 +166,7 @@ export default function HowChargeSection({ title, list }) {
                     </div>
                     <div
                       className={cn(
-                        "w-full max-w-[120px] sm:max-w-[140px] lg:max-w-[276px] xl:max-w-[368px] 2xl:max-w-[520px] aspect-[35/20] overflow-hidden rounded-[10px] sm:rounded-[15px] sm:absolute right-0 top-1/2  transition duration-500 ease-in-out max-sm:mt-[10px] origin-right",
+                        "w-full max-w-[120px] sm:max-w-[140px] lg:max-w-[276px] xl:max-w-[368px] 2xl:max-w-[520px] aspect-[35/20] overflow-hidden rounded-[10px] sm:rounded-[15px] sm:absolute right-0 top-1/2 transition duration-500 ease-in-out max-sm:mb-[10px] origin-right",
                         activeIndex === index
                           ? "opacity-100 sm:-translate-y-1/2 sm:scale-100 z-1 "
                           : "opacity-50 sm:opacity-0 sm:scale-0 z-0"

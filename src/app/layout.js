@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <LenisProvider>
+    // <LenisProvider>
       <html lang="en">
         <body className={`${urbanist.className} antialiased`}>
           <Header />
@@ -27,6 +27,6 @@ export default function RootLayout({ children }) {
           <Toaster position="top-right" richColors />
         </body>
       </html>
-    </LenisProvider>
+    // {/* </LenisProvider> */}
   );
 }

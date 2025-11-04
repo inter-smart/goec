@@ -220,37 +220,3 @@ export default function AppFeatureSection({ title, list }) {
     </section>
   );
 }
-
-{
-  /* {data?.item_feature?.map((item, index) => (
-            <div key={"feature" + index} className="w-full 3xs:w-1/2 sm:w-1/3">
-              <div className="w-full h-auto block bg-transparent bg-gradient-to-br from-[#030303] to-[#21bfed] rounded-[20px] xl:rounded-[25px] p-[20px_10px] sm:p-[40px_20px] xl:p-[60px_40px] 2xl:p-[80px_50px] 3xl:p-[100px_50px]">
-                <div>
-                  <Text
-                    as="div"
-                    size="text2"
-                    className="font-medium text-center text-[#ced1d0] mb-[5px] sm:mb-[5px] xl:mb-[10px] 2xl:mb-[15px]"
-                  >
-                    {item?.description}
-                  </Text>
-                  <Heading
-                    as="h3"
-                    size="heading3"
-                    className="text-center text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
-                  >
-                    {item?.title}
-                  </Heading>
-                  {item?.media && (
-                    <Image
-                      src={item?.media?.path}
-                      alt={item?.media?.alt}
-                      width={320}
-                      height={320}
-                      className="w-full h-auto block mx-auto"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ))} */
-}

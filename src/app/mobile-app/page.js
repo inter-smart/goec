@@ -57,6 +57,56 @@ const app_detail_data = {
     "<h4>With the GOEC mobile app, finding an electric vehicle charging station is just a tap away. Our smart locator helps users discover the nearest available chargers in real-time eliminating range anxiety and removing the guesswork from EV travel.</h4>",
 };
 
+const how_charge_section_data = {
+  title: "How to charge your EV",
+  description: null,
+  item_howcharge: [
+    {
+      id: 1,
+      media: {
+        type: "image",
+        path: "/images/mobileapp-howcharge-1.jpg",
+        alt: "mobileapp-howcharge-1",
+      },
+      title: "Locate Charger",
+      description:
+        "<p>Locate your nearest charging station from the GO EC app.</p>",
+    },
+    {
+      id: 2,
+      media: {
+        type: "image",
+        path: "/images/mobileapp-howcharge-1.jpg",
+        alt: "mobileapp-howcharge-1",
+      },
+      title: "Connect Charger",
+      description:
+        "<p>Park your car in the slot and connect the charger to your EV.</p>",
+    },
+    {
+      id: 3,
+      media: {
+        type: "image",
+        path: "/images/mobileapp-howcharge-1.jpg",
+        alt: "mobileapp-howcharge-1",
+      },
+      title: "Start Charging",
+      description: "<p>Use the GO EC app / RFID Card to start charging.</p>",
+    },
+    {
+      id: 4,
+      media: {
+        type: "image",
+        path: "/images/mobileapp-howcharge-1.jpg",
+        alt: "mobileapp-howcharge-1",
+      },
+      title: "Payment",
+      description:
+        "<p>Complete the payment conveniently using the app / RFID Card</p>",
+    },
+  ],
+};
+
 export default async function Page() {
   const { data, error } = await fetchFromAPI("app");
 
