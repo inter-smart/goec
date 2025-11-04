@@ -5,13 +5,12 @@ import { Text } from "@/components/utils/Text";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/pagination";
-import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useRef } from "react";
-import { MEDIA_URL } from "@/lib/api";
+import useMedia from "use-media";
+import { generateMediaUrl } from "@/lib/utils";
 
 const heroBanner = {
   media_logo: "/images/napal_banner_logo.png",
@@ -34,10 +33,12 @@ const heroBanner = {
   ],
 };
 
-export default function HeroSection() {
-  const swiperRef = useRef(null);
+export default function HeroSection({ bannerData }) {
+  console.log(bannerData);
 
-  const type = "video";
+  const type = bannerData?.mediaType || "image";
+  const isMobile = useMedia("(max-width: 640px)");
+
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = `
@@ -87,28 +88,23 @@ export default function HeroSection() {
       }
     };
   }, []);
+
   return (
     <section className="w-full h-auto block bg-black relative z-0">
       <div>
         {type === "video" ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover absolute -z-2 inset-0"
-          >
-            <source src="/videos/electric_vehicle.mp4" type="video/mp4" />
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
+            <source
+              src={isMobile ? generateMediaUrl(bannerData?.media?.mobile?.media_path) : generateMediaUrl(bannerData?.media?.desktop?.media_path)}
+              type="video/mp4"
+            />
           </video>
         ) : (
           <picture className="absolute -z-2 inset-0">
-            <source
-              media="(max-width: 640px)"
-              srcSet="/images/hero-banner-1.jpg"
-            />
+            <source media="(max-width: 640px)" srcSet={generateMediaUrl(bannerData?.media?.mobile?.media_path)} />
             <Image
-              src="/images/hero-banner-1.jpg"
-              alt={heroBanner?.media_alt}
+              src={generateMediaUrl(bannerData?.media?.desktop?.media_path) || "/images/hero-banner-1.jpg"}
+              alt={bannerData?.media?.desktop?.media_alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-2"
@@ -124,8 +120,8 @@ export default function HeroSection() {
               <div className="flex items-center gap-3">
                 <div className=" bg-white flex items-center justify-center rounded-[8px]">
                   <Image
-                    src={heroBanner?.media_logo}
-                    alt="GO EC Mercantile Nepal"
+                    src={generateMediaUrl(bannerData?.logo)}
+                    alt={bannerData?.logoTitle || "GO EC Mercantile Nepal"}
                     width={40}
                     height={30}
                     className="object-contain w-full h-full"
@@ -136,7 +132,7 @@ export default function HeroSection() {
                   as={"h4"}
                   className="text-transparent bg-linear-to-r from-white via-50% via-white to-white/40 bg-clip-text font-medium"
                 >
-                  {heroBanner?.banner_super_title}
+                  {bannerData?.logoTitle}
                 </Heading>
               </div>
 
@@ -145,32 +141,17 @@ export default function HeroSection() {
                 size="heading1"
                 className="font-medium w-full xs:max-w-[55%] text-transparent bg-linear-to-r from-white via-50% via-white to-white/40 bg-clip-text my-[30px] lg:my-[40px_23px] xl:my-[50px_30px] 2xl:my-[56px_32px]  3xl:my-[75px_43px]"
               >
-                {heroBanner?.title}
+                {bannerData?.title}
               </Heading>
 
               <div className="flex flex-col space-y-[10px] xl:space-y-[15px] xs:flex-row space-x-[10px] xl:space-x-[15px]">
-                {heroBanner?.buttons?.map((buttonItem, index) =>
-                  buttonItem?.type === "primary" ? (
-                    <ActionButton
-                      key={index}
-                      size={"lg"}
-                      className="bg-white text-[#151515] w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:min-w-[280px]"
-                      asChild
-                    >
-                      <Link href={buttonItem?.link}>{buttonItem?.text}</Link>
-                    </ActionButton>
-                  ) : (
-                    <ActionButton
-                      key={index}
-                      size={"lg"}
-                      variant={"blue"}
-                      className="w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[243px]"
-                      asChild
-                    >
-                      <Link href={buttonItem?.link}>{buttonItem?.text}</Link>
-                    </ActionButton>
-                  )
-                )}
+                <ActionButton size={"lg"} className="bg-white text-[#151515] w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:min-w-[280px]" asChild>
+                  <Link href={bannerData?.primaryButton?.link}>{bannerData?.primaryButton?.text}</Link>
+                </ActionButton>
+
+                <ActionButton size={"lg"} variant={"blue"} className="w-full xs:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[243px]" asChild>
+                  <Link href={bannerData?.secondaryButton?.link}>{bannerData?.secondaryButton?.text}</Link>
+                </ActionButton>
               </div>
             </div>
           </div>

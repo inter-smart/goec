@@ -4,6 +4,7 @@ import FooterCard from "@/components/features/mercantile-nepal/FooterCard";
 import HeroSection from "@/components/features/mercantile-nepal/HeroSection";
 import IndustySection from "@/components/features/mercantile-nepal/IndustySection";
 import InvestmentSection from "@/components/features/mercantile-nepal/InvestmentSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const Gallery = {
   title: "Gallery",
@@ -36,14 +37,22 @@ const Gallery = {
 };
 
 export default async function MerchantileNepalPage() {
+  const { data, error } = await fetchFromAPI("merchantile-nepal");
+
+  if (error) {
+    return <Error path={"/merchantile-nepal"} />;
+  }
+
+  const { banner_section, about_section, graph_section, our_values, gallery, bottom_card } = data || {};
+
   return (
     <div>
-      <HeroSection />
-      <AboutMercantile />
-      {/* <IndustySection /> */}
-      <InvestmentSection />
-      <FooterCard />
-      <ScrollerSection title={Gallery.title} list={Gallery.list} page="mercantile-nepal" />
+      <HeroSection bannerData={banner_section} />
+      <AboutMercantile aboutData={about_section} />
+      <IndustySection data={graph_section} values={our_values} />
+      {/* <InvestmentSection /> */}
+      <FooterCard data={bottom_card} />
+      <ScrollerSection title={gallery.title} list={gallery.list} page="mercantile-nepal" />
     </div>
   );
 }

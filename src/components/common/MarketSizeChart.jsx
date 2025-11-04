@@ -3,15 +3,12 @@ import { color } from "framer-motion";
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-export default function MarketSizeChart({bottomColor ,topColor}) {
+export default function MarketSizeChart({ bottomColor, topColor, categories, series }) {
   const [state, setState] = useState({
     series: [
       {
         name: "Market Size",
-        data: [
-          19.51, 20.56, 33.49, 43.88, 57.48, 75.31, 98.67, 129.27, 169.37,
-          221.9,
-        ],
+        data: series || [19.51, 20.56, 33.49, 43.88, 57.48, 75.31, 98.67, 129.27, 169.37, 221.9],
       },
     ],
     options: {
@@ -42,18 +39,7 @@ export default function MarketSizeChart({bottomColor ,topColor}) {
       },
 
       xaxis: {
-        categories: [
-          "2021",
-          "2022",
-          "2023",
-          "2024",
-          "2025",
-          "2026",
-          "2027",
-          "2028",
-          "2029",
-          "2030",
-        ],
+        categories: categories || ["2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"],
         position: "bottom",
         offsetY: -5,
         axisBorder: {
@@ -80,12 +66,12 @@ export default function MarketSizeChart({bottomColor ,topColor}) {
         gradient: {
           shade: "dark",
           type: "vertical",
-          gradientToColors: [topColor ||"#2CC59C"], // top color
+          gradientToColors: [topColor || "#2CC59C"], // top color
           colors: [bottomColor || "#30FFC2"], // bottom color
           stops: [0, 100],
         },
       },
-      colors: [ bottomColor || "#30FFC2"], // base (required by Apex)
+      colors: [bottomColor || "#30FFC2"], // base (required by Apex)
       tooltip: {
         enabled: false, // 🔴 hide hover tooltip
       },
@@ -96,12 +82,5 @@ export default function MarketSizeChart({bottomColor ,topColor}) {
     },
   });
 
-  return (
-    <ReactApexChart
-      options={state.options}
-      series={state.series}
-      type="bar"
-      height={350}
-    />
-  );
+  return <ReactApexChart options={state.options} series={state.series} type="bar" height={350} />;
 }

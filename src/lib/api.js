@@ -2,9 +2,9 @@ const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}api/frontend/` || "
 export const MEDIA_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export class APIError extends Error {
-    constructor(message, status) {
-        super(message);
-        this.name = "APIError";
+  constructor(message, status) {
+    super(message);
+    this.name = "APIError";
     this.status = status;
   }
 }
@@ -12,8 +12,7 @@ export class APIError extends Error {
 export async function fetchFromAPI(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
 
-
-  console.log(url)
+  console.log(url);
   const defaultOptions = {
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +24,6 @@ export async function fetchFromAPI(endpoint, options = {}) {
   try {
     const response = await fetch(url, defaultOptions);
 
-    console.log(response)
     if (!response.ok) {
       return {
         data: null,

@@ -7,10 +7,7 @@ import DOMPurify from "isomorphic-dompurify";
 
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-const MarketSizeChart = dynamic(
-  () => import("@/components/common/MarketSizeChart"),
-  { ssr: false }
-);
+const MarketSizeChart = dynamic(() => import("@/components/common/MarketSizeChart"), { ssr: false });
 
 const futureData = {
   media: {
@@ -18,12 +15,10 @@ const futureData = {
     path: "/images/investment-future-1.svg",
     alt: "trip",
   },
-  title:
-    "Electric Vehicles are the future of Transportation. Make your seat reserved",
+  title: "Electric Vehicles are the future of Transportation. Make your seat reserved",
   description:
     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit.</p>",
-  tag_desription:
-    "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
+  tag_desription: "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
   button: {
     link: "/",
     label: "Plan a trip now",
@@ -36,13 +31,7 @@ export default function MarketSizeSection({ data = futureData, title, descriptio
     <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[25px] p-[20px] 3xs:p-[30px] sm:p-[30px] xl:p-[100px_80px] 2xl:p-[120px_100px] bg-black relative z-0">
-          <Image
-            src="/images/investment-future-bg.png"
-            alt="overlay"
-            fill
-            sizes="1820px"
-            className="-z-1 pointer-events-none"
-          />
+          <Image src="/images/investment-future-bg.png" alt="overlay" fill sizes="1820px" className="-z-1 pointer-events-none" />
           <Image
             src="/images/logo-vector.svg"
             alt="logo-vector"
