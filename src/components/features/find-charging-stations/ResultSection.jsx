@@ -230,7 +230,7 @@ export default function ResultSection({ data = local_data }) {
           </Heading>
           <div className="w-full max-sm:overflow-x-auto">
             <div className="w-full min-w-[468px]">
-              <div className="flex [&>*]:p-[5px_10px] sm:[&>*]:p-[10px_15px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
+              <div className="flex max-xl:px-[10px] [&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
                 {[
                   "Station",
                   "Location",
@@ -254,7 +254,7 @@ export default function ResultSection({ data = local_data }) {
                 <div
                   key={"station-row-" + index}
                   className={
-                    "flex flex-wrap items-center [&>*]:p-[5px_10px] sm:[&>*]:p-[5px_10px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] border-1 border-[#f0f0f0] bg-white rounded-[15px] xl:rounded-[24px] overflow-hidden my-[10px] hover:shadow-[0_4px_30px_0_rgba(0,0,0,0.1)] transition duration-300"
+                    "flex flex-wrap items-center max-xl:px-[10px] [&>*]:p-[5px] sm:[&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] border-1 border-[#f0f0f0] bg-white rounded-[15px] xl:rounded-[24px] overflow-hidden my-[5px] xl:my-[10px] hover:shadow-[0_4px_30px_0_rgba(0,0,0,0.1)] transition duration-300"
                   }
                 >
                   <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>

@@ -86,11 +86,11 @@ export default function SearchStationForm() {
                     <Input
                       type="text"
                       placeholder="Kochi"
-                      className={cn(inputStyle, "pl-10")}
+                      className={cn(inputStyle, "pl-8 xl:pl-10")}
                       {...field}
                     />
                   </FormControl>
-                  <Search className="text-[#200e32] size-4 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <Search className="text-[#200e32] size-3 xl:size-4 absolute left-4 top-1/2 -translate-y-1/2" />
                 </div>
                 <FormMessage />
               </FormItem>

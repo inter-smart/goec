@@ -1,10 +1,8 @@
 import HeroSection from "@/components/features/charging-stations/HeroSection";
+import ResultSection from "@/components/features/find-charging-stations/ResultSection";
 
 import HeroWithCard from "@/components/common/HeroWithCard";
 import ChargingStationList from "@/components/features/charging-stations-old/search/SearchResults";
-import { Heading } from "@/components/utils/Heading";
-import Image from "next/image";
-import ResultSection from "@/components/features/find-charging-stations/ResultSection";
 
 const header_data = {
   background_media: {

@@ -18,7 +18,7 @@ export default function Page() {
     <div>
       <ChargingStationHero />
       <AboutSection />
-      {/* <ReviewsSection /> */}
+      <ReviewsSection />
       <FooterCard data={footerData} />
     </div>
   )
