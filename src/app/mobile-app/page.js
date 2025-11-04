@@ -109,32 +109,7 @@ export default function Page() {
   const data = heroData;
   return (
     <>
-      <InnerHero data={heroData}>
-        <div className="flex space-x-[5px] sm:space-x-[10px] xl:space-x-[15px] max-sm:justify-center">
-          {data?.button?.map((buttonItem, index) =>
-            buttonItem?.type === "primary" ? (
-              <ActionButton
-                key={index}
-                size={"lg"}
-                variant={"blue"}
-                className="max-w-[150px] 3xs:max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
-                asChild
-              >
-                <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
-              </ActionButton>
-            ) : (
-              <ActionButton
-                key={index}
-                size={"lg"}
-                className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
-                asChild
-              >
-                <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
-              </ActionButton>
-            )
-          )}
-        </div>
-      </InnerHero>
+      <InnerHero data={heroData} />
       <AppDetailSection data={app_detail_data} />
       <AppFeatureSection />
       <HowChargeSection data={how_charge_section_data} />

@@ -17,7 +17,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import ChargingStationForm from "@/components/form/ChargingStationForm";
-import { Button } from "@/components/ui/button";
 
 const local_data = {
   title: "Explore our chargers",
@@ -82,7 +81,7 @@ const local_data = {
       },
       title: "ECM 120kW",
       features: [
-        // "Module Capacity Range :120kW",
+        "Module Capacity Range :120kW",
         "Super Fast Dual Gun DC Charger Connectors : CCS 2",
       ],
       button: {
@@ -212,15 +211,6 @@ export default function StationListSection({ data = local_data }) {
                       </ul>
                     </div>
                     <div>
-                      {/* <ActionButton
-                        size={"lg"}
-                        variant={"blue"}
-                        className="max-w-full mt-[10px] xl:mt-[20px] 2xl:mt-[30px]"
-                        asChild
-                      >
-                        <Link href={"#"}>{item?.button?.label}</Link>
-                      </ActionButton> */}
-
                       <Dialog>
                         <DialogTrigger asChild>
                           <ActionButton
@@ -232,7 +222,7 @@ export default function StationListSection({ data = local_data }) {
                             <Link href={"#"}>{item?.button?.label}</Link>
                           </ActionButton>
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[576px] xl:max-w-[980px] p-[20px] sm:p-[30px] xl:p-[55px] 2xl:p-[60px] rounded-[15px] xl:rounded-[24px] gap-2 2xl:gap-4">
+                        <DialogContent className="sm:max-w-[576px] xl:max-w-[980px] p-[20px] sm:p-[30px] xl:p-[40px_55px] 2xl:p-[60px] rounded-[15px] xl:rounded-[24px] gap-2 2xl:gap-4">
                           <DialogHeader>
                             <DialogTitle>
                               <Heading
