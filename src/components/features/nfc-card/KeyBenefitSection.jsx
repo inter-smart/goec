@@ -31,7 +31,7 @@ const local_data = {
   ],
 };
 
-export default function KeyBenefitSection({ data = local_data }) {
+export default function KeyBenefitSection({ title, values = local_data?.items }) {
   return (
     <section className="w-full h-auto block py-[20px_30px] sm:py-[30px_60px] xl:py-[60px_100px] 2xl:py-[70px_120px]">
       <div className="container">
@@ -40,10 +40,10 @@ export default function KeyBenefitSection({ data = local_data }) {
           size="heading2"
           className="text-center text-[#030303] max-w-[468px] xl:max-w-[420px] 2xl:max-w-[576px] mb-[20px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px] mx-auto"
         >
-          {parse(data?.title)}
+          {title && parse(title)}
         </Heading>
         <div className="flex flex-wrap mx-[-4px] xl:mx-[-10px] 3xl:mx-[-15px] [&>*]:p-[4px] xl:[&>*]:p-[10px] 3xl:[&>*]:p-[15px]">
-          {data?.items?.map((item, index) => (
+          {values?.map((item, index) => (
             <div key={"keybenefits" + index} className="w-full sm:w-1/2">
               <div
                 className={cn(
@@ -71,11 +71,7 @@ export default function KeyBenefitSection({ data = local_data }) {
                 )}
 
                 {item?.description && (
-                  <Text
-                    as="div"
-                    size="text2"
-                    className="text-[#e6e6e6] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]"
-                  >
+                  <Text as="div" size="text2" className="text-[#e6e6e6] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]">
                     {parse(item?.description)}
                   </Text>
                 )}

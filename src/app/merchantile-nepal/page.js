@@ -5,6 +5,7 @@ import HeroSection from "@/components/features/mercantile-nepal/HeroSection";
 import IndustySection from "@/components/features/mercantile-nepal/IndustySection";
 import InvestmentSection from "@/components/features/mercantile-nepal/InvestmentSection";
 import { fetchFromAPI } from "@/lib/api";
+import Error from "../error";
 
 const Gallery = {
   title: "Gallery",
