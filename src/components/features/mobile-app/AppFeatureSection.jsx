@@ -7,86 +7,15 @@ import parse from "html-react-parser";
 import { Rating } from "react-simple-star-rating";
 import { MEDIA_URL } from "@/lib/api";
 
-const local_data = {
-  title: "Features to elevate your charging experience",
-  description: "",
-  item_feature: [
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-1.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: "<h4>Start & Stop</br>Charging</h4>",
-      description: "Effortless ",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-2.jpg",
-        alt: "feature",
-      },
-      media: {
-        type: "image",
-        path: "/images/app-app_feature-1.svg",
-        alt: "feature",
-      },
-      rating: 5,
-      title: "Pay with ease",
-      description: null,
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-3.jpg",
-        alt: "feature",
-      },
-      media: {
-        type: "image",
-        path: "/images/app-app_feature-2.png",
-        alt: "feature",
-      },
-      rating: null,
-      title: "Chargers",
-      description: "Locate",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-4.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: null,
-      description: "Endless more features",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-5.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: "<h4>Reserve your </br> Charger</h4>",
-      description: "Skip the waiting",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-6.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: "<h4>View Charging </br> Progress</h4>",
-      description: "Monitor your Sessions",
-    },
-  ],
-};
+
+const bgImages = [
+  "/images/mobileapp-app_feature-1.jpg",
+  "/images/mobileapp-app_feature-2.jpg",
+  "/images/mobileapp-app_feature-3.jpg",
+  "/images/mobileapp-app_feature-4.jpg",
+  "/images/mobileapp-app_feature-5.jpg",
+  "/images/mobileapp-app_feature-6.jpg",
+];
 
 export default function AppFeatureSection({ title, list }) {
   // ✅ Group features in sets of 2
@@ -95,6 +24,9 @@ export default function AppFeatureSection({ title, list }) {
     grouped.push(list?.slice(i, i + 2));
   }
 
+
+
+  console.log(grouped)
   return (
     <section className="w-full h-auto block py-[20px_30px] sm:py-[30px_60px] xl:py-[60px_80px] 2xl:py-[70px_100px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
@@ -137,26 +69,26 @@ export default function AppFeatureSection({ title, list }) {
                       )}
                     >
                       <Image
-                        src={`${MEDIA_URL}${item?.image_one_path}`}
-                        alt={item?.title}
+                        src={bgImages[groupIndex * 2 + itemIndex]} // pick static image by index
+                        alt={`feature-bg-${groupIndex * 2 + itemIndex + 1}`}
                         width={568}
                         height={800}
                         className="w-full h-full absolute -z-1 inset-0"
                       />
                       <div>
-                        {item?.image_two_path && (
+                        {groupIndex === 0 && itemIndex === 1 && (
                           <div className="w-full h-auto flex justify-center">
                             <Rating
                               readonly
                               size={20}
                               className="[&_svg]:inline-block"
                               fillColor="#ffd24f"
-                              initialValue={parseInt(item?.rating)}
+                              initialValue={5}
                             />
                           </div>
                         )}
 
-                        {item?.highlight_title && (
+                        {item?.title && (
                           <Text
                             as="div"
                             size="text2"
@@ -169,10 +101,10 @@ export default function AppFeatureSection({ title, list }) {
                                 : ""
                             )}
                           >
-                            {item?.highlight_title}
+                            {item?.title}
                           </Text>
                         )}
-                        {item?.title && (
+                        {item?.highlight_title && (
                           <Heading
                             as="div"
                             size="heading3"
@@ -185,11 +117,11 @@ export default function AppFeatureSection({ title, list }) {
                                 : ""
                             )}
                           >
-                            {parse(item?.title)}
+                            {parse(item?.highlight_title)}
                           </Heading>
                         )}
                       </div>
-                      {item?.image_one_path && (
+                      {item?.media?.media_path && (
                         <div
                           className={cn(
                             "mt-[15px] sm:mt-[20px] xl:mt-[30px] 2xl:mt-[40px]",
@@ -201,8 +133,8 @@ export default function AppFeatureSection({ title, list }) {
                           )}
                         >
                           <Image
-                            src={`${MEDIA_URL}${item?.image_one_path}`}
-                            alt={item?.title}
+                            src={`${MEDIA_URL}${item?.media?.media_path}`}
+                            alt={item?.media?.media_alt|| "sample image"}
                             width={260}
                             height={360}
                             className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition "
