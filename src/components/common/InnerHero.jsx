@@ -51,11 +51,11 @@ export default function InnerHero({
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
-          srcSet={data?.background_media?.mobile?.path}
+          srcSet={'/images/hero-investment-bg-1.jpg'}
         />
         <Image
-          src={data?.background_media?.desktop?.path}
-          alt={data?.background_media?.desktop?.alt}
+          src={"/images/hero-investment-bg-1.jpg"}
+          alt={"hero"}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
           className="-z-2 object-cover pointer-events-none"
@@ -108,7 +108,7 @@ export default function InnerHero({
                         rel="noopener noreferrer"
                       >
                         <Image
-                          src={buttonItem?.media?.path}
+                          src={`${MEDIA_URL}${buttonItem?.media?.path}`}
                           alt={buttonItem?.media?.alt}
                           width={176}
                           height={64}

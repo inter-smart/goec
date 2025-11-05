@@ -1,5 +1,7 @@
+import Error from "@/app/error";
 import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
 import SimilarBlogSection from "@/components/features/blog/SimilarBlogSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const local_data = {
   timestamp: "2025-08-14T05:00:00.000000Z",
@@ -107,7 +109,15 @@ const local_data = {
   },
 };
 
-export default function Page() {
+export default function Page({slug}) {
+
+
+  const { data, error } = fetchFromAPI(`blog/${slug}`);
+  if (error) {
+    return <Error path={`blog/${slug}`} />;
+  }
+  const { blog_details_section } = data;
+
   return (
     <>
       <BlogDetailSection variant="blog" data={local_data} />

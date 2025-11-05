@@ -1,5 +1,8 @@
 import InnerHero from "@/components/common/InnerHero";
 import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
+import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
+import AppDownloadSection from "@/components/features/nfc-card/AppDownloadSection";
+import KeyBenefitSection from "@/components/features/nfc-card/KeyBenefitSection";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 
@@ -34,7 +37,63 @@ const heroData = {
 
 const app_detail_data = {
   description:
-    "<h4>With the GOEC mobile app, finding an electric vehicle charging station is just a tap away. Our smart locator helps users discover the nearest available chargers in real-time eliminating range anxiety and removing the guesswork from EV travel.</h4>",
+    "<h4>The GOEC NFC card allows you to start and pay for your EV charging session within seconds—simply tap your card at any GOEC charging station. It’s the fastest and most convenient way to charge on the go.</h4>",
+};
+
+const how_charge_section_data = {
+  media: {
+    mobile: {
+      type: "image",
+      path: "/images/invest-1.jpg",
+      alt: "invest",
+    },
+    desktop: {
+      type: "image",
+      path: "/images/invest-1.jpg",
+      alt: "invest",
+    },
+  },
+  title: "Get the GO EC <br /> Smart Card in 3 steps",
+  description:
+    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+  button: {
+    link: "/",
+    label: "Learn more",
+  },
+  item_howcharge: [
+    {
+      id: 1,
+      media: {
+        type: "image",
+        path: "/images/nfccard-howcharge-1.jpg",
+        alt: "nfccard-howcharge-1",
+      },
+      title: "Apply for smart card",
+      description:
+        "<p>Register through the GOEC mobile app or official website.</p>",
+    },
+    {
+      id: 2,
+      media: {
+        type: "image",
+        path: "/images/nfccard-howcharge-2.jpg",
+        alt: "nfccard-howcharge-2",
+      },
+      title: "Connect Charger",
+      description:
+        "<p>Park your car in the slot and connect the charger to your EV.</p>",
+    },
+    {
+      id: 3,
+      media: {
+        type: "image",
+        path: "/images/nfccard-howcharge-3.jpg",
+        alt: "nfccard-howcharge-3",
+      },
+      title: "Tap & Go",
+      description: "<p>Activate the card and begin charging immediately</p>",
+    },
+  ],
 };
 
 export default function Page({ data = heroData }) {
@@ -67,6 +126,9 @@ export default function Page({ data = heroData }) {
         </div>
       </InnerHero>
       <AppDetailSection data={app_detail_data} />
+      <KeyBenefitSection />
+      <HowChargeSection data={how_charge_section_data} variant={"nfc-card"} />
+      <AppDownloadSection />
     </>
   );
 }

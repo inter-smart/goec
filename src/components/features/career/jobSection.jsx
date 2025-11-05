@@ -9,10 +9,26 @@ import Link from "next/link";
 import { HiArrowLongRight } from "react-icons/hi2";
 import JobApplicationForm from "./JobApplicationForm";
 import { useState } from "react";
+import { renderHtml } from "@/components/utils/parseHtml";
+import { toast } from "sonner";
 
-export default function JobSection({ slug, career_detail_section }) {
+export default function JobSection({ slug, career_details_section }) {
   const [openModal, setOpenModal] = useState(false);
+  const [copied, setCopied] = useState(false);
 
+  const handleCopyLink = async () => {
+    try {
+      const currentUrl = `${window.location.origin}/careers/${slug}`;
+      await navigator.clipboard.writeText(currentUrl);
+      setCopied(true);
+      toast.success("Job link copied to clipboard!");
+
+      // Reset after 2 seconds
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy link:", err);
+    }
+  };
   return (
     <>
       <div className="min-h-screen mt-[150px] mx-[30px] md:mx-[135px] lg:mx-[178px] xl:mx-[250px] 2xl:mx-[267px] 3xl:mx-[335px] mb-[73px] lg:mb-[95px] xl:mb-[140px] 2xl:mb-[146px] 3xl:mb-[197px]">
@@ -21,7 +37,7 @@ export default function JobSection({ slug, career_detail_section }) {
             items={[
               { label: "Home", href: "/" },
               { label: "Careers", href: "/careers" },
-              { label: slug, isCurrent: true },
+              { label: slug, isCurrent: true }
             ]}
           />
 
@@ -31,13 +47,14 @@ export default function JobSection({ slug, career_detail_section }) {
               size={"heading1"}
               className=" font-medium text-[#030303]"
             >
-              {career_detail_section?.title}
+              {career_details_section?.title}
             </Heading>
 
             <div className="flex gap-3">
               <ActionButton
                 className="cursor-pointer text-sm sm:text-[10px] lg:text-[13px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[24px] font-medium bg-white text-[#0055E0] transition-all duration-300 ease-in-out flex items-center gap-2"
                 variant={"link"}
+                onClick={handleCopyLink}
               >
                 <Image
                   src="/images/Vector.svg"
@@ -62,11 +79,15 @@ export default function JobSection({ slug, career_detail_section }) {
             size={"text2"}
             className="flex flex-wrap items-center gap-2 sm:gap-3 bg-[#FCFCFC] text-[#030303] border rounded-full p-[10px_16px] lg:p-[12px_18px] xl:p-[15px_22px] 2xl:p-[17px_24px] 3xl:p-[22px_32px] "
           >
-            <span>Fresher</span>
+            <span>
+              {career_details_section?.experience < 1
+                ? "Fresher"
+                : career_details_section?.experience + " Years of experience"}
+            </span>
             <span className="text-[#373737]">|</span>
-            <span>Part Time</span>
+            <span>{career_details_section?.job_type}</span>
             <span className="text-[#373737]">|</span>
-            <span>Kochi</span>
+            <span>{career_details_section?.job_location}</span>
           </Text>
           {/* Job Info Sections */}
 
@@ -81,18 +102,7 @@ export default function JobSection({ slug, career_detail_section }) {
                 About
               </Heading>
               <Text as="div" size="text1" className="leading-tight font-light">
-                Lorem ipsum dolor sit amet consectetur. Lorem velit tempus a
-                sit. Porta risus in eget egestas quisque tellus eu nulla
-                convallis. Bibendum ut faucibus bibendum enim bibendum mattis
-                diam. A tincidunt tellus massa aliquam porttitor. Placerat
-                mauris neque eu tellus nec urna lacus egestas. Quis justo at
-                egestas nunc sed enim sem et gravida. Ullamcorper sed
-                pellentesque vitae gravida amet mi magna sed blandit. Nisl nam
-                arcu erat proin elit donec. Id faucibus maecenas adipiscing
-                imperdiet libero. Pretium placerat proin morbi vel faucibus.
-                Turpis magna maecenas commodo potenti vitae enim pretium congue.
-                Vitae quis malesuada amet ut. Potenti at gravida lectus
-                consectetur amet ac egestas.
+                {renderHtml(career_details_section?.description)}
               </Text>
             </section>
 
@@ -106,17 +116,7 @@ export default function JobSection({ slug, career_detail_section }) {
                 Responsibilities
               </Heading>
               <ul className="list-disc list-inside space-y-2 leading-relaxed text-sm md:text-base">
-                <li>
-                  Assist in social media campaigns and marketing strategies.
-                </li>
-                <li>
-                  Coordinate with the content team for blog and newsletter
-                  updates.
-                </li>
-                <li>
-                  Analyze marketing metrics and provide actionable insights.
-                </li>
-                <li>Support the marketing team in day-to-day operations.</li>
+                {renderHtml(career_details_section?.responsibilities)}
               </ul>
             </section>
 
@@ -130,16 +130,7 @@ export default function JobSection({ slug, career_detail_section }) {
                 Requirements
               </Heading>
               <ul className="list-disc list-inside space-y-2 leading-relaxed text-sm md:text-base">
-                <li>
-                  Pursuing a degree in Marketing, Business, or related field.
-                </li>
-                <li>Strong communication and organizational skills.</li>
-                <li>
-                  Familiarity with social media platforms and content creation.
-                </li>
-                <li>
-                  Ability to work collaboratively in a fast-paced environment.
-                </li>
+                {renderHtml(career_details_section?.requirements)}
               </ul>
             </section>
           </div>
