@@ -1,5 +1,5 @@
 import HeroSection from "@/components/features/charging-stations/HeroSection";
-import ResultSection from "@/components/features/find-charging-stations/ResultSection";
+import ResultSection from "@/components/features/find-charging-station/ResultSection";
 
 import HeroWithCard from "@/components/common/HeroWithCard";
 import ChargingStationList from "@/components/features/charging-stations-old/search/SearchResults";
