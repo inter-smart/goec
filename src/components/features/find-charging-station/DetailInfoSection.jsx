@@ -15,7 +15,7 @@ const local_data = {
 
 export default function DetailInfoSection({ data = local_data }) {
   return (
-    <section className="w-full h-auto block py-[80px_15px] sm:py-[100px_30px] xl:py-[180px_60px] 2xl:py-[200px_80px]">
+    <section className="w-full h-auto block py-[30px_15px] sm:py-[100px_30px] xl:py-[180px_60px] 2xl:py-[200px_80px]">
       <div className="container">
         <div className="w-full h-auto bg-[#fcfcfc] border-1 border-[#f0f0f0] rounded-[15px] xl:rounded-[20px] overflow-hidden hover:shadow-lg transition ">
           <div className="w-full max-w-full 2xs:max-w-[200px] sm:max-w-[268px] xl:max-w-[500px] 2xl:max-w-[600px] aspect-[4/2] 2xs:aspect-[50/44] overflow-hidden 2xs:float-left 2xs:mr-[2%] xl:mr-[5%]">

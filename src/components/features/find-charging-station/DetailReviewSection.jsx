@@ -194,7 +194,7 @@ export default function DetailReviewSection({ data = local_data }) {
         </Heading>
 
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px] max-md:flex-col-reverse">
-          <div className="w-full md:w-[calc(100%_-_320px)] xl:w-[calc(100%_-_400px)]">
+          <div className="w-full md:w-[calc(100%_-_268px)] lg:w-[calc(100%_-_320px)] xl:w-[calc(100%_-_368px)] 2xl:w-[calc(100%_-_400px)]">
             <div className="w-full [&>*]:mb-[5px] xl:[&>*]:mb-[10px] 2xl:[&>*]:mb-[15px]">
               {currentItems.map((item, index) => (
                 <ReviewCard key={"user-" + index} item={item} />
@@ -270,7 +270,7 @@ export default function DetailReviewSection({ data = local_data }) {
               )}
             </div>
           </div>
-          <div className="w-full md:w-[320px] xl:w-[400px]">
+          <div className="w-full md:w-[268px] lg:w-[320px] xl:w-[368px] 2xl:w-[400px]">
             <div className="w-full h-auto bg-black rounded-[15px] xl:rounded-[20px] p-[15px] xl:p-[20px] 2xl:p-[30px]">
               <div className="flex items-center">
                 <Rating

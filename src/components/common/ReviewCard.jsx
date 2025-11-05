@@ -26,14 +26,14 @@ export default function ReviewCard({ item }) {
 
   return (
     <div className="w-full flex flex-wrap items-center bg-white border-1 border-[#f0f0f0] rounded-[15px] xl:rounded-[20px] p-[15px] xl:p-[20px] 2xl:p-[30px] hover:shadow-lg transition">
-      <div className="w-full flex flex-wrap items-center">
-        <div className="flex-1 flex flex-wrap items-center mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+      <div className="w-full flex flex-wrap items-center mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+        <div className="flex-1 flex flex-wrap items-center">
           <Image
             src={item?.media?.path}
             alt={item?.media?.alt}
             width={75}
             height={75}
-            className="w-[40px] xl:w-[50px] 2xl:w-[60px] aspect-square rounded-full mr-2 xl:mr-4 block hover:scale-105 transition"
+            className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] aspect-square rounded-full mr-2 xl:mr-4 block hover:scale-105 transition"
           />
           <div>
             <Heading
@@ -43,7 +43,7 @@ export default function ReviewCard({ item }) {
             >
               {item?.username}
             </Heading>
-            <Text as="div" size="text2" className="text-[#ced1c0]">
+            <Text as="div" size="text2" className="leading-none text-[#ced1c0]">
               {format(new Date(item?.timestamp), "dd MMMM yyyy")}
             </Text>
           </div>
