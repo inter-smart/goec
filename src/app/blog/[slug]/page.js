@@ -126,6 +126,7 @@ export default async function Page({ params }) {
     <>
       <BlogDetailSection variant="blog" data={blog_details_section} />
       <SimilarBlogSection
+      variant={"blog"}
         similar_section={similar_section}
         footer_section={footer_section}
       />

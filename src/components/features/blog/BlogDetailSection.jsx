@@ -21,20 +21,20 @@ export default function BlogDetailSection({ data, variant }) {
         <div className="w-full mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
           <Breadcrumb>
             <BreadcrumbList>
+              {/* <BreadcrumbItem> */}
+                {/* <BreadcrumbLink href="/">Insights</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator> */}
               <BreadcrumbItem>
-                <BreadcrumbLink href="/">Insights</BreadcrumbLink>
+                <BreadcrumbLink href={`/${variant}`}>{variant}</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator>/</BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/blog">Blogs</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator>/</BreadcrumbSeparator>
-              <BreadcrumbItem>
+              {/* <BreadcrumbItem>
                 <BreadcrumbLink href="/">Recent blogs</BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator> */}
               <BreadcrumbItem>
-                <BreadcrumbPage>India prioritising EV</BreadcrumbPage>
+                <BreadcrumbPage>{data?.slug}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -62,7 +62,7 @@ export default function BlogDetailSection({ data, variant }) {
             />
             {format(new Date(data?.published_on), "dd MMMM yyyy")}
             &nbsp;&nbsp;&nbsp;&nbsp;
-            Blog
+            {variant}
             <span>-</span>
             {data?.reading_time}
           </Text>

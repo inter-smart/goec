@@ -124,7 +124,6 @@ export default function BlogListSection({
   };
 
   console.log(firstItem)
-  console.log(otherItems)
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px_60px] xl:py-[80px_80px] 2xl:py-[100px_90px] mt-(--header-y)">
       <div className="container">
@@ -206,9 +205,9 @@ export default function BlogListSection({
                         <div className="w-full h-auto flex items-center">
                           <div className="w-[20px] xl:w-[30px] 2xl:w-[40px] h-auto aspect-square rounded-full overflow-hidden bg-white/20">
                             <Image
-                              src={`${MEDIA_URL}${firstItem?.author?.media_path}`}
+                              src={`${MEDIA_URL}${firstItem?.author?.media?.media_path}`}
                               alt={
-                                firstItem?.author?.media_alt ||
+                                firstItem?.author?.media?.media_alt ||
                                 "author alt image "
                               }
                               width={50}
@@ -247,7 +246,7 @@ export default function BlogListSection({
                           asChild
                         >
                           <Link href={`${variant}/${firstItem?.slug}`}>
-                            {firstItem?.button?.label}
+                            Read now
                             <svg
                               width="32"
                               height="8"
@@ -372,7 +371,7 @@ export default function BlogListSection({
                                       asChild
                                     >
                                       <Link href={`${variant}/${item?.slug}`}>
-                                        {item?.button?.label}
+                                      Read now
                                         <svg
                                           width="32"
                                           height="8"

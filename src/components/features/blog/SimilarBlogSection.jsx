@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { renderHtml } from "@/components/utils/parseHtml";
 
-export default function SimilarBlogSection({ similar_section, footer_section }) {
+export default function SimilarBlogSection({ similar_section, footer_section, variant }) {
 
   console.log("similar_section", similar_section);
 
@@ -65,7 +65,7 @@ export default function SimilarBlogSection({ similar_section, footer_section }) 
           {similar_section?.list?.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <NewsCard data={item} variant={"blog"} />
+                <NewsCard data={item} variant={variant} />
               </SwiperSlide>
             );
           })}
