@@ -60,6 +60,8 @@ export default function BlogListSection({
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = blogItems.slice(indexOfFirstItem, indexOfLastItem);
 
+
+  console.log("first items", firstItem)
   // Generate page numbers to display
   const getPageNumbers = () => {
     const pages = [];
@@ -244,7 +246,7 @@ export default function BlogListSection({
                           className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                           asChild
                         >
-                          <Link href={firstItem?.button?.link}>
+                          <Link href={`${variant}/${firstItem?.slug}`}>
                             {firstItem?.button?.label}
                             <svg
                               width="32"
@@ -369,7 +371,7 @@ export default function BlogListSection({
                                       className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                                       asChild
                                     >
-                                      <Link href={item?.button?.link}>
+                                      <Link href={`${variant}/${item?.slug}`}>
                                         {item?.button?.label}
                                         <svg
                                           width="32"

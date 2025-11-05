@@ -157,7 +157,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
             {news?.map((item, index) => {
               return (
                 <SwiperSlide key={"news" + index} style={{ width: "33.333%" }}>
-                  <NewsCard news={item} />
+                  <NewsCard news={item}/>
                 </SwiperSlide>
               );
             })}
@@ -211,7 +211,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                                 >
                                 <Link href={`/news/${item?.slug}`}>
                                   Read Now
-                                    {/* {item?.button?.label} */}
+                                    {/* {item?.button?.label} */}variant
                                   </Link>
                                 </ActionButton>
                               </div>

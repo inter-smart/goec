@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 const blogData = {
   title: "Explore our Blogs.",
   button: {
-    link: "/blogs",
+    link: "/blog",
     label: "View all",
   },
   item_blog: [

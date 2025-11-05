@@ -191,6 +191,7 @@ export default function Header() {
         <div className="container">
           <div className="flex justify-between">
             <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
+              <Link href="/">
               <Image
                 src="/images/header-logo.svg"
                 alt="logo"
@@ -198,6 +199,7 @@ export default function Header() {
                 height={45}
                 className="w-full h-full"
               />
+              </Link>
             </div>
             <div className="flex items-center space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">
               <div className="hidden lg:block">

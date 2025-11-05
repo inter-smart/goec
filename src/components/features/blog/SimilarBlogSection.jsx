@@ -4,15 +4,18 @@ import { Heading } from "@/components/utils/Heading";
 import Link from "next/link";
 import Image from "next/image";
 import { Text } from "@/components/utils/Text";
-import parse from "html-react-parser";
 
 import NewsCard from "@/components/common/NewsCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { renderHtml } from "@/components/utils/parseHtml";
 
-export default function SimilarBlogSection({ data }) {
+export default function SimilarBlogSection({ similar_section, footer_section }) {
+
+  console.log("similar_section", similar_section);
+
   return (
     <section className="w-full h-auto block py-[20px_30px] sm:py-[30px_60px] xl:py-[60px_120px] 2xl:py-[80px_140px]">
       <div className="container">
@@ -20,8 +23,7 @@ export default function SimilarBlogSection({ data }) {
           as="h2"
           size="heading3"
           className="text-center text-[#303030] mb-[15px] xl:mb-[40px] 2xl:mb-[60px]"
-        >
-          {data?.title}
+        >{similar_section?.title}
         </Heading>
         <Swiper
           loop
@@ -60,10 +62,10 @@ export default function SimilarBlogSection({ data }) {
             },
           }}
         >
-          {data?.item_blog.map((item, index) => {
+          {similar_section?.list?.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <NewsCard data={item} variant={"blog-detail"} />
+                <NewsCard data={item} variant={"blog"} />
               </SwiperSlide>
             );
           })}
@@ -85,14 +87,14 @@ export default function SimilarBlogSection({ data }) {
                 size="heading2"
                 className="leading-tight text-white max-sm:text-center mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
               >
-                {data?.enquiry?.title}
+                {footer_section?.title}
               </Heading>
               <Text
                 as="div"
                 size="text1"
                 className="text-[#ced1d0] max-sm:text-center max-w-full sm:max-w-[576px] xl:max-w-[720px] 2xl:max-w-[1060px]"
               >
-                {parse(data?.enquiry?.description)}
+                {renderHtml(footer_section?.description)}
               </Text>
             </div>
             <ActionButton
@@ -100,8 +102,8 @@ export default function SimilarBlogSection({ data }) {
               className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
               asChild
             >
-              <Link href={data?.enquiry?.button?.link}>
-                {data?.enquiry?.button?.label}
+              <Link href="/contact">
+                Get in touch
               </Link>
             </ActionButton>
           </div>

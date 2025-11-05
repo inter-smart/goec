@@ -12,6 +12,7 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { MEDIA_URL } from "@/lib/api";
 
 export default function BlogDetailSection({ data, variant }) {
   return (
@@ -59,11 +60,11 @@ export default function BlogDetailSection({ data, variant }) {
               height={24}
               className="w-[10px] xl:w-[15px] 2xl:w-[20px] hover:scale-105 transition duration-300"
             />
-            {format(new Date(data.timestamp), "dd MMMM yyyy")}
+            {format(new Date(data?.published_on), "dd MMMM yyyy")}
             &nbsp;&nbsp;&nbsp;&nbsp;
-            {data?.category}
+            Blog
             <span>-</span>
-            {data?.duration}
+            {data?.reading_time}
           </Text>
         </div>
       </div>
@@ -83,8 +84,8 @@ export default function BlogDetailSection({ data, variant }) {
           )}
         >
           <Image
-            src={data?.media?.path}
-            alt={data?.media?.alt}
+            src={`${MEDIA_URL}${data?.media?.desktop?.media_path}`}
+            alt={data?.media?.desktop?.media_alt || "No image available"}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
             className="-z-1 transition hover:scale-105"

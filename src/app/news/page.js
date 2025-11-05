@@ -346,7 +346,7 @@ export default async function Page() {
   return (
     <>
       <BlogListSection
-        variant="blog"
+        variant="news"
         featured_section={featured_section}
         popular_blogs_section={popular_news_section}
         all_blogs_section={all_news_section}
