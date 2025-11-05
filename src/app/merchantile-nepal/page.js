@@ -43,14 +43,14 @@ export default async function MerchantileNepalPage() {
     return <Error path={"/merchantile-nepal"} />;
   }
 
-  const { banner_section, about_section, graph_section, our_values, gallery, bottom_card } = data || {};
+  const { banner_section, about_section, graph_section, our_values, gallery, bottom_card, investments } = data || {};
 
   return (
     <div>
       <HeroSection bannerData={banner_section} />
       <AboutMercantile aboutData={about_section} />
       <IndustySection data={graph_section} values={our_values} />
-      {/* <InvestmentSection /> */}
+      <InvestmentSection cards={investments?.list} data={investments} />
       <FooterCard data={bottom_card} />
       <ScrollerSection title={gallery.title} list={gallery.list} page="mercantile-nepal" />
     </div>

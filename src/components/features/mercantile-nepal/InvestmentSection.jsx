@@ -10,76 +10,63 @@ import { InvestmentCard } from "./InvestmentCard";
 import { Autoplay } from "swiper/modules";
 import parse from "html-react-parser";
 
-
 const investment = {
-    title: "Invest in the E V Revolution with GO EC Mercantile.",
-    description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-    cards : [
+  title: "Invest in the E V Revolution with GO EC Mercantile.",
+  description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+  cards: [
     {
       image: "/images/invest_1.png",
       title: "FOCO",
       subtitle: "Franchise Owned Company Operated",
-      description:
-        "For people who want to maximize their returns by owning a charging station.",
+      description: "For people who want to maximize their returns by owning a charging station.",
       link: "/foco",
     },
     {
       image: "/images/invest_2.png",
       title: "Invest in COCO",
       subtitle: "Franchise Owned Company Operated",
-      description:
-        "For people who want to maximize their returns by owning a charging station.",
+      description: "For people who want to maximize their returns by owning a charging station.",
       link: "/invest-coco",
     },
     {
       image: "/images/invest_3.png",
       title: "COCO",
       subtitle: "Company Owned & Operated",
-      description:
-        "For people who want to maximize their returns by owning a charging station.",
+      description: "For people who want to maximize their returns by owning a charging station.",
       link: "/coco",
     },
     {
       image: "/images/invest_1.png",
       title: "FOCO",
       subtitle: "Franchise Owned Company Operated",
-      description:
-        "For people who want to maximize their returns by owning a charging station.",
+      description: "For people who want to maximize their returns by owning a charging station.",
       link: "/foco",
     },
     {
       image: "/images/invest_2.png",
       title: "Invest in COCO",
       subtitle: "Franchise Owned Company Operated",
-      description:
-        "For people who want to maximize their returns by owning a charging station.",
+      description: "For people who want to maximize their returns by owning a charging station.",
       link: "/invest-coco",
     },
     {
       image: "/images/invest_3.png",
       title: "COCO",
       subtitle: "Company Owned & Operated",
-      description:
-        "For people who want to maximize their returns by owning a charging station.",
+      description: "For people who want to maximize their returns by owning a charging station.",
       link: "/coco",
     },
-  ]
-}
-
+  ],
+};
 
 // Main Investment Section Component
-export default function InvestmentSection({data=investment, cards=investment.cards}) {
-
+export default function InvestmentSection({ data = investment, cards = investment.cards }) {
   return (
     <section className="w-full h-auto block pt-[40px] sm:pt-[60px] xl:pt-[100px] 2xl:pt-[140px]">
       <div className="container">
         <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">
-            <Heading
-              as="h2"
-              size="heading2"
-              className="text-[#030303] w-full max-sm:text-center"
-            >
+            <Heading as="h2" size="heading2" className="text-[#030303] w-full max-sm:text-center">
               {data.title}
             </Heading>
           </div>
@@ -128,11 +115,8 @@ export default function InvestmentSection({data=investment, cards=investment.car
       >
         {cards?.map((item, index) => {
           return (
-            <SwiperSlide
-              key={"value" + index}
-              className="max-w-[276px] sm:max-w-[468px] xl:max-w-[576px] 2xl:max-w-[768px] 3xl:max-w-[960px]"
-            >
-              <InvestmentCard {...item} />
+            <SwiperSlide key={"value" + index} className="max-w-[276px] sm:max-w-[468px] xl:max-w-[576px] 2xl:max-w-[768px] 3xl:max-w-[960px]">
+              <InvestmentCard item={item} />
             </SwiperSlide>
           );
         })}
