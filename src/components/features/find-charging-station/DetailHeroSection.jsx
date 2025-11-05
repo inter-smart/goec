@@ -19,7 +19,7 @@ const header_data = {
       alt: "hero",
     },
   },
-  title: "GO EC, Pnampally Nagar, Kochi",
+  title: "GO EC, Panampally Nagar, Kochi",
   description: null,
   rating: "4.5",
   location: "KB Square, Panampally Nagar, Kochi, 682036",
@@ -33,7 +33,7 @@ const header_data = {
 
 export default function DetailHeroSection({ data = header_data }) {
   return (
-    <section className="w-full h-auto min-h-[268px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-end bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
+    <section className="w-full h-auto min-h-[268px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-end bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_80px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
@@ -98,7 +98,7 @@ export default function DetailHeroSection({ data = header_data }) {
               <Rating
                 readonly
                 size={26}
-                className="[&_svg]:inline-block"
+                className="[&_svg]:inline-block [&_svg]:size-[14px] sm:[&_svg]:size-[18px] xl:[&_svg]:size-[26px]"
                 fillColor="#ffd24f"
                 initialValue={parseInt(data?.rating)}
               />
@@ -128,16 +128,16 @@ export default function DetailHeroSection({ data = header_data }) {
           </div>
         </div>
       </div>
-      <div className="container absolute z-1 top-[calc(100%-50px)] left-0 right-0">
-        <div className="w-full h-auto bg-white rounded-[15px] xl:rounded-[20px] p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
-          <div className="flex flex-wrap justify-between items-center [&>*]:p-[10px_15px] xl:[&>*]:p-[10px_25px] 2xl:[&>*]:p-[15px_30px]">
+      <div className="container absolute z-1 xl:top-[calc(100%-50px)] left-0 right-0">
+        <div className="w-full h-auto bg-white rounded-[15px] xl:rounded-[20px] p-[10px] sm:p-[15px] xl:p-[30px] 2xl:p-[40px] shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
+          <div className="flex flex-wrap sm:flex-nowrap justify-between items-center [&>*]:p-[10px_15px] xl:[&>*]:p-[10px_25px] 2xl:[&>*]:p-[15px_30px]">
             {data?.total_charger && (
               <>
                 <div>
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-black"
+                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-black max-xl:[&>span]:block"
                   >
                     Total chargers : <span>{data?.total_charger}</span>
                   </Text>

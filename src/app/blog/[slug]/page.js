@@ -1,4 +1,5 @@
 import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import ConnectSection from "@/components/features/blog/ConnectSection";
 import SimilarBlogSection from "@/components/features/blog/SimilarBlogSection";
 
 const local_data = {
@@ -26,6 +27,8 @@ const local_data = {
           path: "/images/blog-1.jpg",
           alt: "blog",
         },
+        category: "Blog",
+        duration: "10 mins read",
         title: "The Advantages of Having an EV Charging Station in 2025",
         description:
           "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
@@ -41,6 +44,8 @@ const local_data = {
           path: "/images/blog-2.jpg",
           alt: "blog",
         },
+        category: "Blog",
+        duration: "10 mins read",
         title: "Benefit of owning an EV Charging station in 2025",
         description:
           "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
@@ -56,6 +61,8 @@ const local_data = {
           path: "/images/blog-3.jpg",
           alt: "blog",
         },
+        category: "Blog",
+        duration: "10 mins read",
         title: "Things you should to know about the EV Chargers",
         description:
           "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
@@ -71,6 +78,8 @@ const local_data = {
           path: "/images/blog-1.jpg",
           alt: "blog",
         },
+        category: "Blog",
+        duration: "10 mins read",
         title: "The Advantages of Having an EV Charging Station in 2025",
         description:
           "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
@@ -86,6 +95,8 @@ const local_data = {
           path: "/images/blog-2.jpg",
           alt: "blog",
         },
+        category: "Blog",
+        duration: "10 mins read",
         title: "The Advantages of Having an EV Charging Station in 2025",
         description:
           "<p>Lorem ipsum dolor sit amet consectetur. At vulputate ridiculus pellentesque sederra a aliquamet ullamcorper purus. </p>",
@@ -95,14 +106,14 @@ const local_data = {
         },
       },
     ],
-    enquiry: {
-      title: "Wish to know more about GO EC?",
-      description:
-        "<p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy.</p>",
-      button: {
-        link: "/",
-        label: "Get in touch",
-      },
+  },
+  enquiry_data: {
+    title: "Wish to know more about GO EC?",
+    description:
+      "<p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strategy.</p>",
+    button: {
+      link: "/",
+      label: "Get in touch",
     },
   },
 };
@@ -112,6 +123,7 @@ export default function Page() {
     <>
       <BlogDetailSection variant="blog" data={local_data} />
       <SimilarBlogSection data={local_data.similar_data} />
+      <ConnectSection data={local_data?.enquiry_data} />
     </>
   );
 }
