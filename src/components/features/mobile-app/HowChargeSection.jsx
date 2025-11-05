@@ -72,7 +72,7 @@ const local_data = {
   ],
 };
 
-export default function HowChargeSection({ data = local_data }) {
+export default function HowChargeSection({ title, list, description="", variant }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -110,13 +110,13 @@ export default function HowChargeSection({ data = local_data }) {
               size="heading2"
               className="text-[#303030] max-sm:text-center"
             >
-              {parse(data?.title)}
+              {parse(title)}
             </Heading>
           </div>
-          {data?.description && (
+          {description && (
             <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[40%]  max-sm:mx-auto max-sm:text-center">
               <Text as="div" size="text2" className="text-[#373737]">
-                {parse(data?.description)}
+                {parse(description)}
               </Text>
             </div>
           )}

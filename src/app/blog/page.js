@@ -1,4 +1,6 @@
 import BlogListSection from "@/components/features/blog/BlogListSection";
+import { fetchFromAPI, MEDIA_URL } from "@/lib/api";
+import Error from "../error";
 
 const local_data = {
   title: "Insights",
@@ -341,10 +343,23 @@ const local_data = {
   },
 };
 
-export default function Page() {
+export default async function Page() {
+  const { data, error } = await fetchFromAPI("blog");
+
+  if (error) {
+    return <Error path="/blog" />;
+  }
+
+  const { featured_section, popular_blogs_section, all_blogs_section } = data;
+
   return (
     <>
-      <BlogListSection variant="blog" data={local_data} />
+      <BlogListSection
+        variant="blog"
+        featured_section={featured_section}
+        popular_blogs_section={popular_blogs_section}
+        all_blogs_section={all_blogs_section}
+      />
     </>
   );
 }

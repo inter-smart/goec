@@ -7,13 +7,50 @@ import { Skeleton } from "../ui/skeleton";
 import { cn } from "@/lib/utils";
 import parse from "html-react-parser";
 import { Text } from "../utils/Text";
+import { MEDIA_URL } from "@/lib/api";
 
-export default function NewsCard({ data, variant }) {
+
+const section = {
+  button: [
+    {
+      type: "primary",
+      label: "Blogs",
+      link: "/blog",
+    },
+    {
+      type: "primary",
+      label: "News",
+      link: "/news",
+    },
+  ],
+};
+
+
+export default function NewsCard({ data={}, variant="news" }) {
+ const {
+    slug = "",
+    title = "Untitled",
+    description = "",
+    category = "General",
+    reading_time = "0 min read",
+    published_on = new Date(),
+    media = {},
+  } = data || {};
+
+    const mediaPath = media?.media_path
+    ? `${MEDIA_URL}${media.media_path}`
+    : "/images/placeholder.jpg";
+  const mediaAlt = media?.media_alt || "No image available";
+
+  const formattedDate = published_on
+    ? format(new Date(published_on), "dd MMMM yyyy")
+    : format(new Date(), "dd MMMM yyyy");
+
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
       <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]">
         <Link
-          href={data?.button?.link}
+          href={`${variant}/${data?.slug}`}
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
             variant === "blog" ||
@@ -24,8 +61,8 @@ export default function NewsCard({ data, variant }) {
           )}
         >
           <Image
-            src={data?.media?.path}
-            alt={data?.media?.alt}
+            src={`${MEDIA_URL}${data?.media?.media_path}`}
+            alt={data?.media?.media_alt}
             fill
             sizes="512px"
             className="transition hover:scale-105"
@@ -36,7 +73,7 @@ export default function NewsCard({ data, variant }) {
         <div className="flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
           <div>
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
-              <Link href={data?.button?.link}>{data?.title}</Link>
+              <Link href={`${variant}/${data?.slug}`}>{data?.title}</Link>
             </div>
             {variant === "blog-detail" && (
               <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
@@ -54,20 +91,20 @@ export default function NewsCard({ data, variant }) {
                 >
                   {data?.category}
                   <span>&nbsp;-&nbsp;</span>
-                  {data?.duration}
+                  {data?.reading_time}
                 </Text>
                 <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#373737] flex gap-[4px] lg:gap-[6px] items-center">
-                  {format(new Date(data?.timestamp), "dd MMMM yyyy")}
+                  {formattedDate}
                 </div>
               </>
             ) : (
               <>
                 <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center">
-                  {format(new Date(data?.timestamp), "dd MMMM yyyy")}
+                  {formattedDate}
                   {variant === "blog" && (
                     <>
                       <span className="w-[4px] h-[4px] inline-block bg-[#757575] rounded"></span>
-                      {data?.duration}
+                      {data?.reading_time}
                     </>
                   )}
                 </div>
@@ -77,8 +114,8 @@ export default function NewsCard({ data, variant }) {
                     className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                     asChild
                   >
-                    <Link href={data?.button?.link}>
-                      {data?.button?.label}
+                    <Link href={`${variant}/${data?.slug}`}>
+                      Read now
                       <svg
                         width="32"
                         height="8"

@@ -35,6 +35,7 @@ export async function fetchFromAPI(endpoint, options = {}) {
     const data = await response.json();
 
 
+    console.log(data)
     return {
       data: data?.success ? data?.data : null,
       error: !data?.success,
