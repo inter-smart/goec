@@ -19,7 +19,7 @@ const header_data = {
       alt: "hero",
     },
   },
-  title: "GO EC, Pnampally Nagar, Kochi",
+  title: "GO EC, Panampally Nagar, Kochi",
   description: null,
   rating: "4.5",
   location: "KB Square, Panampally Nagar, Kochi, 682036",
@@ -33,7 +33,7 @@ const header_data = {
 
 export default function DetailHeroSection({ data = header_data }) {
   return (
-    <section className="w-full h-auto min-h-[268px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-end bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
+    <section className="w-full h-auto min-h-[468px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex flex-wrap sm:items-end bg-black py-[calc(20px+var(--header-y))_20px] sm:py-[calc(60px+var(--header-y))_80px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0 max-sm:flex-col max-sm:justify-end">
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
@@ -49,28 +49,28 @@ export default function DetailHeroSection({ data = header_data }) {
         />
       </picture>
       <div className="container">
-        <div className="flex flex-wrap items-end justify-between flex-row">
+        <div className="flex flex-wrap sm:items-end justify-between flex-col sm:flex-row">
           <div className="flex-1">
             <Heading
               as="h1"
               size="heading1"
-              className="text-white max-w-[468px] sm:max-w-[576px] xl:max-w-[768px] 2xl:max-w-[860px] 3xl:max-w-[1080px] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              className="text-white max-w-[468px] sm:max-w-[576px] xl:max-w-[768px] 2xl:max-w-[860px] 3xl:max-w-[1080px] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
             >
               {parse(data?.title)}
             </Heading>
-            <div className="flex flex-wrap gap-[15px] xl:gap-[25px]">
+            <div className="flex flex-wrap gap-[5px_10px] sm:gap-[15px] xl:gap-[25px]">
               {data?.location && (
                 <Text
                   as="div"
                   size="none"
-                  className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-white"
+                  className="text-[10px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-white"
                 >
                   <Image
                     src={"/images/icon-location.svg"}
                     alt={"icon-location"}
                     width={24}
                     height={24}
-                    className="w-[14px] xl:w-[16px] 2xl:w-[18px] mr-[8px] inline-block"
+                    className="w-[14px] xl:w-[16px] 2xl:w-[18px] mr-[4px] xl:mr-[8px] inline-block"
                   />
                   {data?.location}
                 </Text>
@@ -93,12 +93,12 @@ export default function DetailHeroSection({ data = header_data }) {
               )}
             </div>
           </div>
-          <div className="flex flex-wrap flex-col items-center">
-            <div className="mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
+          <div className="flex flex-wrap flex-row-reverse xl:flex-col items-center max-xl:justify-between max-xl:w-full max-xl:mt-3">
+            <div className="sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
               <Rating
                 readonly
                 size={26}
-                className="[&_svg]:inline-block"
+                className="[&_svg]:inline-block [&_svg]:size-[14px] sm:[&_svg]:size-[18px] xl:[&_svg]:size-[26px]"
                 fillColor="#ffd24f"
                 initialValue={parseInt(data?.rating)}
               />
@@ -128,21 +128,21 @@ export default function DetailHeroSection({ data = header_data }) {
           </div>
         </div>
       </div>
-      <div className="container absolute z-1 top-[calc(100%-50px)] left-0 right-0">
-        <div className="w-full h-auto bg-white rounded-[15px] xl:rounded-[20px] p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
-          <div className="flex flex-wrap justify-between items-center [&>*]:p-[10px_15px] xl:[&>*]:p-[10px_25px] 2xl:[&>*]:p-[15px_30px]">
+      <div className="container sm:absolute z-1 top-[calc(100%-20px)] sm:top-[calc(100%-50px)] left-0 right-0 max-sm:w-full max-sm:mt-3">
+        <div className="w-full h-auto bg-black/20 sm:bg-white rounded-[15px] xl:rounded-[20px] p-[10px] sm:p-[15px] xl:p-[30px] 2xl:p-[40px] shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
+          <div className="flex flex-wrap sm:flex-nowrap justify-between items-center [&>*]:p-[5px] sm:[&>*]:p-[10px] xl:[&>*]:p-[10px_25px] 2xl:[&>*]:p-[15px_30px] max-sm:[&>*]:w-1/2">
             {data?.total_charger && (
               <>
                 <div>
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-black"
+                    className="text-[10px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block"
                   >
                     Total chargers : <span>{data?.total_charger}</span>
                   </Text>
                 </div>
-                <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0" />
+                <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0 max-sm:hidden" />
               </>
             )}
             {data?.charger_type && (
@@ -151,12 +151,12 @@ export default function DetailHeroSection({ data = header_data }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-black"
+                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
                   >
                     Charger Types : <span>{data?.charger_type}</span>
                   </Text>
                 </div>
-                <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0" />
+                <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0 max-sm:hidden" />
               </>
             )}
             {data?.power_type && (
@@ -165,12 +165,12 @@ export default function DetailHeroSection({ data = header_data }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-black"
+                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
                   >
                     Power : <span>{data?.power_type}</span>
                   </Text>
                 </div>
-                <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0" />
+                <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0 max-sm:hidden" />
               </>
             )}
             {data?.socket_type && (
@@ -179,7 +179,7 @@ export default function DetailHeroSection({ data = header_data }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-black"
+                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
                   >
                     Socket Types : <span>{data?.socket_type}</span>
                   </Text>

@@ -16,11 +16,13 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const local_data = {
   title: "Showing results for <span>Kochi</span>",
   items: [
     {
+      link: "/find-charging-stations/1",
       station: "Kochi Metro, Ernakulam",
       location: "Ernakulam, Kochi, 682011",
       power: "40 KW",
@@ -32,6 +34,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "GO EC, Pnampolly Nagar, Kochi",
       location: "Panampally Nagar, Kochi, 682036",
       power: "60 KW",
@@ -43,6 +46,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "High Court, Kochi",
       location: "High Court Junction, Kochi, 682031",
       power: "80 KW",
@@ -54,6 +58,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "Cochin Shipyard, Kochi",
       location: "Cochin Shipyard Road, Kochi, 682015",
       power: "100 KW",
@@ -65,6 +70,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "High Court, Kochi",
       location: "High Court Junction, Kochi, 682031",
       power: "80 KW",
@@ -76,6 +82,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "Cochin International Airport",
       location: "Nedumbassery, Kochi, 683111",
       power: "120 KW",
@@ -87,6 +94,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "Fort Kochi Beach",
       location: "Fort Kochi, Kochi, 682001",
       power: "30 KW",
@@ -98,6 +106,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "Cochin Shipyard, Kochi",
       location: "Cochin Shipyard Road, Kochi, 682015",
       power: "100 KW",
@@ -109,6 +118,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "High Court, Kochi",
       location: "High Court Junction, Kochi, 682031",
       power: "80 KW",
@@ -120,6 +130,7 @@ const local_data = {
       },
     },
     {
+      link: "/find-charging-stations/1",
       station: "Cochin Shipyard, Kochi",
       location: "Cochin Shipyard Road, Kochi, 682015",
       power: "100 KW",
@@ -258,7 +269,7 @@ export default function ResultSection({ data = local_data }) {
                   }
                 >
                   <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.station}
+                    <Link href={item?.link}>{item?.station}</Link>
                   </div>
                   <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
                     {item?.location}
@@ -294,52 +305,8 @@ export default function ResultSection({ data = local_data }) {
             </div>
           </div>
 
-          {/* <Table>
-            <TableCaption className="text-start">
-              Showing {indexOfFirstItem + 1} to{" "}
-              {Math.min(indexOfLastItem, resultItems.length)} of{" "}
-              {resultItems.length} recent orders
-            </TableCaption>
-            <TableHeader>
-              <TableRow className={"[&>*]:p-[20px]"}>
-                <TableHead className="w-2/12">Station</TableHead>
-                <TableHead className="w-2/12">Location</TableHead>
-                <TableHead className="w-2/12">Power</TableHead>
-                <TableHead className="w-2/12">Socket Type</TableHead>
-                <TableHead className="w-2/12">Charger Type</TableHead>
-                <TableHead className="w-2/12">&nbsp;</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {currentItems.map((item, index) => (
-                <TableRow
-                  key={"station-row-" + index}
-                  className={
-                    "[&>*]:p-[20px] border-1 border-red-500 bg-white shadow-md rounded-[24px] overflow-hidden my-[10px]"
-                  }
-                >
-                  <TableCell>{item.station}</TableCell>
-                  <TableCell>{item.location}</TableCell>
-                  <TableCell>{item.power}</TableCell>
-                  <TableCell>{item.socket_type}</TableCell>
-                  <TableCell>{item.charger_type}</TableCell>
-                  <TableCell>
-                    <Image
-                      src="/images/icon-direction.svg"
-                      alt="direction"
-                      width={30}
-                      height={30}
-                      className="w-[20px] aspect-square mr-2 inline-block"
-                    />
-                    Direction
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table> */}
-
           <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px]">
-            <div className="">
+            <div>
               <div className={cn(textStyle, "text-[#7b7b75]")}>
                 Showing {indexOfFirstItem + 1} to{" "}
                 {Math.min(indexOfLastItem, resultItems.length)} of{" "}

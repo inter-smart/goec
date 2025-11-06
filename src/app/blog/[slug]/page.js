@@ -1,5 +1,6 @@
 import Error from "@/app/error";
 import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import ConnectSection from "@/components/features/blog/ConnectSection";
 import SimilarBlogSection from "@/components/features/blog/SimilarBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 
