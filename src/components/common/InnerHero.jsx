@@ -54,6 +54,7 @@ export default function InnerHero({ data = heroData, childern }) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
           className="-z-2 object-cover pointer-events-none"
           // quality={40}
+          priority={true}
         />
       </picture>
       <div className="container">

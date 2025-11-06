@@ -1,9 +1,9 @@
 import ScrollerSection from "@/components/common/ScrollerSection";
-import AboutMercantile from "@/components/features/mercantile-nepal/AboutMercantile";
-import FooterCard from "@/components/features/mercantile-nepal/FooterCard";
-import HeroSection from "@/components/features/mercantile-nepal/HeroSection";
-import IndustySection from "@/components/features/mercantile-nepal/IndustySection";
-import InvestmentSection from "@/components/features/mercantile-nepal/InvestmentSection";
+import AboutMercantile from "@/components/features/mercantile-nepal-old/AboutMercantile";
+import FooterCard from "@/components/features/mercantile-nepal-old/FooterCard";
+import HeroSection from "@/components/features/mercantile-nepal-old/HeroSection";
+import IndustySection from "@/components/features/mercantile-nepal-old/IndustySection";
+import InvestmentSection from "@/components/features/mercantile-nepal-old/InvestmentSection";
 
 const Gallery = {
   title: "Gallery",
@@ -40,7 +40,7 @@ export default async function MerchantileNepalPage() {
     <div>
       <HeroSection />
       <AboutMercantile />
-      {/* <IndustySection /> */}
+      <IndustySection />
       <InvestmentSection />
       <FooterCard />
       <ScrollerSection title={Gallery.title} list={Gallery.list} page="mercantile-nepal" />
