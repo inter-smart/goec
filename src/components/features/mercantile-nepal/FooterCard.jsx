@@ -1,5 +1,6 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
+import { generateMediaUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,7 +10,7 @@ const footerData = {
   button: { label: "Get Connected Now", link: "/contact" },
 };
 
-export default function FooterCard({ data = footerData, title = null }) {
+export default function FooterCard({ data = footerData }) {
   return (
     <div>
       <section className="w-full h-auto block pt-[40px] sm:pt-[80px] xl:pt-[120px] 2xl:pt-[140px]">
@@ -18,9 +19,8 @@ export default function FooterCard({ data = footerData, title = null }) {
             <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-t from-[#003894] to-[#0055E0] opacity-40 z-10"></div>
             <div className="w-full h-full absolute top-0 right-0">
               <Image
-                src="/images/merchantile_footer.png"
-                alt="overlay"
-                //   neeed to move right side
+                src={generateMediaUrl(data?.media?.media_path)}
+                alt={data?.media?.media_alt}
                 fill
                 className="z-0 pointer-events-none object-cover xs:object-contain object-right h-full w-full"
               />
@@ -29,21 +29,12 @@ export default function FooterCard({ data = footerData, title = null }) {
             <div className="flex flex-wrap items-center relative z-20">
               <div className="w-full sm:w-[calc(100%-300px)] md:w-[calc(100%-376px)] xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-468px)]">
                 <div className="w-full p-[15px] 3xs:p-[20px] sm:p-[30px] xl:p-[70px] 2xl:p-[80px]">
-                  <Heading
-                    as="h2"
-                    size="heading2"
-                    className="leading-tight font-medium text-white mb-[20px] sm:mb-[40px] xl:mb-[50px] 2xl:mb-[60px]"
-                  >
-                    {title ? title : data.title}
+                  <Heading as="h2" size="heading2" className="leading-tight font-medium text-white mb-[20px] sm:mb-[40px] xl:mb-[50px] 2xl:mb-[60px]">
+                    {data?.description}
                   </Heading>
                   <div className="flex space-x-[10px] xl:space-x-[15px]">
-                    <ActionButton
-                      size={"lg"}
-                      variant={"blue"}
-                      className="w-[160px] xl:w-[205px] 2xl:w-[230px] 3xl:w-[306px]"
-                      asChild
-                    >
-                      <Link href={data.button.link}>{data.button.label}</Link>
+                    <ActionButton size={"lg"} variant={"blue"} className="w-[160px] xl:w-[205px] 2xl:w-[230px] 3xl:w-[306px]" asChild>
+                      <Link href={data.button.link}>{data.button.text}</Link>
                     </ActionButton>
                   </div>
                 </div>

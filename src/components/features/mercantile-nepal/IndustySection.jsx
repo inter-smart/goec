@@ -49,7 +49,7 @@ const ourValues = {
   tag_desription: "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
 };
 
-export default function IndustySection({ data = ourValues }) {
+export default function IndustySection({ data = ourValues, values = [] }) {
   const sanitizedText = DOMPurify.sanitize(data.description);
 
   return (
@@ -80,7 +80,12 @@ export default function IndustySection({ data = ourValues }) {
             <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
               <div>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <MarketSizeChart bottomColor={"#0047AB"} topColor={"rgba(255, 255, 255, 0.7)"} />
+                  <MarketSizeChart
+                    series={data?.chart?.series}
+                    categories={data?.chart?.categories}
+                    bottomColor={"#0047AB"}
+                    topColor={"rgba(255, 255, 255, 0.7)"}
+                  />
                 </Suspense>
                 {/* if media */}
                 {/* {data?.media?.type === "video" ? (
@@ -107,7 +112,7 @@ export default function IndustySection({ data = ourValues }) {
                     as="p"
                     className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-tight font-normal text-center text-[#ced1d0]"
                   >
-                    {data?.tag_desription}
+                    {data?.summary}
                   </Text>
                 </div>
               </div>
@@ -117,12 +122,12 @@ export default function IndustySection({ data = ourValues }) {
           <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">
               <Heading as="h2" size="heading2" className="text-white max-sm:text-center">
-                {data?.value_title}
+                {values?.title}
               </Heading>
             </div>
             <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
               <Text as="div" size="text2" className="text-[#ced1c0]">
-                {parse(data?.value_description)}
+                {parse(values?.description)}
               </Text>
             </div>
           </div>
@@ -164,7 +169,7 @@ export default function IndustySection({ data = ourValues }) {
               },
             }}
           >
-            {data?.list?.map((item, index) => {
+            {values?.list?.map((item, index) => {
               return (
                 <SwiperSlide key={"value" + index} style={{ width: "33.333%" }}>
                   <div className="group w-full h-full min-h-[176px] sm:min-h-[268px] xl:min-h-[376px] 3xl:min-h-[468px] flex flex-col justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-md backdrop-blur-sm">
