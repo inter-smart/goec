@@ -76,7 +76,7 @@ export default function AppDownloadSection({ appDownloadData }) {
             <div className="w-[140px] sm:w-[180px] xl:w-[276px] 2xl:w-[320px] pr-[20px] xl:pr-[40px] 2xl:pr-[60px]">
               <Image
                 src={`${MEDIA_URL}${appDownloadData?.media?.media_path}`}
-                alt={appDownloadData?.media?.alt}
+                alt={appDownloadData?.media?.media_alt}
                 width={276}
                 height={312}
                 quality={100}

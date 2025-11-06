@@ -157,7 +157,7 @@ export default function HowChargeSection({ title, list, description = "", varian
                     >
                       <Image
                         src={generateMediaUrl(item?.media?.media_path || item?.media_path)}
-                        alt={item?.media_alt}
+                        alt={item?.media?.media_alt}
                         width={360}
                         height={200}
                         className="w-full h-full object-cover transition hover:scale-105"
