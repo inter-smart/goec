@@ -1,6 +1,7 @@
-import HeroSection from "@/components/features/charging-stations/HeroSection";
-import ResultSection from "@/components/features/find-charging-station/ResultSection";
+import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
+import FindChargingResultSection from "@/components/features/find-charging-station/FindChargingResultSection";
 
+// import HeroSection from "@/components/features/charging-stations/HeroSection";
 import HeroWithCard from "@/components/common/HeroWithCard";
 import ChargingStationList from "@/components/features/charging-stations-old/search/SearchResults";
 
@@ -24,8 +25,8 @@ const header_data = {
 export default function Page() {
   return (
     <>
-      <HeroSection data={header_data} />
-      <ResultSection />
+      <FindChargingHeroSection data={header_data} />
+      <FindChargingResultSection />
       {/* <HeroWithCard /> */}
       {/* <ChargingStationList /> */}
     </>

@@ -149,7 +149,7 @@ const textStyle = `
 `
   .replace(/\s+/g, " ")
   .trim();
-export default function ResultSection({ data = local_data }) {
+export default function FindChargingResultSection({ data = local_data }) {
   const paginationRef = useRef(null);
 
   // Pagination state
@@ -305,7 +305,7 @@ export default function ResultSection({ data = local_data }) {
             </div>
           </div>
 
-          <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px]">
+          <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px] max-sm:flex-col">
             <div>
               <div className={cn(textStyle, "text-[#7b7b75]")}>
                 Showing {indexOfFirstItem + 1} to{" "}
