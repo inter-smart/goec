@@ -2,6 +2,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState } from "react";
+import { X, Upload } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -13,7 +15,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ActionButton } from "../utils/Button";
-
 import {
   Select,
   SelectContent,
@@ -21,8 +22,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-// ✅ Fixed validation schema to match actual form fields
+// ✅ Complete validation schema with all form fields
 const formSchema = z.object({
   firstName: z.string().min(2, {
     message: "First name must be at least 2 characters.",
@@ -35,7 +38,10 @@ const formSchema = z.object({
     .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
   state: z.string().optional(),
   city: z.string().optional(),
+  pincode: z.string().optional(),
+  whatYouAre: z.string().optional(),
   additionalInformation: z.string().optional(),
+  attachment: z.any().optional(),
 });
 
 // ✅ Shared styles
@@ -59,7 +65,10 @@ const textareaStyle = `
   .trim();
 
 export default function BecomePartnerForm() {
-  // ✅ Fixed default values to match schema
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [fileError, setFileError] = useState("");
+
+  // ✅ Complete default values matching schema
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -69,15 +78,54 @@ export default function BecomePartnerForm() {
       phone: "",
       state: "",
       city: "",
+      pincode: "",
+      whatYouAre: "",
       additionalInformation: "",
+      attachment: null,
     },
   });
+
+  // Handle file upload
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file size (max 10MB)
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    if (file.size > maxSize) {
+      setFileError("File size must not exceed 10 MB");
+      return;
+    }
+
+    // Validate file type
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "image/png",
+      "image/jpeg",
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      setFileError("Only PDF, DOC, DOCX, PNG, and JPEG files are allowed");
+      return;
+    }
+
+    setFileError("");
+    setUploadedFile(file);
+    form.setValue("attachment", file);
+  };
+
+  // Handle file removal
+  const handleFileRemove = () => {
+    setUploadedFile(null);
+    setFileError("");
+    form.setValue("attachment", null);
+  };
 
   // Handle form submission
   function onSubmit(values) {
     console.log("Form submitted:", values);
     // Add your form submission logic here
-    // Example: API call, toast notification, etc.
   }
 
   return (
@@ -218,9 +266,58 @@ export default function BecomePartnerForm() {
 
           <FormField
             control={form.control}
+            name="pincode"
+            render={({ field }) => (
+              <FormItem className="w-full sm:w-1/2">
+                <FormLabel className={labelStyle}>Pincode</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="Enter pincode"
+                    className={inputStyle}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="whatYouAre"
+            render={({ field }) => (
+              <FormItem className="w-full sm:w-1/2">
+                <FormLabel className={labelStyle}>
+                  Business / Individual
+                </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger size="none" className={inputStyle}>
+                      <SelectValue placeholder="Select what you are" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {["Business", "Individual"].map((item, index) => (
+                      <SelectItem key={"type" + index} value={item}>
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="additionalInformation"
             render={({ field }) => (
-              <FormItem className="w-full sm:w-full">
+              <FormItem className="w-full">
                 <FormLabel className={labelStyle}>
                   Additional information
                 </FormLabel>
@@ -230,6 +327,71 @@ export default function BecomePartnerForm() {
                     placeholder="Add additional enquiry or notes"
                     {...field}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="attachment"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel className={cn(labelStyle, "sr-only")}>
+                  Add an attachment*
+                </FormLabel>
+                <FormControl>
+                  <div className="max-w-full space-y-2">
+                    {!uploadedFile ? (
+                      <label
+                        htmlFor="file-upload"
+                        className={`${inputStyle} text-[#030303] !px-0 flex flex-wrap items-center cursor-pointer hover:border-[#737373] transition-colors`}
+                      >
+                        <Image
+                          src="/images/icon-attachment.svg"
+                          alt="icon-attachment"
+                          width={20}
+                          height={20}
+                          className="w-[15px] xl:w-[20px]"
+                        />
+                        <span className={cn(labelStyle, "font-medium")}>
+                          Add an attachment*
+                        </span>
+
+                        <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] text-[#373737]">
+                          &nbsp;Max. 10 MB. (Type: pdf, doc, png, jpeg, docx)
+                        </span>
+                        <input
+                          id="file-upload"
+                          type="file"
+                          className="hidden"
+                          accept=".pdf,.doc,.docx,.png,.jpeg,.jpg"
+                          onChange={handleFileChange}
+                        />
+                      </label>
+                    ) : (
+                      <div
+                        className={`${inputStyle} break-all flex flex-wrap items-center justify-between !bg-gray-50`}
+                      >
+                        <span className="line-clamp-1 max-w-[70%] flex-1 pr-2">
+                          {uploadedFile.name}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleFileRemove}
+                          className="text-red-500 hover:text-red-700 transition-colors flex-shrink-0"
+                        >
+                          <X className="size-3 xl:size-4" />
+                        </button>
+                      </div>
+                    )}
+                    {fileError && (
+                      <p className="text-[9px] sm:text-[10px] xl:text-[11px] 2xl:text-[12px] text-red-500">
+                        {fileError}
+                      </p>
+                    )}
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -27,7 +27,7 @@ export default function HeroSection({ data = local_data }) {
               <Text
                 as="div"
                 size="text1"
-                className="line-clamp-1 text-center text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
+                className="line-clamp-1 text-center text-white mb-[5px] xl:mb-[10px] 2xl:mb-[20px]"
               >
                 {data?.description}
               </Text>

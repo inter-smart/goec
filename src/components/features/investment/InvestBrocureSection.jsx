@@ -76,7 +76,7 @@ export default function InvestBrocureSection({ data = investBrocureData, title =
                 ) : (
                   <Image
                     src={media?.nedia_path ? `${MEDIA_URL}${media?.media_path}` : "/images/investment-brochure-1.png"}
-                    alt={media?.media_alt}
+                    alt={media?.media_alt || "brochure"}
                     width={476}
                     height={268}
                     className="w-full h-full"

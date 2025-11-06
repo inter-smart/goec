@@ -1,5 +1,6 @@
 import Image from "next/image";
 import DOMPurify from "isomorphic-dompurify";
+import parse from "html-react-parser";
 
 const investmentData = {
   media: {
@@ -18,7 +19,10 @@ const investmentData = {
     "<h4>GO EC is envisioned to meet the opportunities for sustainable mobility through collaborations with wiling and progressive partners. Our focus remains on creating a chain of EV Charging Stations that are optimized within the best-given space and infrastructure capacities.</h4>",
 };
 
-export default function InvestmentInfoSection({ description, data = investmentData }) {
+export default function InvestmentInfoSection({
+  description,
+  data = investmentData,
+}) {
   const sanitizedText = DOMPurify.sanitize(description);
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px]">
@@ -32,12 +36,21 @@ export default function InvestmentInfoSection({ description, data = investmentDa
             className="w-[60px] xl:w-[70px] 2xl:w-[78px] aspect-square absolute z-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition hover:scale-105"
           />
           {data?.media?.desktop?.type === "video" ? (
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover absolute -z-2 inset-0"
+            >
               <source src={data?.media?.desktop?.path} type="video/mp4" />
             </video>
           ) : (
             <picture className="absolute -z-1 inset-0">
-              <source media="(max-width: 640px)" srcSet={data?.media?.mobile?.path} />
+              <source
+                media="(max-width: 640px)"
+                srcSet={data?.media?.mobile?.path}
+              />
               <Image
                 src={data?.media?.desktop?.path}
                 alt={data?.media?.desktop?.alt}
@@ -52,10 +65,9 @@ export default function InvestmentInfoSection({ description, data = investmentDa
         </div>
       </div>
       <div className="container">
-        <div
-          className="typography my-[40px_20px] sm:my-[80px_30px] xl:my-[120px_40px] 2xl:my-[140px_40px]"
-          dangerouslySetInnerHTML={{ __html: sanitizedText }}
-        />
+        <div className="typography my-[20px_10px] sm:my-[40px_20px] xl:my-[100px_30px] 2xl:my-[140px_40px]">
+          {parse(data?.description)}
+        </div>
       </div>
     </section>
   );

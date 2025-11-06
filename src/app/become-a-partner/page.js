@@ -1,5 +1,5 @@
+import BecomePartnerFormSection from "@/components/features/become-a-partner/BecomePartnerFormSection";
 import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
-import BecomePartnerForm from "@/components/form/BecomePartnerForm";
 
 const header_data = {
   background_media: {
@@ -22,7 +22,7 @@ export default function Page() {
   return (
     <>
       <FindChargingHeroSection data={header_data} />
-      <BecomePartnerForm />
+      <BecomePartnerFormSection />
     </>
   );
 }

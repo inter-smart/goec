@@ -10,7 +10,7 @@ const AboutBecomePartnerData = {
   button: {
     type: "primary",
     label: "Become a partner",
-    link: "/contact",
+    link: "/become-a-partner",
   },
 };
 
