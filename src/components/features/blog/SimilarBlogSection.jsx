@@ -60,7 +60,7 @@ export default function SimilarBlogSection({ similar_section, footer_section, va
         >
           {similar_section?.list?.map((item, index) => {
             return (
-              <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
+              <SwiperSlide key={variant + index} style={{ width: "33.333%" }}>
                 <NewsCard data={item} variant={variant} />
               </SwiperSlide>
             );

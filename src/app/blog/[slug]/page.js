@@ -113,10 +113,9 @@ import { fetchFromAPI } from "@/lib/api";
 export default async function Page({ params }) {
   const { slug } = params;
 
-
   const { data, error } = await fetchFromAPI(`blog/${slug}`);
 
-  console.log(data.similar_section)
+  console.log(data.footer_section);
 
   if (error) {
     return <Error path={`blog/${slug}`} />;
@@ -127,10 +126,12 @@ export default async function Page({ params }) {
     <>
       <BlogDetailSection variant="blog" data={blog_details_section} />
       <SimilarBlogSection
-      variant={"blog"}
+        variant={"blog"}
         similar_section={similar_section}
-        footer_section={footer_section}
+        // footer_section={footer_section}
       />
+
+      <ConnectSection footer_section={footer_section} />
     </>
   );
 }

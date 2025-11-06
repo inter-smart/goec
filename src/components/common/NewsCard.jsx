@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import parse from "html-react-parser";
 import { Text } from "../utils/Text";
 import { MEDIA_URL } from "@/lib/api";
+import { renderHtml } from "../utils/parseHtml";
 
 const section = {
   button: [
@@ -30,8 +31,8 @@ export default function NewsCard({ data, variant = "news" }) {
     ? format(new Date(data?.published_on), "dd MMMM yyyy")
     : format(new Date(), "dd MMMM yyyy");
 
+    console.log("news card => ",data)
 
-    console.log(`${variant}/${data?.slug}`)
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
       <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]">
@@ -40,7 +41,7 @@ export default function NewsCard({ data, variant = "news" }) {
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
             variant === "blog" ||
-              variant === "blog-detail" ||
+              variant === "blog" ||
               variant === "home"
               ? "rounded-t-[20px] sm:rounded-t-[30px]"
               : "rounded-[20px] sm:rounded-[30px]"
@@ -61,21 +62,21 @@ export default function NewsCard({ data, variant = "news" }) {
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               <Link href={`/${variant}/${data?.slug}`}>{data?.title}</Link>
             </div>
-            {variant === "blog-detail" && (
+            {(variant === "blog" || variant === "news") && (
               <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
-                {parse(data?.description)}
+                {renderHtml(data?.description)}
               </div>
             )}
           </div>
           <div className="flex justify-between items-center gap-[10px]">
-            {variant === "blog-detail" ? (
+            {(variant === "news"|| variant === "blog") ? (
               <>
                 <Text
                   as="div"
                   size="none"
                   className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#373737]"
                 >
-                  {data?.category}
+                  {variant === "blog" ? "Blog": "News"}
                   <span>&nbsp;-&nbsp;</span>
                   {data?.reading_time}
                 </Text>
