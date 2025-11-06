@@ -123,7 +123,7 @@ export default function BlogListSection({
     }
   };
 
-  console.log(firstItem)
+  console.log("weqeqw",data)
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px_60px] xl:py-[80px_80px] 2xl:py-[100px_90px] mt-(--header-y)">
       <div className="container">
@@ -133,7 +133,7 @@ export default function BlogListSection({
             size="heading1"
             className="font-semibold text-[#030303] max-sm:text-center"
           >
-            {data?.title|| "Insights"}
+            {featured_section?.title}
           </Heading>
           <div className="ml-auto flex gap-[10px] xl:gap-[20px] 2xl:gap-[30px]">
             {data?.button?.map((item, index) => (

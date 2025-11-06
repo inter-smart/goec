@@ -62,14 +62,14 @@ export default function NewsCard({ data, variant = "news" }) {
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               <Link href={`/${variant}/${data?.slug}`}>{data?.title}</Link>
             </div>
-            {(variant === "blog" || variant === "news") && (
+            {variant === "blog" && (
               <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                 {renderHtml(data?.description)}
               </div>
             )}
           </div>
           <div className="flex justify-between items-center gap-[10px]">
-            {(variant === "news"|| variant === "blog") ? (
+            {variant === "blog" ? (
               <>
                 <Text
                   as="div"

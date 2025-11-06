@@ -13,6 +13,7 @@ import parse from "html-react-parser";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { MEDIA_URL } from "@/lib/api";
+import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function BlogDetailSection({ data, variant }) {
   return (
@@ -47,7 +48,7 @@ export default function BlogDetailSection({ data, variant }) {
           >
             {data?.title}
           </Heading>
-          <div className="typography">{parse(data?.description)}</div>
+          <div className="typography">{renderHtml(data?.description)}</div>
           <Text
             as="div"
             size="none"
@@ -94,7 +95,7 @@ export default function BlogDetailSection({ data, variant }) {
       </div>
       <div className="w-full px-4 max-w-full sm:max-w-[576px] lg:max-w-[768px] xl:max-w-[840px] 2xl:max-w-[1000px] 3xl:max-w-[1260px] mx-auto">
         <div className="typography [&_h4]:font-medium [&_h4]:my-[15px] xl:[&_h4]:my-[20px] 2xl:[&_h4]:my-[30px]">
-          {parse(data?.sub_description)}
+          {renderHtml(data?.sub_description)}
         </div>
       </div>
     </section>

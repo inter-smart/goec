@@ -125,7 +125,7 @@
 //                       </Text>
 //                     </div>
 
-//                     <div className="flex">
+//                     {/* <div className="flex">
 //                       <Rating
 //                         readonly
 //                         initialRating={review.rating}
@@ -139,7 +139,7 @@
 //                           />
 //                         }
 //                       />
-//                     </div>
+//                     </div> */}
 //                   </div>
 //                 </div>
 
@@ -167,7 +167,7 @@
 //           </div>
 //         </div>
 //         <div className="w-full mx-auto">
-//           {/* <RatingSection summary={summary} getStarColor={getStarColor} /> */}
+//           <RatingSection summary={summary} getStarColor={getStarColor} />
 //         </div>
 //       </div>
 //     </section>

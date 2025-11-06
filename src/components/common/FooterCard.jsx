@@ -14,7 +14,7 @@ const footerDetails = {
   button_text_link: "/contact",
 };
 
-export default function FooterCard({ title, description }) {
+export default function FooterCard({ title, description = footerDetails?.paragraph }) {
   return (
     <div className="px-[10px] sm:px-[15px] xl:p-[20px]">
       <div className="w-full my-[90px] lg:my-[100px] 2xl:my-[140px] 3xl:my-[187px] relative rounded-[24px] overflow-hidden">
@@ -36,7 +36,7 @@ export default function FooterCard({ title, description }) {
               {title}
             </Heading>
             <Text as={"div"} size={"text2"} className="text-[#E6E6E6] xl:text-[20px] text-[16px] leading-tight">
-              {parse(description)}
+              {parse(description)|| "wewqeqwe"}
             </Text>
           </div>
           {/* CTA Button */}

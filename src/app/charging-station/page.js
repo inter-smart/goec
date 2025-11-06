@@ -8,7 +8,7 @@ import ReviewsSection from '@/components/features/charging-station/ReviewsSectio
 
 const footerData={
   title:"Want to own your own charging station? ",
-  paragraph: "Take the leap and invest in your very own charging station today! Join the green revolution and power up your future.",
+  description: "Take the leap and invest in your very own charging station today! Join the green revolution and power up your future.",
   button_text: "Get connected now",
   button_text_link: "/contact",
 }

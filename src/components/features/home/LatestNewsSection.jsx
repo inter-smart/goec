@@ -211,7 +211,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                                 >
                                 <Link href={`/news/${item?.slug}`}>
                                   Read Now
-                                    {/* {item?.button?.label} */}variant
+                                    {/* {item?.button?.label} */}
                                   </Link>
                                 </ActionButton>
                               </div>
@@ -224,7 +224,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                 </div>
               ) : (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-1/3">
-                  {/* <NewsCard data={item} /> */}
+                  <NewsCard data={item} />
                 </div>
               );
             })}
