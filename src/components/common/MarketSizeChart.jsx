@@ -3,7 +3,7 @@ import { color } from "framer-motion";
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-export default function MarketSizeChart({bottomColor ,topColor}) {
+export default function MarketSizeChart({ bottomColor, topColor }) {
   const [state, setState] = useState({
     series: [
       {
@@ -80,12 +80,12 @@ export default function MarketSizeChart({bottomColor ,topColor}) {
         gradient: {
           shade: "dark",
           type: "vertical",
-          gradientToColors: [topColor ||"#2CC59C"], // top color
+          gradientToColors: [topColor || "#2CC59C"], // top color
           colors: [bottomColor || "#30FFC2"], // bottom color
           stops: [0, 100],
         },
       },
-      colors: [ bottomColor || "#30FFC2"], // base (required by Apex)
+      colors: [bottomColor || "#30FFC2"], // base (required by Apex)
       tooltip: {
         enabled: false, // 🔴 hide hover tooltip
       },
