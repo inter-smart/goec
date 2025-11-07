@@ -13,33 +13,33 @@ export default async function AboutPage() {
   const { data, error } = await fetchFromAPI("about");
 
   const heroData = {
-  background_media: {
-    mobile: {
+    background_media: {
+      mobile: {
+        type: "image",
+        path: "/images/hero-about-bg-1.jpg",
+        alt: "hero",
+      },
+      desktop: {
+        type: "image",
+        path: "/images/hero-about-bg-1.jpg",
+        alt: "hero",
+      },
+    },
+    media: {
       type: "image",
-      path: "/images/hero-about-bg-1.jpg",
+      path: "/images/about-hero-1.svg",
       alt: "hero",
     },
-    desktop: {
-      type: "image",
-      path: "/images/hero-about-bg-1.jpg",
-      alt: "hero",
-    },
-  },
-  media: {
-    type: "image",
-    path: "/images/about-hero-1.svg",
-    alt: "hero",
-  },
-  title: "We Power Up your Journey with Lightning Charging Nationwide",
-  description: null,
-  button: [
-    {
-      type: "secondary",
-      label: "Become a partner ",
-      link: "/",
-    },
-  ],
-};
+    title: "We Power Up your Journey with Lightning Charging Nationwide",
+    description: null,
+    button: [
+      {
+        type: "secondary",
+        label: "Become a partner ",
+        link: "/become-a-partner",
+      },
+    ],
+  };
 
 
 

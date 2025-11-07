@@ -1,6 +1,7 @@
 import Image from "next/image";
 import DOMPurify from "isomorphic-dompurify";
 import { MEDIA_URL } from "@/lib/api";
+import parse from "html-react-parser";
 
 const investmentData = {
   media: {
@@ -66,10 +67,9 @@ export default function InvestmentInfoSection({
         </div>
       </div>
       <div className="container">
-        <div
-          className="typography my-[40px_20px] sm:my-[80px_30px] xl:my-[120px_40px] 2xl:my-[140px_40px]"
-          dangerouslySetInnerHTML={{ __html: sanitizedText }}
-        />
+        <div className="typography my-[20px_10px] sm:my-[40px_20px] xl:my-[100px_30px] 2xl:my-[140px_40px]">
+          {parse(data?.description)}
+        </div>
       </div>
     </section>
   );

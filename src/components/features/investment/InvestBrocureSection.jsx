@@ -5,8 +5,9 @@ import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
 
+import BrochureModal from "@/components/common/BrochureModal";
+
 const investBrocureData = {
-  title: "Invest in GO EC. Empower progress. Spark a greener India.",
   media: {
     type: "image",
     path: "/images/investment-brochure-1.png",
@@ -15,11 +16,6 @@ const investBrocureData = {
   title: "Invest in GO EC. Empower progress. Spark a greener India.",
   description: null,
   button: [
-    {
-      type: "secondary",
-      label: "Get Brochure ",
-      link: "/",
-    },
     {
       type: "primary",
       label: "Connect Now",
@@ -30,7 +26,7 @@ const investBrocureData = {
 
 export default function InvestBrocureSection({
   data = investBrocureData,
-  title,
+  title = investBrocureData.title,
   media,
 }) {
   return (
@@ -53,9 +49,18 @@ export default function InvestBrocureSection({
                   size="heading2"
                   className="leading-tight font-medium text-white mb-[20px] sm:mb-[40px] xl:mb-[50px] 2xl:mb-[60px]"
                 >
-                  {title ? title: data.title}
+                  {title ? title : data.title}
                 </Heading>
                 <div className="flex space-x-[10px] xl:space-x-[15px]">
+                  <BrochureModal>
+                    <ActionButton
+                      size={"lg"}
+                      className="text-black bg-white max-w-[120px] xl:max-w-[160px] 2xl:max-w-[176px]"
+                    >
+                      Get Brochure
+                    </ActionButton>
+                  </BrochureModal>
+
                   {data?.button?.map((item, index) =>
                     item?.type === "primary" ? (
                       <ActionButton
@@ -96,8 +101,12 @@ export default function InvestBrocureSection({
                   </video>
                 ) : (
                   <Image
-                    src={`${MEDIA_URL}${media?.media_path}`}
-                    alt={media?.media_alt}
+                    src={
+                      media?.nedia_path
+                        ? `${MEDIA_URL}${media?.media_path}`
+                        : "/images/investment-brochure-1.png"
+                    }
+                    alt={media?.media_alt || "brochure"}
                     width={476}
                     height={268}
                     className="w-full h-full"
