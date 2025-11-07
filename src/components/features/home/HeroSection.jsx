@@ -224,7 +224,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                     {item?.button?.map((buttonItem, index) =>
                       buttonItem?.type === "primary" ? (
                         <ActionButton key={index} size={"lg"} className="max-w-[120px] xl:max-w-[145px] 2xl:max-w-[160px]" asChild>
-                          <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
+                          <Link href={buttonItem?.link}>{buttonItem?.text}</Link>
                         </ActionButton>
                       ) : (
                         <ActionButton
@@ -233,7 +233,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                           className="text-black bg-white max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
                           asChild
                         >
-                          <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
+                          <Link href={buttonItem?.link}>{buttonItem?.text}</Link>
                         </ActionButton>
                       )
                     )}
