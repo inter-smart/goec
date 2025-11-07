@@ -63,7 +63,7 @@ export default function AppFeatureSection({ title, list }) {
                     <div
                       className={cn(
                         "group w-full h-full bg-transparent bg-gradient-to-br from-[#030303] to-[#21bfed] rounded-[20px] xl:rounded-[25px] overflow-hidden relative z-0 flex flex-col",
-                        item?.media
+                        item?.media_path
                           ? "p-[20px_10px_0] sm:p-[40px_20px_0] xl:p-[60px_40px_0] 2xl:p-[60px_50px_0] 3xl:p-[80px_50px_0] justify-between"
                           : "p-[20px_10px] sm:p-[40px_20px] xl:p-[60px_40px] 2xl:p-[60px_50px] 3xl:p-[80px_50px] justify-center"
                       )}
@@ -134,7 +134,7 @@ export default function AppFeatureSection({ title, list }) {
                         >
                           <Image
                             src={`${MEDIA_URL}${item?.media?.media_path}`}
-                            alt={item?.media?.media_alt|| "sample image"}
+                            alt={item?.media?.media_alt}
                             width={260}
                             height={360}
                             className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition "
