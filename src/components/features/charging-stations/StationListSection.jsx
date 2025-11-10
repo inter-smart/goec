@@ -1,7 +1,7 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
-import { cn } from "@/lib/utils";
+import { cn, generateMediaUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
@@ -158,7 +158,7 @@ export default function StationListSection({ data = local_data }) {
           {data?.title}
         </Heading>
         <div className="flex flex-wrap mx-[-4px] xl:mx-[-10px] 3xl:mx-[-15px] [&>*]:p-[4px] xl:[&>*]:p-[10px] 3xl:[&>*]:p-[15px]">
-          {data?.items?.map((item, index) => {
+          {data?.list?.map((item, index) => {
             const lastItem = data?.items?.length - 1;
             return (
               <div
@@ -178,8 +178,8 @@ export default function StationListSection({ data = local_data }) {
                     )}
                   >
                     <Image
-                      src={item?.media?.path}
-                      alt={item?.media?.alt}
+                      src={generateMediaUrl(item?.media?.media_path)}
+                      alt={item?.media?.media_alt}
                       width={784}
                       height={426}
                       className="w-full h-full object-contain block transition hover:scale-105"
@@ -197,17 +197,17 @@ export default function StationListSection({ data = local_data }) {
                         {parse(item?.title)}
                       </Heading>
                       <ul className="flex flex-wrap mx-[-2px] xl:mx-[-4px] [&>*]:p-[2px] xl:[&>*]:p-[4px]">
-                        {item?.features?.map((feature, idx) => (
-                          <li key={"feature" + idx} className="block">
+                        {/* {item?.features?.map((feature, idx) => ( */}
+                          <li className="block">
                             <Text
                               as="div"
                               size="none"
                               className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[22px] leading-tight font-medium text-[#373737] p-[4px_10px] xl:p-[6px_15px] 2xl:p-[10px_20px] rounded-full border border-[#eee] hover:border-primary transition flex"
                             >
-                              {parse(feature)}
+                              {parse(item?.features)}
                             </Text>
                           </li>
-                        ))}
+                        {/* ))} */}
                       </ul>
                     </div>
                     <div>
@@ -219,7 +219,7 @@ export default function StationListSection({ data = local_data }) {
                             className="max-w-full mt-[10px] xl:mt-[20px] 2xl:mt-[30px]"
                             asChild
                           >
-                            <Link href={"#"}>{item?.button?.label}</Link>
+                            <Link href={"#"}>{item?.button?.text}</Link>
                           </ActionButton>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[576px] xl:max-w-[980px] p-[20px] sm:p-[30px] xl:p-[40px_55px] 2xl:p-[60px] rounded-[15px] xl:rounded-[24px] gap-2 2xl:gap-4">
@@ -230,7 +230,7 @@ export default function StationListSection({ data = local_data }) {
                                 size="heading3"
                                 className="font-medium text-start text-[#030303] xl:mb-[10px] 2xl:mb-[15px]"
                               >
-                                Own a charging station
+                                {data?.form_title}
                               </Heading>
                             </DialogTitle>
                             <DialogDescription className={"sr-only"}>

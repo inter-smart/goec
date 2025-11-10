@@ -1,5 +1,6 @@
 import HeroSection from "@/components/features/charging-stations/HeroSection";
 import StationListSection from "@/components/features/charging-stations/StationListSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const header_data = {
   background_media: {
@@ -18,11 +19,19 @@ const header_data = {
   description: null,
 };
 
-export default function Page() {
+export default async function Page() {
+
+  const {data, error} = await fetchFromAPI("chargers")
+
+  const {
+    banner_section,
+    chargers_section,
+  } = data
+
   return (
     <>
-      <HeroSection data={header_data} />
-      <StationListSection />
+      <HeroSection data={banner_section} />
+      <StationListSection data={chargers_section} />
     </>
   );
 }
