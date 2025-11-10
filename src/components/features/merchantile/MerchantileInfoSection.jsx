@@ -54,7 +54,7 @@ export default function MerchantileInfoSection({ data = local_data }) {
             <Heading
               as="h2"
               size="none"
-              className="text-[18px] sm:text-[24px] lg:text-[30px] xl:text-[42px] 2xl:text-[50px] 3xl:text-[64px] leading-tight font-medium text-[#030303] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] max-sm:mt-0"
+              className="text-[18px] sm:text-[24px] lg:text-[30px] xl:text-[42px] 2xl:text-[50px] 3xl:text-[64px] leading-tight font-medium text-[#030303] mb-[10px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[140px] max-sm:mt-0"
             >
               {data?.title}
             </Heading>
@@ -65,7 +65,7 @@ export default function MerchantileInfoSection({ data = local_data }) {
         </div>
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:px-[5px] xl:[&>*]:px-[10px] 2xl:[&>*]:px-[15px] max-sm:flex-col-reverse">
           {data?.items?.map((item, index) => (
-            <div key={"boxes" + index} className="w-full sm:w-[60%] xl:w-1/2">
+            <div key={"boxes" + index} className="w-full sm:w-1/2 xl:w-1/2">
               <div className="w-full h-auto bg-[#fcfcfc] border-1 border-[#f0f0f0] p-[20px] xl:p-[35px] 2xl:p-[40px] rounded-[15px] xl:rounded-[20px]">
                 <Image
                   src={item?.media?.path}

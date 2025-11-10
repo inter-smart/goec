@@ -67,7 +67,7 @@ const local_data = {
 
 export default function MerchantileIndustrySection({ data = local_data }) {
   return (
-    <section className="w-full h-auto block py-[20px_30px] sm:py-[40px_60px] xl:py-[80px_120px] 2xl:py-[100px_140px] bg-[#0048bf] overflow-hidden relative z-0">
+    <section className="w-full h-auto block py-[30px] sm:py-[40px_60px] xl:py-[80px_120px] 2xl:py-[100px_140px] bg-[#0048bf] overflow-hidden relative z-0">
       <Image
         src="/images/merchantile-industry-bg.png"
         alt="merchantile-industry-bg"
@@ -76,8 +76,8 @@ export default function MerchantileIndustrySection({ data = local_data }) {
         className="-z-1 object-cover"
       />
       <div className="container">
-        <div className="w-full h-auto mb-[30px] sm:mb-[60px] xl:mb-[120px] 2xl:mb-[140px]">
-          <div className="w-full max-w-full 2xs:max-w-[200px] sm:max-w-[268px] xl:max-w-[440px] 2xl:max-w-[576px] 3xl:max-w-[640px] 2xs:float-right 2xs:ml-[2%] sm:ml-[4%] xl:ml-[13%] max-sm:mb-[20px]">
+        <div className="w-full h-auto mb-[30px] sm:mb-[60px] xl:mb-[120px] 2xl:mb-[140px] max-lg:flex max-lg:flex-col-reverse">
+          <div className="w-full max-w-full lg:max-w-[468px] xl:max-w-[440px] 2xl:max-w-[576px] 3xl:max-w-[640px] lg:float-right lg:ml-[13%]">
             <div className="w-full h-full block">
               <Suspense fallback={<div>Loading...</div>}>
                 <MarketSizeChart bottomColor="#1f52a7" topColor="#aec1e0" />
@@ -100,7 +100,7 @@ export default function MerchantileIndustrySection({ data = local_data }) {
               </div>
             </div>
           </div>
-          <div className="typography [--text-color:white] xl:[&_p]:text-[16px] 2xl:[&_p]:text-[18px] ">
+          <div className="typography [--text-color:white] xl:[&_p]:text-[16px] 2xl:[&_p]:text-[18px] max-lg:mb-[10px] ">
             <Heading
               as="h2"
               size="none"
@@ -115,7 +115,7 @@ export default function MerchantileIndustrySection({ data = local_data }) {
         </div>
 
         <div className="w-full">
-          <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
+          <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px]">
             <div className="flex-1 max-sm:mb-[15px]">
               <Heading
                 as="h2"
@@ -125,7 +125,7 @@ export default function MerchantileIndustrySection({ data = local_data }) {
                 {data?.value?.title}
               </Heading>
             </div>
-            <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
+            <div className="w-full lg:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
               <Text as="div" size="text2" className="text-[#ced1c0]">
                 {parse(data?.value?.description)}
               </Text>
