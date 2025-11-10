@@ -205,7 +205,6 @@ export default function FindChargingResultSection({
   };
 
 
-  console.log(" resultItems ",resultItems)
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       const params = new URLSearchParams(searchParams.toString());
@@ -239,18 +238,20 @@ export default function FindChargingResultSection({
           >
             {searchSection?.title ? parse(searchSection.title) : "Find Charging Stations"}
           </Heading>
-          <SearchStationForm filters={searchSection?.filters} />
+          <SearchStationForm filters={searchSection?.filters} currentFilters={currentFilters} />
         </div>
       </div>
       <div className="w-full py-[30px_40px] sm:py-[40px_60px] xl:py-[70px_100px] 2xl:py-[90px_120px]">
         <div className="container">
-          <Heading
-            as="div"
-            size="none"
-            className="text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-tight font-normal text-[#353535] [&>span]:text-[#030303] [&>span]:font-medium mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
-          >
-            Showing results for <span>Kochi</span>
-          </Heading>
+          {currentFilters?.search && (
+            <Heading
+              as="div"
+              size="none"
+              className="text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-tight font-normal text-[#353535] [&>span]:text-[#030303] [&>span]:font-medium mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+            >
+              Showing results for <span>{currentFilters.search}</span>
+            </Heading>
+          )}
           <div className="w-full max-sm:overflow-x-auto">
             <div className="w-full min-w-[468px]">
               <div className="flex max-xl:px-[10px] [&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
@@ -273,47 +274,55 @@ export default function FindChargingResultSection({
                   </div>
                 ))}
               </div>
-              {resultItems.map((item, index) => (
-                <div
-                  key={"station-row-" + index}
-                  className={
-                    "flex flex-wrap items-center max-xl:px-[10px] [&>*]:p-[5px] sm:[&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] border-1 border-[#f0f0f0] bg-white rounded-[15px] xl:rounded-[24px] overflow-hidden my-[5px] xl:my-[10px] hover:shadow-[0_4px_30px_0_rgba(0,0,0,0.1)] transition duration-300"
-                  }
-                >
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    <Link href={`/find-charging-stations/${item?.slug}`}>{item?.station}</Link>
+              {resultItems.length > 0 ? (
+                resultItems.map((item, index) => (
+                  <div
+                    key={"station-row-" + index}
+                    className={
+                      "flex flex-wrap items-center max-xl:px-[10px] [&>*]:p-[5px] sm:[&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] border-1 border-[#f0f0f0] bg-white rounded-[15px] xl:rounded-[24px] overflow-hidden my-[5px] xl:my-[10px] hover:shadow-[0_4px_30px_0_rgba(0,0,0,0.1)] transition duration-300"
+                    }
+                  >
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      <Link href={`/find-charging-stations/${item?.slug}`}>{item?.station}</Link>
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.location}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.power}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.socket_type}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.charger_type}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      <a
+                        href={item?.location_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#0055e0] hover:[&>img]:[filter:brightness(0)_saturate(100%)_invert(19%)_sepia(98%)_saturate(4315%)_hue-rotate(213deg)_brightness(93%)_contrast(102%)] transition flex"
+                      >
+                        <Image
+                          src="/images/icon-direction.svg"
+                          alt="direction"
+                          width={30}
+                          height={30}
+                          className="w-[12px] xl:w-[16px] aspect-square mr-1 inline-block transition"
+                        />
+                        Direction
+                      </a>
+                    </div>
                   </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.location}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.power}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.socket_type}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.charger_type}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    <a
-                      href={item?.button?.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-[#0055e0] hover:[&>img]:[filter:brightness(0)_saturate(100%)_invert(19%)_sepia(98%)_saturate(4315%)_hue-rotate(213deg)_brightness(93%)_contrast(102%)] transition flex"
-                    >
-                      <Image
-                        src="/images/icon-direction.svg"
-                        alt="direction"
-                        width={30}
-                        height={30}
-                        className="w-[12px] xl:w-[16px] aspect-square mr-1 inline-block transition"
-                      />
-                      Direction
-                    </a>
-                  </div>
+                ))
+              ) : (
+                <div className="w-full text-center py-[40px] xl:py-[60px]">
+                  <p className={cn(textStyle, "text-[14px] xl:text-[18px] text-[#7b7b75]")}>
+                    No charging stations found matching your criteria. Please try adjusting your filters.
+                  </p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect } from "react";
 import {
   Form,
   FormControl,
@@ -25,9 +26,7 @@ import { cn } from "@/lib/utils";
 
 // ✅ Fixed validation schema to match actual form fields
 const formSchema = z.object({
-  search: z.string().min(1, {
-    message: "Please enter a location to search.",
-  }),
+  search: z.string().optional(), // Made optional - users can filter without searching
   socketType: z.string().optional(),
   chargerType: z.string().optional(),
   powerType: z.string().optional(),
@@ -68,15 +67,16 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
     },
   });
 
-  // Handle form submission
-  function onSubmit(values) {
-    console.log("Form submitted:", values);
-
-    // Build query parameters
+  // Auto-submit function to apply filters
+  const applyFilters = useCallback((filterUpdates = {}) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    // Reset to page 1 when new search is performed
+    // Reset to page 1 when filters change
     params.set('page', '1');
+
+    // Get current form values and merge with updates
+    const currentValues = form.getValues();
+    const values = { ...currentValues, ...filterUpdates };
 
     // Set search keyword
     if (values.search && values.search.trim()) {
@@ -85,7 +85,7 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
       params.delete('search');
     }
 
-    // Set filter parameters (using the correct parameter names)
+    // Set filter parameters
     if (values.socketType) {
       params.set('socket_type_id', values.socketType);
     } else {
@@ -104,9 +104,29 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
       params.delete('power_id');
     }
 
-    // Navigate to the same page with new query parameters
+    // Navigate with new parameters
     router.push(`/find-charging-stations?${params.toString()}`);
+  }, [router, searchParams, form]);
+
+  // Handle form submission (for Enter key on search input)
+  function onSubmit(values) {
+    applyFilters(values);
   }
+
+  // Watch search field and apply debounced auto-search
+  const searchValue = form.watch("search");
+
+  useEffect(() => {
+    // Set up debounce timer for automatic search
+    const timer = setTimeout(() => {
+      if (searchValue !== currentFilters.search) {
+        applyFilters({ search: searchValue });
+      }
+    }, 600); // 600ms delay after user stops typing
+
+    // Cleanup function to cancel previous timer
+    return () => clearTimeout(timer);
+  }, [searchValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Form {...form}>
@@ -127,7 +147,7 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
                       {...field}
                     />
                   </FormControl>
-                  <Search className="text-[#200e32] size-3 xl:size-4 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <Search className="text-[#a9a9a9] size-3 xl:size-4 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 <FormMessage />
               </FormItem>
@@ -141,8 +161,11 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
               <FormItem className="w-full xs:w-1/3">
                 <FormLabel className={"sr-only"}>Socket Type</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    applyFilters({ socketType: value });
+                  }}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
@@ -169,8 +192,11 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
               <FormItem className="w-full xs:w-1/3">
                 <FormLabel className={"sr-only"}>Charger Type</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    applyFilters({ chargerType: value });
+                  }}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
@@ -197,8 +223,11 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
               <FormItem className="w-full xs:w-1/3">
                 <FormLabel className={"sr-only"}>Power Type</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    applyFilters({ powerType: value });
+                  }}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
