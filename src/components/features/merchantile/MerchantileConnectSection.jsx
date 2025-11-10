@@ -20,7 +20,7 @@ const local_data = {
 
 export default function MerchantileConnectSection({ data = local_data }) {
   return (
-    <section className="w-full h-auto block py-[15px] sm:py-[30px] xl:py-[60px] 2xl:py-[80px]">
+    <section className="w-full h-auto block py-[15px] sm:py-[30px] xl:py-[40px] 2xl:py-[60px]">
       <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-2">
         <div className="w-full h-auto overflow-hidden rounded-[20px] xl:rounded-[30px] p-[20px] sm:p-[40px] xl:p-[60px_70px] 2xl:p-[80px] 3xl:p-[100px] relative z-0">
           <Image
@@ -39,11 +39,11 @@ export default function MerchantileConnectSection({ data = local_data }) {
               >
                 {parse(data?.description)}
               </Heading>
-              <div>
+              <div className="flex">
                 <ActionButton
                   size={"lg"}
                   variant={"blue"}
-                  className="w-[140px] sm:w-[160px] xl:w-[200px] 2xl:w-[220px] 3xl:w-[240px]"
+                  className="w-[140px] sm:w-[160px] xl:w-[200px] 2xl:w-[220px] 3xl:w-[240px] max-sm:mx-auto"
                   asChild
                 >
                   <Link href={data?.button?.link}>{data?.button?.text}</Link>

@@ -72,7 +72,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
         <Heading
           as="h2"
           size="heading2"
-          className="text-[#030303] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
+          className="text-[#030303] mb-[10px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
         >
           {parse(data?.title)}
         </Heading>
@@ -84,7 +84,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
             {data?.list?.map((item, index) => (
               <div
                 key={"gallery" + index}
-                className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
+                className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
               >
                 {item?.media_type === "video" ? (
                   <Item
@@ -106,7 +106,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
                       <div
                         ref={ref}
                         onClick={open}
-                        className="w-full h-auto aspect-[48/36] rounded-[20px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
+                        className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
                       >
                         <video
                           autoPlay
@@ -139,7 +139,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
                     alt={item?.media_alt || "gallery"}
                   >
                     {({ ref, open }) => (
-                      <div className="w-full h-auto aspect-[48/36] rounded-[20px] xl:rounded-[20px] overflow-hidden cursor-pointer">
+                      <div className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
                         <Image
                           ref={ref}
                           onClick={open}

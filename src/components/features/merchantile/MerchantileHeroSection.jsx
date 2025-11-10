@@ -62,7 +62,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
         </picture>
       )}
       <div className="container">
-        <div className="flex items-center mb-[20px] xl:mb-[40px] 2xl:mb-[55px]">
+        <div className="flex items-center mb-[10px] sm:mb-[20px] xl:mb-[40px] 2xl:mb-[55px]">
           <Image
             src="/images/merchantile-hero-1.png"
             alt="merchantile-hero-1"
