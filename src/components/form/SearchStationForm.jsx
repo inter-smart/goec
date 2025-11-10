@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -28,7 +29,7 @@ const formSchema = z.object({
     message: "Please enter a location to search.",
   }),
   socketType: z.string().optional(),
-  electricType: z.string().optional(),
+  chargerType: z.string().optional(),
   powerType: z.string().optional(),
 });
 
@@ -52,23 +53,59 @@ const textareaStyle = `
   .replace(/\s+/g, " ")
   .trim();
 
-export default function SearchStationForm() {
-  // ✅ Fixed default values to match schema
+export default function SearchStationForm({filters, currentFilters = {}}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // ✅ Fixed default values to match schema and pre-fill with current filters
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      search: "",
-      socketType: "",
-      electricType: "",
-      powerType: "",
+      search: currentFilters.search || "",
+      socketType: currentFilters.socket_type_id || "",
+      chargerType: currentFilters.charger_type_id || "",
+      powerType: currentFilters.power_id || "",
     },
   });
 
   // Handle form submission
   function onSubmit(values) {
     console.log("Form submitted:", values);
-    // Add your form submission logic here
-    // Example: API call, toast notification, etc.
+
+    // Build query parameters
+    const params = new URLSearchParams(searchParams.toString());
+
+    // Reset to page 1 when new search is performed
+    params.set('page', '1');
+
+    // Set search keyword
+    if (values.search && values.search.trim()) {
+      params.set('search', values.search.trim());
+    } else {
+      params.delete('search');
+    }
+
+    // Set filter parameters (using the correct parameter names)
+    if (values.socketType) {
+      params.set('socket_type_id', values.socketType);
+    } else {
+      params.delete('socket_type_id');
+    }
+
+    if (values.chargerType) {
+      params.set('charger_type_id', values.chargerType);
+    } else {
+      params.delete('charger_type_id');
+    }
+
+    if (values.powerType) {
+      params.set('power_id', values.powerType);
+    } else {
+      params.delete('power_id');
+    }
+
+    // Navigate to the same page with new query parameters
+    router.push(`/find-charging-stations?${params.toString()}`);
   }
 
   return (
@@ -113,13 +150,11 @@ export default function SearchStationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["ICE 25123 1", "ICE 25123 2", "ICE 25123 3"].map(
-                      (item, index) => (
-                        <SelectItem key={"socket-item" + index} value={item}>
-                          {item}
-                        </SelectItem>
-                      )
-                    )}
+                    {filters?.socket_types?.map((item) => (
+                      <SelectItem key={"socket-item-" + item.id} value={String(item.id)}>
+                        {item.type}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -143,9 +178,9 @@ export default function SearchStationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["AC", "DC", "AC, DC"].map((item, index) => (
-                      <SelectItem key={"charger-item" + index} value={item}>
-                        {item}
+                    {filters?.charger_types?.map((item) => (
+                      <SelectItem key={"charger-item-" + item.id} value={String(item.id)}>
+                        {item.type}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -171,13 +206,11 @@ export default function SearchStationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["25 KW", "50 KW", "75 KW", "100 KW"].map(
-                      (item, index) => (
-                        <SelectItem key={"power-item" + index} value={item}>
-                          {item}
-                        </SelectItem>
-                      )
-                    )}
+                    {filters?.power_options?.map((item) => (
+                      <SelectItem key={"power-item-" + item.id} value={String(item.id)}>
+                        {item.power}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />

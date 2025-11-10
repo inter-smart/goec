@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, generateMediaUrl } from "@/lib/utils";
 
 const { default: Image } = require("next/image");
 const { useState, useRef, useEffect } = require("react");
@@ -29,8 +29,8 @@ export default function ReviewCard({ item }) {
       <div className="w-full flex flex-wrap items-center mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
         <div className="flex-1 flex flex-wrap items-center">
           <Image
-            src={item?.media?.path}
-            alt={item?.media?.alt}
+            src={generateMediaUrl(item?.media?.media_path)}
+            alt={item?.media?.media_alt}
             width={75}
             height={75}
             className="w-[30px] sm:w-[40px] xl:w-[50px] 2xl:w-[60px] aspect-square rounded-full mr-2 xl:mr-4 block hover:scale-105 transition"

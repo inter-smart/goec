@@ -13,3 +13,5 @@ export function extractFirstParagraph(html) {
   const match = html.match(/<p[^>]*>.*?<\/p>/is);
   return match ? match[0] : null;
 }
+
+

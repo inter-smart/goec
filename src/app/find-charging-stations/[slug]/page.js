@@ -2,6 +2,7 @@ import ConnectSection from "@/components/features/blog/ConnectSection";
 import DetailHeroSection from "@/components/features/find-charging-station/DetailHeroSection";
 import DetailInfoSection from "@/components/features/find-charging-station/DetailInfoSection";
 import DetailReviewSection from "@/components/features/find-charging-station/DetailReviewSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const local_data = {
   enquiry_data: {
@@ -15,13 +16,41 @@ const local_data = {
   },
 };
 
-export default function Page() {
+export default async function Page({ params, searchParams }) {
+  const { slug } = params;
+
+  // Extract review pagination parameters
+  const reviews_page = searchParams?.reviews_page || 1;
+  const reviews_limit = searchParams?.reviews_limit || 4;
+
+  // Build query string
+  const queryParams = new URLSearchParams();
+  queryParams.set("reviews_page", reviews_page);
+  queryParams.set("reviews_limit", reviews_limit);
+
+  const { data, pagination, error } = await fetchFromAPI(
+    `charging-station/${slug}?${queryParams.toString()}`
+  );
+
+  const {
+    about_title,
+    station_details,
+    reviews_title,
+    reviews_section,
+    footer_section,
+  } = data;
+
+  console.log(about_title);
   return (
     <>
-      <DetailHeroSection />
-      <DetailInfoSection />
-      <DetailReviewSection />
-      <ConnectSection data={local_data?.enquiry_data} />
+      <DetailHeroSection station={station_details} />
+      <DetailInfoSection station={station_details} aboutTitle={about_title} />
+      <DetailReviewSection
+        reviewsTitle={reviews_title}
+        reviewsData={reviews_section}
+        pagination={reviews_section?.pagination}
+      />
+      <ConnectSection footer_section={footer_section} />
     </>
   );
 }

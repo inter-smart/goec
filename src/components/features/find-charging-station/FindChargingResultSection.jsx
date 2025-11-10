@@ -2,7 +2,8 @@
 import SearchStationForm from "@/components/form/SearchStationForm";
 import { Heading } from "@/components/utils/Heading";
 import parse from "html-react-parser";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Image from "next/image";
 
@@ -149,19 +150,26 @@ const textStyle = `
 `
   .replace(/\s+/g, " ")
   .trim();
-export default function FindChargingResultSection({ data = local_data }) {
+export default function FindChargingResultSection({
+  stations = { list: [] },
+  searchSection = { filters: {} },
+  pagination = { total: 0, currentPage: 1, perPage: 7, totalPages: 1 },
+  currentFilters = {}
+}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const paginationRef = useRef(null);
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
-  const resultItems = data?.items || [];
-  const totalPages = Math.ceil(resultItems.length / itemsPerPage);
+  // Use server-side pagination data
+  const resultItems = stations?.list || [];
+  const currentPage = pagination?.currentPage || 1;
+  const totalPages = pagination?.totalPages || 1;
+  const total = pagination?.total || 0;
+  const perPage = pagination?.perPage || 7;
 
-  // Calculate current items
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = resultItems.slice(indexOfFirstItem, indexOfLastItem);
+  // Calculate display indices
+  const indexOfFirstItem = (currentPage - 1) * perPage;
+  const indexOfLastItem = Math.min(indexOfFirstItem + perPage, total);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -196,9 +204,13 @@ export default function FindChargingResultSection({ data = local_data }) {
     return pages;
   };
 
+
+  console.log(" resultItems ",resultItems)
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('page', page.toString());
+      router.push(`?${params.toString()}`);
 
       setTimeout(() => {
         if (paginationRef.current) {
@@ -225,9 +237,9 @@ export default function FindChargingResultSection({ data = local_data }) {
             size="heading3"
             className="text-center text-[#030303] mb-[10px] xl:mb-[20px] 2xl:mb-[30px]"
           >
-            Search Charging Stations
+            {searchSection?.title ? parse(searchSection.title) : "Find Charging Stations"}
           </Heading>
-          <SearchStationForm />
+          <SearchStationForm filters={searchSection?.filters} />
         </div>
       </div>
       <div className="w-full py-[30px_40px] sm:py-[40px_60px] xl:py-[70px_100px] 2xl:py-[90px_120px]">
@@ -237,7 +249,7 @@ export default function FindChargingResultSection({ data = local_data }) {
             size="none"
             className="text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-tight font-normal text-[#353535] [&>span]:text-[#030303] [&>span]:font-medium mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
           >
-            {parse(data?.title)}
+            Showing results for <span>Kochi</span>
           </Heading>
           <div className="w-full max-sm:overflow-x-auto">
             <div className="w-full min-w-[468px]">
@@ -261,7 +273,7 @@ export default function FindChargingResultSection({ data = local_data }) {
                   </div>
                 ))}
               </div>
-              {currentItems.map((item, index) => (
+              {resultItems.map((item, index) => (
                 <div
                   key={"station-row-" + index}
                   className={
@@ -269,7 +281,7 @@ export default function FindChargingResultSection({ data = local_data }) {
                   }
                 >
                   <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    <Link href={item?.link}>{item?.station}</Link>
+                    <Link href={`/find-charging-stations/${item?.slug}`}>{item?.station}</Link>
                   </div>
                   <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
                     {item?.location}
@@ -309,8 +321,8 @@ export default function FindChargingResultSection({ data = local_data }) {
             <div>
               <div className={cn(textStyle, "text-[#7b7b75]")}>
                 Showing {indexOfFirstItem + 1} to{" "}
-                {Math.min(indexOfLastItem, resultItems.length)} of{" "}
-                {resultItems.length} recent orders
+                {indexOfLastItem} of{" "}
+                {total} charging stations
               </div>
             </div>
 

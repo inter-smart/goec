@@ -41,7 +41,7 @@ export default function ConnectSection({ footer_section }) {
               className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
               asChild
             >
-              <Link href="/contact">Get in touch</Link>
+              <Link href={footer_section?.button?.link? footer_section?.button?.link : "/contact"}>{footer_section?.button?.text || footer_section?.button?.label|| "Get in touch"}</Link>
             </ActionButton>
           </div>
         </div>
