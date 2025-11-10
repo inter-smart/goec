@@ -50,11 +50,11 @@ export default function MerchantileInfoSection({ data = local_data }) {
               className="w-full h-full object-cover hover:scale-105 transition duration-300"
             />
           </div>
-          <div className="typography xl:[&_p]:text-[16px] 2xl:[&_p]:text-[18px] ">
+          <div className="typography xl:[&_p]:text-[16px] 2xl:[&_p]:text-[18px] 3xl:[&_p]:text-[24px] ">
             <Heading
               as="h2"
               size="none"
-              className="text-[18px] sm:text-[24px] lg:text-[30px] xl:text-[42px] 2xl:text-[50px] 3xl:text-[64px] leading-tight font-medium text-[#030303] mb-[10px] sm:mb-[15px] xl:mb-[40px] 2xl:mb-[60px] max-sm:mt-0"
+              className="text-[18px] sm:text-[24px] lg:text-[30px] xl:text-[42px] 2xl:text-[50px] 3xl:text-[64px] leading-tight font-medium text-[#030303] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] max-sm:mt-0"
             >
               {data?.title}
             </Heading>
@@ -72,7 +72,7 @@ export default function MerchantileInfoSection({ data = local_data }) {
                   alt={item?.media?.alt}
                   width={100}
                   height={50}
-                  className="w-[80px] xl:w-[100px] hover:scale-105 transition duration-300 mb-[20px] sm:mb-[40px] xl:mb-[60px]"
+                  className="w-[80px] xl:w-[100px] hover:scale-105 transition duration-300 mb-[20px] xl:mb-[40px] 2xl:mb-[60px]"
                 />
                 <div className="typography xl:[&_p]:text-[16px] 2xl:[&_p]:text-[18px] ">
                   {parse(item?.description)}
