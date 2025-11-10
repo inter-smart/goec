@@ -1,7 +1,7 @@
-import FooterCard from '@/components/common/FooterCard'
-import AboutSection from '@/components/features/charging-station/AboutSection'
-import ChargingStationHero from '@/components/features/charging-station/ChargingStationHero'
-import ReviewsSection from '@/components/features/charging-station/ReviewsSection'
+// import FooterCard from '@/components/common/FooterCard'
+// import AboutSection from '@/components/features/charging-station/AboutSection'
+// import ChargingStationHero from '@/components/features/charging-station/ChargingStationHero'
+// import ReviewsSection from '@/components/features/charging-station/ReviewsSection'
 
 
 
@@ -16,10 +16,12 @@ const footerData={
 export default function Page() {
   return (
     <div>
-      <ChargingStationHero />
-      <AboutSection />
+      {/* <ChargingStationHero />
+      <AboutSection /> */}
+
+
       {/* <ReviewsSection /> */}
-      <FooterCard data={footerData} />
+      {/* <FooterCard data={footerData} /> */}
     </div>
   )
 }
