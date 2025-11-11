@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import InnerHero from "@/components/common/InnerHero";
 import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
 import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";

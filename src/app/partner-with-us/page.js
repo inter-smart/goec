@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import AboutInfoSection from "@/components/features/about/AboutInfoSection";
 import AboutMoreSection from "@/components/features/about/AboutMoreSection";
 import AboutCompanySection from "@/components/features/about/AboutCompanySection";

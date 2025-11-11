@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import InnerHero from "@/components/common/InnerHero";
 import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
 import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
@@ -13,13 +15,7 @@ export default async function Page() {
     return <Error path="/mobile-app" />;
   }
 
-  const {
-    banner_section,
-    about_section,
-    feature_section,
-    how_to_charge_section,
-    start_ur_ev_section,
-  } = data;
+  const { banner_section, about_section, feature_section, how_to_charge_section, start_ur_ev_section } = data;
 
   return (
     <>
@@ -27,17 +23,11 @@ export default async function Page() {
         data={banner_section}
         title={banner_section?.title}
         media={banner_section?.media}
-         start_ur_ev_section={start_ur_ev_section}
+        start_ur_ev_section={start_ur_ev_section}
       ></InnerHero>
       <AppDetailSection data={about_section} />
-      <AppFeatureSection
-        title={feature_section?.title}
-        list={feature_section?.list}
-      />
-      <HowChargeSection
-        title={how_to_charge_section?.title}
-        list={how_to_charge_section?.list}
-      />
+      <AppFeatureSection title={feature_section?.title} list={feature_section?.list} />
+      <HowChargeSection title={how_to_charge_section?.title} list={how_to_charge_section?.list} />
       <AppDownloadSection appDownloadData={start_ur_ev_section} />
     </>
   );

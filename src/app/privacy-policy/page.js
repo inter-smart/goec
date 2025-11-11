@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import HeroSection from "@/components/features/charging-stations/HeroSection";
 import Policies from "@/components/features/privacy-policy/Policies";
 

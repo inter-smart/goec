@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import InnerHero from "@/components/common/InnerHero";
 import BusinessModalSection from "@/components/features/investment/BusinessModalSection";
 import InvestBrocureSection from "@/components/features/investment/InvestBrocureSection";

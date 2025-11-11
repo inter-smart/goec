@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import InnerHero from "@/components/common/InnerHero";
 import AboutInfoSection from "@/components/features/about/AboutInfoSection";
 import AboutMoreSection from "@/components/features/about/AboutMoreSection";
@@ -41,10 +43,8 @@ export default async function AboutPage() {
     ],
   };
 
-
-
   if (error) {
-    return <Error path={"/about"} />
+    return <Error path={"/about"} />;
   }
 
   const {
@@ -63,35 +63,23 @@ export default async function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <InnerHero
-      data={heroData}
-        title={banner_section?.title || ""}
-        media={banner_section?.media || {}}
-      />
+      <InnerHero data={heroData} title={banner_section?.title || ""} media={banner_section?.media || {}} />
 
       {/* About Info */}
-      <AboutInfoSection
-        description={about_section?.description || ""}
-        media={about_section?.media || {}}
-      />
+      <AboutInfoSection description={about_section?.description || ""} media={about_section?.media || {}} />
 
       {/* Learn More */}
       <AboutMoreSection
-        aboutMore = {learn_more_section}
+        aboutMore={learn_more_section}
         partners={mission_vision_section || {}}
         mission={mission_vision_section?.mission || {}}
         vision={mission_vision_section?.vision || {}}
         partnersList={mission_vision_section?.partners_list || []}
         leadingTheGame={mission_vision_section?.leading_the_game || {}}
-        
-
       />
 
       {/* Mission, Vision, Partners, Leading the Game */}
-      <AboutCompanySection
-        ourValues = {our_values_section}
-        ourJourney = {our_journey_section}
-        />
+      <AboutCompanySection ourValues={our_values_section} ourJourney={our_journey_section} />
 
       {/* Meet Team */}
       <AboutTeamSection
@@ -115,12 +103,7 @@ export default async function AboutPage() {
       />
 
       {/* Become a Partner */}
-      <AboutBecomePartnerSection
-        title={partner_section?.title || ""}
-        description={partner_section?.description || ""}
-      />
+      <AboutBecomePartnerSection title={partner_section?.title || ""} description={partner_section?.description || ""} />
     </>
   );
 }
-
-
