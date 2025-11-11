@@ -2,6 +2,7 @@ import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { Text } from "@/components/utils/Text";
+import { generateMediaUrl } from "@/lib/utils";
 
 const local_data = {
   media: {
@@ -52,10 +53,10 @@ export default function CareerHeroSection({ data = local_data }) {
           <picture className="absolute z-2 inset-0">
             <source
               media="(max-width: 640px)"
-              srcSet={data?.media?.mobile?.media_path}
+              srcSet={generateMediaUrl(data?.media?.mobile?.media_path)}
             />
             <Image
-              src={data?.media?.desktop?.media_path}
+              src={generateMediaUrl(data?.media?.desktop?.media_path)}
               alt={data?.media?.desktop?.media_alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
