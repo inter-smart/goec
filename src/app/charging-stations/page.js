@@ -20,6 +20,7 @@ const header_data = {
 };
 
 export default async function Page() {
+  
 
   const {data, error} = await fetchFromAPI("chargers")
 

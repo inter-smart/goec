@@ -1,7 +1,7 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
-import { cn, generateMediaUrl } from "@/lib/utils";
+import { cn, generateMediaUrl, parseDescriptionToListItems } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
@@ -146,6 +146,7 @@ const local_data = {
   ],
 };
 
+const className = "text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[22px] leading-tight font-medium text-[#373737] p-[4px_10px] xl:p-[6px_15px] 2xl:p-[10px_20px] rounded-full border border-[#eee] hover:border-primary transition flex";
 export default function StationListSection({ data = local_data }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px]">
@@ -198,15 +199,9 @@ export default function StationListSection({ data = local_data }) {
                       </Heading>
                       <ul className="flex flex-wrap mx-[-2px] xl:mx-[-4px] [&>*]:p-[2px] xl:[&>*]:p-[4px]">
                         {/* {item?.features?.map((feature, idx) => ( */}
-                          <li className="block">
-                            <Text
-                              as="div"
-                              size="none"
-                              className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[22px] leading-tight font-medium text-[#373737] p-[4px_10px] xl:p-[6px_15px] 2xl:p-[10px_20px] rounded-full border border-[#eee] hover:border-primary transition flex"
-                            >
-                              {parse(item?.features)}
-                            </Text>
-                          </li>
+                          <Text as="div" size="none">
+                            {parseDescriptionToListItems(item?.features, className)}
+                          </Text>
                         {/* ))} */}
                       </ul>
                     </div>
