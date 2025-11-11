@@ -1,12 +1,11 @@
-// import JobSection from "@/components/features/career/jobSection";
+import JobSection from "@/components/features/career-old/jobSection";
 
-export default async function JobDetailsPage({ params }) {
+export default async function Page({ params }) {
   const { slug } = await params;
 
   return (
     <>
-      {/* <JobSection slug={slug} /> */}
-      <div>career detail page</div>
+      <JobSection slug={slug} />
     </>
   );
 }

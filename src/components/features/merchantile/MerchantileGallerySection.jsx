@@ -1,11 +1,8 @@
 "use client";
 
-import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
-import Link from "next/link";
 import parse from "html-react-parser";
-import { useRef } from "react";
 
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
