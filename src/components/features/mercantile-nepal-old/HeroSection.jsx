@@ -34,8 +34,6 @@ const heroBanner = {
 };
 
 export default function HeroSection({ bannerData }) {
-  console.log(bannerData);
-
   const type = bannerData?.mediaType || "image";
   const isMobile = useMedia("(max-width: 640px)");
 

@@ -12,7 +12,7 @@ export default async function Page() {
   const { data, error } = await fetchFromAPI("nfc-card");
 
   if (error) {
-    return <Error path={"/merchantile-nepal"} />;
+    return <Error path={"/nfc-card"} />;
   }
 
   const { banner_section, description, key_values, steps, bottom_card } = data || {};
