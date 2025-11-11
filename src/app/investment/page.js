@@ -57,7 +57,7 @@ export default async function Page() {
 
       <InvestmentInfoSection description={about_section?.description} media={about_section?.media} />
 
-      <MarketSizeSection title={growth_section?.title} description={growth_section?.description} media={growth_section?.media} />
+      <MarketSizeSection title={growth_section?.title} description={growth_section?.description} media={growth_section?.media} chart={growth_section?.chart} />
 
       <BusinessModalSection title={explore_section?.title} list={explore_section?.list} />
 

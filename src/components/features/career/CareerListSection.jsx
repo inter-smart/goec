@@ -343,7 +343,7 @@ function JobCard({ job }) {
           <IconCard
             src="/images/career-exp.svg"
             alt="experience"
-            title={job?.job_experience}
+            title={job?.experience>0 ? job?.experience + "+ years": "fresher"}
           />
         </div>
         <div>

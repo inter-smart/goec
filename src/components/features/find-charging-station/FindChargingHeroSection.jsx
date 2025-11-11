@@ -3,8 +3,25 @@ import parse from "html-react-parser";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import { generateMediaUrl } from "@/lib/utils";
+import { renderHtml } from "@/components/utils/parseHtml";
 
-export default function HeroSection({ banner_section }) {
+
+export const fallbackBannerSection = {
+  title: "Power Your Journey with <strong>GOEC Charging</strong>",
+  description: "Fast, reliable, and accessible EV charging stations near you.",
+  media: {
+    desktop: {
+      media_path: "images/hero-banner-1.jpg",
+      media_alt: "EV charging station desktop banner",
+    },
+    mobile: {
+      media_path: "images/hero-banner-1.jpg",
+      media_alt: "EV charging station mobile banner",
+    },
+  },
+};
+export default function HeroSection({ banner_section = fallbackBannerSection }) {
+
   return (
     <section className="w-full h-auto min-h-[268px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-center bg-black py-[calc(10px+var(--header-y))_40px] sm:py-[calc(20px+var(--header-y))_60px] xl:py-[calc(0+var(--header-y))_100px] 2xl:py-[calc(0+var(--header-y))_120px] relative z-0">
       <picture className="absolute -z-2 inset-0">
@@ -38,7 +55,7 @@ export default function HeroSection({ banner_section }) {
               size="heading1"
               className="line-clamp-3 text-center text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text max-w-[320px] sm:max-w-[468px] xl:max-w-[620px] 2xl:max-w-[768px] 3xl:max-w-[920px] mx-auto"
             >
-              {parse(banner_section?.title)}
+              {renderHtml(banner_section?.title)}
             </Heading>
           </div>
         </div>

@@ -25,7 +25,7 @@ const futureData = {
   },
 };
 
-export default function MarketSizeSection({ data = futureData, title, description, media }) {
+export default function MarketSizeSection({ data = futureData, title, description, media, chart }) {
   const sanitizedText = DOMPurify.sanitize(description);
   return (
     <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">
@@ -57,7 +57,7 @@ export default function MarketSizeSection({ data = futureData, title, descriptio
             <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
               <div>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <MarketSizeChart />
+                  <MarketSizeChart data={chart} />
                 </Suspense>
                 {/* if media */}
                 {/* {data?.media?.type === "video" ? (
