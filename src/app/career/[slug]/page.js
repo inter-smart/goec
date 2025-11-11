@@ -5,7 +5,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-    <CareerInfoSection />
+      <CareerInfoSection />
       <JobSection slug={slug} />
     </>
   );
