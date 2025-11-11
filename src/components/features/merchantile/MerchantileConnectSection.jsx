@@ -3,6 +3,7 @@ import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
+import { generateMediaUrl } from "@/lib/utils";
 
 
 const local_data = {
@@ -24,7 +25,7 @@ export default function MerchantileConnectSection({ data = local_data }) {
       <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-2">
         <div className="w-full h-auto overflow-hidden rounded-[20px] xl:rounded-[30px] p-[20px] sm:p-[40px] xl:p-[60px_70px] 2xl:p-[80px] 3xl:p-[100px] relative z-0">
           <Image
-            src={data?.media?.media_path}
+            src={generateMediaUrl(data?.media?.media_path)}
             alt={data?.media?.media_alt}
             fill
             sizes={"1820px"}

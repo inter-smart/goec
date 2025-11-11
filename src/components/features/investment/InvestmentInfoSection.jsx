@@ -20,6 +20,7 @@ const investmentData = {
     "<h4>GO EC is envisioned to meet the opportunities for sustainable mobility through collaborations with wiling and progressive partners. Our focus remains on creating a chain of EV Charging Stations that are optimized within the best-given space and infrastructure capacities.</h4>",
 };
 
+
 export default function InvestmentInfoSection({
   description,
   media,
@@ -68,7 +69,7 @@ export default function InvestmentInfoSection({
       </div>
       <div className="container">
         <div className="typography my-[20px_10px] sm:my-[40px_20px] xl:my-[100px_30px] 2xl:my-[140px_40px]">
-          {parse(data?.description)}
+          {parse(sanitizedText)}
         </div>
       </div>
     </section>

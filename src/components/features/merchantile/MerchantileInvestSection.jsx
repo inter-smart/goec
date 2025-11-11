@@ -3,7 +3,7 @@ import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import parse from "html-react-parser";
 
-import { cn } from "@/lib/utils";
+import { cn, generateMediaUrl } from "@/lib/utils";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 import Image from "next/image";
@@ -93,7 +93,7 @@ export default function MerchantileInvestSection({ data = local_data }) {
       <div className="w-full pl-4 sm:max-w-[calc(var(--container-sm)/2+50%)] md:max-w-[calc(var(--container-md)/2+50%)] lg:max-w-[calc(var(--container-lg)/2+50%)] xl:max-w-[calc(var(--container-xl)/2+50%)] 2xl:max-w-[calc(var(--container-2xl)/2+50%)] 3xl:max-w-[calc(var(--container-3xl)/2+50%)] ml-auto [mask-image:linear-gradient(to_right,black_0%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,black_0%,black_95%,transparent_100%)]">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex mx-[-5px] sm:mx-[-8px] lg:mx-[-10px] 2xl:mx-[-15px]">
-            {data?.item_invest?.map((item, index) => {
+            {data?.list?.map((item, index) => {
               const [isHover, setIsHover] = useState(false);
               return (
                 <div
@@ -107,8 +107,8 @@ export default function MerchantileInvestSection({ data = local_data }) {
                       )}
                     >
                       <Image
-                        src={item?.media?.path || "/images/placeholder.jpg"}
-                        alt={item?.media?.alt}
+                        src={generateMediaUrl(item?.media_path) || "/images/placeholder.jpg"}
+                        alt={item?.media_alt}
                         fill
                         sizes="700px"
                         className="w-full h-full object-cover transition hover:scale-105"
@@ -121,21 +121,21 @@ export default function MerchantileInvestSection({ data = local_data }) {
                           size="heading3"
                           className="font-semibold text-[#191a19] mb-[2px]"
                         >
-                          {item?.title}
+                          {item?.name}
                         </Heading>
                         <Text
                           as="div"
                           size="text2"
                           className="line-clamp-1 text-[#757575] mb-[5px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
                         >
-                          {item?.sub_title}
+                          {item?.title}
                         </Text>
                         <Text
                           as="div"
                           size="text2"
                           className="line-clamp-2 text-[#373737] mb-[5px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
                         >
-                          {parse(item?.description)}
+                          {parse(item?.points)}
                         </Text>
                         <div>
                           <ActionButton
@@ -152,8 +152,8 @@ export default function MerchantileInvestSection({ data = local_data }) {
                             )}
                             asChild
                           >
-                            <Link href={item?.button?.link}>
-                              {item?.button?.label}
+                            <Link href={item?.link}>
+                              Learn more
                               <svg
                                 width="55"
                                 height="31"

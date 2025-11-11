@@ -4,6 +4,7 @@ import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
+import { generateMediaUrl } from "@/lib/utils";
 
 const local_data = {
   media: {
@@ -25,7 +26,7 @@ const local_data = {
 export default function MerchantileHeroSection({ data = local_data }) {
   return (
     <section className="w-full h-auto xl:h-screen min-h-[468px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-end bg-black py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] relative z-0">
-      {data?.media?.desktop?.type === "video" ? (
+      {data?.media?.desktop?.media_type === "video" ? (
         <>
           <video
             autoPlay
@@ -34,7 +35,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
             playsInline
             className="w-full h-full object-cover absolute -z-1 inset-0 block sm:hidden opacity-60"
           >
-            <source src={data?.media?.mobile?.path} type="video/mp4" />
+            <source src={generateMediaUrl(data?.media?.mobile?.media_path)} type="video/mp4" />
           </video>
           <video
             autoPlay
@@ -43,18 +44,18 @@ export default function MerchantileHeroSection({ data = local_data }) {
             playsInline
             className="w-full h-full object-cover absolute -z-1 inset-0 hidden sm:block opacity-60"
           >
-            <source src={data?.media?.mobile?.path} type="video/mp4" />
+            <source src={generateMediaUrl(data?.media?.mobile?.media_path)} type="video/mp4" />
           </video>
         </>
       ) : (
         <picture className="absolute -z-1 inset-0">
           <source
             media="(max-width: 640px)"
-            srcSet={data?.media?.mobile?.path}
+            srcSet={generateMediaUrl(data?.media?.mobile?.media_path)}
           />
           <Image
-            src={data?.media?.desktop?.path}
-            alt={data?.media?.desktop?.alt}
+            src={generateMediaUrl(data?.media?.desktop?.media_path)}
+            alt={data?.media?.desktop?.media_alt}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
             className="-z-1 opacity-60"
@@ -64,8 +65,8 @@ export default function MerchantileHeroSection({ data = local_data }) {
       <div className="container">
         <div className="flex items-center mb-[10px] sm:mb-[20px] xl:mb-[40px] 2xl:mb-[55px]">
           <Image
-            src="/images/merchantile-hero-1.png"
-            alt="merchantile-hero-1"
+            src={generateMediaUrl(data?.logo)}
+            alt={data?.logoTitle}
             width={40}
             height={40}
             className="w-[20px] xl:w-[35px] 2xl:w-[40px] mr-2 xl:mr-3 object-contain inline-block"
@@ -75,7 +76,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
             size="text1"
             className="line-clamp-2 text-center sm:text-start text-transparent bg-linear-to-r from-white via-50% via-white to-[#999] bg-clip-text "
           >
-            {parse(data?.description)}
+            {parse(data?.logoTitle)}
           </Text>
         </div>
         <Heading
@@ -91,7 +92,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
             className="text-black bg-white max-w-[160px] 2xs:max-w-[180px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[280px]"
             asChild
           >
-            <Link href="/investment">Invest in GO EC Mercantile </Link>
+            <Link href={data?.primaryButton?.link}>{data?.primaryButton?.text}</Link>
           </ActionButton>
 
           <ActionButton
@@ -100,7 +101,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
             className="max-w-[140px] 3xs:max-w-[160px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[240px]"
             asChild
           >
-            <Link href="/">Get a free consulation</Link>
+            <Link href={data?.secondaryButton?.link}>{data?.secondaryButton?.text}</Link>
           </ActionButton>
         </div>
       </div>

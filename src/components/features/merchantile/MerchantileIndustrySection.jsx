@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 const MarketSizeChart = dynamic(
   () => import("@/components/common/MarketSizeChart"),
   { ssr: false }
+  
 );
 
 const local_data = {
@@ -65,7 +66,7 @@ const local_data = {
   },
 };
 
-export default function MerchantileIndustrySection({ data = local_data }) {
+export default function MerchantileIndustrySection({ data = local_data,our_values }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[40px_60px] xl:py-[80px_120px] 2xl:py-[100px_140px] bg-[#0048bf] overflow-hidden relative z-0">
       <Image
@@ -80,7 +81,7 @@ export default function MerchantileIndustrySection({ data = local_data }) {
           <div className="w-full max-w-full lg:max-w-[468px] xl:max-w-[440px] 2xl:max-w-[576px] 3xl:max-w-[640px] lg:float-right lg:ml-[13%]">
             <div className="w-full h-full block">
               <Suspense fallback={<div>Loading...</div>}>
-                <MarketSizeChart bottomColor="#1f52a7" topColor="#aec1e0" />
+                <MarketSizeChart data={data?.chart} bottomColor="#1f52a7" topColor="#aec1e0" />
               </Suspense>
               {/* if media */}
               {/* <Image
@@ -95,7 +96,7 @@ export default function MerchantileIndustrySection({ data = local_data }) {
                   as="p"
                   className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-tight font-normal text-center text-[#ced1d0]"
                 >
-                  {data?.value?.tag_desription}
+                  {data?.summary}
                 </Text>
               </div>
             </div>
@@ -122,12 +123,12 @@ export default function MerchantileIndustrySection({ data = local_data }) {
                 size="heading2"
                 className="text-white max-sm:text-center"
               >
-                {data?.value?.title}
+                {our_values?.title}
               </Heading>
             </div>
             <div className="w-full lg:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
               <Text as="div" size="text2" className="text-[#ced1c0]">
-                {parse(data?.value?.description)}
+                {parse(our_values?.description)}
               </Text>
             </div>
           </div>
@@ -169,7 +170,7 @@ export default function MerchantileIndustrySection({ data = local_data }) {
               },
             }}
           >
-            {data?.value?.items?.map((item, index) => {
+            {our_values?.list?.map((item, index) => {
               return (
                 <SwiperSlide key={"value" + index} style={{ width: "33.333%" }}>
                   <div className="group w-full h-full min-h-[176px] sm:min-h-[268px] xl:min-h-[350px] 3xl:min-h-[420px] flex flex-col justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-md backdrop-blur-sm">
