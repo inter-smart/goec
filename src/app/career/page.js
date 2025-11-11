@@ -4,7 +4,36 @@ import Benifits from "@/components/features/career/Benifits";
 import CareersPage from "@/components/features/career/CurrentOpenings";
 import TestimonialSection from "@/components/features/career/Testimonials";
 import ScrollerSection from "@/components/common/ScrollerSection";
-import { fetchFromAPI } from "@/lib/api";
+
+const LifeImages = {
+  title: "LIfe At GO EC",
+  list: [
+    {
+      src: "/images/life_image_1.png", // replace with your image path
+      alt: "Team photo 1",
+    },
+    {
+      src: "/images/life_image_2.png", // replace with your image path
+      alt: "Team photo 2",
+    },
+    {
+      src: "/images/life_image_3.png", // replace with your image path
+      alt: "Team photo 1",
+    },
+    {
+      src: "/images/life_image_4.png", // replace with your image path
+      alt: "Team photo 2",
+    },
+    {
+      src: "/images/life_image_5.png", // replace with your image path
+      alt: "Team photo 1",
+    },
+    {
+      src: "/images/life_image_1.png", // replace with your image path
+      alt: "Team photo 2",
+    },
+  ],
+};
 
 export default async function CareerPage() {
   // ✅ Fetch data from backend
@@ -33,7 +62,7 @@ export default async function CareerPage() {
   return (
     <div>
       {/* Banner Section */}
-      <Hero banner_section={banner_section} />
+      <CareerHeroSection banner_section={banner_section} />
 
       <CareersPage
         current_opening={current_opening_section}
