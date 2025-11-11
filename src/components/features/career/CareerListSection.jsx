@@ -111,43 +111,49 @@ export default function CareerListSection({ data = local_data }) {
   const [selected, setSelected] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const categoriesWithAll = useMemo(
+  () => [{ id: 0, title: "All positions" }, ...data.job_categories],
+  [data.job_categories]
+);
+
   const allJobs = data.jobs;
 
   // 🧮 Filter jobs based on search & department
-  const filteredJobs = useMemo(() => {
-    const activeDepartment = departments[selected].label;
-    return allJobs.filter((job) => {
-      const matchesDepartment =
-        activeDepartment === "All positions" ||
-        job.position === activeDepartment;
-      const matchesSearch = job.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      return matchesDepartment && matchesSearch;
-    });
-  }, [selected, searchTerm]);
+const filteredJobs = useMemo(() => {
+  const activeCategory = categoriesWithAll[selected];
 
-  const departmentCounts = useMemo(() => {
-    const counts = {};
+  return allJobs.filter((job) => {
+    const matchesCategory =
+      activeCategory.title === "All positions" ||
+      job.category === activeCategory.title ||
+      job.category === activeCategory.id;
 
-    departments.forEach((dep) => {
-      if (dep.label === "All positions") {
-        // total number of jobs matching search
-        counts[dep.label] = allJobs.filter((job) =>
-          job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length;
-      } else {
-        // number of jobs matching both search and department
-        counts[dep.label] = allJobs.filter(
-          (job) =>
-            job.position === dep.label &&
-            job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length;
-      }
-    });
+    const matchesSearch = job.title
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
 
-    return counts;
-  }, [searchTerm]);
+    return matchesCategory && matchesSearch;
+  });
+}, [selected, searchTerm, allJobs, categoriesWithAll]);
+
+
+const departmentCounts = useMemo(() => {
+  const counts = {};
+
+  counts["All positions"] = allJobs.filter((job) =>
+    job.title?.toLowerCase().includes(searchTerm.toLowerCase())
+  ).length;
+
+  data.job_categories.forEach((cat) => {
+    counts[cat.title] = allJobs.filter(
+      (job) =>
+        (job.category === cat.title || job.category === cat.id) &&
+        job.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    ).length;
+  });
+
+  return counts;
+}, [allJobs, searchTerm, data.job_categories]);
 
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[120px] 2xl:py-[140px]">
@@ -183,9 +189,9 @@ export default function CareerListSection({ data = local_data }) {
               onChange={(e) => setSelected(e.target.value)}
               className="w-full rounded-lg bg-white relative outline-none"
             >
-              {departments.map((dep, index) => (
-                <option key={dep.label} value={index}>
-                  {dep.label} ({departmentCounts[dep.label] || 0})
+              {categoriesWithAll?.map((dep, index) => (
+                <option key={dep.id} value={index}>
+                  {dep.title} ({departmentCounts[dep.title] || 0})
                 </option>
               ))}
             </select>
@@ -193,9 +199,9 @@ export default function CareerListSection({ data = local_data }) {
 
           <aside className="hidden sm:block lg:w-[288px] flex-shrink-0">
             <ul className="sticky top-20">
-              {departments.map((dep, index) => (
+              {categoriesWithAll?.map((dep, index) => (
                 <div
-                  key={dep.label}
+                  key={dep.id}
                   onClick={() => setSelected(index)}
                   className={`flex justify-between items-center text-sm py-2.5 px-3 rounded-md cursor-pointer transition-colors ${
                     index === selected
@@ -207,8 +213,8 @@ export default function CareerListSection({ data = local_data }) {
                     <span className="w-4 flex justify-center">
                       {index === selected && <FaCaretRight />}
                     </span>
-                    <span className="ml-2 mr-1">{dep.label}</span>
-                    <span>({departmentCounts[dep.label] || 0})</span>
+                    <span className="ml-2 mr-1">{dep.title}</span>
+                    <span>({departmentCounts[dep.title] || 0})</span>
                   </Text>
                 </div>
               ))}
