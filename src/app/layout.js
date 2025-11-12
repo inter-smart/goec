@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/utils/LenisProvider";
@@ -19,23 +21,20 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  const { data, error } = await fetchFromAPI("header-footer");
 
-  const {data, error} = await fetchFromAPI("header-footer")
-
-
-  const {header_section, footer_section} = data
-
+  const { header_section, footer_section } = data;
 
   return (
     // <LenisProvider>
-      <html lang="en">
-        <body className={`${urbanist.className} antialiased`}>
-          <Header header_section={header_section} />
-          <main>{children}</main>
-          <Footer footer_section={footer_section}/>
-          <Toaster position="top-right" richColors />
-        </body>
-      </html>
+    <html lang="en">
+      <body className={`${urbanist.className} antialiased`}>
+        <Header header_section={header_section} />
+        <main>{children}</main>
+        <Footer footer_section={footer_section} />
+        <Toaster position="top-right" richColors />
+      </body>
+    </html>
     // {/* </LenisProvider> */}
   );
 }
