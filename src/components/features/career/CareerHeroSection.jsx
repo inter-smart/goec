@@ -22,7 +22,7 @@ const local_data = {
 
 export default function CareerHeroSection({ data = local_data }) {
   return (
-    <section className="w-full h-screen min-h-[468px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex flex-wrap bg-black py-[calc(20px+var(--header-y))_20px] sm:py-[calc(60px+var(--header-y))_80px] xl:py-[calc(80px+var(--header-y))_100px] 2xl:py-[calc(100px+var(--header-y))_200px] xl:mb-[220px] 2xl:mb-[400px] 3xl:mb-[400px] relative z-0 max-sm:flex-col max-sm:justify-end">
+    <section className="w-full xl:h-screen min-h-[468px] sm:min-h-[420px] xl:min-h-[576px] 2xl:min-h-[768px] 3xl:min-h-[900px] flex flex-wrap bg-black py-[calc(20px+var(--header-y))_20px] sm:py-[calc(60px+var(--header-y))_80px] xl:py-[calc(80px+var(--header-y))_200px] 2xl:py-[calc(100px+var(--header-y))_200px] xl:mb-[210px] 2xl:mb-[200px] 3xl:mb-[400px] relative z-0 max-sm:flex-col max-sm:justify-center">
       <Image
         src={"/images/career-hero-1.jpg"}
         alt={"career-hero-1"}
@@ -30,7 +30,7 @@ export default function CareerHeroSection({ data = local_data }) {
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
         className="-z-2 object-cover pointer-events-none"
       />
-      <div className="w-full max-w-[468px] sm:max-w-[576px] xl:max-w-[620px] 2xl:max-w-[768px] 3xl:max-w-[960px] mx-auto">
+      <div className="w-full max-w-[320px] sm:max-w-[576px] xl:max-w-[620px] 2xl:max-w-[768px] 3xl:max-w-[960px] mx-auto max-sm:px-4">
         <Heading
           as="h1"
           size="heading1"
@@ -48,8 +48,8 @@ export default function CareerHeroSection({ data = local_data }) {
           </Text>
         )}
       </div>
-      <div className="container sm:absolute z-2 top-[calc(100%-20px)] sm:top-[calc(100%-50px)] xl:top-[calc(100%-200px)] left-0 right-0 max-sm:w-full max-sm:mt-3">
-        <div className="w-full h-auto aspect-[1060/420] bg-black rounded-[15px] xl:rounded-[20px] overflow-hidden relative z-0">
+      <div className="container xl:absolute z-2 top-[calc(100%-100px)] sm:top-[calc(100%-100px)] xl:top-[calc(100%-200px)] 2xl:top-[calc(100%-280px)] left-0 right-0 max-xl:w-full max-xl:mt-4">
+        <div className="w-full max-w-[320px] sm:max-w-[468px] xl:max-w-full h-auto aspect-[1060/420] bg-black rounded-[15px] xl:rounded-[20px] overflow-hidden mx-auto relative z-0">
           <picture className="absolute z-2 inset-0">
             <source
               media="(max-width: 640px)"

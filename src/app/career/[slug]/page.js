@@ -1,7 +1,7 @@
 import JobSection from "@/components/features/career-old/jobSection";
 import { fetchFromAPI } from "@/lib/api";
 
-export default async function JobDetailsPage({ params }) {
+export default async function Page({ params }) {
   const { slug } = await params;
 
     const { data, error } = await fetchFromAPI(`career/${slug}`);
@@ -12,6 +12,7 @@ export default async function JobDetailsPage({ params }) {
 
   return (
     <>
+     <CareerInfoSection />
       <JobSection slug={slug} career_details_section={career_details_section} />
     </>
   );
