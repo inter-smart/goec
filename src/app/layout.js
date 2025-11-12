@@ -22,10 +22,6 @@ export default async function RootLayout({ children }) {
 
   const {data, error} = await fetchFromAPI("header-footer")
 
-  if(error){
-    return <Error path="/" />
-  }
-
 
   const {header_section, footer_section} = data
 
