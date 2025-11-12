@@ -1,4 +1,5 @@
 import JobSection from "@/components/features/career-old/jobSection";
+import CareerInfoSection from "@/components/features/career/CareerInfoSection";
 import { fetchFromAPI } from "@/lib/api";
 
 export default async function Page({ params }) {
