@@ -87,6 +87,7 @@ export default function CareerLifeSection({ data = local_data }) {
                             muted
                             playsInline
                             className="w-full h-full object-cover transition group-hover:scale-105"
+                            poster={item?.poster}
                           >
                             <source src={item?.media_path} type="video/mp4" />
                           </video>
