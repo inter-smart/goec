@@ -38,10 +38,10 @@ export default async function Page() {
     <>
       <CareerHeroSection data={banner_section} />
       <CareerListSection data={current_opening_section} />
-      <CareerValueSection />
-      <CareerLifeSection />
-      <CareerTestimonialSection />
-      <ConnectSection data={local_data?.enquiry_data} />
+      <CareerValueSection data={innovative_section} />
+      <CareerLifeSection data={life_section} />
+      <CareerTestimonialSection data={testimonials_section} />
+      <ConnectSection footer_section={footer_section} />
     </>
   );
 }

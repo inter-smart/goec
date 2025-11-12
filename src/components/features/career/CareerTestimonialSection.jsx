@@ -10,6 +10,7 @@ import parse from "html-react-parser";
 import { Text } from "@/components/utils/Text";
 import { ActionButton } from "@/components/utils/Button";
 import { useCallback } from "react";
+import { generateMediaUrl } from "@/lib/utils";
 
 const local_data = {
   title: "Hear what our current <br /> Team members say! ",
@@ -120,7 +121,7 @@ export default function CareerTestimonialSection({ data = local_data }) {
                 <div className="group w-full h-full rounded-[20px] xl:rounded-[25px] bg-[#fcfcfc] border border-[#f0f0f0] overflow-hidden flex flex-wrap select-none max-sm:p-[20px]">
                   <div className="w-[60px] sm:w-[268px] xl:w-[350px] 2xl:w-[420px] 3xl:w-[540px] h-full rounded-[15px] xl:rounded-[20px] overflow-hidden max-sm:h-[60px] max-sm:mb-[20px]">
                     <Image
-                      src={item?.media?.media_path || "/images/placeholder.jpg"}
+                      src={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
                       alt={item?.media?.media_alt}
                       width={420}
                       height={510}
