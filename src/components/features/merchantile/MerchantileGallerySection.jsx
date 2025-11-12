@@ -12,6 +12,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
+import { generateMediaUrl } from "@/lib/utils";
 
 const local_data = {
   title: "Gallery",
@@ -115,7 +116,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
                           playsInline
                           className="w-full h-full object-cover transition group-hover:scale-105"
                         >
-                          <source src={item?.media_path} type="video/mp4" />
+                          <source src={generateMediaUrl(item?.media_path)} type="video/mp4" />
                         </video>
                         {/* Play icon overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -132,8 +133,8 @@ export default function MerchantileGallerySection({ data = local_data }) {
                   </Item>
                 ) : (
                   <Item
-                    original={item?.media_path || "/images/placeholder.jpg"}
-                    thumbnail={item?.media_path || "/images/placeholder.jpg"}
+                    original={generateMediaUrl(item?.media_path) || "/images/placeholder.jpg"}
+                    thumbnail={generateMediaUrl(item?.media_path) || "/images/placeholder.jpg"}
                     width="1200"
                     height="900"
                     alt={item?.media_alt || "gallery"}
@@ -143,7 +144,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
                         <Image
                           ref={ref}
                           onClick={open}
-                          src={item?.media_path || "/images/placeholder.jpg"}
+                          src={generateMediaUrl(item?.media_path) || "/images/placeholder.jpg"}
                           alt={item?.media_alt || "gallery"}
                           width={476}
                           height={268}

@@ -3,12 +3,12 @@ import { color } from "framer-motion";
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-export default function MarketSizeChart({ bottomColor, topColor, categories, series }) {
+export default function MarketSizeChart({ bottomColor, topColor, categories, series, data=[] }) {
   const [state, setState] = useState({
     series: [
       {
         name: "Market Size",
-        data: series || [19.51, 20.56, 33.49, 43.88, 57.48, 75.31, 98.67, 129.27, 169.37, 221.9],
+        data: data?.series || [19.51, 20.56, 33.49, 43.88, 57.48, 75.31, 98.67, 129.27, 169.37, 221.9],
       },
     ],
     options: {
@@ -39,7 +39,7 @@ export default function MarketSizeChart({ bottomColor, topColor, categories, ser
       },
 
       xaxis: {
-        categories: categories || ["2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"],
+        categories: data?.categories || ["2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"],
         position: "bottom",
         offsetY: -5,
         axisBorder: {

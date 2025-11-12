@@ -29,6 +29,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Heading } from "@/components/utils/Heading";
+import { generateMediaUrl } from "@/lib/utils";
 
 const headerData = {
   brand: {
@@ -149,7 +150,7 @@ const headerData = {
 const navigationMenuTriggerStyle =
   "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[15px_20px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10";
 
-export default function Header() {
+export default function Header({header_section}) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
 
@@ -193,8 +194,8 @@ export default function Header() {
             <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
               <Link href="/">
               <Image
-                src="/images/header-logo.svg"
-                alt="logo"
+                src={generateMediaUrl(header_section?.logo?.media_path)}
+                alt={header_section?.logo?.media_alt}
                 width={90}
                 height={45}
                 className="w-full h-full"

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Heading } from "../utils/Heading";
-import { Text } from "../utils/Text";
-import { ActionButton } from "../utils/Button";
+import { Heading } from "../../utils/Heading";
+import { Text } from "../../utils/Text";
+import { ActionButton } from "../../utils/Button";
 import Link from "next/link";
 
 // Pass the path to your spotlight bg image and logo bg image props as needed
