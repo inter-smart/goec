@@ -4,8 +4,8 @@ import AboutCompanySection from "@/components/features/about/AboutCompanySection
 import AboutTeamSection from "@/components/features/about/AboutTeamSection";
 import AboutAssociateSection from "@/components/features/about/AboutAssociateSection";
 import AboutRecognitionSection from "@/components/features/about/AboutRecognitionSection";
-import Banner from "@/components/features/partner-us/Banner";
-import ContactSection from "@/components/features/partner-us/ContactSection";
+import Banner from "@/components/features/partner-us-old/Banner";
+import ContactSection from "@/components/features/partner-us-old/ContactSection";
 
 const heroData = {
   background_media: {

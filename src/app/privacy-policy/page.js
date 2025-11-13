@@ -23,7 +23,7 @@ export default function Page() {
   return (
     <>
       <FaqHeroSection data={local_data?.banner_section} />
-      <LegalInfoSection data={local_data?.content} />
+      <LegalInfoSection variant={"privacy-policy"} data={local_data?.content} />
     </>
   );
 }

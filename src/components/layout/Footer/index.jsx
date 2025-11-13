@@ -35,11 +35,11 @@ const footerData = {
           label: "Contact us",
         },
         {
-          link: "/privacy",
+          link: "/privacy-policy",
           label: "Privacy policy",
         },
         {
-          link: "/terms",
+          link: "/terms-and-conditions",
           label: "Terms & Conditions",
         },
       ],
@@ -56,7 +56,7 @@ const footerData = {
           label: "How to charge",
         },
         {
-          link: "/blog",
+          link: "/news",
           label: "News",
         },
         {
@@ -90,11 +90,11 @@ const footerData = {
       title: "Discover",
       item_navigation: [
         {
-          link: "/",
+          link: "/charging-stations",
           label: "Explore chargers",
         },
         {
-          link: "/",
+          link: "/partner-with-us",
           label: "Partner with us",
         },
         {
