@@ -45,7 +45,7 @@ const heroData = {
 export default async function Page() {
   const { data, error } = await fetchFromAPI("invest-in-go-ec");
   if (error) {
-    return <Error path={"/invest-in-go-ec"} />;
+    return <Error path={"/investment"} />;
   }
 
   const { banner_section, about_section, growth_section, explore_section, why_invest_section, testimonial_section, invest_in_goec_section } =

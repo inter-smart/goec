@@ -27,7 +27,7 @@ export default function NotFound({ data }) {
           >
             {data.description}
           </Text>
-          <Link href={`/${data.btn_link}`} className="transition-colors button">
+          <Link href={`${data.btn_link}`} className="transition-colors button">
             <ActionButton
               size={"lg"}
               className="bg-white text-[#151515] font-semibold p-[22px_32px] rounded-full shadow-lg hover:bg-gradient-to-r hover:from-[#2CC59C] hover:via-[#00EEA8] hover:to-[#2CC59C] hover:text-white dark:hover:bg-blue-700 transition-all duration-200"

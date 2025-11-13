@@ -6,6 +6,7 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,8 @@ const aboutInfoData = {
 
 export default function AboutInfoSection({ data = aboutInfoData, description, media }) {
 
+
+  console.log(generateMediaUrl(media?.desktop?.media_path))
   const animatedTextRef = useRef(null);
   const sanitizedText = DOMPurify.sanitize(description);
 
@@ -132,7 +135,7 @@ export default function AboutInfoSection({ data = aboutInfoData, description, me
             height={78}
             className="w-[60px] xl:w-[70px] 2xl:w-[78px] aspect-square absolute z-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition hover:scale-105"
           />
-          {media?.desktop?.media_path === "video" ? (
+          {media?.desktop?.media_type === "video" ? (
             <video
               autoPlay
               loop
@@ -140,7 +143,7 @@ export default function AboutInfoSection({ data = aboutInfoData, description, me
               playsInline
               className="w-full h-full object-cover absolute -z-2 inset-0"
             >
-              <source src={`${MEDIA_URL}${media?.desktop?.media_path}`} type="video/mp4" />
+              <source src={generateMediaUrl(media?.desktop?.media_path)} type="video/mp4" />
             </video>
           ) : (
             <picture className="absolute -z-1 inset-0">
