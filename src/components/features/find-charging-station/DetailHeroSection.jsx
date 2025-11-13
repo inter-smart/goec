@@ -132,7 +132,7 @@ export default function DetailHeroSection({ station = header_station }) {
       <div className="container sm:absolute z-1 top-[calc(100%-20px)] sm:top-[calc(100%-50px)] left-0 right-0 max-sm:w-full max-sm:mt-3">
         <div className="w-full h-auto bg-black/20 sm:bg-white rounded-[15px] xl:rounded-[20px] p-[10px] sm:p-[15px] xl:p-[30px] 2xl:p-[40px] shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
           <div className="flex flex-wrap sm:flex-nowrap justify-between items-center [&>*]:p-[5px] sm:[&>*]:p-[10px] xl:[&>*]:p-[10px_25px] 2xl:[&>*]:p-[15px_30px] max-sm:[&>*]:w-1/2">
-            {station?.total_charger && (
+            {station?.total_units && (
               <>
                 <div>
                   <Text
@@ -140,7 +140,7 @@ export default function DetailHeroSection({ station = header_station }) {
                     size="none"
                     className="text-[10px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block"
                   >
-                    Total chargers : <span>{station?.total_charger}</span>
+                    Total chargers : <span>{station?.total_units}</span>
                   </Text>
                 </div>
                 <div className="w-[1px] h-[20px] xl:h-[30px] 2xl:h-[40px] bg-[#a9a9a9] !p-0 max-sm:hidden" />
