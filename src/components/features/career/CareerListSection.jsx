@@ -339,7 +339,7 @@ export default function CareerListSection({ data = local_data }) {
             </ul>
           </aside>
 
-          <section className="flex-1">
+          <div className="flex-1">
             {currentItems.length === 0 ? (
               <p className="text-sm text-center text-gray-500">
                 No jobs found.
@@ -431,7 +431,7 @@ export default function CareerListSection({ data = local_data }) {
                 </div>
               </div>
             )}
-          </section>
+          </div>
         </div>
       </div>
     </section>

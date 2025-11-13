@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 // ✅ Fixed validation schema to match actual form fields
 const formSchema = z.object({
@@ -38,27 +39,7 @@ const formSchema = z.object({
   additionalInformation: z.string().optional(),
 });
 
-// ✅ Shared styles
-const labelStyle = `
-  text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737]
-`
-  .replace(/\s+/g, " ")
-  .trim();
-
-const inputStyle = `
-  text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737] placeholder:text-[#a9a9a9] w-full !h-[35px] xl:!h-[40px] 2xl:!h-[50px] bg-white border-[#a2a2a2] px-[15px] 2xl:px-[20px] focus:outline-none focus:ring-0 focus-visible:ring-1 focus-visible:border-transparent
-  selection:bg-black selection:text-white appearance-none rounded-[7px] 2xl:rounded-[10px]
-`
-  .replace(/\s+/g, " ")
-  .trim();
-
-const textareaStyle = `
-  ${inputStyle} min-h-[60px] xl:min-h-[80px] 2xl:min-h-[120px] py-[15px] 2xl:py-[20px]
-`
-  .replace(/\s+/g, " ")
-  .trim();
-
-export default function ChargingStationForm() {
+export default function ChargingStationForm({ variant }) {
   // ✅ Fixed default values to match schema
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -79,6 +60,23 @@ export default function ChargingStationForm() {
     // Add your form submission logic here
     // Example: API call, toast notification, etc.
   }
+
+  // ✅ Shared styles
+  const labelStyle = cn(
+    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737",
+    variant === "about" && "text-white"
+  );
+
+  const inputStyle = cn(
+    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737] placeholder:text-[#a9a9a9] w-full !h-[35px] xl:!h-[40px] 2xl:!h-[50px] bg-white border-[#a2a2a2] px-[15px] 2xl:px-[20px] focus:outline-none focus:ring-0 focus-visible:ring-1 focus-visible:border-transparent selection:bg-black selection:text-white appearance-none rounded-[7px] 2xl:rounded-[10px]",
+    variant === "about" &&
+      "bg-white/10 border-white/20 text-white placeholder:text-[#a0bae5] data-[placeholder]:text-[#a0bae5] [&_svg]:[filter:_brightness(0)_saturate(100%)_invert(81%)_sepia(16%)_saturate(494%)_hue-rotate(181deg)_brightness(88%)_contrast(92%)]"
+  );
+
+  const textareaStyle = cn(
+    inputStyle,
+    "min-h-[60px] xl:min-h-[80px] 2xl:min-h-[120px] py-[15px] 2xl:py-[20px]"
+  );
 
   return (
     <Form {...form}>
@@ -239,8 +237,11 @@ export default function ChargingStationForm() {
           <div className="w-full flex">
             <ActionButton
               size={"lg"}
-              variant={"blue"}
-              className="max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto"
+              variant={variant === "about" ? "none" : "blue"}
+              className={cn(
+                "max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto",
+                variant === "about" && "text-black bg-white"
+              )}
               type="submit"
             >
               Submit
