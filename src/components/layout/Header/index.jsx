@@ -29,6 +29,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Heading } from "@/components/utils/Heading";
+import { cn } from "@/lib/utils";
 
 const headerData = {
   brand: {
@@ -191,22 +192,24 @@ export default function Header() {
         <div className="container">
           <div className="flex justify-between">
             <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
-              <Image
-                src="/images/header-logo.svg"
-                alt="logo"
-                width={90}
-                height={45}
-                className="w-full h-full"
-              />
+              <Link href={"/"}>
+                <Image
+                  src="/images/header-logo.svg"
+                  alt="logo"
+                  width={90}
+                  height={45}
+                  className="w-full h-full"
+                />
+              </Link>
             </div>
-            <div className="flex items-center space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">
+            <div className="flex items-center space-x-[15px] sm:space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">
               <div className="hidden lg:block">
                 <MegaNavigationMenubar />
               </div>
               <div>
                 <ActionButton
                   size={"none"}
-                  className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center w-full  min-w-[145px] 2xl:min-w-[180px] 3xl:min-w-[200px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full bg-white/20 hover:bg-white/30"
+                  className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[145px] 2xl:min-w-[180px] 3xl:min-w-[200px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full bg-white/20 hover:bg-white/30"
                 >
                   Download App
                 </ActionButton>
@@ -246,7 +249,7 @@ export default function Header() {
   );
 }
 
-function MegaNavigationMenubar() {
+function MegaNavigationMenubar({ navigation_data = headerData.navigation }) {
   return (
     <NavigationMenu viewport={false} className={"max-w-full justify-normal"}>
       <NavigationMenuList
@@ -264,7 +267,7 @@ function MegaNavigationMenubar() {
             Company
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <MegaNavigationMenuContent data={headerData.navigation.item_company} />
+            <MegaNavigationMenuContent data={navigation_data?.item_company} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -272,7 +275,7 @@ function MegaNavigationMenubar() {
             Invest in GO EC
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <MegaNavigationMenuContent />
+            <MegaNavigationMenuContent data={navigation_data?.item_company} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -280,7 +283,7 @@ function MegaNavigationMenubar() {
             Solutions
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <MegaNavigationMenuContent />
+            <MegaNavigationMenuContent data={navigation_data?.item_company} />
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -288,12 +291,14 @@ function MegaNavigationMenubar() {
   );
 }
 
-function MegaNavigationMenuContent({data}) {
+function MegaNavigationMenuContent({ data }) {
+  console.log("header data" + data);
+
   return (
-    <div className="w-full min-w-[468px] xl:min-w-[576px] 2xl:min-w-[640px] 3xl:min-w-[768px] bg-white rounded-[25px] xl:rounded-[30px] overflow-hidden">
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-[35%]">
-          <div className="flex flex-col p-10">
+    <div className="w-full min-w-[468px] xl:min-w-[576px] 2xl:min-w-[640px] 3xl:min-w-[768px] bg-white rounded-[20px] 2xl:rounded-[30px] overflow-hidden">
+      <div className="flex flex-wrap [&_*]:p-[20px] ">
+        <div className="w-full lg:w-[200px] xl:w-[230px] 2xl:w-[276px]">
+          <div className="flex flex-col">
             {data?.map((item, index) => (
               <div key={index} className="mb-[15px]">
                 <Heading as="h3" size="heading3">
@@ -301,10 +306,62 @@ function MegaNavigationMenuContent({data}) {
                 </Heading>
               </div>
             ))}
+
+            <div
+              className={cn(
+                "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-normal font-normal text-black w-full h-auto flex justify-between p-[10px_20px] rounded-[8px] mb-[15px]",
+                "text-white bg-black "
+              )}
+            >
+              About Us
+              <Image
+                src="/images/header-arrow.svg"
+                alt="arrow"
+                width={8}
+                height={8}
+                className="w-[6px] xl:w-[8px]"
+              />
+            </div>
+            <div
+              className={cn(
+                "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-normal font-normal text-black w-full h-auto flex justify-between p-[10px_20px] rounded-[8px] mb-[15px]",
+                // "text-white bg-black "
+              )}
+            >
+              About Us
+              <Image
+                src="/images/header-arrow.svg"
+                alt="arrow"
+                width={8}
+                height={8}
+                className="w-[6px] xl:w-[8px]"
+              />
+            </div>
+            <div
+              className={cn(
+                "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-normal font-normal text-black w-full h-auto flex justify-between p-[10px_20px] rounded-[8px] mb-[15px]",
+                // "text-white bg-black "
+              )}
+            >
+              About Us
+              <Image
+                src="/images/header-arrow.svg"
+                alt="arrow"
+                width={8}
+                height={8}
+                className="w-[6px] xl:w-[8px]"
+              />
+            </div>
           </div>
         </div>
-        <div className="w-full xl:w-[65%]">
-          <div className="w-full h-full bg-white">sdffdfs</div>
+        <div className="w-full lg:w-[calc(100%_-_200px)] xl:w-[calc(100%_-_230px)] 2xl:w-[calc(100%_-_276px)]">
+          {data?.map((item, index) => (
+            <div key={index} className="mb-[15px]">
+              <Heading as="h3" size="heading3">
+                {item?.label}
+              </Heading>
+            </div>
+          ))}
         </div>
       </div>
     </div>

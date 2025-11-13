@@ -10,10 +10,12 @@ import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 import Error from "./error";
+import Loading from "./loading";
 
 export default function Home() {
   return (
     <>
+      <Loading />
       <HeroSection />
       <AboutInfoSection />
       <AboutGrowthSection />
