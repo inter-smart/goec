@@ -19,8 +19,8 @@ const local_data = {
   slug: "marketing-intern",
   title: "Marketing Intern",
   department: "Marketing",
-  location: "Kochi",
-  type: "Full Time",
+  job_location: "Kochi",
+  job_type: "Full Time",
   experience: "Fresher",
   description:
     "<p>Lorem ipsum dolor sit amet consectetur. Lorem velit tempus a sit. Porta risus in eget egestas quisque tellus eu nulla convallis. Bibendum ut faucibus bibendum enim bibendum mattis diam. A tincidunt tellus massa aliquam porttitor. Placerat mauris neque eu tellus nec urna lacus egestas. Quis justo at egestas nunc sed enim sem et gravida. Ullamcorper sed pellentesque vitae gravida amet mi magna sed blandit.</p><p>Nisl nam arcu erat proin elit donec. Id faucibus maecenas adipiscing imperdiet libero. Pretium placerat proin morbi vel faucibus. Turpis magna maecenas commodo potenti vitae enim pretium congue. Vitae quis malesuada amet ut. Potenti at gravida lectus consectetur amet ac egestas.</p>",
@@ -111,26 +111,26 @@ export default function CareerInfoSection({ slug, data = local_data }) {
               <div className="w-[1px] h-[10px] xl:h-[15px] bg-[#373737] mx-[10px] xl:mx-[20px]" />
             </>
           )}
-          {data?.type && (
+          {data?.job_type && (
             <>
               <Text
                 as="div"
                 size="text3"
                 className={cn("!font-medium text-[#373737]")}
               >
-                {data?.type}
+                {data?.job_type}
               </Text>
               <div className="w-[1px] h-[10px] xl:h-[15px] bg-[#373737] mx-[10px] xl:mx-[20px]" />
             </>
           )}
-          {data?.type && (
+          {data?.job_type && (
             <>
               <Text
                 as="div"
                 size="text3"
                 className={cn("!font-medium text-[#373737]")}
               >
-                {data?.location}
+                {data?.job_location}
               </Text>
             </>
           )}
