@@ -589,56 +589,58 @@ const heroData = {
 
 function AppDownloadDropdown() {
   return (
-    <div className="w-[240px] sm:w-[276px] lg:w-[420px] xl:w-[576px] 2xl:w-[620px] 3xl:w-[668px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
+    <div className="w-[220px] sm:w-[276px] lg:w-[420px] xl:w-[540px] 2xl:w-[600px] 3xl:w-[640px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-[calc(100%_-_168px)] xl:w-[calc(100%_-_200px)] 2xl:w-[calc(100%_-_240px)] bg-[#fafafa] p-[15px] xl:p-[20px] 2xl:p-[30px]">
-          <Heading
-            as={"div"}
-            size="heading4"
-            className="line-clamp-3 text-center lg:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-black to-black bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
-          >
-            Get GO EC <br/> App Now!
-          </Heading>
-          <div className="flex space-x-[5px] sm:space-x-[10px] xl:space-x-[15px] max-lg:justify-center">
-            <ActionButton
-              size={"default"}
-              className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
-              asChild
+        <div className="w-full lg:w-[calc(100%_-_168px)] xl:w-[calc(100%_-_200px)] 2xl:w-[calc(100%_-_240px)] bg-[#fafafa] p-[15px] xl:p-[20px] 2xl:p-[30px] flex items-center">
+          <div>
+            <Heading
+              as={"div"}
+              size="heading4"
+              className="line-clamp-3 text-center lg:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-black to-black bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
             >
-              <a
-                href="/"
-                aria-label="app store"
-                target="_blank"
-                rel="noopener noreferrer"
+              Get GO EC <br /> App Now!
+            </Heading>
+            <div className="flex space-x-[5px] xl:space-x-[10px] 2xl:space-x-[15px] max-lg:justify-center">
+              <ActionButton
+                size={"default"}
+                className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
+                asChild
               >
-                <Image
-                  src="/images/header-icon-app_store.svg"
-                  alt="app"
-                  width={176}
-                  height={64}
-                />
-              </a>
-            </ActionButton>
-            <ActionButton
-              size={"default"}
-              className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
-              asChild
-            >
-              <a
-                href="/"
-                aria-label="app store"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href="/"
+                  aria-label="app store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="/images/header-icon-app_store.svg"
+                    alt="app"
+                    width={176}
+                    height={64}
+                  />
+                </a>
+              </ActionButton>
+              <ActionButton
+                size={"default"}
+                className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
+                asChild
               >
-                <Image
-                  src="/images/header-icon-play_store.svg"
-                  alt="app"
-                  width={176}
-                  height={64}
-                  quality={100}
-                />
-              </a>
-            </ActionButton>
+                <a
+                  href="/"
+                  aria-label="app store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="/images/header-icon-play_store.svg"
+                    alt="app"
+                    width={176}
+                    height={64}
+                    quality={100}
+                  />
+                </a>
+              </ActionButton>
+            </div>
           </div>
         </div>
         <div className="w-[120px] lg:w-[168px] xl:w-[200px] 2xl:w-[240px] mx-auto">
