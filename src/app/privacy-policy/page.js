@@ -8,9 +8,6 @@ export default async function Page() {
 
   const {data, error} = await fetchFromAPI("policy/privacy-policy")
 
-
-    console.log(data)
-
     const {banner_section, content} = data
 
   return (
