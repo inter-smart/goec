@@ -10,6 +10,7 @@ import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 import Error from "./error";
+import Loading from "./loading";
 
 export default async function Home() {
 
@@ -36,6 +37,7 @@ export default async function Home() {
 
    return (
     <>
+      <Loading />
       <HeroSection 
         heroBanner={banner_section?.list || []}
       />

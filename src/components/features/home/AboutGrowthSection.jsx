@@ -33,12 +33,12 @@ const aboutGrowthData = [
     media: {
       mobile: {
         type: "image",
-        path: "/images/about-growth-1.jpg",
+        path: "/images/about-growth-2.jpg",
         alt: "about",
       },
       desktop: {
         type: "image",
-        path: "/images/about-growth-1.jpg",
+        path: "/images/about-growth-2.jpg",
         alt: "about",
       },
     },
@@ -50,12 +50,12 @@ const aboutGrowthData = [
     media: {
       mobile: {
         type: "image",
-        path: "/images/about-growth-1.jpg",
+        path: "/images/about-growth-3.jpg",
         alt: "about",
       },
       desktop: {
         type: "image",
-        path: "/images/about-growth-1.jpg",
+        path: "/images/about-growth-3.jpg",
         alt: "about",
       },
     },
@@ -168,6 +168,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                     priority={index === 0}
                     className="-z-2 object-cover"
+                    quality={100}
                   />
                 </picture>
                } 

@@ -1,28 +1,29 @@
-import HeroSection from "@/components/features/charging-stations/HeroSection";
-import Policies from "@/components/features/privacy-policy/Policies";
+import FaqHeroSection from "@/components/features/faq/FaqHeroSection";
+import LegalInfoSection from "@/components/features/legal/LegalInfoSection";
 
-const heroData = {
-  background_media: {
-    mobile: {
-      type: "image",
-      path: "/images/privacy-policy-bg.png",
-      alt: "hero",
-    },
-    desktop: {
-      type: "image",
-      path: "/images/privacy-policy-bg.png",
-      alt: "hero",
+const local_data = {
+  banner_section: {
+    title: "Privacy Policy",
+    media: {
+      desktop: {
+        media_path: "/images/policy-hero-1.jpg",
+        media_alt: "hero",
+      },
+      mobile: {
+        media_path: "/images/policy-hero-1.jpg",
+        media_alt: "hero",
+      },
     },
   },
-  title: "Privacy Policy",
-  description: null,
+  content:
+    "<h4>PRIVACY POLICY</h4><p>This Privacy Policy outlines how GO EC manages, maintains, and discloses information collected from users (each, a 'User') of the goelectriccharge.com website ('Site'). This policy applies to the Site and all products and services offered by GO EC.</p><h4>PERSONAL IDENTIFICATION INFORMATION</h4><p>We may collect personal identification information from Users in various ways, including when Users visit our site, register, place an order, subscribe to our newsletter, respond to surveys, fill out forms, and engage in other activities, services, features, or resources we provide on our Site. Users may be asked for, as appropriate, their name, email address, phone number, and payment information. However, Users can visit our Site anonymously. We will collect personal identification information only if Users voluntarily submit such information. Users can always refuse to provide personal identification information, although this may prevent them from participating in certain Site-related activities.</p><h4>NON-PERSONAL IDENTIFICATION INFORMATION</h4><p>We may collect non-personal identification information about Users whenever they interact with our Site. This information may include the browser name, type of computer, and technical details about Users' means of connection to our Site, such as the operating system and Internet service providers used, along with other similar information.</p><h4>WEB BROWSER COOKIES</h4><p>Our Site may use 'cookies' to enhance User experience. A User's web browser places cookies on their hard drive for record-keeping and sometimes to track information about them. Users can set their web browser to refuse cookies or to alert them when cookies are being sent. If they do so, note that some parts of the Site may not function properly.</p><h4>HOW WE USE COLLECTED INFORMATION</h4><p>GO EC may collect and use Users' personal information for the following purposes:</p><p>To enhance customer service: The information you provide helps us respond to customer service requests and support needs more effectively.</p><p>To personalize user experience: We may use aggregated information to understand how Users as a group utilize the services and resources provided on our Site.<br/>To improve our Site: We may use feedback you provide to enhance our products and services.</p><p>To process payments: We may use the information Users provide when placing an order solely to fulfill that order. We do not share this information with outside parties except as necessary to provide the service.</p><p>To run promotions, contests, surveys, or other Site features: We may send Users information they agreed to receive about topics we believe will interest them.</p><p>To send periodic emails: We may use the email address to send Users information and updates related to their order. It may also be used to respond to inquiries, questions, and/or other requests. If Users opt-in to our mailing list, they will receive emails that may include company news, updates, and related product or service information. If at any time a User wishes to unsubscribe from future emails, we include detailed unsubscribe instructions at the bottom of each email.</p><h4>HOW WE PROTECT YOUR INFORMATION</h4><p>We implement appropriate data collection, storage, and processing practices along with security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information, username, password, transaction information, and data stored on our Site.</p><p>Sensitive and private data exchange between the Site and its Users occurs over an SSL secured communication channel and is encrypted and protected with digital signatures.</p><h4>SHARING YOUR PERSONAL INFORMATION</h4><p>We do not sell, trade, or rent Users' personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers for the purposes outlined above. We may use third-party service providers to help us operate our business and the Site or administer activities on our behalf, such as sending out newsletters or surveys. We may share your information with these third parties for those limited purposes, provided you have given us your permission.</p><h4>THIRD-PARTY WEBSITES</h4><p>Users may find advertising or other content on our Site that links to the sites and services of our partners, suppliers, advertisers, sponsors, licensors, and other third parties. We do not control the content or links that appear on these sites and are not responsible for the practices employed by websites linked to or from our Site. Additionally, these sites or services, including their content and links, may be constantly changing. These sites and services may have their own privacy policies and customer service policies. Browsing and interaction on any other website, including those with links to our Site, is subject to that website's own terms and policies.</p><h4>CHANGES TO THIS PRIVACY POLICY</h4><p>GO EC reserves the right to update this privacy policy at any time. When we do, we will revise the updated date at the bottom of this page. We encourage Users to frequently check this page for any changes to stay informed about how we are protecting the personal information we collect. You acknowledge and agree that it is your responsibility to review this privacy policy periodically and become aware of modifications.</p><h4>YOUR ACCEPTANCE OF THESE TERMS</h4><p>By using this Site, you signify your acceptance of this policy. If you do not agree to this policy, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.</p><h4>CONTACTING US</h4><p>If you have any questions about this Privacy Policy, the practices of this Site, or your dealings with this Site, please contact us at: GO EC</p><p>goelectriccharge.com, Sector 17, HUDA City Centre, Gurugram, Haryana, 122018, India.</p>",
 };
 
 export default function Page() {
   return (
     <>
-      <HeroSection data={heroData} />
-      <Policies />
+      <FaqHeroSection data={local_data?.banner_section} />
+      <LegalInfoSection variant={"privacy-policy"} data={local_data?.content} />
     </>
   );
 }
