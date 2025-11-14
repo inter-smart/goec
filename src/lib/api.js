@@ -46,3 +46,35 @@ export async function fetchFromAPI(endpoint, options = {}) {
     };
   }
 }
+
+
+export async function postWithFileAPI(endpoint, formData, options = {}) {
+  const url = `${API_BASE_URL}${endpoint}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData, // Important — do NOT set Content-Type manually
+      ...options,
+    });
+
+    if (!response.ok) {
+      return {
+        data: null,
+        error: true,
+      };
+    }
+
+    const data = await response.json();
+
+    return {
+      data: data?.success ? data?.data : null,
+      error: !data?.success,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error: true,
+    };
+  }
+}

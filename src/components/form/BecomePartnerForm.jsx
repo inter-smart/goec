@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Upload } from "lucide-react";
 import {
   Form,
@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { fetchFromAPI, postWithFileAPI } from "@/lib/api";
+import { toast } from "sonner";
 
 // ✅ Complete validation schema with all form fields
 const formSchema = z.object({
@@ -36,10 +38,10 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Phone number must be at least 10 digits." })
     .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
-  state: z.string().optional(),
-  city: z.string().optional(),
+  state_id: z.string().optional(),
+  city_id: z.string().optional(),
   pincode: z.string().optional(),
-  whatYouAre: z.string().optional(),
+  whatYouAre: z.string().min(1, { message: "Business type is required." }),
   additionalInformation: z.string().optional(),
   attachment: z.any().optional(),
 });
@@ -67,6 +69,11 @@ const textareaStyle = `
 export default function BecomePartnerForm() {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [fileError, setFileError] = useState("");
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [loadingStates, setLoadingStates] = useState(false);
+  const [loadingCities, setLoadingCities] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // ✅ Complete default values matching schema
   const form = useForm({
@@ -76,14 +83,65 @@ export default function BecomePartnerForm() {
       lastName: "",
       email: "",
       phone: "",
-      state: "",
-      city: "",
+      state_id: "",
+      city_id: "",
       pincode: "",
-      whatYouAre: "",
+      whatYouAre: "Business",
       additionalInformation: "",
       attachment: null,
     },
   });
+
+  // Fetch states on component mount
+  useEffect(() => {
+    const fetchStates = async () => {
+      setLoadingStates(true);
+      try {
+        const { data, error } = await fetchFromAPI("location/states");
+
+        if (error) return console.error("Error fetching states:", error);
+
+        setStates(data);
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      } finally {
+        setLoadingStates(false);
+      }
+    };
+
+    fetchStates();
+  }, []);
+
+  // Watch state field to fetch cities when state changes
+  const selectedStateId = form.watch("state_id");
+
+  useEffect(() => {
+    if (selectedStateId) {
+      const fetchCities = async () => {
+        setLoadingCities(true);
+        setCities([]);
+        form.setValue("city_id", ""); // Reset city when state changes
+
+        try {
+          const { data, error } = await fetchFromAPI(
+            `location/cities/${selectedStateId}`
+          );
+          if (error) return console.error("Error fetching states:", error);
+
+          setCities(data);
+        } catch (error) {
+          console.error("Error fetching cities:", error);
+        } finally {
+          setLoadingCities(false);
+        }
+      };
+
+      fetchCities();
+    } else {
+      setCities([]);
+      form.setValue("city_id", "");
+    }
+  }, [selectedStateId, form]);
 
   // Handle file upload
   const handleFileChange = (e) => {
@@ -123,9 +181,67 @@ export default function BecomePartnerForm() {
   };
 
   // Handle form submission
-  function onSubmit(values) {
-    console.log("Form submitted:", values);
-    // Add your form submission logic here
+  async function onSubmit(values) {
+    setIsSubmitting(true);
+    try {
+      const formData = new FormData();
+
+      // Append text fields with correct backend field names
+      formData.append("first_name", values.firstName);
+      formData.append("last_name", values.lastName || "");
+      formData.append("email_id", values.email);
+      formData.append("phone_number", values.phone);
+
+      // Only append if values exist (avoid sending empty strings for integer fields)
+      if (values.state_id) formData.append("state_id", values.state_id);
+      if (values.city_id) formData.append("city_id", values.city_id);
+      if (values.pincode) formData.append("pincode", values.pincode);
+
+      formData.append("business_type", values.whatYouAre || "Individual");
+      formData.append(
+        "additional_information",
+        values.additionalInformation || ""
+      );
+
+      // Append file if exists
+      if (uploadedFile) {
+        formData.append("attachment", uploadedFile);
+      }
+
+      const { data, error } = await postWithFileAPI("partner-enquiry", formData);
+
+      if (!error && data) {
+        toast.success("Partner enquiry submitted successfully!");
+        form.reset({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          state_id: "",
+          city_id: "",
+          pincode: "",
+          whatYouAre: "Business",
+          additionalInformation: "",
+          attachment: null,
+        });
+        setUploadedFile(null);
+      } else {
+        // Display validation errors if available
+        if (data && data.errors && Array.isArray(data.errors)) {
+          const errorMessages = data.errors.map(err => err.msg || err.message).join('\n');
+          toast.error(`Validation errors:\n${errorMessages}`);
+        } else if (data && data.message) {
+          toast.error(data.message);
+        } else {
+          toast.error("Failed to submit enquiry. Please check your information and try again.");
+        }
+      }
+    } catch (error) {
+    console.error("Error submitting form:", error);
+      toast.error("An error occurred while submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -210,23 +326,28 @@ export default function BecomePartnerForm() {
 
           <FormField
             control={form.control}
-            name="state"
+            name="state_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  value={field.value}
+                  disabled={loadingStates}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select state" />
+                      <SelectValue
+                        placeholder={
+                          loadingStates ? "Loading..." : "Select state"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["state 1", "state 2", "state 3"].map((item, index) => (
-                      <SelectItem key={"state" + index} value={item}>
-                        {item}
+                    {states.map((state) => (
+                      <SelectItem key={state.id} value={state.id.toString()}>
+                        {state.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -238,23 +359,32 @@ export default function BecomePartnerForm() {
 
           <FormField
             control={form.control}
-            name="city"
+            name="city_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>City</FormLabel>
                 <Select
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  value={field.value}
+                  disabled={!selectedStateId || loadingCities}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select city" />
+                      <SelectValue
+                        placeholder={
+                          !selectedStateId
+                            ? "Select state first"
+                            : loadingCities
+                              ? "Loading..."
+                              : "Select city"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["city 1", "city 2", "city 3"].map((item, index) => (
-                      <SelectItem key={"city" + index} value={item}>
-                        {item}
+                    {cities.map((city) => (
+                      <SelectItem key={city.id} value={city.id.toString()}>
+                        {city.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -404,8 +534,9 @@ export default function BecomePartnerForm() {
               variant={"blue"}
               className="max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto"
               type="submit"
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </ActionButton>
           </div>
         </div>

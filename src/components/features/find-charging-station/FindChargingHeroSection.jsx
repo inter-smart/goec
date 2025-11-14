@@ -22,6 +22,7 @@ export const fallbackBannerSection = {
 };
 export default function HeroSection({ banner_section = fallbackBannerSection }) {
 
+  console.log(generateMediaUrl(banner_section?.media?.mobile?.media_path))
   return (
     <section className="w-full h-auto min-h-[268px] sm:min-h-[420px] xl:min-h-[540px] 2xl:min-h-[620px] 3xl:min-h-[768px] flex items-center bg-black py-[calc(10px+var(--header-y))_40px] sm:py-[calc(20px+var(--header-y))_60px] xl:py-[calc(0+var(--header-y))_100px] 2xl:py-[calc(0+var(--header-y))_120px] relative z-0">
       <picture className="absolute -z-2 inset-0">

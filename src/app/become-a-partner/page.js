@@ -1,5 +1,6 @@
 import BecomePartnerFormSection from "@/components/features/become-a-partner/BecomePartnerFormSection";
 import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const header_data = {
   background_media: {
@@ -18,10 +19,21 @@ const header_data = {
   description: "Become a Partner",
 };
 
-export default function Page() {
+export default async function Page() {
+
+  const {data, error} = await fetchFromAPI("become-partner");
+
+
+
+  console.log("data" , data)
+
+  const {
+    banner_section
+  } = data
+
   return (
     <>
-      <FindChargingHeroSection data={header_data} />
+      <FindChargingHeroSection banner_section={banner_section} />
       <BecomePartnerFormSection />
     </>
   );
