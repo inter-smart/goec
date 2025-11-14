@@ -3,8 +3,6 @@ import AppDetailSection from "@/components/features/mobile-app/AppDetailSection"
 import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
 import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
 import AppDownloadSection from "@/components/features/mobile-app/AppDownloadSection";
-import { ActionButton } from "@/components/utils/Button";
-import Link from "next/link";
 
 const heroData = {
   background_media: {
@@ -106,7 +104,6 @@ const how_charge_section_data = {
 };
 
 export default function Page() {
-  const data = heroData;
   return (
     <>
       <InnerHero data={heroData} />

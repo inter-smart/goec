@@ -153,6 +153,7 @@ const navigationMenuTriggerStyle =
 export default function Header() {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
+  const [appDownloadOpen, setAppDownloadOpen] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
@@ -207,12 +208,21 @@ export default function Header() {
                 <MegaNavigationMenubar />
               </div>
               <div>
-                <ActionButton
-                  size={"none"}
-                  className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[145px] 2xl:min-w-[180px] 3xl:min-w-[200px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full bg-white/20 hover:bg-white/30"
-                >
-                  Download App
-                </ActionButton>
+                <div className="relative z-0">
+                  <ActionButton
+                    as="div"
+                    onClick={() => setAppDownloadOpen(!appDownloadOpen)}
+                    size={"none"}
+                    className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[145px] 2xl:min-w-[180px] 3xl:min-w-[200px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full bg-white/20 hover:bg-white/30"
+                  >
+                    Download App
+                  </ActionButton>
+                  {appDownloadOpen && (
+                    <div className="absolute z-1 top-[110%] right-0">
+                      <AppDownloadDropdown />
+                    </div>
+                  )}
+                </div>
               </div>
               <div>
                 <Sheet>
@@ -229,7 +239,6 @@ export default function Header() {
                     </div>
                   </SheetTrigger>
                   <SheetContent className="w-[320px] 3xs:w-[368px] bg-[#030303] max-h-screen overflow-y-scroll border-black">
-                    
                     <div className="fixed -z-1 bottom-0 left-0 w-10 h-10 bg-white blur-sm scale-[10] opacity-20" />
                     <SheetHeader>
                       <SheetTitle className={"sr-only"}>navigations</SheetTitle>
@@ -251,7 +260,7 @@ export default function Header() {
   );
 }
 
-function MegaNavigationMenubar({ navigation_data = headerData }) {
+function MegaNavigationMenubar() {
   const company_data = {
     label: "Company",
     sub_item: [
@@ -524,6 +533,7 @@ function MegaNavigationMenuContent({ data }) {
     </div>
   );
 }
+
 function SmNavigationMenuContent({ data }) {
   return (
     <div className="w-full lg:w-[200px] xl:w-[220px] 2xl:w-[268px] 3xl:w-[320px] bg-white rounded-[15px] 2xl:rounded-[30px] overflow-hidden p-[10px_5px] 2xl:p-[15px_10px] shadow-lg">
@@ -541,6 +551,105 @@ function SmNavigationMenuContent({ data }) {
             </Link>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+const heroData = {
+  media: {
+    type: "image",
+    path: "/images/app-hero-1.png",
+    alt: "hero",
+  },
+  title: "Get GO EC App Now!",
+  button: [
+    {
+      media: {
+        type: "image",
+        path: "/images/icon-app_store.svg",
+        alt: "app",
+      },
+      type: "external",
+      label: "app store ",
+      link: "/",
+    },
+    {
+      media: {
+        type: "image",
+        path: "/images/icon-play_store.svg",
+        alt: "play",
+      },
+      type: "external",
+      label: "play store ",
+      link: "/",
+    },
+  ],
+};
+
+function AppDownloadDropdown() {
+  return (
+    <div className="w-[240px] sm:w-[276px] lg:w-[420px] xl:w-[576px] 2xl:w-[620px] 3xl:w-[668px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
+      <div className="flex flex-wrap">
+        <div className="w-full lg:w-[calc(100%_-_168px)] xl:w-[calc(100%_-_200px)] 2xl:w-[calc(100%_-_240px)] bg-[#fafafa] p-[15px] xl:p-[20px] 2xl:p-[30px]">
+          <Heading
+            as={"div"}
+            size="heading4"
+            className="line-clamp-3 text-center lg:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-black to-black bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+          >
+            Get GO EC <br/> App Now!
+          </Heading>
+          <div className="flex space-x-[5px] sm:space-x-[10px] xl:space-x-[15px] max-lg:justify-center">
+            <ActionButton
+              size={"default"}
+              className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
+              asChild
+            >
+              <a
+                href="/"
+                aria-label="app store"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/images/header-icon-app_store.svg"
+                  alt="app"
+                  width={176}
+                  height={64}
+                />
+              </a>
+            </ActionButton>
+            <ActionButton
+              size={"default"}
+              className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
+              asChild
+            >
+              <a
+                href="/"
+                aria-label="app store"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/images/header-icon-play_store.svg"
+                  alt="app"
+                  width={176}
+                  height={64}
+                  quality={100}
+                />
+              </a>
+            </ActionButton>
+          </div>
+        </div>
+        <div className="w-[120px] lg:w-[168px] xl:w-[200px] 2xl:w-[240px] mx-auto">
+          <Image
+            src="/images/header-AppDownload-qr.jpg"
+            alt="AppDownload-qr"
+            width={220}
+            height={220}
+            className="w-full h-full"
+          />
+        </div>
       </div>
     </div>
   );
