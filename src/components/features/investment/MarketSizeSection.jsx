@@ -84,7 +84,7 @@ export default function MarketSizeSection({ data = futureData, title, descriptio
                     as="p"
                     className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-tight font-normal text-center text-[#ced1d0]"
                   >
-                    {}
+                    {summary}
                   </Text>
                 </div>
               </div>

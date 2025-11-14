@@ -5,6 +5,7 @@ import InvestmentInfoSection from "@/components/features/investment/InvestmentIn
 import InvestNowSection from "@/components/features/investment/InvestNowSection";
 import InvestorSaySection from "@/components/features/investment/InvestorSaySection";
 import MarketSizeSection from "@/components/features/investment/MarketSizeSection";
+import { fetchFromAPI } from "@/lib/api";
 
 const heroData = {
   background_media: {
@@ -42,9 +43,6 @@ const heroData = {
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("invest-in-go-ec");
-  if (error) {
-    return <Error path={"/investment"} />;
-  }
 
   const { banner_section, about_section, growth_section, explore_section, why_invest_section, testimonial_section, invest_in_goec_section } =
     data || {};
@@ -55,7 +53,7 @@ export default async function Page() {
 
       <InvestmentInfoSection description={about_section?.description} media={about_section?.media} />
 
-      <MarketSizeSection title={growth_section?.title} description={growth_section?.description} media={growth_section?.media} chart={growth_section?.chart} />
+      <MarketSizeSection title={growth_section?.title} summary={growth_section?.summary} description={growth_section?.description} media={growth_section?.media} chart={growth_section?.chart} />
 
       <BusinessModalSection title={explore_section?.title} list={explore_section?.list} />
 

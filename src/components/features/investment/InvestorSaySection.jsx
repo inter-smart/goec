@@ -136,10 +136,10 @@ export default function InvestorSaySection({
                       </div>
                       <div className="w-[calc(100%-40px)] md:w-[calc(100%-50px)] xl:w-[calc(100%-65px)] 2xl:w-[calc(100%-75px)] 3xl:w-[calc(100%-100px)] pl-[10px] xl:pl-[15px] 2xl:pl-[20px]">
                         <div className="text-[14px] sm:text-[16px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[28px] leading-tight font-normal text-[#030303] mb-[1px] xl:mb-[2px]">
-                          {item?.author?.title}
+                          {item?.name}
                         </div>
                         <Text as="div" size="text2" className="text-[#373737]">
-                          {item?.description?.description}
+                          {item?.designation}
                         </Text>
                       </div>
                     </div>
