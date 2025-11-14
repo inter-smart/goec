@@ -7,11 +7,25 @@ import { Skeleton } from "../ui/skeleton";
 import { cn } from "@/lib/utils";
 import parse from "html-react-parser";
 import { Text } from "../utils/Text";
+import { motion } from "framer-motion";
 
-export default function NewsCard({ data, variant }) {
+export default function NewsCard({ data, variant, index=1 }) {
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
-      <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+          delay: index * 0.2,
+        }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+      >
         <Link
           href={data?.button?.link}
           className={cn(
@@ -109,7 +123,7 @@ export default function NewsCard({ data, variant }) {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </Suspense>
   );
 }

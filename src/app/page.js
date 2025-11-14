@@ -15,7 +15,7 @@ import Loading from "./loading";
 export default function Home() {
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
       <HeroSection />
       <AboutInfoSection />
       <AboutGrowthSection />
@@ -26,6 +26,8 @@ export default function Home() {
       <PartnersSection />
       <LatestNewsSection />
       <LatestBlogSection />
+      {/* 
+       */}
     </>
   );
 }

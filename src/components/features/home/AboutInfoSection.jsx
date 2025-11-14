@@ -3,6 +3,7 @@ import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
 import CountUp from "react-countup";
+import { motion } from "motion/react";
 
 const aboutInfoData = {
   title:
@@ -27,7 +28,9 @@ const aboutInfoData = {
 };
 export default function AboutInfoSection({ data = aboutInfoData }) {
   return (
-    <section className="w-full h-auto block bg-black overflow-hidden relative z-0 pt-[40px] sm:pt-[80px] xl:pt-[140px] 2xl:pt-[180px] 3xl:pt-[200px]">
+    <section
+      className="w-full h-auto block bg-black overflow-hidden relative z-0 pt-[40px] sm:pt-[80px] xl:pt-[140px] 2xl:pt-[180px] 3xl:pt-[200px]"
+    >
       <Image
         src="/images/about-bg-1.png"
         alt="about-count-png"
@@ -62,14 +65,42 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
         <div className="flex flex-wrap justify-center">
           {data.item_specs.map((item, index) => (
             <div key={"spec" + index} className="w-1/2 sm:w-1/3">
-              <div className="w-full h-auto flex items-center justify-center aspect-square relative z-1">
-                <Image
-                  src="/images/about-count-bg.svg"
-                  alt="about-count-bg"
-                  width={368}
-                  height={368}
-                  className="w-full h-full object-contain absolute z-0 inset-0 pointer-events-none"
-                />
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{
+                  opacity: 100,
+                }}
+                transition={{
+                  duration: 1,
+                  ease: "linear",
+                  repeat: false,
+                  delay: 0.3,
+                }}
+                viewport={{ once: true }}
+                className="w-full h-auto flex items-center justify-center aspect-square relative z-1"
+              >
+                <motion.div
+                  initial={{ rotate: 180 }}
+                  whileInView={{
+                    rotate: 360,
+                  }}
+                  transition={{
+                    duration: 1,
+                    ease: "linear",
+                    repeat: false,
+                    delay: 0.3,
+                  }}
+                  viewport={{ once: true }}
+                  className="w-full h-full absolute z-0 inset-0 pointer-events-none"
+                >
+                  <Image
+                    src="/images/about-count-bg.svg"
+                    alt="about-count-bg"
+                    width={368}
+                    height={368}
+                    className="w-full h-full object-contain"
+                  />
+                </motion.div>
                 <div>
                   <div className="text-[16px] sm:text-[20px] lg:text-[28px] xl:text-[40px] 2xl:text-[48px] 3xl:text-[64px] leading-none font-normal text-center whitespace-nowrap text-ellipsis text-white xl:max-w-[220px] 2xl:max-w-[268px] mx-auto overflow-hidden mb-[5px] xl:mb-[10px] 2xl:mb-[15px]">
                     <CountUp
@@ -88,7 +119,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
                     {item?.title}
                   </Text>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>

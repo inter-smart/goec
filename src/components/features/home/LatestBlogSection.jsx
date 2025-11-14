@@ -153,7 +153,7 @@ export default function LatestBlogSection({ data = blogData }) {
           {data?.item_blog.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <NewsCard data={item} variant={"home"} />
+                <NewsCard index={index} data={item} variant={"home"} />
               </SwiperSlide>
             );
           })}

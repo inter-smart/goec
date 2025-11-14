@@ -198,10 +198,10 @@ export default function Footer({ data = footerData }) {
           <div className="flex flex-wrap items-center gap-[10px] my-[20px] sm:my-[30px] xl:my-[40px] 2xl:my-[50px] 3xl:my-[60px]">
             <div className="flex-1">
               <Heading as="h2" size="heading3" className="text-white xl:max-w-[368px] 2xl:max-w-[420px]">
-                {data?.subscription?.title}
+                {data?.subscription?.title} dfdf
               </Heading>
             </div>
-            <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] max-sm:max-w-[376px]">
+            <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
               <PlaceholdersAndVanishInput placeholders={placeholders} />
             </div>
           </div>

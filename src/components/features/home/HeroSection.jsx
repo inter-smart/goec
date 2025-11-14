@@ -259,9 +259,7 @@ export default function HeroSection({ data = heroData }) {
                     size="heading1"
                     className="line-clamp-2 text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
                   >
-                    <motion.div variants={titleVariants}>
-                      {item?.title}
-                    </motion.div>
+                    {item?.title}
                   </Heading>
                   <Text
                     as="div"
