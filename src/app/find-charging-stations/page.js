@@ -1,10 +1,6 @@
 import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
 import FindChargingResultSection from "@/components/features/find-charging-station/FindChargingResultSection";
 
-// import HeroSection from "@/components/features/charging-stations/HeroSection";
-import HeroWithCard from "@/components/common/HeroWithCard";
-import ChargingStationList from "@/components/features/charging-stations-old/search/SearchResults";
-
 const header_data = {
   background_media: {
     mobile: {
@@ -27,8 +23,6 @@ export default function Page() {
     <>
       <FindChargingHeroSection data={header_data} />
       <FindChargingResultSection />
-      {/* <HeroWithCard /> */}
-      {/* <ChargingStationList /> */}
     </>
   );
 }
