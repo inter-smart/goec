@@ -80,6 +80,27 @@ const heroData = {
   ],
 };
 
+const titleVariants = {
+  initial: {
+    opacity: 0,
+    y: -40,
+    scale: 0.9,
+    rotateX: -15,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94],
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+    },
+  },
+};
 
 export default function HeroSection({ heroBanner = heroData }) {
   const swiperRef = useRef(null);

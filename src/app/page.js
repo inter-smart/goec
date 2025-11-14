@@ -16,12 +16,6 @@ export default async function Home() {
 
     const { data, error } = await fetchFromAPI("home");
 
-    
-    if (error) {
-    return <Error path="/" />
-  }
-
-
     const {
     banner_section,
     milestone_section,
