@@ -58,22 +58,24 @@ export async function postWithFileAPI(endpoint, formData, options = {}) {
       ...options,
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
+      // Return error with response data to preserve validation errors
       return {
-        data: null,
+        data: data,
         error: true,
       };
     }
 
-    const data = await response.json();
-
     return {
-      data: data?.success ? data?.data : null,
+      data: data?.success ? data?.data : data,
       error: !data?.success,
     };
   } catch (error) {
+    console.error("API Error:", error);
     return {
-      data: null,
+      data: { message: error.message || "Network error occurred" },
       error: true,
     };
   }

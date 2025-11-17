@@ -66,7 +66,7 @@ const textareaStyle = `
   .replace(/\s+/g, " ")
   .trim();
 
-export default function ApplyForm() {
+export default function ApplyForm({ careerData }) {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [fileError, setFileError] = useState("");
   const [states, setStates] = useState([]);
@@ -180,6 +180,7 @@ export default function ApplyForm() {
     form.setValue("attachment", null);
   };
 
+
   // Handle form submission
   async function onSubmit(values) {
     setIsSubmitting(true);
@@ -193,11 +194,12 @@ export default function ApplyForm() {
       formData.append("phone_number", values.phone);
 
       // Only append if values exist
-      if (values.designation) formData.append("designation", values.designation);
+      if (careerData?.category?.title)
+        formData.append("designation", careerData.category.title);
       if (values.experience) formData.append("experience", values.experience);
       if (values.state_id) formData.append("state_id", values.state_id);
       if (values.city_id) formData.append("city_id", values.city_id);
-
+      if (careerData?.title) formData.append("job_title", careerData.title);
       formData.append(
         "additional_information",
         values.additionalInformation || ""
@@ -228,17 +230,23 @@ export default function ApplyForm() {
       } else {
         // Display validation errors if available
         if (data && data.errors && Array.isArray(data.errors)) {
-          const errorMessages = data.errors.map(err => err.msg || err.message).join('\n');
+          const errorMessages = data.errors
+            .map((err) => err.msg || err.message)
+            .join("\n");
           toast.error(`Validation errors:\n${errorMessages}`);
         } else if (data && data.message) {
           toast.error(data.message);
         } else {
-          toast.error("Failed to submit application. Please check your information and try again.");
+          toast.error(
+            "Failed to submit application. Please check your information and try again."
+          );
         }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("An error occurred while submitting the form. Please try again.");
+      toast.error(
+        "An error occurred while submitting the form. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -330,27 +338,14 @@ export default function ApplyForm() {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Designation</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  value={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select designation" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {[
-                      "Marketing Intern",
-                      "Marketing Intern1",
-                      "Marketing Intern 2",
-                    ].map((item, index) => (
-                      <SelectItem key={"designation" + index} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <FormControl>
+                  <Input
+                    {...field}
+                    value={careerData?.category?.title ?? ""}
+                    readOnly
+                    className={inputStyle + " cursor-not-allowed bg-gray-100"}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -471,7 +466,7 @@ export default function ApplyForm() {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel className={cn(labelStyle, "sr-only")}>
-                  Add an attachment*
+                  Add an attachment
                 </FormLabel>
                 <FormControl>
                   <div className="max-w-full space-y-2">
@@ -488,7 +483,7 @@ export default function ApplyForm() {
                           className="w-[15px] xl:w-[20px]"
                         />
                         <span className={cn(labelStyle, "font-medium")}>
-                          Add an attachment*
+                          Add an attachment
                         </span>
 
                         <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] text-[#373737]">

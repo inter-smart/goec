@@ -12,7 +12,7 @@ import { Heading } from "../utils/Heading";
 import SuccessComp from "./SuccessComp";
 import ApplyForm from "../form/ApplyForm";
 
-export default function CareerModal({ children }) {
+export default function CareerModal({ children, data }) {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleFormSuccess = () => {
@@ -47,7 +47,7 @@ export default function CareerModal({ children }) {
                 Apply Now!
               </Heading>
             </div>
-            <ApplyForm onSuccess={handleFormSuccess} />
+            <ApplyForm careerData={data} onSuccess={handleFormSuccess} />
           </div>
         ) : (
           <SuccessComp />

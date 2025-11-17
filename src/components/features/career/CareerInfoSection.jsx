@@ -84,7 +84,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
                 </ActionButton>
               </div>
               <div>
-                <CareerModal>
+                <CareerModal data={data} >
                   <ActionButton
                     size={"lg"}
                     variant={"blue"}
@@ -166,7 +166,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
           {parse(data?.requirements)}
         </div>
         <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
-          <CareerModal>
+          <CareerModal data={data}>
             <ActionButton size="lg" variant={"blue"} className="w-full" asChild>
               <Link href={"#"}>
                 Apply Now
