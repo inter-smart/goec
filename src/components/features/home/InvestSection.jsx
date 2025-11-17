@@ -116,7 +116,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
             viewport={{ once: false, amount: 0.3 }}
           >
             <ActionButton variant="link" className="text-black" asChild>
-              <Link href='/'>Lern More</Link>
+              <Link href='/investment'>Lern More</Link>
             </ActionButton>
           </motion.div>
         </div>
@@ -193,8 +193,8 @@ export default function InvestSection({ data = investData, milestoneDescription,
                         className="w-full"
                         asChild
                       >
-                        <Link href={item?.buttons[0]?.link}>
-                          {item?.buttons[0]?.text}
+                        <Link href={"/investment"}>
+                          Learn more
                         </Link>
                       </ActionButton>
                     </div>

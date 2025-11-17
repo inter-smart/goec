@@ -55,7 +55,7 @@ export default function NewsCard({ data, index=1, variant = "news" }) {
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
             variant === "blog" ||
-              variant === `blog/${slug}` ||
+              variant === `blog_details` ||
               variant === "home"
               ? "rounded-t-[20px] sm:rounded-t-[30px]"
               : "rounded-[20px] sm:rounded-[30px]"
@@ -76,14 +76,14 @@ export default function NewsCard({ data, index=1, variant = "news" }) {
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               <Link href={`/${variant}/${data?.slug}`}>{data?.title}</Link>
             </div>
-            {variant === "blog" && (
+            {variant === "blog_details" && (
               <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                 {renderHtml(data?.description)}
               </div>
             )}
           </div>
           <div className="flex justify-between items-center gap-[10px]">
-            {variant === "blog" ? (
+            {variant === "blog_details" ? (
               <>
                 <Text
                   as="div"
