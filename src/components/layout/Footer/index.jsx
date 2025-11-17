@@ -36,11 +36,11 @@ const footerData = {
           label: "Contact us",
         },
         {
-          link: "/privacy",
+          link: "/privacy-policy",
           label: "Privacy policy",
         },
         {
-          link: "/terms",
+          link: "/terms-and-conditions",
           label: "Terms & Conditions",
         },
       ],
@@ -57,7 +57,7 @@ const footerData = {
           label: "How to charge",
         },
         {
-          link: "/blog",
+          link: "/news",
           label: "News",
         },
         {
@@ -91,11 +91,11 @@ const footerData = {
       title: "Discover",
       item_navigation: [
         {
-          link: "/",
+          link: "/charging-stations",
           label: "Explore chargers",
         },
         {
-          link: "/",
+          link: "/partner-with-us",
           label: "Partner with us",
         },
         {
@@ -199,10 +199,10 @@ export default function Footer({ data = footerData, footer_section }) {
           <div className="flex flex-wrap items-center gap-[10px] my-[20px] sm:my-[30px] xl:my-[40px] 2xl:my-[50px] 3xl:my-[60px]">
             <div className="flex-1">
               <Heading as="h2" size="heading3" className="text-white xl:max-w-[368px] 2xl:max-w-[420px]">
-                {footer_section?.common_section?.title}
+                {footer_section?.common_section?.title} 
               </Heading>
             </div>
-            <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] max-sm:max-w-[376px]">
+            <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
               <PlaceholdersAndVanishInput placeholders={placeholders} />
             </div>
           </div>

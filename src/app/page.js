@@ -10,16 +10,11 @@ import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 import Error from "./error";
+import Loading from "./loading";
 
 export default async function Home() {
 
     const { data, error } = await fetchFromAPI("home");
-
-    
-    if (error) {
-    return <Error path="/" />
-  }
-
 
     const {
     banner_section,
@@ -36,6 +31,7 @@ export default async function Home() {
 
    return (
     <>
+      <Loading />
       <HeroSection 
         heroBanner={banner_section?.list || []}
       />

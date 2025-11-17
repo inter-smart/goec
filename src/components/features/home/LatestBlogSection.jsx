@@ -7,6 +7,7 @@ import BlogCard from "@/components/common/BlogCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import NewsCard from "@/components/common/NewsCard";
 
 const blogData = {
   title: "Explore our Blogs.",
@@ -156,7 +157,7 @@ export default function LatestBlogSection({ data = blogData, title, blogs = [], 
           {blogs.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <BlogCard blog={item} type={type} />
+                <NewsCard index={index} data={item} variant={"home"} />
               </SwiperSlide>
             );
           })}

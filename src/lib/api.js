@@ -46,3 +46,37 @@ export async function fetchFromAPI(endpoint, options = {}) {
     };
   }
 }
+
+
+export async function postWithFileAPI(endpoint, formData, options = {}) {
+  const url = `${API_BASE_URL}${endpoint}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData, // Important — do NOT set Content-Type manually
+      ...options,
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      // Return error with response data to preserve validation errors
+      return {
+        data: data,
+        error: true,
+      };
+    }
+
+    return {
+      data: data?.success ? data?.data : data,
+      error: !data?.success,
+    };
+  } catch (error) {
+    console.error("API Error:", error);
+    return {
+      data: { message: error.message || "Network error occurred" },
+      error: true,
+    };
+  }
+}

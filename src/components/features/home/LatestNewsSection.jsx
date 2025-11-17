@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import useMedia from "use-media";
 import { MEDIA_URL } from "@/lib/api";
+import {motion} from "motion/react"
 
 const newsData = {
   title: "Latest News",
@@ -109,20 +110,45 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
-          <div className="flex-1">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="flex-1"
+          >
             <Heading
               as="h2"
               size="heading2"
               className="text-[#303030] xl:max-w-[840px]"
             >
-              {title}
+              {data?.title}
             </Heading>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <ActionButton variant="link" className="text-black" asChild>
               <Link href={data?.button?.link}>{data?.button?.label}</Link>
             </ActionButton>
-          </div>
+          </motion.div>
         </div>
         {isMobile ? (
           <Swiper
@@ -172,7 +198,20 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
               return index === 0 ? (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-2/3">
                   <Suspense fallback={<NewsLgCardSkeleton />}>
-                    <div className="w-full h-full block rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                        delay: 0.2,
+                      }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      className="w-full h-full block rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+                    >
                       <div className="h-full flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:px-[4px] xl:[&>*]:px-[6px] 2xl:[&>*]:px-[12px]">
                         <div className="w-full sm:w-1/2">
                           <div className="w-full h-full aspect-[4/2] rounded-[30px] overflow-hidden relative z-0">
@@ -219,12 +258,12 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </Suspense>
                 </div>
               ) : (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-1/3">
-                  <NewsCard data={item} />
+                  <NewsCard index={index} data={item} />
                 </div>
               );
             })}

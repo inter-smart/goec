@@ -7,6 +7,7 @@ import { Heading } from "@/components/utils/Heading";
 import { motion, AnimatePresence } from "framer-motion";
 import { ActionButton } from "@/components/utils/Button";
 import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 const appInfoData = {
   media: {
@@ -84,7 +85,7 @@ const groupedSpecs = splitIntoGroups(
           <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" />
           <div className="w-[72px] 3xs:w-[90px] sm:w-[112px] md:w-[152px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
               <video autoPlay loop muted playsInline className="w-full h-full">
-                <source src={appFeatures?.media?.path} type="video/mp4" />
+                <source src={generateMediaUrl(appFeatures?.hand_video)} type="video/mp4" />
               </video>
               <Image
                 src={appFeatures?.hand_image ? `${MEDIA_URL}${appFeatures?.hand_image}` : '/images/app_info-hand.png' }
@@ -107,24 +108,79 @@ const groupedSpecs = splitIntoGroups(
       <div className="container">
         <div className="max-sm:text-center flex flex-wrap items-center justify-between">
           <div className="w-full sm:w-[276px] xl:w-[340px] 2xl:w-[420px] 3xl:w-[476px]">
-            <Heading
-              as="h2"
-              size="heading1"
-              className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
             >
-              {appFeatures?.title}
-            </Heading>
-            <Text
-              as="p"
-              size="text2"
-              className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              <Heading
+                as="h2"
+                size="heading1"
+                className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              >
+                {appFeatures?.title}
+              </Heading>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
             >
-              {appFeatures?.description}
-            </Text>
-            <ActionButton variant="link" className="text-white" asChild>
-              <Link href="/">Learn more</Link>
-            </ActionButton>
-            <div className="mt-[30px] xl:mt-[40px] 2xl:mt-[60px]">
+              <Text
+                as="p"
+                size="text2"
+                className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              >
+                {appFeatures?.description}
+              </Text>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <ActionButton variant="link" className="text-white" asChild>
+                <Link href="/">Learn more</Link>
+              </ActionButton>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+              className="mt-[30px] xl:mt-[40px] 2xl:mt-[60px]"
+            >
               <Heading
                 as="h3"
                 size="heading5"
@@ -164,7 +220,7 @@ const groupedSpecs = splitIntoGroups(
                     </a>
                   </div>
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="w-full sm:w-[320px] lg:w-[468px] xl:w-[580px] 2xl:w-[768px] 3xl:w-[860px]">
             <div className="w-full h-full relative z-0">

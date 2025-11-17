@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState, useEffect } from "react";
 import {
   Form,
   FormControl,
@@ -21,8 +22,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { fetchFromAPI } from "@/lib/api";
+import { toast } from "sonner";
 
-// ✅ Fixed validation schema to match actual form fields
+// Validation schema with state_id and city_id
 const formSchema = z.object({
   firstName: z.string().min(2, {
     message: "First name must be at least 2 characters.",
@@ -33,33 +37,18 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Phone number must be at least 10 digits." })
     .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
-  state: z.string().optional(),
-  city: z.string().optional(),
+  state_id: z.string().optional(),
+  city_id: z.string().optional(),
   additionalInformation: z.string().optional(),
 });
 
-// ✅ Shared styles
-const labelStyle = `
-  text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737]
-`
-  .replace(/\s+/g, " ")
-  .trim();
+export default function ChargingStationForm({ variant, chargerId }) {
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [loadingStates, setLoadingStates] = useState(false);
+  const [loadingCities, setLoadingCities] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-const inputStyle = `
-  text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737] placeholder:text-[#a9a9a9] w-full !h-[35px] xl:!h-[40px] 2xl:!h-[50px] bg-white border-[#a2a2a2] px-[15px] 2xl:px-[20px] focus:outline-none focus:ring-0 focus-visible:ring-1 focus-visible:border-transparent
-  selection:bg-black selection:text-white appearance-none rounded-[7px] 2xl:rounded-[10px]
-`
-  .replace(/\s+/g, " ")
-  .trim();
-
-const textareaStyle = `
-  ${inputStyle} min-h-[60px] xl:min-h-[80px] 2xl:min-h-[120px] py-[15px] 2xl:py-[20px]
-`
-  .replace(/\s+/g, " ")
-  .trim();
-
-export default function ChargingStationForm() {
-  // ✅ Fixed default values to match schema
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,18 +56,123 @@ export default function ChargingStationForm() {
       lastName: "",
       email: "",
       phone: "",
-      state: "",
-      city: "",
+      state_id: "",
+      city_id: "",
       additionalInformation: "",
     },
   });
 
+  // Fetch states on component mount
+  useEffect(() => {
+    const fetchStates = async () => {
+      setLoadingStates(true);
+      try {
+        const { data, error } = await fetchFromAPI("location/states");
+
+        if (error) return console.error("Error fetching states:", error);
+
+        setStates(data);
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      } finally {
+        setLoadingStates(false);
+      }
+    };
+
+    fetchStates();
+  }, []);
+
+  // Watch state field to fetch cities when state changes
+  const selectedStateId = form.watch("state_id");
+
+  useEffect(() => {
+    if (selectedStateId) {
+      const fetchCities = async () => {
+        setLoadingCities(true);
+        setCities([]);
+        form.setValue("city_id", ""); // Reset city when state changes
+
+        try {
+          const { data, error } = await fetchFromAPI(
+            `location/cities/${selectedStateId}`
+          );
+          if (error) return console.error("Error fetching cities:", error);
+
+          setCities(data);
+        } catch (error) {
+          console.error("Error fetching cities:", error);
+        } finally {
+          setLoadingCities(false);
+        }
+      };
+
+      fetchCities();
+    } else {
+      setCities([]);
+      form.setValue("city_id", "");
+    }
+  }, [selectedStateId, form]);
+
   // Handle form submission
-  function onSubmit(values) {
-    console.log("Form submitted:", values);
-    // Add your form submission logic here
-    // Example: API call, toast notification, etc.
+  async function onSubmit(values) {
+    setIsSubmitting(true);
+    try {
+      const payload = {
+        first_name: values.firstName,
+        last_name: values.lastName || "",
+        email_id: values.email,
+        phone_number: values.phone,
+        additional_information: values.additionalInformation || "",
+      };
+
+      // Only append if values exist (avoid sending empty strings for integer fields)
+      if (values.state_id) payload.state_id = values.state_id;
+      if (values.city_id) payload.city_id = values.city_id;
+      if (chargerId) payload.charger_id = chargerId;
+
+      const { data, error } = await fetchFromAPI("chargers-enquiry", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+
+      if (!error && data) {
+        toast.success("Chargers enquiry submitted successfully!");
+        form.reset({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          state_id: "",
+          city_id: "",
+          additionalInformation: "",
+        });
+      } else {
+        toast.error("Failed to submit enquiry. Please check your information and try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred while submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
+
+  // Shared styles
+  const labelStyle = cn(
+    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737",
+    variant === "about" && "text-white"
+  );
+
+  const inputStyle = cn(
+    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737] placeholder:text-[#a9a9a9] w-full !h-[35px] xl:!h-[40px] 2xl:!h-[50px] bg-white border-[#a2a2a2] px-[15px] 2xl:px-[20px] focus:outline-none focus:ring-0 focus-visible:ring-1 focus-visible:border-transparent selection:bg-black selection:text-white appearance-none rounded-[7px] 2xl:rounded-[10px]",
+    variant === "about" &&
+      "bg-white/10 border-white/20 text-white placeholder:text-[#a0bae5] data-[placeholder]:text-[#a0bae5] [&_svg]:[filter:_brightness(0)_saturate(100%)_invert(81%)_sepia(16%)_saturate(494%)_hue-rotate(181deg)_brightness(88%)_contrast(92%)]"
+  );
+
+  const textareaStyle = cn(
+    inputStyle,
+    "min-h-[60px] xl:min-h-[80px] 2xl:min-h-[120px] py-[15px] 2xl:py-[20px]"
+  );
 
   return (
     <Form {...form}>
@@ -162,23 +256,24 @@ export default function ChargingStationForm() {
 
           <FormField
             control={form.control}
-            name="state"
+            name="state_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={loadingStates}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select state" />
+                      <SelectValue placeholder={loadingStates ? "Loading states..." : "Select state"} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["state 1", "state 2", "state 3"].map((item, index) => (
-                      <SelectItem key={"state" + index} value={item}>
-                        {item}
+                    {states.map((state) => (
+                      <SelectItem key={state.id} value={state.id.toString()}>
+                        {state.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -190,23 +285,24 @@ export default function ChargingStationForm() {
 
           <FormField
             control={form.control}
-            name="city"
+            name="city_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>City</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={loadingCities || !selectedStateId}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select city" />
+                      <SelectValue placeholder={loadingCities ? "Loading cities..." : "Select city"} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["city 1", "city 2", "city 3"].map((item, index) => (
-                      <SelectItem key={"city" + index} value={item}>
-                        {item}
+                    {cities.map((city) => (
+                      <SelectItem key={city.id} value={city.id.toString()}>
+                        {city.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -239,11 +335,15 @@ export default function ChargingStationForm() {
           <div className="w-full flex">
             <ActionButton
               size={"lg"}
-              variant={"blue"}
-              className="max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto"
+              variant={variant === "about" ? "none" : "blue"}
+              className={cn(
+                "max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto",
+                variant === "about" && "text-black bg-white"
+              )}
               type="submit"
+              disabled={isSubmitting}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </ActionButton>
           </div>
         </div>

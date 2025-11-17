@@ -3,9 +3,6 @@ export const dynamic = "force-dynamic";
 import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
 import FindChargingResultSection from "@/components/features/find-charging-station/FindChargingResultSection";
 
-// import HeroSection from "@/components/features/charging-stations/HeroSection";
-import HeroWithCard from "@/components/common/HeroWithCard";
-import ChargingStationList from "@/components/features/charging-stations-old/search/SearchResults";
 import { fetchFromAPI } from "@/lib/api";
 
 const header_data = {

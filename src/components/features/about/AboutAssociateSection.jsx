@@ -189,7 +189,7 @@ export default function AboutAssociateSection({
             </Text>
           </div>
         </div>
-        <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px]">
+        <div className="flex flex-wrap justify-center sm:justify-start mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px]">
           {list?.map((item, index) => (
             <div key={"associate" + index} className="w-1/2 3xs:w-1/3 sm:w-1/5">
               <div className="w-full aspect-[4/2] rounded-[20px] xl:rounded-[25px] flex items-center justify-center overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0] transition hover:bg-primary/10">

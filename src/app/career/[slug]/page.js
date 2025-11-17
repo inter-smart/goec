@@ -1,4 +1,3 @@
-import JobSection from "@/components/features/career-old/jobSection";
 import CareerInfoSection from "@/components/features/career/CareerInfoSection";
 import { fetchFromAPI } from "@/lib/api";
 
@@ -13,8 +12,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-     <CareerInfoSection slug={slug} />
-      <JobSection slug={slug} career_details_section={career_details_section} />
+      <CareerInfoSection slug={slug} data={career_details_section} />
     </>
   );
 }

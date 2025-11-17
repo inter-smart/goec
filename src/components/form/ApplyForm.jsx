@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState, useEffect } from "react";
-import { X, Upload } from "lucide-react";
+import { X } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -38,10 +38,10 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Phone number must be at least 10 digits." })
     .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
+  designation: z.string().optional(),
+  experience: z.string().optional(),
   state_id: z.string().optional(),
   city_id: z.string().optional(),
-  pincode: z.string().optional(),
-  whatYouAre: z.string().min(1, { message: "Business type is required." }),
   additionalInformation: z.string().optional(),
   attachment: z.any().optional(),
 });
@@ -66,7 +66,7 @@ const textareaStyle = `
   .replace(/\s+/g, " ")
   .trim();
 
-export default function BecomePartnerForm() {
+export default function ApplyForm({ careerData }) {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [fileError, setFileError] = useState("");
   const [states, setStates] = useState([]);
@@ -83,10 +83,10 @@ export default function BecomePartnerForm() {
       lastName: "",
       email: "",
       phone: "",
+      designation: "",
+      experience: "",
       state_id: "",
       city_id: "",
-      pincode: "",
-      whatYouAre: "Business",
       additionalInformation: "",
       attachment: null,
     },
@@ -126,7 +126,7 @@ export default function BecomePartnerForm() {
           const { data, error } = await fetchFromAPI(
             `location/cities/${selectedStateId}`
           );
-          if (error) return console.error("Error fetching states:", error);
+          if (error) return console.error("Error fetching cities:", error);
 
           setCities(data);
         } catch (error) {
@@ -180,6 +180,7 @@ export default function BecomePartnerForm() {
     form.setValue("attachment", null);
   };
 
+
   // Handle form submission
   async function onSubmit(values) {
     setIsSubmitting(true);
@@ -192,12 +193,13 @@ export default function BecomePartnerForm() {
       formData.append("email_id", values.email);
       formData.append("phone_number", values.phone);
 
-      // Only append if values exist (avoid sending empty strings for integer fields)
+      // Only append if values exist
+      if (careerData?.category?.title)
+        formData.append("designation", careerData.category.title);
+      if (values.experience) formData.append("experience", values.experience);
       if (values.state_id) formData.append("state_id", values.state_id);
       if (values.city_id) formData.append("city_id", values.city_id);
-      if (values.pincode) formData.append("pincode", values.pincode);
-
-      formData.append("business_type", values.whatYouAre || "Individual");
+      if (careerData?.title) formData.append("job_title", careerData.title);
       formData.append(
         "additional_information",
         values.additionalInformation || ""
@@ -208,19 +210,19 @@ export default function BecomePartnerForm() {
         formData.append("attachment", uploadedFile);
       }
 
-      const { data, error } = await postWithFileAPI("partner-enquiry", formData);
+      const { data, error } = await postWithFileAPI("career-enquiry", formData);
 
       if (!error && data) {
-        toast.success("Partner enquiry submitted successfully!");
+        toast.success("Application submitted successfully!");
         form.reset({
           firstName: "",
           lastName: "",
           email: "",
           phone: "",
+          designation: "",
+          experience: "",
           state_id: "",
           city_id: "",
-          pincode: "",
-          whatYouAre: "Business",
           additionalInformation: "",
           attachment: null,
         });
@@ -228,17 +230,23 @@ export default function BecomePartnerForm() {
       } else {
         // Display validation errors if available
         if (data && data.errors && Array.isArray(data.errors)) {
-          const errorMessages = data.errors.map(err => err.msg || err.message).join('\n');
+          const errorMessages = data.errors
+            .map((err) => err.msg || err.message)
+            .join("\n");
           toast.error(`Validation errors:\n${errorMessages}`);
         } else if (data && data.message) {
           toast.error(data.message);
         } else {
-          toast.error("Failed to submit enquiry. Please check your information and try again.");
+          toast.error(
+            "Failed to submit application. Please check your information and try again."
+          );
         }
       }
     } catch (error) {
-    console.error("Error submitting form:", error);
-      toast.error("An error occurred while submitting the form. Please try again.");
+      console.error("Error submitting form:", error);
+      toast.error(
+        "An error occurred while submitting the form. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -326,6 +334,44 @@ export default function BecomePartnerForm() {
 
           <FormField
             control={form.control}
+            name="designation"
+            render={({ field }) => (
+              <FormItem className="w-full sm:w-1/2">
+                <FormLabel className={labelStyle}>Designation</FormLabel>
+              <FormControl>
+                  <Input
+                    {...field}
+                    value={careerData?.category?.title ?? ""}
+                    readOnly
+                    className={inputStyle + " cursor-not-allowed bg-gray-100"}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="experience"
+            render={({ field }) => (
+              <FormItem className="w-full sm:w-1/2">
+                <FormLabel className={labelStyle}>Experience</FormLabel>
+                <FormControl>
+                  <Input
+                    type="text"
+                    placeholder="Enter your total experience"
+                    className={inputStyle}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
             name="state_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
@@ -396,55 +442,6 @@ export default function BecomePartnerForm() {
 
           <FormField
             control={form.control}
-            name="pincode"
-            render={({ field }) => (
-              <FormItem className="w-full sm:w-1/2">
-                <FormLabel className={labelStyle}>Pincode</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter pincode"
-                    className={inputStyle}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="whatYouAre"
-            render={({ field }) => (
-              <FormItem className="w-full sm:w-1/2">
-                <FormLabel className={labelStyle}>
-                  Business / Individual
-                </FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select what you are" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {["Business", "Individual"].map((item, index) => (
-                      <SelectItem key={"type" + index} value={item}>
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
             name="additionalInformation"
             render={({ field }) => (
               <FormItem className="w-full">
@@ -469,7 +466,7 @@ export default function BecomePartnerForm() {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel className={cn(labelStyle, "sr-only")}>
-                  Add an attachment*
+                  Add an attachment
                 </FormLabel>
                 <FormControl>
                   <div className="max-w-full space-y-2">
@@ -486,7 +483,7 @@ export default function BecomePartnerForm() {
                           className="w-[15px] xl:w-[20px]"
                         />
                         <span className={cn(labelStyle, "font-medium")}>
-                          Add an attachment*
+                          Add an attachment
                         </span>
 
                         <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] text-[#373737]">

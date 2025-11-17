@@ -7,6 +7,7 @@ import { Skeleton } from "../ui/skeleton";
 import { cn } from "@/lib/utils";
 import parse from "html-react-parser";
 import { Text } from "../utils/Text";
+import { motion } from "framer-motion";
 import { MEDIA_URL } from "@/lib/api";
 import { renderHtml } from "../utils/parseHtml";
 
@@ -25,7 +26,7 @@ const section = {
   ],
 };
 
-export default function NewsCard({ data, variant = "news" }) {
+export default function NewsCard({ data, index=1, variant = "news" }) {
 
   const formattedDate = data?.published_on
     ? format(new Date(data?.published_on), "dd MMMM yyyy")
@@ -35,7 +36,20 @@ export default function NewsCard({ data, variant = "news" }) {
 
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
-      <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+          delay: index * 0.2,
+        }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+      >
         <Link
           href={`/${variant}/${data?.slug}`}
           className={cn(
@@ -133,7 +147,7 @@ export default function NewsCard({ data, variant = "news" }) {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </Suspense>
   );
 }
