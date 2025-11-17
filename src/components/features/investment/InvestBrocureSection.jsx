@@ -19,7 +19,7 @@ const investBrocureData = {
     {
       type: "primary",
       label: "Connect Now",
-      link: "/",
+      link: "#footer",
     },
   ],
 };

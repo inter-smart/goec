@@ -55,7 +55,7 @@ export default function NewsCard({ data, index=1, variant = "news" }) {
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
             variant === "blog" ||
-              variant === "blog" ||
+              variant === `blog/${slug}` ||
               variant === "home"
               ? "rounded-t-[20px] sm:rounded-t-[30px]"
               : "rounded-[20px] sm:rounded-[30px]"

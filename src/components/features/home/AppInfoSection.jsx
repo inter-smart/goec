@@ -196,8 +196,8 @@ const groupedSpecs = splitIntoGroups(
                       className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
                     >
                       <Image
-                        src="/images/app_store.png"
-                        alt="app_store"
+                        src={"/images/app_info-ios.svg"}
+                        alt="ios"
                         width={140}
                         height={50}
                       />
@@ -212,8 +212,8 @@ const groupedSpecs = splitIntoGroups(
                       className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
                     >
                       <Image
-                        src="/images/playstore.png"
-                        alt="playstore"
+                      src="/images/app_info-android.svg"
+                        alt="android"
                         width={140}
                         height={50}
                       />
