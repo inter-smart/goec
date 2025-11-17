@@ -1,9 +1,12 @@
+"use client";
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import { MEDIA_URL } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
+
+import { motion } from "motion/react";
 
 const tripData = {
   media: {
@@ -51,11 +54,7 @@ export default function TripSection({ title, highlightTitle, description, makeRi
               <source src={makeRideMedia?.desktop?.media_path ? `${MEDIA_URL}${makeRideMedia?.desktop?.media_path}` : 'videos/trip-bg.mp4'} type="video/mp4" />
             </video>
           ) : (
-             <picture className="absolute -z-2 inset-0">
-                <source
-                  media="(max-width: 640px)"
-                  srcSet={`${MEDIA_URL}${makeRideMedia?.mobile?.media_path}`}
-                />
+       
             <Image
               src={`${MEDIA_URL}${makeRideMedia?.desktop?.media_path}`}
               alt={makeRideMedia?.desktop?.media_alt}
@@ -63,9 +62,20 @@ export default function TripSection({ title, highlightTitle, description, makeRi
               sizes="1820px"
               className="-z-2 opacity-90"
             />
-            </picture>
           )}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: false, amount: 0.3 }}
+          >
             <Heading
               as="h2"
               size="heading1"
@@ -76,9 +86,22 @@ export default function TripSection({ title, highlightTitle, description, makeRi
                 dangerouslySetInnerHTML={{ __html: title }}
               />
             </Heading>
-          </div>
+          </motion.div>
           <div className="flex flex-wrap justify-between items-end gap-[20px]">
-            <div className="flex">
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+              className="flex"
+            >
               <Text
                 as="p"
                 size="text2"
@@ -86,14 +109,28 @@ export default function TripSection({ title, highlightTitle, description, makeRi
               >
                 {description}
               </Text>
-            </div>
-            <ActionButton
-              size={"lg"}
-              className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
-              asChild
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
             >
-              <Link href="/">Plan a Trip Now</Link>
-            </ActionButton>
+              <ActionButton
+                size={"lg"}
+                className="text-black bg-white min-w-[140px] sm:min-w-[180px] xl:min-w-[200px] 2xl:min-w-[220px]"
+                asChild
+              >
+                  <Link href="/">Plan a Trip Now</Link>
+              </ActionButton>
+            </motion.div>
           </div>
         </div>
       </div>

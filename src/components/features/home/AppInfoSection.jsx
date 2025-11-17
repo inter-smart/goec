@@ -107,24 +107,79 @@ const groupedSpecs = splitIntoGroups(
       <div className="container">
         <div className="max-sm:text-center flex flex-wrap items-center justify-between">
           <div className="w-full sm:w-[276px] xl:w-[340px] 2xl:w-[420px] 3xl:w-[476px]">
-            <Heading
-              as="h2"
-              size="heading1"
-              className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
             >
-              {appFeatures?.title}
-            </Heading>
-            <Text
-              as="p"
-              size="text2"
-              className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              <Heading
+                as="h2"
+                size="heading1"
+                className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              >
+                {appFeatures?.title}
+              </Heading>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
             >
-              {appFeatures?.description}
-            </Text>
-            <ActionButton variant="link" className="text-white" asChild>
-              <Link href="/">Learn more</Link>
-            </ActionButton>
-            <div className="mt-[30px] xl:mt-[40px] 2xl:mt-[60px]">
+              <Text
+                as="p"
+                size="text2"
+                className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+              >
+                {appFeatures?.description}
+              </Text>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <ActionButton variant="link" className="text-white" asChild>
+                <Link href="/">Learn more</Link>
+              </ActionButton>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2,
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+              className="mt-[30px] xl:mt-[40px] 2xl:mt-[60px]"
+            >
               <Heading
                 as="h3"
                 size="heading5"
@@ -164,7 +219,7 @@ const groupedSpecs = splitIntoGroups(
                     </a>
                   </div>
               </div>
-            </div>
+            </motion.div>
           </div>
           <div className="w-full sm:w-[320px] lg:w-[468px] xl:w-[580px] 2xl:w-[768px] 3xl:w-[860px]">
             <div className="w-full h-full relative z-0">

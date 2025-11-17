@@ -7,6 +7,7 @@ import { useScroll } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
+import { motion } from "motion/react";
 
 const expertiseData = {
   title: "Explore our Expertise ",
@@ -81,16 +82,46 @@ export default function SolutionsSection({ title, description, solutions }) {
       />
       <div className="container">
         <div className="flex flex-wrap mb-[80px] sm:mb-[70px] xl:mb-[70px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
-          <div className="flex-1 max-sm:mb-[15px]">
-            <Heading as="h2" size="heading2" className="text-[#303030] max-sm:text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="flex-1 max-sm:mb-[15px]"
+          >
+            <Heading
+              as="h2"
+              size="heading2"
+              className="text-[#303030] max-sm:text-center"
+            >
               {title}
             </Heading>
-          </div>
-          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.4,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center"
+          >
             <Text as="p" size="text2" className="text-[#373737]">
               {description}
             </Text>
-          </div>
+          </motion.div>
         </div>
         <div ref={container}>
           {solutions.map((item, i) => {
