@@ -7,6 +7,7 @@ import { Heading } from "@/components/utils/Heading";
 import { motion, AnimatePresence } from "framer-motion";
 import { ActionButton } from "@/components/utils/Button";
 import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 const appInfoData = {
   media: {
@@ -84,7 +85,7 @@ const groupedSpecs = splitIntoGroups(
           <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" />
           <div className="w-[72px] 3xs:w-[90px] sm:w-[112px] md:w-[152px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
               <video autoPlay loop muted playsInline className="w-full h-full">
-                <source src={appFeatures?.media?.path} type="video/mp4" />
+                <source src={generateMediaUrl(appFeatures?.hand_video)} type="video/mp4" />
               </video>
               <Image
                 src={appFeatures?.hand_image ? `${MEDIA_URL}${appFeatures?.hand_image}` : '/images/app_info-hand.png' }

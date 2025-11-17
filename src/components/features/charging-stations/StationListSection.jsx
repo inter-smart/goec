@@ -233,7 +233,7 @@ export default function StationListSection({ data = local_data }) {
                               adipisicing elit. Culpa, id.
                             </DialogDescription>
                           </DialogHeader>
-                          <ChargingStationForm />
+                          <ChargingStationForm chargerId={item?.id} />
                         </DialogContent>
                       </Dialog>
                     </div>

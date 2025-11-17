@@ -26,7 +26,7 @@ const section = {
   ],
 };
 
-export default function NewsCard({ data, variant, index=1 = "news" }) {
+export default function NewsCard({ data, index=1, variant = "news" }) {
 
   const formattedDate = data?.published_on
     ? format(new Date(data?.published_on), "dd MMMM yyyy")

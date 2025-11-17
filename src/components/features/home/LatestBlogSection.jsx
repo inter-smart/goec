@@ -7,6 +7,7 @@ import BlogCard from "@/components/common/BlogCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import NewsCard from "@/components/common/NewsCard";
 
 const blogData = {
   title: "Explore our Blogs.",
