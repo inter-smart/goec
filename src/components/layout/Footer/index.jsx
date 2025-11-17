@@ -31,10 +31,10 @@ const footerData = {
           link: "/about",
           label: "About us",
         },
-        {
-          link: "/contact",
-          label: "Contact us",
-        },
+        // {
+        //   link: "/contact",
+        //   label: "Contact us",
+        // },
         {
           link: "/privacy-policy",
           label: "Privacy policy",
@@ -53,38 +53,38 @@ const footerData = {
           label: "Blog",
         },
         {
-          link: "/",
+          link: "/mobile-app#how-to-charge",
           label: "How to charge",
         },
         {
           link: "/news",
           label: "News",
         },
-        {
-          link: "/",
-          label: "Help centre",
-        },
+        // {
+        //   link: "/",
+        //   label: "Help centre",
+        // },
       ],
     },
     {
       title: "Misc",
       item_navigation: [
         {
-          link: "/",
+          link: "https://play.google.com/store/apps/details?id=com.namp.azadpower&hl=en_IN",
           label: "GOEC application",
         },
-        {
-          link: "/",
-          label: "Solutions",
-        },
+        // {
+        //   link: "/",
+        //   label: "Solutions",
+        // },
         {
           link: "/blog",
           label: "Shop",
         },
-        {
-          link: "/",
-          label: "Apply for charging station",
-        },
+        // {
+        //   link: "/",
+        //   label: "Apply for charging station",
+        // },
       ],
     },
     {
@@ -95,7 +95,7 @@ const footerData = {
           label: "Explore chargers",
         },
         {
-          link: "/partner-with-us",
+          link: "/become-a-partner",
           label: "Partner with us",
         },
         {

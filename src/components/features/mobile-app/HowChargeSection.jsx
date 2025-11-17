@@ -94,6 +94,7 @@ export default function HowChargeSection({ title, list, description = "", varian
 
   return (
     <section
+    id="how-to-charge"
       className={cn(
         "w-full h-auto block ",
         variant === "nfc-card"
