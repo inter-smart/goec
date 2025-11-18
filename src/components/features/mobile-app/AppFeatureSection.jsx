@@ -137,7 +137,7 @@ export default function AppFeatureSection({ title, list }) {
                             alt={item?.media?.media_alt}
                             width={260}
                             height={360}
-                            className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition "
+                            className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition"
                           />
                         </div>
                       )}

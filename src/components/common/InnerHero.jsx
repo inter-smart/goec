@@ -172,7 +172,7 @@ export default function InnerHero({
             {childern}
           </div>
           <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px]">
-            <div className="w-full xl:max-w-[576px] 2xl:max-w-[668px] 3xl:max-w-[720px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
+            <div className="w-full sm:max-w-[200px] lg:max-w-[320px] xl:max-w-[468px] 2xl:max-w-[668px] 3xl:max-w-[676px] aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
               {data?.media?.type === "video" ? (
                 <video
                   autoPlay
@@ -184,7 +184,7 @@ export default function InnerHero({
                   <source src={data?.media?.path} type="video/mp4" />
                 </video>
               ) : (
-                <picture className="absolute -z-2 inset-0">
+                <picture>
                   <source
                     media="(max-width: 640px)"
                     srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`}
