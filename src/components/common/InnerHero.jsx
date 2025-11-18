@@ -4,6 +4,7 @@ import { Text } from "../utils/Text";
 import { ActionButton } from "../utils/Button";
 import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
+import BrochureModal from "./BrochureModal";
 
 const heroData = {
   background_media: {
@@ -46,6 +47,7 @@ export default function InnerHero({
   title,
   description,
   media,
+  varient
 }) {
 
 
@@ -132,6 +134,15 @@ export default function InnerHero({
                         />
                       </a>
                     </ActionButton>
+                  ) : buttonItem?.type === "modal" ? (
+                    <BrochureModal>
+                      <ActionButton
+                        size={"lg"}
+                        className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                      >
+                        Get Brochure
+                      </ActionButton>
+                    </BrochureModal>
                   ) : (
                     <ActionButton
                       key={index}

@@ -29,8 +29,8 @@ const heroData = {
   description: null,
   button: [
     {
-      type: "secondary",
-      label: "Download Brochure ",
+      type: "modal",
+      label: "Download Brochure",
       link: "/",
     },
     {
@@ -49,7 +49,7 @@ export default async function Page() {
 
   return (
     <>
-      <InnerHero data={heroData} title={banner_section?.title} media={banner_section?.media} />
+      <InnerHero data={heroData} title={banner_section?.title} media={banner_section?.media} varient="investment" />
 
       <InvestmentInfoSection description={about_section?.description} media={about_section?.media} />
 
