@@ -31,7 +31,6 @@ export default function NewsCard({ data, index = 1, variant = "news" }) {
     ? format(new Date(data?.published_on), "dd MMMM yyyy")
     : format(new Date(), "dd MMMM yyyy");
 
-  console.log("news card => ", data);
 
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
