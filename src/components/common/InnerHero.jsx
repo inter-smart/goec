@@ -42,7 +42,7 @@ const heroData = {
 
 export default function InnerHero({
   data = heroData,
-  external_button,
+  button,
   childern,
   title,
   description,
@@ -51,16 +51,16 @@ export default function InnerHero({
 }) {
 
 
-  const button = external_button?.buttons?.length
-    ? external_button.buttons.map((btn) => ({
-        type: "external",
-        link: btn.button_link,
-        media: {
-          path: btn.media_path,
-          alt: btn.meida_alt,
-        },
-      }))
-    : data?.button;
+  // const button = external_button?.buttons?.length
+  //   ? external_button.buttons.map((btn) => ({
+  //       type: "external",
+  //       link: btn.button_link,
+  //       media: {
+  //         path: btn.media_path,
+  //         alt: btn.meida_alt,
+  //       },
+  //     }))
+  //   : data?.button;
 
 
     
@@ -113,7 +113,7 @@ export default function InnerHero({
                     >
                       <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
                     </ActionButton>
-                  ) : buttonItem?.type === "external" ? (
+                  ) : buttonItem?.type === "external-with-image" ? (
                     <ActionButton
                       key={index}
                       size={"default"}
@@ -143,7 +143,20 @@ export default function InnerHero({
                         Get Brochure
                       </ActionButton>
                     </BrochureModal>
-                  ) : (
+                  ) : 
+                   buttonItem?.type === "external" ? (
+                    <ActionButton
+                      key={index}
+                      size={"lg"}
+                      variant={"default"}
+                      target="_blank"
+                      className="max-w-[150px] text-black bg-white 3xs:max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
+                      asChild
+                    >
+                      <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
+                    </ActionButton>
+                  ) :
+                  (
                     <ActionButton
                       key={index}
                       size={"lg"}

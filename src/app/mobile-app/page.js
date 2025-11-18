@@ -6,37 +6,37 @@ import AppDownloadSection from "@/components/features/mobile-app/AppDownloadSect
 import { fetchFromAPI } from "@/lib/api";
 import Error from "../error";
 
-
-
 async function getMetaData() {
   try {
-    const {data, error} = await fetchFromAPI(`meta-tags/app-page`);
+    const { data, error } = await fetchFromAPI(`meta-tags/app-page`);
     const meta = data;
 
-    console.log(meta)
-      return {
-        title: meta?.meta_title,
-        description: meta?.meta_description,
-        keywords: meta?.meta_keywords,
-        // Enhanced SEO fields
-        openGraph: {
-          title: meta?.og_title || meta?.meta_title,
-          description: meta?.og_description || meta?.meta_description,
-          images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
-          type: "website",
-          url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
-        },
-        twitter: {
-          card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title,
-          description: meta?.twitter_description || meta?.meta_description,
-          images: meta?.twitter_image ? [meta.twitter_image] : [],
-        },
-        alternates: {
-          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
-        },
-        error: null,
-      };
+    console.log(meta);
+    return {
+      title: meta?.meta_title,
+      description: meta?.meta_description,
+      keywords: meta?.meta_keywords,
+      // Enhanced SEO fields
+      openGraph: {
+        title: meta?.og_title || meta?.meta_title,
+        description: meta?.og_description || meta?.meta_description,
+        images: meta?.og_image
+          ? [{ url: meta.og_image, width: 1200, height: 630 }]
+          : [],
+        type: "website",
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: meta?.twitter_title || meta?.meta_title,
+        description: meta?.twitter_description || meta?.meta_description,
+        images: meta?.twitter_image ? [meta.twitter_image] : [],
+      },
+      alternates: {
+        canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
+      },
+      error: null,
+    };
   } catch (error) {
     return {
       title: "Home",
@@ -48,7 +48,8 @@ async function getMetaData() {
 }
 
 export async function generateMetadata() {
-  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData();
+  const { title, description, keywords, twitter, openGraph, alternates } =
+    await getMetaData();
   return {
     title,
     description,
@@ -58,7 +59,6 @@ export async function generateMetadata() {
     alternates,
   };
 }
-
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("app");
@@ -81,7 +81,7 @@ export default async function Page() {
         data={banner_section}
         title={banner_section?.title}
         media={banner_section?.media}
-         external_button={start_ur_ev_section}
+        button={banner_section?.button}
       ></InnerHero>
       <AppDetailSection data={about_section} />
       <AppFeatureSection

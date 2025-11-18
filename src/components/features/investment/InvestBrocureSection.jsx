@@ -87,7 +87,8 @@ export default function InvestBrocureSection({
               </div>
             </div>
 
-          
+           
+          </div>
         </div>
       </div>
     </section>
