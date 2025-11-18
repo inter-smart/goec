@@ -92,23 +92,24 @@ export default function ApplyForm({ careerData }) {
     },
   });
 
+  const fetchStates = async () => {
+    setLoadingStates(true);
+    try {
+      const { data, error } = await fetchFromAPI("location/states");
+      console.log("states ", data);
+
+      if (error) return console.error("Error fetching states:", error);
+
+      setStates(data);
+    } catch (error) {
+      console.error("Error fetching states:", error);
+    } finally {
+      setLoadingStates(false);
+    }
+  };
+
   // Fetch states on component mount
   useEffect(() => {
-    const fetchStates = async () => {
-      setLoadingStates(true);
-      try {
-        const { data, error } = await fetchFromAPI("location/states");
-
-        if (error) return console.error("Error fetching states:", error);
-
-        setStates(data);
-      } catch (error) {
-        console.error("Error fetching states:", error);
-      } finally {
-        setLoadingStates(false);
-      }
-    };
-
     fetchStates();
   }, []);
 
@@ -179,7 +180,6 @@ export default function ApplyForm({ careerData }) {
     setFileError("");
     form.setValue("attachment", null);
   };
-
 
   // Handle form submission
   async function onSubmit(values) {
@@ -338,7 +338,7 @@ export default function ApplyForm({ careerData }) {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Designation</FormLabel>
-              <FormControl>
+                <FormControl>
                   <Input
                     {...field}
                     value={careerData?.category?.title ?? ""}

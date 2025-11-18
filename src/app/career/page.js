@@ -41,7 +41,7 @@ export default async function Page() {
       <CareerValueSection data={innovative_section} />
       <CareerLifeSection data={life_section} />
       <CareerTestimonialSection data={testimonials_section} />
-      <ConnectSection footer_section={footer_section} />
+      <ConnectSection footer_section={footer_section} page ="career"/>
     </>
   );
 }

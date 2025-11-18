@@ -27,7 +27,7 @@ export default async function Page() {
         data={banner_section}
         title={banner_section?.title}
         media={banner_section?.media}
-         start_ur_ev_section={start_ur_ev_section}
+         external_button={start_ur_ev_section}
       ></InnerHero>
       <AppDetailSection data={about_section} />
       <AppFeatureSection

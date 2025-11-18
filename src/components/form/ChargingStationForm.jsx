@@ -130,13 +130,13 @@ export default function ChargingStationForm({ variant, chargerId }) {
       if (values.city_id) payload.city_id = values.city_id;
       if (chargerId) payload.charger_id = chargerId;
 
-      const { data, error } = await fetchFromAPI("chargers-enquiry", {
+      const { data, error } = await fetchFromAPI(variant === "about" ? "contact-enquiry" : "charger-enquiry", {
         method: "POST",
         body: JSON.stringify(payload),
       });
 
       if (!error && data) {
-        toast.success("Chargers enquiry submitted successfully!");
+        toast.success(variant === "about" ? "Enquiry submitted successfully!" : "Charger enquiry submitted successfully!");
         form.reset({
           firstName: "",
           lastName: "",

@@ -36,7 +36,7 @@ const heroData = {
     {
       type: "primary",
       label: "Get a free consulation",
-      link: "/",
+      link: "/become-a-partner",
     },
   ],
 };

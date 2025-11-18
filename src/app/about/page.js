@@ -35,7 +35,7 @@ export default async function AboutPage() {
     button: [
       {
         type: "secondary",
-        label: "Become a partner ",
+        label: "Become a partner",
         link: "/become-a-partner",
       },
     ],
@@ -122,5 +122,3 @@ export default async function AboutPage() {
     </>
   );
 }
-
-

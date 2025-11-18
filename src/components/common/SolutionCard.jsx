@@ -96,7 +96,7 @@ export default function SolutionCard({
             </div>
             <div>
               <ActionButton variant="link" className="text-black" asChild>
-                <Link href={item?.buttons[0]?.link}>{item?.buttons[0]?.text}</Link>
+                <Link href={"/investment"}>Learn more</Link>
               </ActionButton>
             </div>
             <Image

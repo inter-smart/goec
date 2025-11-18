@@ -60,7 +60,7 @@ export default function AboutBecomePartnerSection({
             </div>
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1" id="about-form">
             <ChargingStationForm variant="about" />
           </div>
         </div>

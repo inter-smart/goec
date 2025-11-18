@@ -171,7 +171,7 @@ export default function AboutAssociateSection({
   list,
 }) {
   return (
-    <section className="w-full h-auto block py-[20px_40px] sm:py-[30px_60px] xl:py-[50px_100px] 2xl:py-[70px_140px]">
+    <section id="our-associates" className="w-full h-auto block py-[20px_40px] sm:py-[30px_60px] xl:py-[50px_100px] 2xl:py-[70px_140px]">
       <div className="container">
         <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">

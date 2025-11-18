@@ -19,7 +19,7 @@ export default async function Page() {
 
   return (
     <>
-      <InnerHero title={banner_section?.title} button={banner_section?.button} media={banner_section.media} />
+      <InnerHero title={banner_section?.title} button={banner_section?.button} media={banner_section.media} external_button={banner_section?.button}/>
 
       <AppDetailSection description={description} />
       <KeyBenefitSection title={key_values?.title} values={key_values?.list} />

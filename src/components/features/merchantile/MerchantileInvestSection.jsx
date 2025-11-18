@@ -152,7 +152,7 @@ export default function MerchantileInvestSection({ data = local_data }) {
                             )}
                             asChild
                           >
-                            <Link href={item?.link}>
+                            <Link href={item?.link? item.link: "/investment"}>
                               Learn more
                               <svg
                                 width="55"

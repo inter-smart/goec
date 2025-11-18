@@ -9,12 +9,12 @@ const heroData = {
   background_media: {
     mobile: {
       type: "image",
-      path: "/images/hero-investment-bg-1.jpg",
+      path: "/images/Spotlight BG.png",
       alt: "hero",
     },
     desktop: {
       type: "image",
-      path: "/images/hero-investment-bg-1.jpg",
+      path: "/images/Spotlight BG.png",
       alt: "hero",
     },
   },
@@ -41,7 +41,7 @@ const heroData = {
 
 export default function InnerHero({
   data = heroData,
-  start_ur_ev_section,
+  external_button,
   childern,
   title,
   description,
@@ -49,8 +49,8 @@ export default function InnerHero({
 }) {
 
 
-  const button = start_ur_ev_section?.buttons?.length
-    ? start_ur_ev_section.buttons.map((btn) => ({
+  const button = external_button?.buttons?.length
+    ? external_button.buttons.map((btn) => ({
         type: "external",
         link: btn.button_link,
         media: {
@@ -67,10 +67,10 @@ export default function InnerHero({
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
-          srcSet={"/images/hero-investment-bg-1.jpg"}
+          srcSet={"/images/Spotlight BG.png"}
         />
         <Image
-          src={"/images/hero-investment-bg-1.jpg"}
+          src={"/images/Spotlight BG.png"}
           alt={"hero"}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
