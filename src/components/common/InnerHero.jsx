@@ -135,7 +135,7 @@ export default function InnerHero({
                       </a>
                     </ActionButton>
                   ) : buttonItem?.type === "modal" ? (
-                    <BrochureModal>
+                    <BrochureModal key={index}>
                       <ActionButton
                         size={"lg"}
                         className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
