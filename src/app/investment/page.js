@@ -28,8 +28,8 @@ const heroData = {
   description: null,
   button: [
     {
-      type: "secondary",
-      label: "Download Brochure ",
+      type: "modal",
+      label: "Download Brochure",
       link: "/",
     },
     {
@@ -43,7 +43,7 @@ const heroData = {
 export default function Page() {
   return (
     <>
-      <InnerHero data={heroData} />
+      <InnerHero data={heroData} varient="investment" />
       <InvestmentInfoSection />
       <MarketSizeSection />
       <BusinessModalSection />
