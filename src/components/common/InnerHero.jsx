@@ -10,12 +10,12 @@ const heroData = {
   background_media: {
     mobile: {
       type: "image",
-      path: "/images/Spotlight BG.png",
+      path: "/images/sportlight.png",
       alt: "hero",
     },
     desktop: {
       type: "image",
-      path: "/images/Spotlight BG.png",
+      path: "/images/sportlight.png",
       alt: "hero",
     },
   },
@@ -69,10 +69,10 @@ export default function InnerHero({
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
-          srcSet={"/images/Spotlight BG.png"}
+          srcSet={"/images/sportlight.png"}
         />
         <Image
-          src={"/images/Spotlight BG.png"}
+          src={"/images/sportlight.png"}
           alt={"hero"}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
