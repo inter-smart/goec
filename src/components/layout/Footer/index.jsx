@@ -82,7 +82,7 @@ const footerData = {
           label: "Shop",
         },
         {
-          link: "/",
+          link: "/charging-stations",
           label: "Apply for charging station",
         },
       ],

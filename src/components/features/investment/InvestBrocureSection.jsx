@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
 
 import BrochureModal from "@/components/common/BrochureModal";
+import { generateMediaUrl } from "@/lib/utils";
 
 const investBrocureData = {
   media: {
@@ -34,8 +35,8 @@ export default function InvestBrocureSection({
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[25px] px-[15px] 3xs:px-[20px] sm:px-[30px] xl:px-[70px] 2xl:px-[80px] bg-black relative z-0">
           <Image
-            src="/images/invest-download-bg.jpg"
-            alt="download-bg"
+            src={generateMediaUrl(media?.media_path)}
+            alt={media?.media_alt}
             fill
             sizes="1820px"
             className="-z-1 object-cover pointer-events-none"

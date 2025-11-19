@@ -8,9 +8,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import Image from "next/image";
-import { Autoplay } from "swiper/modules";
-import { MEDIA_URL } from "@/lib/api";
 import { generateMediaUrl } from "@/lib/utils";
+import { Gallery, Item } from "react-photoswipe-gallery";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 const AboutRecognitionData = {
   title: "Media & Recognition",
@@ -110,6 +111,11 @@ export default function AboutRecognitionSection({
   description,
   list,
 }) {
+
+   const [emblaRef] = useEmblaCarousel({ loop: true }, [
+      Autoplay({ delay: 3000, stopOnInteraction: false }),
+    ]);
+  
   return (
     <section id="media-recognition" className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">
@@ -131,60 +137,86 @@ export default function AboutRecognitionSection({
         </div>
       </div>
 
-      <Swiper
-        loop={true}
-        spaceBetween={30}
-        slidesPerView={"auto"}
-        allowTouchMove={false}
-        speed={4000} // Reduced speed for smoother transition
-        autoplay={{
-          delay: 0, // No delay between slides for continuous motion
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true, // Keeps sliding even on hover
-        }}
-        modules={[Autoplay]} // Add Autoplay to modules array
-        breakpoints={{
-          320: {
-            // slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          384: {
-            // slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          640: {
-            // slidesPerView: 2,
-            spaceBetween: 15,
-          },
-          1024: {
-            // slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1536: {
-            // slidesPerView: 2,
-            spaceBetween: 30,
-          },
-        }}
-      >
-        {list?.map((item, index) => {
-          return (
-            <SwiperSlide
-              key={"value" + index}
-              className="max-w-[276px] sm:max-w-[468px] xl:max-w-[576px] 2xl:max-w-[768px] 3xl:max-w-[960px]"
-            >
-              <div className="group w-full aspect-[960/540] rounded-[20px] xl:rounded-[25px] overflow-hidden">
-                <Image
-                  src={item?.thumbnail?.media_path ? `${MEDIA_URL}${item?.thumbnail?.media_path}` : generateMediaUrl(item?.media?.media_path)}
-                  alt={item?.thumbnail?.media_alt ? item?.thumbnail?.media_alt : item?.media?.media_alt}
-                  width={960}
-                  height={540}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                />
-              </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+       <Gallery>
+           <div className="overflow-hidden" ref={emblaRef}>
+             <div className="flex -mx-1 lg:-mx-2 cursor-grab">
+               {list?.map((item, index) => (
+                 <div
+                   key={"gallery" + index}
+                   className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
+                 >
+                   {item?.media?.media_type === "video" ? (
+                     <Item
+                       html={`
+                         <video 
+                           controls 
+                           autoplay 
+                           style="width: 100%; height: 100%;"
+                           poster="${item?.thumbnail?.media?.media_path || ""}"
+                         >
+                           <source src="${item?.media?.media_path}" type="video/mp4" />
+                           Your browser does not support the video tag.
+                         </video>
+                       `}
+                       width="1920"
+                       height="1080"
+                     >
+                       {({ ref, open }) => (
+                         <div
+                           ref={ref}
+                           onClick={open}
+                           className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
+                         >
+                           <video
+                             autoPlay
+                             loop
+                             muted
+                             playsInline
+                             className="w-full h-full object-cover transition group-hover:scale-105"
+                           >
+                             <source src={generateMediaUrl(item?.media?.media_path)} type="video/mp4" />
+                           </video>
+                           {/* Play icon overlay */}
+                           <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
+                             <svg
+                               className="w-16 h-16 text-white"
+                               fill="currentColor"
+                               viewBox="0 0 24 24"
+                             >
+                               <path d="M8 5v14l11-7z" />
+                             </svg>
+                           </div>
+                         </div>
+                       )}
+                     </Item>
+                   ) : (
+                     <Item
+                       original={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                       thumbnail={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                       width="1200"
+                       height="900"
+                       alt={item?.media_alt || "gallery"}
+                     >
+                       {({ ref, open }) => (
+                         <div className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
+                           <Image
+                             ref={ref}
+                             onClick={open}
+                             src={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                             alt={item?.media_alt || "gallery"}
+                             width={476}
+                             height={268}
+                             className="w-full h-full object-cover transition hover:scale-105"
+                           />
+                         </div>
+                       )}
+                     </Item>
+                   )}
+                 </div>
+               ))}
+             </div>
+           </div>
+         </Gallery>
     </section>
   );
 }
