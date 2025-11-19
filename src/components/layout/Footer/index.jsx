@@ -1,8 +1,13 @@
+"use client";
+
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { Heading } from "@/components/utils/Heading";
 import { generateMediaUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchFromAPI } from "@/lib/api";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const footerData = {
   subscription: {
@@ -60,10 +65,6 @@ const footerData = {
           link: "/news",
           label: "News",
         },
-        // {
-        //   link: "/",
-        //   label: "Help centre",
-        // },
       ],
     },
     {
@@ -73,12 +74,8 @@ const footerData = {
           link: "https://play.google.com/store/apps/details?id=com.namp.azadpower&hl=en_IN",
           label: "GOEC application",
         },
-        // {
-        //   link: "/",
-        //   label: "Solutions",
-        // },
         {
-          link: "/blog",
+          link: "/charging-stations",
           label: "Shop",
         },
         {
@@ -91,7 +88,7 @@ const footerData = {
       title: "Discover",
       item_navigation: [
         {
-          link: "/charging-stations",
+          link: "/find-charging-stations",
           label: "Explore chargers",
         },
         {
@@ -192,6 +189,56 @@ const footerData = {
 const placeholders = ["Enter your mail id", "Enter your mail id", "Enter your mail id"];
 
 export default function Footer({ data = footerData, footer_section }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = async (e) => {
+    if (isSubmitting) return;
+
+    const emailInput = e.target.querySelector('input[type="text"]');
+    const email = emailInput?.value?.trim();
+
+    if (!email) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await fetchFromAPI("newsletter-subscription", {
+        method: "POST",
+        body: JSON.stringify({
+          email_id: email,
+          source: "footer"
+        })
+      });
+
+      if (!error && data) {
+        toast.success("Successfully subscribed to our newsletter! Thank you for joining us.");
+      } else {
+        if (error?.message) {
+          toast.error(error.message);
+        } else if (error?.errors && error.errors.length > 0) {
+          toast.error(error.errors[0].msg || "Subscription failed");
+        } else {
+          toast.error("Subscription failed. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer id="footer" className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#1e1e1e]">
       <div className="w-full border border-white/30 rounded-[16px]">
@@ -199,11 +246,14 @@ export default function Footer({ data = footerData, footer_section }) {
           <div className="flex flex-wrap items-center gap-[10px] my-[20px] sm:my-[30px] xl:my-[40px] 2xl:my-[50px] 3xl:my-[60px]">
             <div className="flex-1">
               <Heading as="h2" size="heading3" className="text-white xl:max-w-[368px] 2xl:max-w-[420px]">
-                {footer_section?.common_section?.title} 
+                {footer_section?.common_section?.title}
               </Heading>
             </div>
             <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
-              <PlaceholdersAndVanishInput placeholders={placeholders} />
+              <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onSubmit={handleNewsletterSubmit}
+              />
             </div>
           </div>
         </div>
@@ -212,7 +262,7 @@ export default function Footer({ data = footerData, footer_section }) {
             <div className="flex flex-wrap py-[15px] sm:py-[20px] xl:py-[30px] 2xl:py-[40px] -mx-[10px] [&>*]:p-[10px]">
               <div className="w-full sm:w-1/3 xl:w-[445px] 2xl:w-[540px] 3xl:w-[660px]">
                 <div className="w-[140px] sm:w-[220px] xl:w-[220px] 2xl:w-[276px] 3xl:w-[340px] max-sm:mb-[20px]">
-                 
+
                  <Link href="/">
                   <Image src={generateMediaUrl(footer_section?.footer_logo?.media_path)} alt={footer_section?.footer_logo?.media_alt} width={340} height={170} className="w-full h-full" />
                   </Link>
