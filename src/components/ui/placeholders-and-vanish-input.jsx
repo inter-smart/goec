@@ -5,11 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ActionButton } from "../utils/Button";
 
-export function PlaceholdersAndVanishInput({
-  placeholders,
-  onChange,
-  onSubmit,
-}) {
+export function PlaceholdersAndVanishInput({ placeholders, onChange, onSubmit }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
   const intervalRef = useRef(null);
@@ -70,20 +66,11 @@ export function PlaceholdersAndVanishInput({
       let i = 4 * t * 800;
       for (let n = 0; n < 800; n++) {
         let e = i + 4 * n;
-        if (
-          pixelData[e] !== 0 &&
-          pixelData[e + 1] !== 0 &&
-          pixelData[e + 2] !== 0
-        ) {
+        if (pixelData[e] !== 0 && pixelData[e + 1] !== 0 && pixelData[e + 2] !== 0) {
           newData.push({
             x: n,
             y: t,
-            color: [
-              pixelData[e],
-              pixelData[e + 1],
-              pixelData[e + 2],
-              pixelData[e + 3],
-            ],
+            color: [pixelData[e], pixelData[e + 1], pixelData[e + 2], pixelData[e + 3]],
           });
         }
       }
@@ -158,10 +145,7 @@ export function PlaceholdersAndVanishInput({
 
     const value = inputRef.current?.value || "";
     if (value && inputRef.current) {
-      const maxX = newDataRef.current.reduce(
-        (prev, current) => (current.x > prev ? current.x : prev),
-        0
-      );
+      const maxX = newDataRef.current.reduce((prev, current) => (current.x > prev ? current.x : prev), 0);
       animate(maxX);
     }
   };
