@@ -17,7 +17,7 @@ const footerData = {
   address: [
     {
       title: "Address - India",
-      description: "GO EC Auto tech Pvt Ltd, 7th floor, KB Square Vytilla, Kochi, Kerala- 682019",
+      description: "GO EC Pvt Ltd, 7th floor, KB Square Vytilla, Kochi, Kerala- 682019",
       email: null,
       phone_number: "+91 944 753 6644",
     },
