@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { Autoplay } from "swiper/modules";
 import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 const AboutRecognitionData = {
   title: "Media & Recognition",
@@ -110,7 +111,7 @@ export default function AboutRecognitionSection({
   list,
 }) {
   return (
-    <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
+    <section id="media-recognition" className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">
         <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">
@@ -173,8 +174,8 @@ export default function AboutRecognitionSection({
             >
               <div className="group w-full aspect-[960/540] rounded-[20px] xl:rounded-[25px] overflow-hidden">
                 <Image
-                  src={`${MEDIA_URL}${item?.thumbnail?.media_path}`}
-                  alt={item?.thumbnail?.media_alt}
+                  src={item?.thumbnail?.media_path ? `${MEDIA_URL}${item?.thumbnail?.media_path}` : generateMediaUrl(item?.media?.media_path)}
+                  alt={item?.thumbnail?.media_alt ? item?.thumbnail?.media_alt : item?.media?.media_alt}
                   width={960}
                   height={540}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-300"

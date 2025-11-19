@@ -104,7 +104,7 @@ export default function AboutCompanySection({ data = aboutCompanyData, ourValues
   const valueData = ourValues;
   const journeyData = ourJourney;
   return (
-    <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#0048bf] relative z-0">
+    <section id="our-values" className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#0048bf] relative z-0">
       <Image
         src="/images/about-value-bg.svg"
         alt="about-value-bg"
@@ -197,7 +197,7 @@ export default function AboutCompanySection({ data = aboutCompanyData, ourValues
         </div>
       </div>
 
-      <div className="w-full">
+      <div id="our-journey" className="w-full">
         <div className="container">
           <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
             <div className="flex-1 max-sm:mb-[15px]">

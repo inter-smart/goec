@@ -32,7 +32,7 @@ const footerData = {
           label: "About us",
         },
         {
-          link: "/contact",
+          link: "/about#about-form",
           label: "Contact us",
         },
         {
@@ -53,30 +53,30 @@ const footerData = {
           label: "Blog",
         },
         {
-          link: "/",
+          link: "/mobile-app#how-to-charge",
           label: "How to charge",
         },
         {
           link: "/news",
           label: "News",
         },
-        {
-          link: "/",
-          label: "Help centre",
-        },
+        // {
+        //   link: "/",
+        //   label: "Help centre",
+        // },
       ],
     },
     {
       title: "Misc",
       item_navigation: [
         {
-          link: "/",
+          link: "https://play.google.com/store/apps/details?id=com.namp.azadpower&hl=en_IN",
           label: "GOEC application",
         },
-        {
-          link: "/",
-          label: "Solutions",
-        },
+        // {
+        //   link: "/",
+        //   label: "Solutions",
+        // },
         {
           link: "/blog",
           label: "Shop",
@@ -95,7 +95,7 @@ const footerData = {
           label: "Explore chargers",
         },
         {
-          link: "/partner-with-us",
+          link: "/become-a-partner",
           label: "Partner with us",
         },
         {
@@ -193,7 +193,7 @@ const placeholders = ["Enter your mail id", "Enter your mail id", "Enter your ma
 
 export default function Footer({ data = footerData, footer_section }) {
   return (
-    <footer className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#1e1e1e]">
+    <footer id="footer" className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#1e1e1e]">
       <div className="w-full border border-white/30 rounded-[16px]">
         <div className="container">
           <div className="flex flex-wrap items-center gap-[10px] my-[20px] sm:my-[30px] xl:my-[40px] 2xl:my-[50px] 3xl:my-[60px]">
@@ -212,14 +212,17 @@ export default function Footer({ data = footerData, footer_section }) {
             <div className="flex flex-wrap py-[15px] sm:py-[20px] xl:py-[30px] 2xl:py-[40px] -mx-[10px] [&>*]:p-[10px]">
               <div className="w-full sm:w-1/3 xl:w-[445px] 2xl:w-[540px] 3xl:w-[660px]">
                 <div className="w-[140px] sm:w-[220px] xl:w-[220px] 2xl:w-[276px] 3xl:w-[340px] max-sm:mb-[20px]">
+                 
+                 <Link href="/">
                   <Image src={generateMediaUrl(footer_section?.footer_logo?.media_path)} alt={footer_section?.footer_logo?.media_alt} width={340} height={170} className="w-full h-full" />
+                  </Link>
                 </div>
               </div>
               {footer_section?.address?.map((item, index) => (
                 <div key={index} className="w-1/2 sm:w-1/3 xl:w-[calc((100%-445px)/2)] 2xl:w-[calc((100%-540px)/2)] 3xl:w-[calc((100%-660px)/2)]">
                   <div className="w-full">
                     <Heading as="div" size="heading6" className="font-medium text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
-                      {item?.title}
+                      Address - {item?.title}
                     </Heading>
                     <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px] max-w-[75%]">
                       {item?.description}
@@ -269,7 +272,7 @@ export default function Footer({ data = footerData, footer_section }) {
                   <div className="flex flex-wrap sm:flex-col -mx-[4px] xl:-mx-[10px] 2xl:-mx-[12px] [&>*]:p-[4px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
                     {footer_section?.app_download?.button.map((item, index) => (
                       <div key={"app_download" + index}>
-                        <a href={item?.link} className="w-[100px] xl:w-[130px] 2xl:w-[150px] 3xl:w-[170px] h-auto block transition hover:scale-105">
+                        <a href={item?.link} target="_blank" className="w-[100px] xl:w-[130px] 2xl:w-[150px] 3xl:w-[170px] h-auto block transition hover:scale-105">
                           <Image src={generateMediaUrl(item?.media?.media_path)} alt={item?.media?.media_alt} width={140} height={50} className="w-full h-full" />
                         </a>
                       </div>
@@ -290,6 +293,7 @@ export default function Footer({ data = footerData, footer_section }) {
                   <div key={"app_download" + index}>
                     <a
                       href={item?.link}
+                      target="_blank"
                       className="w-[15px] sm:w-[20px] xl:w-[20px] 2xl:w-[25px] h-auto aspect-square block cursor-pointer transition hover:scale-105"
                     >
                       <Image src={generateMediaUrl(item?.media?.media_path)} alt={item?.media?.media_alt} width={40} height={40} className="w-full h-full" />

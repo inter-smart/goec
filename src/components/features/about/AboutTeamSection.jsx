@@ -24,7 +24,7 @@ const AboutTeamData = {
 
 export default function AboutTeamSection({ data = AboutTeamData, title, description, media }) {
   return (
-    <section className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_50px] 2xl:py-[140px_70px]">
+    <section  id="meet-team" className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_50px] 2xl:py-[140px_70px]">
       <div className="container">
         <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">

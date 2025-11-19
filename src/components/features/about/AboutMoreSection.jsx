@@ -21,7 +21,7 @@ const aboutMoreData = {
   button: {
     type: "primary",
     label: "Get connected now",
-    link: "/",
+    link: "#about-form",
   },
   mission: {
     title: "Our Mission",
@@ -86,7 +86,7 @@ const aboutMoreData = {
 export default function AboutMoreSection({ data = aboutMoreData, aboutMore, partners, mission, vision, leadingTheGame  }) {
   console.log(aboutMore)
   return (
-    <section className="w-full h-auto block py-[20px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
+    <section id="about-more" className="w-full h-auto block py-[20px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">
         <div className="flex flex-wrap mx-[-10px] sm:mx-[-10px] xl:mx-[-10px] 2xl:mx-[-30px] [&>*]:p-[10px] sm:[&>*]:p-[20px_10px] xl:[&>*]:p-[30px_10px] 2xl:[&>*]:p-[40px_15px]">
           <div className="w-full sm:w-1/2">

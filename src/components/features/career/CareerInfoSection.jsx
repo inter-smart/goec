@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,6 +16,7 @@ import parse from "html-react-parser";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 import CareerModal from "@/components/common/CareerModal";
+import { toast } from "sonner";
 
 const local_data = {
   slug: "marketing-intern",
@@ -31,6 +34,18 @@ const local_data = {
 };
 
 export default function CareerInfoSection({ slug, data = local_data }) {
+ const copyLink = () => {
+  const link = typeof window !== "undefined" ? window.location.href : "";
+
+  navigator.clipboard
+    .writeText(link)
+    .then(() => {
+     toast.success("Link copied!");
+    })
+    .catch(() => {
+     toast.success("Failed to copy link.");
+    });
+ }
   const isHover = false;
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[40px] xl:py-[70px_100px] 2xl:py-[100px_120px] mt-(--header-y)">
@@ -64,14 +79,14 @@ export default function CareerInfoSection({ slug, data = local_data }) {
           </div>
           <div>
             <div className="flex flex-wrap gap-[10px] xl:gap-[15px]">
-              <div>
+              <div onClick={copyLink}>
                 <ActionButton
                   size={"lg"}
                   variant={"link"}
                   className="text-[#0055e0]"
                   asChild
                 >
-                  <Link href={"#"}>
+                  <div>
                     <Image
                       src="/images/icon-share.svg"
                       alt="share"
@@ -80,11 +95,11 @@ export default function CareerInfoSection({ slug, data = local_data }) {
                       className="w-[10px] xl:w-[14px] 2xl:w-[16px]"
                     />
                     Share link
-                  </Link>
+                  </div>
                 </ActionButton>
               </div>
               <div>
-                <CareerModal data={data} >
+                <CareerModal data={data}>
                   <ActionButton
                     size={"lg"}
                     variant={"blue"}

@@ -342,7 +342,7 @@ export default function BlogListSection({
                                       size="none"
                                       className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575]"
                                     >
-                                      {item?.category}
+                                      {item?.category|| "Blog"}
                                       <span>&nbsp;-&nbsp;</span>
                                       {item?.reading_time}
                                     </Text>
@@ -426,7 +426,7 @@ export default function BlogListSection({
 
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-12px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
           {currentItems?.map((item, index) => (
-            <div key={"blogs" + index} className="w-full xs:w-1/2 lg:w-1/3">
+            <div key={"blog" + index} className="w-full xs:w-1/2 lg:w-1/3">
               <NewsCard data={item} variant={variant} />
             </div>
           ))}

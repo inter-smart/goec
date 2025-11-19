@@ -7,7 +7,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "sonner";
 import { fetchFromAPI } from "@/lib/api";
-import Error from "./error";
 
 const urbanist = Urbanist({
   variable: "--font-urbanist",

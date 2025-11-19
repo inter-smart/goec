@@ -23,12 +23,15 @@ export default function BlogDetailSection({ data, variant }) {
           <Breadcrumb>
             <BreadcrumbList>
               {/* <BreadcrumbItem> */}
-                {/* <BreadcrumbLink href="/">Insights</BreadcrumbLink>
+              {/* <BreadcrumbLink href="/">Insights</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator>/</BreadcrumbSeparator> */}
-              <BreadcrumbItem>
-                <BreadcrumbLink href={`/${variant}`}>{variant}</BreadcrumbLink>
-              </BreadcrumbItem>
+              <BreadcrumbLink
+                href={variant === "blog_details" ? "/blog" : `/${variant}`}
+              >
+                {variant === "blog_details" ? "Blogs" : variant}
+              </BreadcrumbLink>
+
               <BreadcrumbSeparator>/</BreadcrumbSeparator>
               {/* <BreadcrumbItem>
                 <BreadcrumbLink href="/">Recent blogs</BreadcrumbLink>

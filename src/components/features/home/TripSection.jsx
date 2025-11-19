@@ -128,7 +128,7 @@ export default function TripSection({ title, highlightTitle, description, makeRi
                 className="text-black bg-white min-w-[140px] sm:min-w-[180px] xl:min-w-[200px] 2xl:min-w-[220px]"
                 asChild
               >
-                  <Link href="/">Plan a Trip Now</Link>
+                  <Link href="/mobile-app">Plan a Trip Now</Link>
               </ActionButton>
             </motion.div>
           </div>

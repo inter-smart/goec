@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState, useEffect } from "react";
 import {
   Form,
   FormControl,
@@ -19,19 +20,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { fetchFromAPI, MEDIA_URL } from "@/lib/api";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
     message: "First name must be at least 2 characters.",
   }),
-  lastName: z.string().optional(),
+  lastName: z.string().min(2, {
+    message: "Last name must be at least 2 characters.",
+  }),
   email: z.string().email({ message: "Invalid email address." }),
   phone: z
     .string()
     .min(10, { message: "Phone number must be at least 10 digits." })
     .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
-  state: z.string().optional(),
-  city: z.string().optional(),
+  state_id: z.string().optional(),
+  city_id: z.string().optional(),
 });
 
 const labelStyle = `
@@ -48,6 +53,12 @@ const inputStyle = `
   .trim();
 
 export default function DownloadForm({ onSuccess }) {
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [loadingStates, setLoadingStates] = useState(false);
+  const [loadingCities, setLoadingCities] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,28 +66,126 @@ export default function DownloadForm({ onSuccess }) {
       lastName: "",
       email: "",
       phone: "",
-      state: "",
-      city: "",
+      state_id: "",
+      city_id: "",
     },
   });
 
+  // Fetch states on component mount
+  useEffect(() => {
+    const fetchStates = async () => {
+      setLoadingStates(true);
+      try {
+        const { data, error } = await fetchFromAPI("location/states");
+
+        if (error) return console.error("Error fetching states:", error);
+
+        setStates(data);
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      } finally {
+        setLoadingStates(false);
+      }
+    };
+
+    fetchStates();
+  }, []);
+
+  // Watch state field to fetch cities when state changes
+  const selectedStateId = form.watch("state_id");
+
+  useEffect(() => {
+    if (selectedStateId) {
+      const fetchCities = async () => {
+        setLoadingCities(true);
+        setCities([]);
+        form.setValue("city_id", ""); // Reset city when state changes
+
+        try {
+          const { data, error } = await fetchFromAPI(
+            `location/cities/${selectedStateId}`
+          );
+          if (error) return console.error("Error fetching cities:", error);
+
+          setCities(data);
+        } catch (error) {
+          console.error("Error fetching cities:", error);
+        } finally {
+          setLoadingCities(false);
+        }
+      };
+
+      fetchCities();
+    } else {
+      setCities([]);
+      form.setValue("city_id", "");
+    }
+  }, [selectedStateId, form]);
+
   async function onSubmit(values) {
-    console.log("Form submitted:", values);
-
+    setIsSubmitting(true);
     try {
-      // Add your API call here
-      // Example: await submitFormData(values);
+      const payload = {
+        first_name: values.firstName,
+        last_name: values.lastName,
+        email: values.email,
+        phone_number: values.phone,
+      };
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Only append if values exist
+      if (values.state_id) payload.state_id = values.state_id;
+      if (values.city_id) payload.city_id = values.city_id;
 
-      // Call the success callback
-      if (onSuccess) {
-        onSuccess();
+      const { data, error } = await fetchFromAPI("brochure-enquiry", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+
+      if (!error && data) {
+        toast.success("Brochure enquiry submitted successfully!");
+
+        // Trigger document download
+        if (data.brochure_path) {
+          const brochureUrl = `${MEDIA_URL}${data.brochure_path}`;
+          window.open(brochureUrl, "_blank");
+        }
+
+        // Reset form
+        form.reset({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          state_id: "",
+          city_id: "",
+        });
+
+        // Call the success callback to show success screen
+        if (onSuccess) {
+          onSuccess();
+        }
+      } else {
+        // Display validation errors if available
+        if (data && data.errors && Array.isArray(data.errors)) {
+          const errorMessages = data.errors
+            .map((err) => err.msg || err.message)
+            .join("\n");
+          toast.error(`Validation errors:\n${errorMessages}`);
+        } else if (data && data.message) {
+          toast.error(data.message);
+        } else {
+          toast.error(
+            "Failed to submit enquiry. Please check your information and try again."
+          );
+        }
       }
     } catch (error) {
-      console.error("Form submission error:", error);
-      // Handle error (show toast, etc.)
+      console.error("Error submitting form:", error);
+      toast.error(
+        "An error occurred while submitting the form. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -108,7 +217,7 @@ export default function DownloadForm({ onSuccess }) {
             name="lastName"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
-                <FormLabel className={labelStyle}>Last name</FormLabel>
+                <FormLabel className={labelStyle}>Last name*</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
@@ -162,23 +271,28 @@ export default function DownloadForm({ onSuccess }) {
 
           <FormField
             control={form.control}
-            name="state"
+            name="state_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={loadingStates}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select state" />
+                      <SelectValue
+                        placeholder={
+                          loadingStates ? "Loading states..." : "Select state"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["state 1", "state 2", "state 3"].map((item, index) => (
-                      <SelectItem key={"state" + index} value={item}>
-                        {item}
+                    {states.map((state) => (
+                      <SelectItem key={state.id} value={state.id.toString()}>
+                        {state.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -190,23 +304,32 @@ export default function DownloadForm({ onSuccess }) {
 
           <FormField
             control={form.control}
-            name="city"
+            name="city_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>City</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={!selectedStateId || loadingCities}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select city" />
+                      <SelectValue
+                        placeholder={
+                          loadingCities
+                            ? "Loading cities..."
+                            : !selectedStateId
+                            ? "Select state first"
+                            : "Select city"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["city 1", "city 2", "city 3"].map((item, index) => (
-                      <SelectItem key={"city" + index} value={item}>
-                        {item}
+                    {cities.map((city) => (
+                      <SelectItem key={city.id} value={city.id.toString()}>
+                        {city.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -222,9 +345,9 @@ export default function DownloadForm({ onSuccess }) {
               variant={"blue"}
               className="max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] rounded-[8px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto"
               type="submit"
-              disabled={form.formState.isSubmitting}
+              disabled={isSubmitting}
             >
-              {form.formState.isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </ActionButton>
           </div>
         </div>

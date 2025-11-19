@@ -4,17 +4,18 @@ import { Text } from "../utils/Text";
 import { ActionButton } from "../utils/Button";
 import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
+import BrochureModal from "./BrochureModal";
 
 const heroData = {
   background_media: {
     mobile: {
       type: "image",
-      path: "/images/hero-investment-bg-1.jpg",
+      path: "/images/Spotlight BG.png",
       alt: "hero",
     },
     desktop: {
       type: "image",
-      path: "/images/hero-investment-bg-1.jpg",
+      path: "/images/Spotlight BG.png",
       alt: "hero",
     },
   },
@@ -41,24 +42,25 @@ const heroData = {
 
 export default function InnerHero({
   data = heroData,
-  start_ur_ev_section,
+  button,
   childern,
   title,
   description,
   media,
+  varient
 }) {
 
 
-  const button = start_ur_ev_section?.buttons?.length
-    ? start_ur_ev_section.buttons.map((btn) => ({
-        type: "external",
-        link: btn.button_link,
-        media: {
-          path: btn.media_path,
-          alt: btn.meida_alt,
-        },
-      }))
-    : data?.button;
+  // const button = external_button?.buttons?.length
+  //   ? external_button.buttons.map((btn) => ({
+  //       type: "external",
+  //       link: btn.button_link,
+  //       media: {
+  //         path: btn.media_path,
+  //         alt: btn.meida_alt,
+  //       },
+  //     }))
+  //   : data?.button;
 
 
     
@@ -67,10 +69,10 @@ export default function InnerHero({
       <picture className="absolute -z-2 inset-0">
         <source
           media="(max-width: 640px)"
-          srcSet={"/images/hero-investment-bg-1.jpg"}
+          srcSet={"/images/Spotlight BG.png"}
         />
         <Image
-          src={"/images/hero-investment-bg-1.jpg"}
+          src={"/images/Spotlight BG.png"}
           alt={"hero"}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
@@ -111,7 +113,7 @@ export default function InnerHero({
                     >
                       <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
                     </ActionButton>
-                  ) : buttonItem?.type === "external" ? (
+                  ) : buttonItem?.type === "external-with-image" ? (
                     <ActionButton
                       key={index}
                       size={"default"}
@@ -132,7 +134,29 @@ export default function InnerHero({
                         />
                       </a>
                     </ActionButton>
-                  ) : (
+                  ) : buttonItem?.type === "modal" ? (
+                    <BrochureModal key={index}>
+                      <ActionButton
+                        size={"lg"}
+                        className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                      >
+                        Get Brochure
+                      </ActionButton>
+                    </BrochureModal>
+                  ) : 
+                   buttonItem?.type === "external" ? (
+                    <ActionButton
+                      key={index}
+                      size={"lg"}
+                      variant={"default"}
+                      target="_blank"
+                      className="max-w-[150px] text-black bg-white 3xs:max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
+                      asChild
+                    >
+                      <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
+                    </ActionButton>
+                  ) :
+                  (
                     <ActionButton
                       key={index}
                       size={"lg"}
@@ -148,7 +172,7 @@ export default function InnerHero({
             {childern}
           </div>
           <div className="w-[176px] sm:w-[276px] md:w-[320px] xl:w-[400px] 2xl:w-[468px] max-sm:mb-[20px]">
-            <div className="w-full xl:max-w-[576px] 2xl:max-w-[668px] 3xl:max-w-[720px] h-auto aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
+            <div className="w-full sm:max-w-[200px] lg:max-w-[320px] xl:max-w-[468px] 2xl:max-w-[668px] 3xl:max-w-[676px] aspect-[52/57] sm:absolute z-0 top-1/2 right-0 sm:-translate-y-1/2 ">
               {data?.media?.type === "video" ? (
                 <video
                   autoPlay
@@ -160,7 +184,7 @@ export default function InnerHero({
                   <source src={data?.media?.path} type="video/mp4" />
                 </video>
               ) : (
-                <picture className="absolute -z-2 inset-0">
+                <picture>
                   <source
                     media="(max-width: 640px)"
                     srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`}

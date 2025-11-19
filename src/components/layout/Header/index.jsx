@@ -55,27 +55,28 @@ const headerData = {
           item_about: [
             {
               label: "More about us",
-              link: "/about",
+              link: "/about#about-more",
             },
             {
               label: "Our Values",
-              link: "/about",
+              link: "/about#our-values",
             },
             {
               label: "Our Journey",
-              link: "/about",
+              link: "/about#our-journey",
             },
             {
               label: "Meet our team",
-              link: "/about",
+              link: "/about#meet-team",
             },
+
             {
               label: "Our Associates",
-              link: "/about",
+              link: "/about#our-associates",
             },
             {
               label: "Media & Recognit",
-              link: "/about",
+              link: "/about#media-recognition",
             },
           ],
         },
@@ -85,27 +86,27 @@ const headerData = {
           item_about: [
             {
               label: "More about us",
-              link: "/about",
+              link: "/about#about-more",
             },
             {
               label: "Our Values",
-              link: "/about",
+              link: "/about#our-values",
             },
             {
               label: "Our Journey",
-              link: "/about",
+              link: "/about#our-journey",
             },
             {
               label: "Meet our team",
-              link: "/about",
+              link: "/about#meet-team",
             },
             {
               label: "Our Associates",
-              link: "/about",
+              link: "/about#our-associates",
             },
             {
               label: "Media & Recognit",
-              link: "/about",
+              link: "/about#media-recognition",
             },
           ],
         },
@@ -151,7 +152,7 @@ const headerData = {
 const navigationMenuTriggerStyle =
   "text-[20px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium lg:font-normal text-start lg:text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[15px_20px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10";
 
-export default function Header({header_section}) {
+export default function Header({ header_section }) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [appDownloadOpen, setAppDownloadOpen] = useState(false);
@@ -195,13 +196,13 @@ export default function Header({header_section}) {
           <div className="flex justify-between">
             <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
               <Link href="/">
-              <Image
-                src={generateMediaUrl(header_section?.logo?.media_path)}
-                alt={header_section?.logo?.media_alt}
-                width={90}
-                height={45}
-                className="w-full h-full"
-              />
+                <Image
+                  src={generateMediaUrl(header_section?.logo?.media_path)}
+                  alt={header_section?.logo?.media_alt}
+                  width={90}
+                  height={45}
+                  className="w-full h-full"
+                />
               </Link>
             </div>
             <div className="flex items-center space-x-[15px] sm:space-x-[20px] xl:space-x-[25px] 2xl:space-x-[35px]">
@@ -220,7 +221,7 @@ export default function Header({header_section}) {
                   </ActionButton>
                   {appDownloadOpen && (
                     <div className="absolute z-1 top-[110%] right-0">
-                      <AppDownloadDropdown />
+                      <AppDownloadDropdown qrData={header_section?.download} />
                     </div>
                   )}
                 </div>
@@ -272,50 +273,27 @@ function MegaNavigationMenubar() {
         sub_sub_item: [
           {
             label: "More about us",
-            link: "/about",
+            link: "/about#about-more",
           },
           {
             label: "Our Values",
-            link: "/about",
+            link: "/about#our-values",
           },
           {
             label: "Our Journey",
-            link: "/about",
+            link: "/about#our-journey",
           },
           {
             label: "Meet our team",
-            link: "/about",
+            link: "/about#meet-team",
           },
           {
             label: "Our Associates",
-            link: "/about",
+            link: "/about#our-associates",
           },
           {
             label: "Media & Recognition",
-            link: "/about",
-          },
-        ],
-      },
-      {
-        id: 2,
-        label: "Services",
-        link: "/services",
-        sub_sub_item: [
-          {
-            label: "Web Development",
-            link: "/services/web",
-          },
-          {
-            label: "Mobile Apps",
-            link: "/services/mobile",
-          },
-          {
-            label: "Cloud Solutions",
-            link: "/services/cloud",
-          },
-          {
-            label: "Consulting",
-            link: "/services/consulting",
+            link: "/about#media-recognition",
           },
         ],
       },
@@ -484,7 +462,7 @@ function MegaNavigationMenuContent({ data }) {
                       {item?.sub_sub_item?.map((subItem, subIndex) => (
                         <div key={subIndex} className="w-full max-w-full">
                           <Link
-                            href={subItem.link || "#"}
+                            href={subItem.link}
                             className={cn(
                               "text-[14px] leading-normal font-normal truncate text-[#373737] w-full h-auto block p-[4px_10px] rounded-[8px] transition",
                               "hover:bg-[#fafafa] hover:text-[#030303]"
@@ -588,7 +566,7 @@ const heroData = {
   ],
 };
 
-function AppDownloadDropdown() {
+function AppDownloadDropdown({ qrData }) {
   return (
     <div className="w-[220px] sm:w-[276px] lg:w-[420px] xl:w-[540px] 2xl:w-[600px] 3xl:w-[640px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
       <div className="flex flex-wrap">
@@ -599,7 +577,7 @@ function AppDownloadDropdown() {
               size="heading4"
               className="line-clamp-3 text-center lg:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-black to-black bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
             >
-              Get GO EC <br /> App Now!
+              {qrData?.qr_code?.title}
             </Heading>
             <div className="flex space-x-[5px] xl:space-x-[10px] 2xl:space-x-[15px] max-lg:justify-center">
               <ActionButton
@@ -608,14 +586,14 @@ function AppDownloadDropdown() {
                 asChild
               >
                 <a
-                  href="/"
+                  href={qrData?.app_store?.link}
                   aria-label="app store"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Image
-                    src="/images/header-icon-app_store.svg"
-                    alt="app"
+                    src={generateMediaUrl(qrData?.app_store?.media?.media_path)}
+                    alt={qrData?.app_store?.media?.media_alt}
                     width={176}
                     height={64}
                   />
@@ -627,14 +605,14 @@ function AppDownloadDropdown() {
                 asChild
               >
                 <a
-                  href="/"
+                  href={qrData?.play_store?.link}
                   aria-label="app store"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Image
-                    src="/images/header-icon-play_store.svg"
-                    alt="app"
+                    src={generateMediaUrl(qrData?.play_store?.media?.media_path)}
+                    alt={qrData?.play_store?.media?.media_alt}
                     width={176}
                     height={64}
                     quality={100}
@@ -646,8 +624,8 @@ function AppDownloadDropdown() {
         </div>
         <div className="w-[120px] lg:w-[168px] xl:w-[200px] 2xl:w-[240px] mx-auto">
           <Image
-            src="/images/header-AppDownload-qr.jpg"
-            alt="AppDownload-qr"
+            src={generateMediaUrl(qrData?.qr_code?.media?.media_path)}
+            alt={qrData?.qr_code?.media?.media_alt}
             width={220}
             height={220}
             className="w-full h-full"

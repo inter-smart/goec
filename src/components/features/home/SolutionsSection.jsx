@@ -145,7 +145,7 @@ export default function SolutionsSection({ title, description, solutions }) {
             className="text-black bg-[#f5f5f5] hover:bg-[#dddddd]"
             asChild
           >
-            <Link href="/">Explore more</Link>
+            <Link href="/investment">Explore more</Link>
           </ActionButton>
         </div>
       </div>

@@ -73,7 +73,7 @@ const groupedSpecs = splitIntoGroups(
   return (
     <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[30px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px]">
       <Image
-        src="/images/app_info-bg.svg"
+        src="/images/app_info-bg.png"
         alt="app_info-bg"
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
@@ -164,7 +164,7 @@ const groupedSpecs = splitIntoGroups(
               viewport={{ once: false, amount: 0.3 }}
             >
               <ActionButton variant="link" className="text-white" asChild>
-                <Link href="/">Learn more</Link>
+                <Link href="/mobile-app">Learn more</Link>
               </ActionButton>
             </motion.div>
             <motion.div
@@ -196,8 +196,8 @@ const groupedSpecs = splitIntoGroups(
                       className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
                     >
                       <Image
-                        src="/images/app_store.png"
-                        alt="app_store"
+                        src={"/images/app_info-ios.svg"}
+                        alt="ios"
                         width={140}
                         height={50}
                       />
@@ -212,8 +212,8 @@ const groupedSpecs = splitIntoGroups(
                       className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
                     >
                       <Image
-                        src="/images/playstore.png"
-                        alt="playstore"
+                      src="/images/app_info-android.svg"
+                        alt="android"
                         width={140}
                         height={50}
                       />
@@ -225,7 +225,7 @@ const groupedSpecs = splitIntoGroups(
           <div className="w-full sm:w-[320px] lg:w-[468px] xl:w-[580px] 2xl:w-[768px] 3xl:w-[860px]">
             <div className="w-full h-full relative z-0">
               <Image
-                src="/images/app_info-spec-bg.svg"
+                src="/images/app_info-spec-bg.png"
                 alt="app_info-spec-bg"
                 width={880}
                 height={640}
