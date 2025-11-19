@@ -9,17 +9,11 @@ import "swiper/css/navigation";
 import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function SimilarBlogSection({ similar_section, footer_section, variant }) {
-
-  console.log("similar_section", similar_section);
-
   return (
     <section className="w-full h-auto block py-[20px] sm:py-[30px_40px] xl:py-[60px_120px] 2xl:py-[80px_140px]">
       <div className="container">
-        <Heading
-          as="h2"
-          size="heading3"
-          className="text-center text-[#303030] mb-[15px] xl:mb-[40px] 2xl:mb-[60px]"
-        >{similar_section?.title}
+        <Heading as="h2" size="heading3" className="text-center text-[#303030] mb-[15px] xl:mb-[40px] 2xl:mb-[60px]">
+          {similar_section?.title}
         </Heading>
         <Swiper
           loop

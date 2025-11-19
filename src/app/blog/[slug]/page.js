@@ -110,36 +110,35 @@ import { fetchFromAPI } from "@/lib/api";
 //   },
 // };
 
-
 async function getMetaData() {
   try {
-    const {data, error} = await fetchFromAPI(`meta-tags/blog-details`);
+    const { data, error } = await fetchFromAPI(`meta-tags/blog-details`);
     const meta = data;
 
-    console.log(meta)
-      return {
-        title: meta?.meta_title,
-        description: meta?.meta_description,
-        keywords: meta?.meta_keywords,
-        // Enhanced SEO fields
-        openGraph: {
-          title: meta?.og_title || meta?.meta_title,
-          description: meta?.og_description || meta?.meta_description,
-          images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
-          type: "website",
-          url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
-        },
-        twitter: {
-          card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title,
-          description: meta?.twitter_description || meta?.meta_description,
-          images: meta?.twitter_image ? [meta.twitter_image] : [],
-        },
-        alternates: {
-          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
-        },
-        error: null,
-      };
+    console.log(meta);
+    return {
+      title: meta?.meta_title,
+      description: meta?.meta_description,
+      keywords: meta?.meta_keywords,
+      // Enhanced SEO fields
+      openGraph: {
+        title: meta?.og_title || meta?.meta_title,
+        description: meta?.og_description || meta?.meta_description,
+        images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
+        type: "website",
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: meta?.twitter_title || meta?.meta_title,
+        description: meta?.twitter_description || meta?.meta_description,
+        images: meta?.twitter_image ? [meta.twitter_image] : [],
+      },
+      alternates: {
+        canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
+      },
+      error: null,
+    };
   } catch (error) {
     return {
       title: "Home",
@@ -162,29 +161,27 @@ export async function generateMetadata() {
   };
 }
 
-
-
-
 export default async function Page({ params }) {
   const { slug } = params;
 
   const { data, error } = await fetchFromAPI(`blog/${slug}`);
 
-  console.log(data.footer_section);
-
   if (error) {
     return <Error path={`blog/${slug}`} />;
   }
   const { blog_details_section, similar_section, footer_section } = data;
+  const isSimiliarBlogExist = similar_section?.list.length > 0;
 
   return (
     <>
       <BlogDetailSection variant={`blog_details`} data={blog_details_section} />
-      <SimilarBlogSection
-        variant={"blog"}
-        similar_section={similar_section}
-        // footer_section={footer_section}
-      />
+      {isSimiliarBlogExist && (
+        <SimilarBlogSection
+          variant={"blog"}
+          similar_section={similar_section}
+          // footer_section={footer_section}
+        />
+      )}
 
       <ConnectSection footer_section={footer_section} />
     </>
