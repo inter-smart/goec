@@ -122,6 +122,7 @@ export default async function AboutPage() {
       data={heroData}
         title={banner_section?.title || ""}
         media={banner_section?.media || {}}
+        button={heroData.button}
       />
 
       {/* About Info */}

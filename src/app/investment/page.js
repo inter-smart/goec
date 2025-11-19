@@ -103,7 +103,7 @@ export default async function Page() {
 
   return (
     <>
-      <InnerHero data={heroData} title={banner_section?.title} media={banner_section?.media} varient="investment" />
+      <InnerHero data={heroData} button={heroData.button} title={banner_section?.title} media={banner_section?.media} varient="investment" />
 
       <InvestmentInfoSection description={about_section?.description} media={about_section?.media} />
 
