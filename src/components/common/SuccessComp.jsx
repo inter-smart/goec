@@ -46,7 +46,7 @@ export default function SuccessComp({ data = local_data }) {
         className="max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mx-auto"
         asChild
       >
-        <Link href="/investment">Continue</Link>
+        <Link href="/">Continue</Link>
       </ActionButton>
     </div>
   );

@@ -65,7 +65,7 @@ export default function NewsCard({ data, index = 1, variant = "news" }) {
         >
           <Image
             src={`${MEDIA_URL}${data?.media?.media_path}`}
-            alt={data?.media?.media_alt}
+            alt={data?.media?.media_alt|| "News Image"}
             fill
             sizes="512px"
             className="transition hover:scale-105"
