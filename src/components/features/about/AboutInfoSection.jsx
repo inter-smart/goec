@@ -28,19 +28,12 @@ const aboutInfoData = {
 };
 
 export default function AboutInfoSection({ data = aboutInfoData, description, media }) {
-
-
-  console.log(generateMediaUrl(media?.desktop?.media_path))
+  console.log(generateMediaUrl(media?.desktop?.media_path));
   const animatedTextRef = useRef(null);
   const sanitizedText = DOMPurify.sanitize(description);
 
   const splitTextIntoWords = (element) => {
-    const walker = document.createTreeWalker(
-      element,
-      NodeFilter.SHOW_TEXT,
-      null,
-      false
-    );
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
 
     const textNodes = [];
     let node;
@@ -67,7 +60,7 @@ export default function AboutInfoSection({ data = aboutInfoData, description, me
         }
       });
 
-      textNode.parentNode.replaceChild(fragment, textNode);
+      textNode?.parentNode.replaceChild(fragment, textNode);
     });
   };
 
@@ -136,29 +129,18 @@ export default function AboutInfoSection({ data = aboutInfoData, description, me
             className="w-[60px] xl:w-[70px] 2xl:w-[78px] aspect-square absolute z-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition hover:scale-105"
           />
           {media?.desktop?.media_type === "video" ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover absolute -z-2 inset-0"
-            >
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
               <source src={generateMediaUrl(media?.desktop?.media_path)} type="video/mp4" />
             </video>
           ) : (
             <picture className="absolute -z-1 inset-0">
-              <source
-                media="(max-width: 640px)"
-                srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`}
-              />
+              <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`} />
               <Image
                 src={`${MEDIA_URL}${media?.desktop?.media_path}`}
                 alt={media?.desktop?.media_alt || "hero image"}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                 className="-z-1 object-cover transition hover:scale-105"
-                
-                
               />
             </picture>
           )}
