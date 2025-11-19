@@ -143,13 +143,6 @@ export default function DownloadForm({ onSuccess }) {
 
       if (!error && data) {
         toast.success("Brochure enquiry submitted successfully!");
-
-        // Trigger document download
-        if (data.brochure_path) {
-          const brochureUrl = `${MEDIA_URL}${data.brochure_path}`;
-          window.open(brochureUrl, "_blank");
-        }
-
         // Reset form
         form.reset({
           firstName: "",

@@ -2,6 +2,7 @@
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 import parse from "html-react-parser";
 import Image from "next/image";
 import CountUp from "react-countup";
@@ -106,7 +107,12 @@ export default function InvestNowSection({
   description,
   milestones,
   features,
+  media
 }) {
+
+
+
+
   return (
     <ParallaxProvider>
       <section className="w-full h-auto block py-[40px] sm:py-[80px] xl:py-[120px] 2xl:py-[140px] overflow-hidden relative z-0">
@@ -119,15 +125,21 @@ export default function InvestNowSection({
         />
 
         <Parallax speed={-20} className="absolute inset-0 -z-2">
-          <Image
-            src={data?.background_media?.path}
-            alt={data?.background_media?.alt}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-            className="-z-2 object-cover"
-            placeholder="blur"
-            blurDataURL="/images/placeholder.jpg"
-          />
+          <picture>
+            <source
+              media="(max-width: 640px)"
+              srcSet={generateMediaUrl(media?.mobile?.media_path)}
+            />
+            <Image
+              src={generateMediaUrl(media?.desktop?.media_path)}
+              alt={media?.desktop?.media_alt}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+              className="-z-2 object-cover"
+              placeholder="blur"
+              blurDataURL="/images/placeholder.jpg"
+            />
+          </picture>
         </Parallax>
 
         <div className="container">
