@@ -1,11 +1,4 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/Breadcrumb";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/Breadcrumb";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
@@ -26,9 +19,7 @@ export default function BlogDetailSection({ data, variant }) {
               {/* <BreadcrumbLink href="/">Insights</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator>/</BreadcrumbSeparator> */}
-              <BreadcrumbLink
-                href={variant === "blog_details" ? "/blog" : `/${variant}`}
-              >
+              <BreadcrumbLink href={variant === "blog_details" ? "/blog" : `/${variant}`}>
                 {variant === "blog_details" ? "Blogs" : variant}
               </BreadcrumbLink>
 
@@ -44,11 +35,7 @@ export default function BlogDetailSection({ data, variant }) {
           </Breadcrumb>
         </div>
         <div className="w-full">
-          <Heading
-            as="h2"
-            size="heading2"
-            className="font-normal text-[#030303] mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
-          >
+          <Heading as="h2" size="heading2" className="font-normal text-[#030303] mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
             {data?.title}
           </Heading>
           <div className="typography">{renderHtml(data?.description)}</div>
@@ -82,18 +69,19 @@ export default function BlogDetailSection({ data, variant }) {
         <div
           className={cn(
             "w-full overflow-hidden relative z-0 mb-[15px] xl:mb-[30px] 2xl:mb-[40px]",
-            variant === "news"
-              ? "aspect-[10/4] xl:aspect-[144/38] "
-              : "aspect-[10/4] rounded-[20px] sm:rounded-[25px]"
+            variant === "news" ? "aspect-[10/4] xl:aspect-[144/38] " : "aspect-[10/4] rounded-[20px] sm:rounded-[25px]"
           )}
         >
-          <Image
-            src={`${MEDIA_URL}${data?.media?.desktop?.media_path}`}
-            alt={data?.media?.desktop?.media_alt || "No image available"}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-            className="-z-1 transition hover:scale-105"
-          />
+          <picture className="absolute -z-1 inset-0">
+            <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${data?.media?.mobile?.media_path}`} />
+            <Image
+              src={`${MEDIA_URL}${data?.media?.desktop?.media_path}`}
+              alt={data?.media?.desktop?.media_alt || "No image available"}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+              className="-z-1 transition hover:scale-105"
+            />
+          </picture>
         </div>
       </div>
       <div className="w-full px-4 max-w-full sm:max-w-[576px] lg:max-w-[768px] xl:max-w-[840px] 2xl:max-w-[1000px] 3xl:max-w-[1260px] mx-auto">

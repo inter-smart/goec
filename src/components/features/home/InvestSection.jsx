@@ -7,12 +7,7 @@ import Link from "next/link";
 import DOMPurify from "isomorphic-dompurify";
 import { motion } from "motion/react";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MEDIA_URL } from "@/lib/api";
 
 const investData = {
@@ -36,8 +31,7 @@ const investData = {
   item_invest: [
     {
       title: "FOCO",
-      subtitle:
-        "For people who want to maximize their returns by owning a charging station.",
+      subtitle: "For people who want to maximize their returns by owning a charging station.",
       description:
         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
       button: {
@@ -47,8 +41,7 @@ const investData = {
     },
     {
       title: "Invest in COCO",
-      subtitle:
-        "For people who want to maximize their returns by owning a charging station.",
+      subtitle: "For people who want to maximize their returns by owning a charging station.",
       description:
         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
       button: {
@@ -58,8 +51,7 @@ const investData = {
     },
     {
       title: "COCO",
-      subtitle:
-        "For people who want to maximize their returns by owning a charging station.",
+      subtitle: "For people who want to maximize their returns by owning a charging station.",
       description:
         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
       button: {
@@ -71,7 +63,6 @@ const investData = {
 };
 
 export default function InvestSection({ data = investData, milestoneDescription, investMedia, investList }) {
-
   return (
     <section className="w-full h-auto block py-[40px_30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
@@ -90,15 +81,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
             viewport={{ once: false, amount: 0.3 }}
             className="flex-1 max-sm:mb-[20px]"
           >
-            <Heading
-             
-              as="h2"
-             
-              size="heading2"
-             
-              className="text-[#303030] xl:max-w-[568px] 2xl:max-w-[800px]"
-            
-            >
+            <Heading as="h2" size="heading2" className="text-[#303030] xl:max-w-[568px] 2xl:max-w-[800px]">
               {milestoneDescription}
             </Heading>
           </motion.div>
@@ -116,7 +99,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
             viewport={{ once: false, amount: 0.3 }}
           >
             <ActionButton variant="link" className="text-black" asChild>
-              <Link href='/investment'>Lern More</Link>
+              <Link href="/investment">Learn More</Link>
             </ActionButton>
           </motion.div>
         </div>
@@ -136,19 +119,16 @@ export default function InvestSection({ data = investData, milestoneDescription,
           viewport={{ once: false, amount: 0.3 }}
           className="w-full aspect-[1820/420] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-0"
         >
-          <picture className="absolute -z-1 inset-0">
-            <source
-              media="(max-width: 640px)"
-              srcSet={`${MEDIA_URL}${investMedia?.mobile?.media_path}`}
-            />
+          {/* <picture className="absolute -z-1 inset-0">
+            <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${investMedia?.mobile?.media_path}`} />
             <Image
-            src={`${MEDIA_URL}${investMedia?.desktop?.media_path}`}
+              src={`${MEDIA_URL}${investMedia?.desktop?.media_path}`}
               alt={investMedia?.desktop?.media_alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 transition hover:scale-105"
             />
-          </picture>
+          </picture> */}
         </motion.div>
       </div>
       <div className="container">
@@ -156,11 +136,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
           {investList.map((item, index) => {
             const sanitizedText = DOMPurify.sanitize(item?.description);
             return (
-              <AccordionItem
-                key={"invest" + index}
-                value={"item-" + index}
-                className="border-0"
-              >
+              <AccordionItem key={"invest" + index} value={"item-" + index} className="border-0">
                 <AccordionTrigger className="hover:underline-none [&>svg]:w-0 [&>svg]:hidden py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[50px]">
                   <div className="w-full flex items-center space-x-[20px] xl:space-x-[60px] 2xl:space-x-[80px]">
                     <div className="w-[10%] sm:w-[12%]">
@@ -182,20 +158,10 @@ export default function InvestSection({ data = investData, milestoneDescription,
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="w-[85%] sm:w-[88%] xl:w-[84%] ml-auto bg-[#fbfbfb] rounded-[20px] sm:rounded-[30px] p-[20px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px]">
-                    <div
-                      className="typography"
-                      dangerouslySetInnerHTML={{ __html: sanitizedText }}
-                    />
+                    <div className="typography" dangerouslySetInnerHTML={{ __html: sanitizedText }} />
                     <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
-                      <ActionButton
-                        size="lg"
-                        variant={"blue"}
-                        className="w-full"
-                        asChild
-                      >
-                        <Link href={"/investment"}>
-                          Learn more
-                        </Link>
+                      <ActionButton size="lg" variant={"blue"} className="w-full" asChild>
+                        <Link href={"/investment"}>Learn more</Link>
                       </ActionButton>
                     </div>
                   </div>

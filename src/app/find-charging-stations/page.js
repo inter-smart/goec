@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
 import FindChargingResultSection from "@/components/features/find-charging-station/FindChargingResultSection";
 
@@ -93,9 +95,7 @@ export default async function Page({ searchParams }) {
   if (power_id) queryParams.set("power_id", power_id);
   if (socket_type_id) queryParams.set("socket_type_id", socket_type_id);
 
-  const { data, error } = await fetchFromAPI(
-    `charging-station?${queryParams.toString()}`
-  );
+  const { data, error } = await fetchFromAPI(`charging-station?${queryParams.toString()}`);
 
   const { banner_section, search_section, stations_section } = data;
 
@@ -116,12 +116,7 @@ export default async function Page({ searchParams }) {
   return (
     <>
       <FindChargingHeroSection banner_section={banner_section || header_data} />
-      <FindChargingResultSection
-        stations={stations_section}
-        searchSection={search_section}
-        pagination={pagination}
-        currentFilters={currentFilters}
-      />
+      <FindChargingResultSection stations={stations_section} searchSection={search_section} pagination={pagination} currentFilters={currentFilters} />
       {/* <HeroWithCard /> */}
       {/* <ChargingStationList /> */}
     </>

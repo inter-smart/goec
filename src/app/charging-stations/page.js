@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import HeroSection from "@/components/features/charging-stations/HeroSection";
 import StationListSection from "@/components/features/charging-stations/StationListSection";
 import { fetchFromAPI } from "@/lib/api";
@@ -75,14 +77,9 @@ export async function generateMetadata() {
 
 
 export default async function Page() {
-  
+  const { data, error } = await fetchFromAPI("chargers");
 
-  const {data, error} = await fetchFromAPI("chargers")
-
-  const {
-    banner_section,
-    chargers_section,
-  } = data
+  const { banner_section, chargers_section } = data;
 
   return (
     <>

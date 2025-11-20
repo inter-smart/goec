@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import BlogListSection from "@/components/features/blog/BlogListSection";
 import { fetchFromAPI, MEDIA_URL } from "@/lib/api";
 import Error from "../error";
@@ -36,8 +38,7 @@ const local_data = {
         },
         category: "Blog",
         duration: "10 mins read",
-        title:
-          "Here are some important things you should know about EV chargers",
+        title: "Here are some important things you should know about EV chargers",
         description:
           "<p>Uncover the art of strategic planning and decision-making in the business world. Entrepreneurial Insights breaks down the importance of having a well-thought-out strate</p>",
         button: {
@@ -55,8 +56,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins read",
         title: "Understanding the Basics of EV Charging",
-        description:
-          "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
+        description: "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -72,8 +72,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins read",
         title: "Public EV Charging Etiquette",
-        description:
-          "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
+        description: "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -89,8 +88,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins read",
         title: "Home EV Charger Installation Guide",
-        description:
-          "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
+        description: "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -111,8 +109,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Ensuring Safety While Charging Your EV",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -128,8 +125,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -145,8 +141,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -162,8 +157,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -179,8 +173,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -196,8 +189,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -213,8 +205,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -230,8 +221,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -247,8 +237,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -264,8 +253,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -281,8 +269,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -298,8 +285,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -315,8 +301,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -332,8 +317,7 @@ const local_data = {
         category: "Blog",
         duration: "10 mins",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/blog/blog-detail",
           label: "Read now",
@@ -341,6 +325,12 @@ const local_data = {
       },
     ],
   },
+  /*************  ✨ Windsurf Command ⭐  *************/
+  /**
+   * Page component that fetches blog data from API and renders a BlogListSection with the received data.
+   * If there is an error while fetching the data, it renders an Error component with the path set to "/blog".
+   */
+  /*******  afd5a413-0ea5-4295-af4c-bca84b1aca00  *******/
 };
 
 async function getMetaData() {

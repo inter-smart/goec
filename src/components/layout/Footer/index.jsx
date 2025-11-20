@@ -216,8 +216,8 @@ export default function Footer({ data = footerData, footer_section }) {
         method: "POST",
         body: JSON.stringify({
           email_id: email,
-          source: "footer"
-        })
+          source: "footer",
+        }),
       });
 
       if (!error && data) {
@@ -250,10 +250,7 @@ export default function Footer({ data = footerData, footer_section }) {
               </Heading>
             </div>
             <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
-              <PlaceholdersAndVanishInput
-                placeholders={placeholders}
-                onSubmit={handleNewsletterSubmit}
-              />
+              <PlaceholdersAndVanishInput placeholders={placeholders} onSubmit={handleNewsletterSubmit} />
             </div>
           </div>
         </div>
@@ -262,9 +259,14 @@ export default function Footer({ data = footerData, footer_section }) {
             <div className="flex flex-wrap py-[15px] sm:py-[20px] xl:py-[30px] 2xl:py-[40px] -mx-[10px] [&>*]:p-[10px]">
               <div className="w-full sm:w-1/3 xl:w-[445px] 2xl:w-[540px] 3xl:w-[660px]">
                 <div className="w-[140px] sm:w-[220px] xl:w-[220px] 2xl:w-[276px] 3xl:w-[340px] max-sm:mb-[20px]">
-
-                 <Link href="/">
-                  <Image src={generateMediaUrl(footer_section?.footer_logo?.media_path)} alt={footer_section?.footer_logo?.media_alt} width={340} height={170} className="w-full h-full" />
+                  <Link href="/">
+                    <Image
+                      src={generateMediaUrl(footer_section?.footer_logo?.media_path)}
+                      alt={footer_section?.footer_logo?.media_alt}
+                      width={340}
+                      height={170}
+                      className="w-full h-full"
+                    />
                   </Link>
                 </div>
               </div>
@@ -322,8 +324,18 @@ export default function Footer({ data = footerData, footer_section }) {
                   <div className="flex flex-wrap sm:flex-col -mx-[4px] xl:-mx-[10px] 2xl:-mx-[12px] [&>*]:p-[4px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
                     {footer_section?.app_download?.button.map((item, index) => (
                       <div key={"app_download" + index}>
-                        <a href={item?.link} target="_blank" className="w-[100px] xl:w-[130px] 2xl:w-[150px] 3xl:w-[170px] h-auto block transition hover:scale-105">
-                          <Image src={generateMediaUrl(item?.media?.media_path)} alt={item?.media?.media_alt} width={140} height={50} className="w-full h-full" />
+                        <a
+                          href={item?.link}
+                          target="_blank"
+                          className="w-[100px] xl:w-[130px] 2xl:w-[150px] 3xl:w-[170px] h-auto block transition hover:scale-105"
+                        >
+                          <Image
+                            src={generateMediaUrl(item?.media?.media_path)}
+                            alt={item?.media?.media_alt}
+                            width={140}
+                            height={50}
+                            className="w-full h-full"
+                          />
                         </a>
                       </div>
                     ))}
@@ -346,7 +358,13 @@ export default function Footer({ data = footerData, footer_section }) {
                       target="_blank"
                       className="w-[15px] sm:w-[20px] xl:w-[20px] 2xl:w-[25px] h-auto aspect-square block cursor-pointer transition hover:scale-105"
                     >
-                      <Image src={generateMediaUrl(item?.media?.media_path)} alt={item?.media?.media_alt} width={40} height={40} className="w-full h-full" />
+                      <Image
+                        src={generateMediaUrl(item?.media?.media_path)}
+                        alt={item?.media?.media_alt}
+                        width={40}
+                        height={40}
+                        className="w-full h-full"
+                      />
                     </a>
                   </div>
                 ))}

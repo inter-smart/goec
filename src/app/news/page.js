@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import BlogListSection from "@/components/features/blog/BlogListSection";
 import { fetchFromAPI } from "@/lib/api";
 import Error from "../error";
@@ -46,8 +48,7 @@ const local_data = {
         category: "News",
         duration: "10 mins",
         title: "Top 5 Myths About Electric Vehicles",
-        description:
-          "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
+        description: "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -63,8 +64,7 @@ const local_data = {
         category: "News",
         duration: "10 mins",
         title: "The Future of Urban E-Mobility",
-        description:
-          "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
+        description: "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -80,8 +80,7 @@ const local_data = {
         category: "News",
         duration: "10 mins",
         title: "Debunking EV Charging Misconceptions",
-        description:
-          "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
+        description: "<p>Uncover the art of strategic planning & decision-making in the business world.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -102,8 +101,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "The Environmental Impact of Electric Cars",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -119,8 +117,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "How to Maximize Your EV Battery Life",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -136,8 +133,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Smart EV Charging for Apartment Buildings",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -153,8 +149,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Government Incentives for EV Adoption",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -170,8 +165,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "The Role of Renewable Energy in EV Charging",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -187,8 +181,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Building a Sustainable EV Charging Network",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -204,8 +197,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "The Impact of EVs on Grid Stability",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -221,8 +213,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Innovations in Wireless EV Charging Tech",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -238,8 +229,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Understanding Different EV Charger Types",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -255,8 +245,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -272,8 +261,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -289,8 +277,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -306,8 +293,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
@@ -323,8 +309,7 @@ const local_data = {
         category: "News",
         duration: "10 mins read",
         title: "Smart EV Charging Solutions for Businesses",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
+        description: "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, omnis.</p>",
         button: {
           link: "/news/news-detail",
           label: "Read now",
