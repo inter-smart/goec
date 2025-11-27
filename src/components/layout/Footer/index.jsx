@@ -351,7 +351,7 @@ export default function Footer({ data = footerData, footer_section }) {
                 </div>
               </div>
               <div className="flex flex-wrap items-center space-x-[15px] xl:space-x-[20px] 2xl:space-x-[30px]">
-                {footer_section?.social_media_list.map((item, index) => (
+                {footer_section?.social_media_list?.map((item, index) => (
                   <div key={"app_download" + index}>
                     <a
                       href={item?.link}

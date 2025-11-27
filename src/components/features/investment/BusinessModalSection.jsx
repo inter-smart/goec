@@ -136,8 +136,8 @@ export default function BusinessModalSection({ data = businessModalData, title, 
                 >
                   <div className="w-full h-auto aspect-[768/268] overflow-hidden relative z-0">
                     <Image
-                      src={generateMediaUrl(item?.media?.desktop?.media_path)}
-                      alt={item?.media?.desktop?.media_alt}
+                      src={generateMediaUrl(item?.media?.media_path)}
+                      alt={item?.media?.media_alt}
                       fill
                       sizes="512px"
                       className="object-cover transition hover:scale-105"
@@ -151,7 +151,7 @@ export default function BusinessModalSection({ data = businessModalData, title, 
                     <div className="-p-[20px_15px] sm:-p-[25px_20px] xl:-p-[35px_40px] 2xl:-p-[40px_50px]">
                       <div
                         className="typography [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-between [&_ul>li]:w-full sm:[&_ul>li]:w-[45%] [&_ul>li]:list-none [&_ul>li]:relative [&_ul>li]:before:content-[''] [&_ul>li:before]:bg-[url('/images/icon-list.svg')] [&_ul>li]:before:w-[15px] xl:[&_ul>li]:before:w-[20px] 2xl:[&_ul>li]:before:w-[25px] [&_ul>li]:before:aspect-square [&_ul>li]:before:block [&_ul>li]:before:absolute [&_ul>li]:before:top-[1px] sm:[&_ul>li]:before:top-[8px] [&_ul>li]:before:left-[-20px] sm:[&_ul>li]:before:left-[-20px] lg:[&_ul>li]:before:left-[-30px] [&_ul>li]:before:bg-no-repeat [&_ul>li]:before:bg-cover [&_ul>li]:before:bg-center bg-ima"
-                        dangerouslySetInnerHTML={{ __html: item?.points }}
+                        dangerouslySetInnerHTML={{ __html: item?.description }}
                       />
                     </div>
                   </div>
