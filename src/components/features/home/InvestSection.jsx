@@ -119,7 +119,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
           viewport={{ once: false, amount: 0.3 }}
           className="w-full aspect-[1820/420] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-0"
         >
-          {/* <picture className="absolute -z-1 inset-0">
+          <picture className="absolute -z-1 inset-0">
             <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${investMedia?.mobile?.media_path}`} />
             <Image
               src={`${MEDIA_URL}${investMedia?.desktop?.media_path}`}
@@ -128,7 +128,7 @@ export default function InvestSection({ data = investData, milestoneDescription,
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 transition hover:scale-105"
             />
-          </picture> */}
+          </picture>
         </motion.div>
       </div>
       <div className="container">
