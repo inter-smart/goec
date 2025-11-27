@@ -216,8 +216,8 @@ export default function Header({ header_section }) {
               </div>
               <div>
                 <Sheet>
-                  <SheetTrigger className="lg:pointer-events-none">
-                    <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
+                  <SheetTrigger className="">
+                    <div className="lg:hidden text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
                       <Image
                         src="/images/header-hamburger.svg"
                         alt="hamburger"
