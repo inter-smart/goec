@@ -3,12 +3,11 @@ import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
 import SimilarBlogSection from "@/components/features/blog/SimilarBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 
-async function getMetaData() {
+async function getMetaData(slug) {
   try {
-    const { data, error } = await fetchFromAPI(`meta-tags/news-details`);
+    const { data, error } = await fetchFromAPI(`meta-tags/${slug}`);
     const meta = data;
 
-    console.log(meta);
     return {
       title: meta?.meta_title,
       description: meta?.meta_description,
@@ -17,7 +16,9 @@ async function getMetaData() {
       openGraph: {
         title: meta?.og_title || meta?.meta_title,
         description: meta?.og_description || meta?.meta_description,
-        images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
+        images: meta?.og_image
+          ? [{ url: meta.og_image, width: 1200, height: 630 }]
+          : [],
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
       },
@@ -33,6 +34,7 @@ async function getMetaData() {
       error: null,
     };
   } catch (error) {
+    console.log(error);
     return {
       title: "Home",
       description: "Welcome to our Home Page",
@@ -42,8 +44,11 @@ async function getMetaData() {
   }
 }
 
-export async function generateMetadata() {
-  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData();
+export async function generateMetadata({ params }) {
+  const resolvedParamms = await params;
+  const { slug } = resolvedParamms;
+  const { title, description, keywords, twitter, openGraph, alternates } =
+    await getMetaData(slug);
   return {
     title,
     description,
@@ -69,7 +74,13 @@ export default async function Page({ params }) {
     <>
       <BlogDetailSection variant="news" data={news_details_section} />
 
-      {isSimiliarNewsExist && <SimilarBlogSection similar_section={similar_section} footer_section={get_in_touch_section} variant="news" />}
+      {isSimiliarNewsExist && (
+        <SimilarBlogSection
+          similar_section={similar_section}
+          footer_section={get_in_touch_section}
+          variant="news"
+        />
+      )}
     </>
   );
 }
