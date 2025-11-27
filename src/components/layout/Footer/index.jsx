@@ -220,6 +220,8 @@ export default function Footer({ data = footerData, footer_section }) {
         }),
       });
 
+      console.log(error)
+
       if (!error && data) {
         toast.success("Successfully subscribed to our newsletter! Thank you for joining us.");
       } else {
@@ -228,7 +230,7 @@ export default function Footer({ data = footerData, footer_section }) {
         } else if (error?.errors && error.errors.length > 0) {
           toast.error(error.errors[0].msg || "Subscription failed");
         } else {
-          toast.error("Subscription failed. Please try again.");
+          toast.error(error?.message);
         }
       }
     } catch (error) {

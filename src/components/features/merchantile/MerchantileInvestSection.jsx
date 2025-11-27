@@ -107,8 +107,8 @@ export default function MerchantileInvestSection({ data = local_data }) {
                       )}
                     >
                       <Image
-                        src={generateMediaUrl(item?.media_path) || "/images/placeholder.jpg"}
-                        alt={item?.media_alt}
+                        src={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                        alt={item?.media?.media_alt}
                         fill
                         sizes="700px"
                         className="w-full h-full object-cover transition hover:scale-105"
