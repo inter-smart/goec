@@ -20,6 +20,7 @@ import {
   validateMessageLength,
   validateSingleCharacter,
 } from "@/lib/validations";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 // Validation schema with state_id and city_id
 const formSchema = z.object({
@@ -92,6 +93,7 @@ const formSchema = z.object({
 });
 
 export default function ChargingStationForm({ variant, chargerId }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [loadingStates, setLoadingStates] = useState(false);
@@ -164,12 +166,14 @@ export default function ChargingStationForm({ variant, chargerId }) {
   async function onSubmit(values) {
     setIsSubmitting(true);
     try {
+      const recaptchaToken = await executeRecaptcha(variant === "about" ? "contactenquiry" : "chargersenquiry");
       const payload = {
         first_name: values.firstName,
         last_name: values.lastName || "",
         email_id: values.email,
         phone_number: values.phone,
         additional_information: values.additionalInformation || "",
+        recaptcha_token: recaptchaToken,
       };
 
       // Only append if values exist (avoid sending empty strings for integer fields)

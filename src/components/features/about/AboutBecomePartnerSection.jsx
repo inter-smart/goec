@@ -1,9 +1,8 @@
 import ChargingStationForm from "@/components/form/ChargingStationForm";
-import { ActionButton } from "@/components/utils/Button";
+import RecaptchaProvider from "@/components/layout/CaptchaWrapper";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
-import Link from "next/link";
 
 const AboutBecomePartnerData = {
   title: "Let's conquer the journey together",
@@ -15,12 +14,7 @@ const AboutBecomePartnerData = {
   },
 };
 
-export default function AboutBecomePartnerSection({
-  data = AboutBecomePartnerData,
-  title, description
-}) {
-
-  console.log(description)
+export default function AboutBecomePartnerSection({ data = AboutBecomePartnerData, title, description }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px] bg-[#0055e0] relative z-0">
       <Image
@@ -61,7 +55,9 @@ export default function AboutBecomePartnerSection({
           </div>
 
           <div className="flex-1" id="about-form">
-            <ChargingStationForm variant="about" />
+            <RecaptchaProvider>
+              <ChargingStationForm variant="about" />
+            </RecaptchaProvider>
           </div>
         </div>
       </div>
