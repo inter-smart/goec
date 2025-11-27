@@ -173,7 +173,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
             {news?.map((item, index) => {
               return (
                 <SwiperSlide key={"news" + index} style={{ width: "33.333%" }}>
-                  <NewsCard news={item} />
+                  <NewsCard news={item} page={"news"} />
                 </SwiperSlide>
               );
             })}
@@ -242,7 +242,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                 </div>
               ) : (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-1/3">
-                  <NewsCard index={index} data={item} />
+                  <NewsCard index={index} data={item} page={"news"} />
                 </div>
               );
             })}

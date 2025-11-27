@@ -26,7 +26,7 @@ const section = {
   ],
 };
 
-export default function NewsCard({ data, index = 1, variant = "news" }) {
+export default function NewsCard({ data, index = 1, variant = "news", page="" }) {
   const formattedDate = data?.published_on
     ? format(new Date(data?.published_on), "dd MMMM yyyy")
     : format(new Date(), "dd MMMM yyyy");
@@ -50,9 +50,9 @@ export default function NewsCard({ data, index = 1, variant = "news" }) {
       >
         <Link
           href={
-            variant === "blog_details"
-              ? `/blog/${data?.slug}`
-              : `/${variant}/${data?.slug}`
+           page=== "news"?
+            `/news/${data?.slug}`:
+            `/blog/${data?.slug}`
           }
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
@@ -78,9 +78,9 @@ export default function NewsCard({ data, index = 1, variant = "news" }) {
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               <Link
                 href={
-                  variant === "blog_details"
-                    ? `/blog/${data?.slug}`
-                    : `/${variant}/${data?.slug}`
+                 page=== "news"?
+                  `/news/${data?.slug}`:
+                  `/blog/${data?.slug}`
                 }
               >
                 {data?.title}
@@ -127,9 +127,9 @@ export default function NewsCard({ data, index = 1, variant = "news" }) {
                   >
                     <Link
                       href={
-                        variant === "blog_details"
-                          ? `/blog/${data?.slug}`
-                          : `/${variant}/${data?.slug}`
+                        page=== "news"?
+                        `/news/${data?.slug}`:
+                        `/blog/${data?.slug}`
                       }
                     >
                       Read now

@@ -157,7 +157,7 @@ export default function LatestBlogSection({ data = blogData, title, blogs = [], 
           {blogs.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <NewsCard index={index} data={item} variant={"blog"} />
+                <NewsCard index={index} data={item} variant={"blog"} page={"blog"} />
               </SwiperSlide>
             );
           })}
