@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ActionButton } from "../utils/Button";
 
-export function PlaceholdersAndVanishInput({ placeholders, onChange, onSubmit }) {
+export function PlaceholdersAndVanishInput({ placeholders, onChange, onSubmit, data }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
   const intervalRef = useRef(null);
@@ -228,7 +228,7 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, onSubmit })
         type="submit"
         className="text-black w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[45px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-1 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
       >
-        <span>Get notified</span>
+        <span>{data?.button_label || "Subscribe"}</span>
       </ActionButton>
       <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
         <AnimatePresence mode="wait">
