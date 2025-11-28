@@ -190,7 +190,6 @@ const placeholders = ["Enter your mail id", "Enter your mail id", "Enter your ma
 
 export default function Footer({ data = footerData, footer_section }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleNewsletterSubmit = async (e) => {
     if (isSubmitting) return;
 
@@ -250,7 +249,7 @@ export default function Footer({ data = footerData, footer_section }) {
               </Heading>
             </div>
             <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
-              <PlaceholdersAndVanishInput placeholders={placeholders} onSubmit={handleNewsletterSubmit} />
+              <PlaceholdersAndVanishInput placeholders={placeholders} onSubmit={handleNewsletterSubmit} data={footer_section?.common_section} />
             </div>
           </div>
         </div>

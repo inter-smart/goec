@@ -3,43 +3,92 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState, useEffect } from "react";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ActionButton } from "../utils/Button";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { fetchFromAPI } from "@/lib/api";
 import { toast } from "sonner";
+import {
+  validateSecurity,
+  validateNotOnlySpecialChars,
+  validateNotEmpty,
+  validateNotOnlyWhitespace,
+  validateMessageLength,
+  validateSingleCharacter,
+} from "@/lib/validations";
 
 // Validation schema with state_id and city_id
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "First name must be at least 2 characters.",
-  }),
-  lastName: z.string().optional(),
-  email: z.string().email({ message: "Invalid email address." }),
+  firstName: z
+    .string()
+    .transform((val) => val?.trim() || "")
+    .refine(validateNotEmpty, "Name is required")
+    .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
+    .refine((val) => val.length >= 2, "Name must be at least 2 characters")
+    .refine((val) => val.length <= 255, "Name is too long")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+    .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
+    .refine(
+      (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
+      "Name can only contain letters, spaces, hyphens, and apostrophes"
+    ),
+  lastName: z
+    .string()
+    .optional()
+    .transform((val) => val?.trim() || "")
+    // Only run validations if value is not empty
+    .refine((val) => !val || validateNotEmpty(val), "Last name is required")
+    .refine((val) => !val || validateNotOnlyWhitespace(val), "Last name cannot be only whitespace")
+    .refine((val) => !val || validateSingleCharacter(val), "Last name must be at least 2 characters")
+    .refine((val) => !val || validateMessageLength(val), "Last name is too long (maximum 5000 characters)")
+    .refine((val) => !val || validateSecurity(val), "Invalid characters or potential security risk detected")
+    .refine((val) => !val || validateNotOnlySpecialChars(val), "Last name cannot contain only special characters"),
+  email: z
+    .string()
+    .email("Please enter a valid email address")
+    .transform((val) => val?.trim().toLowerCase() || "")
+    .refine(validateNotEmpty, "Email is required")
+    .refine(validateNotOnlyWhitespace, "Email cannot be only whitespace")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => val.length <= 256, "Email is too long")
+    .refine((val) => val.includes("@"), "Email must contain @ symbol")
+    .refine((val) => {
+      const parts = val.split("@");
+      return parts.length === 2 && parts[1].length > 0;
+    }, "Email must have a valid domain"),
   phone: z
     .string()
-    .min(10, { message: "Phone number must be at least 10 digits." })
-    .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
+    .transform((val) => val?.trim() || "")
+    .refine(validateNotEmpty, "Phone number is required")
+    .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return cleaned.length >= 5 && cleaned.length <= 15;
+    }, "Phone number must be between 5-15 digits")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
+    }, "Phone number must contain valid digits and cannot be all zeros")
+    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
   state_id: z.string().optional(),
   city_id: z.string().optional(),
-  additionalInformation: z.string().optional(),
+  additionalInformation: z
+    .string()
+    .optional()
+    .transform((val) => val?.trim() || "")
+    // Only run validations if value is not empty
+    .refine((val) => !val || validateNotEmpty(val), "Additional information is required")
+    .refine((val) => !val || validateNotOnlyWhitespace(val), "Additional information cannot be only whitespace")
+    .refine((val) => !val || validateSingleCharacter(val), "Additional information must be at least 2 characters")
+    .refine((val) => !val || validateMessageLength(val), "Additional information is too long (maximum 5000 characters)")
+    .refine((val) => !val || validateSecurity(val), "Additional information contains invalid characters or potential security risk")
+    .refine((val) => !val || validateNotOnlySpecialChars(val), "Additional information cannot contain only special characters"),
 });
 
 export default function ChargingStationForm({ variant, chargerId }) {
@@ -93,9 +142,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
         form.setValue("city_id", ""); // Reset city when state changes
 
         try {
-          const { data, error } = await fetchFromAPI(
-            `location/cities/${selectedStateId}`
-          );
+          const { data, error } = await fetchFromAPI(`location/cities/${selectedStateId}`);
           if (error) return console.error("Error fetching cities:", error);
 
           setCities(data);
@@ -130,7 +177,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
       if (values.city_id) payload.city_id = values.city_id;
       if (chargerId) payload.charger_id = chargerId;
 
-      const { data, error } = await fetchFromAPI(variant === "about" ? "contact-enquiry" : "charger-enquiry", {
+      const { data, error } = await fetchFromAPI(variant === "about" ? "contact-enquiry" : "chargers-enquiry", {
         method: "POST",
         body: JSON.stringify(payload),
       });
@@ -169,10 +216,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
       "bg-white/10 border-white/20 text-white placeholder:text-[#a0bae5] data-[placeholder]:text-[#a0bae5] [&_svg]:[filter:_brightness(0)_saturate(100%)_invert(81%)_sepia(16%)_saturate(494%)_hue-rotate(181deg)_brightness(88%)_contrast(92%)]"
   );
 
-  const textareaStyle = cn(
-    inputStyle,
-    "min-h-[60px] xl:min-h-[80px] 2xl:min-h-[120px] py-[15px] 2xl:py-[20px]"
-  );
+  const textareaStyle = cn(inputStyle, "min-h-[60px] xl:min-h-[80px] 2xl:min-h-[120px] py-[15px] 2xl:py-[20px]");
 
   return (
     <Form {...form}>
@@ -185,12 +229,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>First name*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter first name"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="text" placeholder="Enter first name" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -204,12 +243,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Last name</FormLabel>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter last name"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="text" placeholder="Enter last name" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -223,12 +257,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Email id*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="Enter email id"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="email" placeholder="Enter email id" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -242,12 +271,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Phone number*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    placeholder="Enter phone number"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="tel" placeholder="Enter phone number" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -260,11 +284,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  disabled={loadingStates}
-                >
+                <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loadingStates}>
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
                       <SelectValue placeholder={loadingStates ? "Loading states..." : "Select state"} />
@@ -289,11 +309,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>City</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  disabled={loadingCities || !selectedStateId}
-                >
+                <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loadingCities || !selectedStateId}>
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
                       <SelectValue placeholder={loadingCities ? "Loading cities..." : "Select city"} />
@@ -317,15 +333,9 @@ export default function ChargingStationForm({ variant, chargerId }) {
             name="additionalInformation"
             render={({ field }) => (
               <FormItem className="w-full sm:w-full">
-                <FormLabel className={labelStyle}>
-                  Additional information
-                </FormLabel>
+                <FormLabel className={labelStyle}>Additional information</FormLabel>
                 <FormControl>
-                  <Textarea
-                    className={textareaStyle}
-                    placeholder="Add additional enquiry or notes"
-                    {...field}
-                  />
+                  <Textarea className={textareaStyle} placeholder="Add additional enquiry or notes" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
