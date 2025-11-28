@@ -37,10 +37,10 @@ const validateMessageLength = (value) => {
   return value.length <= 5000;
 };
 
-const validateSingleCharacter = (value) => {
+const validateSingleCharacter = (value, min = 1) => {
   if (typeof value !== "string") return true;
   // Reject single character messages (but allow 2+ characters)
-  return value.trim().length >= 2;
+  return value.trim().length >= min;
 };
 
 export { validateSecurity, validateNotOnlySpecialChars, validateNotEmpty, validateNotOnlyWhitespace, validateMessageLength, validateSingleCharacter };
