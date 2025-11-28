@@ -1,19 +1,13 @@
 "use client";
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Heading } from "../utils/Heading";
 import parse from "html-react-parser";
 import { Text } from "../utils/Text";
 import DownloadForm from "../form/DownloadForm";
 import SuccessComp from "./SuccessComp";
+import RecaptchaProvider from "../layout/CaptchaWrapper";
 
 const local_data = {
   media: {
@@ -46,9 +40,7 @@ export default function BrochureModal({ children, data = local_data }) {
       <DialogContent className="sm:max-w-[576px] xl:max-w-[1060px] 2xl:max-w-[1100px] p-0 rounded-[15px] xl:rounded-[24px] gap-2 2xl:gap-4">
         <DialogHeader className={"sr-only"}>
           <DialogTitle>Download Brochure</DialogTitle>
-          <DialogDescription>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa, id.
-          </DialogDescription>
+          <DialogDescription>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa, id.</DialogDescription>
         </DialogHeader>
 
         <div className="flex flex-wrap">
@@ -67,18 +59,16 @@ export default function BrochureModal({ children, data = local_data }) {
             {!isSuccess ? (
               <div className="w-full p-[20px] xl:p-[30px] 2xl:p-[40px]">
                 <div className="mb-[15px] xl:mb-[20px] 2xl:mb-[20px]">
-                  <Heading
-                    as="div"
-                    size="heading3"
-                    className="font-medium text-start text-[#030303] xl:mb-[5px] 2xl:mb-[10px]"
-                  >
+                  <Heading as="div" size="heading3" className="font-medium text-start text-[#030303] xl:mb-[5px] 2xl:mb-[10px]">
                     {data?.title}
                   </Heading>
                   <Text as="div" size="text2" className="text-[#373737]">
                     {parse(data?.description)}
                   </Text>
                 </div>
-                <DownloadForm onSuccess={handleFormSuccess} />
+                <RecaptchaProvider>
+                  <DownloadForm onSuccess={handleFormSuccess} />
+                </RecaptchaProvider>
               </div>
             ) : (
               <SuccessComp />

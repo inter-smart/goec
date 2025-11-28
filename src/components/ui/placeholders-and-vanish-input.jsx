@@ -4,9 +4,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ActionButton } from "../utils/Button";
+import { fetchFromAPI } from "@/lib/api";
+import { toast } from "sonner";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-export function PlaceholdersAndVanishInput({ placeholders, onChange, onSubmit, data }) {
+export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const intervalRef = useRef(null);
   const startAnimation = () => {
@@ -150,10 +155,60 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, onSubmit, d
     }
   };
 
+  const handleNewsletterSubmit = async (email) => {
+    if (isSubmitting) return;
+
+    const recaptchaToken = await executeRecaptcha("newslettersubscription");
+
+    if (!email) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await fetchFromAPI("newsletter-subscription", {
+        method: "POST",
+        body: JSON.stringify({
+          email_id: email,
+          source: "footer",
+          recaptcha_token: recaptchaToken,
+        }),
+      });
+
+      if (!error && data) {
+        toast.success("Successfully subscribed to our newsletter! Thank you for joining us.");
+      } else {
+        if (error?.message) {
+          toast.error(error.message);
+        } else if (error?.errors && error.errors.length > 0) {
+          toast.error(error.errors[0].msg || "Subscription failed");
+        } else {
+          toast.error("Subscription failed. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     vanishAndSubmit();
-    onSubmit && onSubmit(e);
+    const emailInput = e.target.querySelector('input[type="text"]');
+    const email = emailInput?.value?.trim();
+    handleNewsletterSubmit(email);
   };
   return (
     <form

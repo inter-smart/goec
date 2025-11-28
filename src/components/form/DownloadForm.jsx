@@ -18,12 +18,13 @@ import {
   validateMessageLength,
   validateSingleCharacter,
 } from "@/lib/validations";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formSchema = z.object({
   firstName: z
     .string()
     .transform((val) => val?.trim() || "")
-    .refine(validateNotEmpty, "Last name is required")
+    .refine(validateNotEmpty, "Name is required")
     .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
     .refine((val) => val.length >= 2, "Name must be at least 2 characters")
     .refine((val) => val.length <= 255, "Name is too long")
@@ -94,6 +95,7 @@ const inputStyle = `
   .trim();
 
 export default function DownloadForm({ onSuccess }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [loadingStates, setLoadingStates] = useState(false);
@@ -164,11 +166,13 @@ export default function DownloadForm({ onSuccess }) {
   async function onSubmit(values) {
     setIsSubmitting(true);
     try {
+      const recaptchaToken = await executeRecaptcha("brochureenquiry");
       const payload = {
         first_name: values.firstName,
         last_name: values.lastName,
         email: values.email,
         phone_number: values.phone,
+        recaptcha_token: recaptchaToken,
       };
 
       // Only append if values exist

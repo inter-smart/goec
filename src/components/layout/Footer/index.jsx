@@ -5,9 +5,8 @@ import { Heading } from "@/components/utils/Heading";
 import { generateMediaUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchFromAPI } from "@/lib/api";
-import { toast } from "sonner";
 import { useState } from "react";
+import RecaptchaProvider from "../CaptchaWrapper";
 
 const footerData = {
   subscription: {
@@ -203,57 +202,6 @@ const placeholders = [
 ];
 
 export default function Footer({ data = footerData, footer_section }) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const handleNewsletterSubmit = async (e) => {
-    if (isSubmitting) return;
-
-    const emailInput = e.target.querySelector('input[type="text"]');
-    const email = emailInput?.value?.trim();
-
-    if (!email) {
-      toast.error("Please enter your email address");
-      return;
-    }
-
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const { data, error } = await fetchFromAPI("newsletter-subscription", {
-        method: "POST",
-        body: JSON.stringify({
-          email_id: email,
-          source: "footer",
-        }),
-      });
-
-      if (!error && data) {
-        toast.success(
-          "Successfully subscribed to our newsletter! Thank you for joining us."
-        );
-      } else {
-        if (error?.message) {
-          toast.error(error.message);
-        } else if (error?.errors && error.errors.length > 0) {
-          toast.error(error.errors[0].msg || "Subscription failed");
-        } else {
-          toast.error("Subscription failed. Please try again.");
-        }
-      }
-    } catch (error) {
-      console.error("Newsletter subscription error:", error);
-      toast.error("An error occurred. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <footer
       id="footer"
@@ -272,11 +220,9 @@ export default function Footer({ data = footerData, footer_section }) {
               </Heading>
             </div>
             <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
-              <PlaceholdersAndVanishInput
-                placeholders={placeholders}
-                onSubmit={handleNewsletterSubmit}
-                data={footer_section?.common_section}
-              />
+              <RecaptchaProvider>
+                <PlaceholdersAndVanishInput placeholders={placeholders} data={footer_section?.common_section} />
+              </RecaptchaProvider>
             </div>
           </div>
         </div>
