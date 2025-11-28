@@ -17,13 +17,15 @@ const footerData = {
   address: [
     {
       title: "Address - India",
-      description: "GO EC Pvt Ltd, 7th floor, KB Square Vytilla, Kochi, Kerala- 682019",
+      description:
+        "GO EC Pvt Ltd, 7th floor, KB Square Vytilla, Kochi, Kerala- 682019",
       email: null,
       phone_number: "+91 944 753 6644",
     },
     {
       title: "Address - UAE",
-      description: "P5-ELOB Office No. E-42 G-21 Hamriyah, Free Zone, shariah United Arab Emirates",
+      description:
+        "P5-ELOB Office No. E-42 G-21 Hamriyah, Free Zone, shariah United Arab Emirates",
       email: null,
       phone_number: "+91 944 753 6644",
     },
@@ -64,6 +66,14 @@ const footerData = {
         {
           link: "/news",
           label: "News",
+        },
+        {
+          link: "/nfc-card",
+          label: "NFC Smart Card",
+        },
+        {
+          link: "/faq",
+          label: "FAQs",
         },
       ],
     },
@@ -186,7 +196,11 @@ const footerData = {
   ],
 };
 
-const placeholders = ["Enter your mail id", "Enter your mail id", "Enter your mail id"];
+const placeholders = [
+  "Enter your mail id",
+  "Enter your mail id",
+  "Enter your mail id",
+];
 
 export default function Footer({ data = footerData, footer_section }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -220,7 +234,9 @@ export default function Footer({ data = footerData, footer_section }) {
       });
 
       if (!error && data) {
-        toast.success("Successfully subscribed to our newsletter! Thank you for joining us.");
+        toast.success(
+          "Successfully subscribed to our newsletter! Thank you for joining us."
+        );
       } else {
         if (error?.message) {
           toast.error(error.message);
@@ -239,17 +255,28 @@ export default function Footer({ data = footerData, footer_section }) {
   };
 
   return (
-    <footer id="footer" className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#1e1e1e]">
+    <footer
+      id="footer"
+      className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#1e1e1e]"
+    >
       <div className="w-full border border-white/30 rounded-[16px]">
         <div className="container">
           <div className="flex flex-wrap items-center gap-[10px] my-[20px] sm:my-[30px] xl:my-[40px] 2xl:my-[50px] 3xl:my-[60px]">
             <div className="flex-1">
-              <Heading as="h2" size="heading3" className="text-white xl:max-w-[368px] 2xl:max-w-[420px]">
+              <Heading
+                as="h2"
+                size="heading3"
+                className="text-white xl:max-w-[368px] 2xl:max-w-[420px]"
+              >
                 {footer_section?.common_section?.title}
               </Heading>
             </div>
             <div className="w-full sm:w-[320px] xl:w-[500px] 2xl:w-[576px] 3xl:w-[740px] ">
-              <PlaceholdersAndVanishInput placeholders={placeholders} onSubmit={handleNewsletterSubmit} data={footer_section?.common_section} />
+              <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onSubmit={handleNewsletterSubmit}
+                data={footer_section?.common_section}
+              />
             </div>
           </div>
         </div>
@@ -260,7 +287,9 @@ export default function Footer({ data = footerData, footer_section }) {
                 <div className="w-[140px] sm:w-[220px] xl:w-[220px] 2xl:w-[276px] 3xl:w-[340px] max-sm:mb-[20px]">
                   <Link href="/">
                     <Image
-                      src={generateMediaUrl(footer_section?.footer_logo?.media_path)}
+                      src={generateMediaUrl(
+                        footer_section?.footer_logo?.media_path
+                      )}
                       alt={footer_section?.footer_logo?.media_alt}
                       width={340}
                       height={170}
@@ -270,9 +299,16 @@ export default function Footer({ data = footerData, footer_section }) {
                 </div>
               </div>
               {footer_section?.address?.map((item, index) => (
-                <div key={index} className="w-1/2 sm:w-1/3 xl:w-[calc((100%-445px)/2)] 2xl:w-[calc((100%-540px)/2)] 3xl:w-[calc((100%-660px)/2)]">
+                <div
+                  key={index}
+                  className="w-1/2 sm:w-1/3 xl:w-[calc((100%-445px)/2)] 2xl:w-[calc((100%-540px)/2)] 3xl:w-[calc((100%-660px)/2)]"
+                >
                   <div className="w-full">
-                    <Heading as="div" size="heading6" className="font-medium text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
+                    <Heading
+                      as="div"
+                      size="heading6"
+                      className="font-medium text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                    >
                       Address - {item?.title}
                     </Heading>
                     <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px] max-w-[75%]">
@@ -286,7 +322,9 @@ export default function Footer({ data = footerData, footer_section }) {
                         height={15}
                         className="w-[10px] sm:w-[15px] mr-[6px] xl:mr-[10px]"
                       />
-                      <a href={`tel:${item?.phone_number}`}>{item?.phone_number}</a>
+                      <a href={`tel:${item?.phone_number}`}>
+                        {item?.phone_number}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -295,14 +333,24 @@ export default function Footer({ data = footerData, footer_section }) {
             <hr />
             <div className="flex flex-wrap py-[15px] sm:py-[20px] xl:py-[30px] 2xl:py-[40px] -mx-[10px] [&>*]:p-[10px]">
               {data?.navigation?.map((item, index) => (
-                <div key={"navigation" + index} className="w-1/2 sm:w-1/5 xl:w-[calc((100%-160px)/4)] 2xl:w-[calc((100%-180px)/4)]">
+                <div
+                  key={"navigation" + index}
+                  className="w-1/2 sm:w-1/5 xl:w-[calc((100%-160px)/4)] 2xl:w-[calc((100%-180px)/4)]"
+                >
                   <div>
-                    <Heading as="h6" size="heading6" className="font-medium text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
+                    <Heading
+                      as="h6"
+                      size="heading6"
+                      className="font-medium text-black mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                    >
                       {item?.title}
                     </Heading>
                     <div>
                       {item?.item_navigation?.map((linkItem, index) => (
-                        <div key={"item_navigation" + index} className="mb-[6px] sm:mb-[8px] xl:mb-[10px] ">
+                        <div
+                          key={"item_navigation" + index}
+                          className="mb-[6px] sm:mb-[8px] xl:mb-[10px] "
+                        >
                           <Link
                             href={linkItem?.link}
                             className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] transition hover:text-primary block"
@@ -317,7 +365,11 @@ export default function Footer({ data = footerData, footer_section }) {
               ))}
               <div className="w-full sm:w-1/5 xl:w-[160px] 2xl:w-[180px]">
                 <div>
-                  <Heading as="h6" size="heading6" className="font-medium text-black mb-[6px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
+                  <Heading
+                    as="h6"
+                    size="heading6"
+                    className="font-medium text-black mb-[6px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                  >
                     {data?.app_download?.title}
                   </Heading>
                   <div className="flex flex-wrap sm:flex-col -mx-[4px] xl:-mx-[10px] 2xl:-mx-[12px] [&>*]:p-[4px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
