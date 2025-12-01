@@ -13,30 +13,101 @@ async function getMetaData() {
     const { data, error } = await fetchFromAPI(`meta-tags/app-page`);
     const meta = data;
 
-    console.log(meta);
+    // Parse other meta tags if they exist
+    const otherMetaTags = {};
+    
+    if (meta?.other_meta_tags) {
+      try {
+        // If it's a JSON string, parse it
+        const parsedTags = typeof meta.other_meta_tags === 'string' 
+          ? JSON.parse(meta.other_meta_tags) 
+          : meta.other_meta_tags;
+        
+        // Convert array of meta tags to object format
+        if (Array.isArray(parsedTags)) {
+          parsedTags.forEach(tag => {
+            const key = tag.name || tag.property || tag.httpEquiv;
+            if (key && tag.content) {
+              otherMetaTags[key] = tag.content;
+            }
+          });
+        } else if (typeof parsedTags === 'object') {
+          // If already an object, use directly
+          Object.assign(otherMetaTags, parsedTags);
+        }
+      } catch (parseError) {
+        console.error('Error parsing other_meta_tags:', parseError);
+      }
+    }
+
     return {
       title: meta?.meta_title,
       description: meta?.meta_description,
       keywords: meta?.meta_keywords,
-      // Enhanced SEO fields
+      
+      // Author and publisher
+      authors: [{ name: meta?.author || "Your Company Name" }],
+      publisher: meta?.publisher || "Your Company Name",
+      
+      // Robots meta
+      robots: {
+        index: meta?.index !== false,
+        follow: meta?.follow !== false,
+        googleBot: {
+          index: meta?.index !== false,
+          follow: meta?.follow !== false,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      },
+      
+      // OpenGraph
       openGraph: {
         title: meta?.og_title || meta?.meta_title,
         description: meta?.og_description || meta?.meta_description,
         images: meta?.og_image
-          ? [{ url: meta.og_image, width: 1200, height: 630 }]
+          ? [{ 
+              url: meta.og_image, 
+              width: 1200, 
+              height: 630,
+              alt: meta?.og_image_alt || meta?.meta_title 
+            }]
           : [],
-        type: "website",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+        type: meta?.og_type || "website",
+        url: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+        siteName: meta?.site_name || "Your Site Name",
+        locale: meta?.og_locale || "en_US",
       },
+      
+      // Twitter
       twitter: {
-        card: "summary_large_image",
+        card: meta?.twitter_card || "summary_large_image",
         title: meta?.twitter_title || meta?.meta_title,
         description: meta?.twitter_description || meta?.meta_description,
         images: meta?.twitter_image ? [meta.twitter_image] : [],
+        creator: meta?.twitter_creator || "@yourusername",
+        site: meta?.twitter_site || "@yourusername",
       },
+      
+      // Canonical URL
       alternates: {
         canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
       },
+      
+      // Verification tags
+      verification: {
+        google: meta?.google_site_verification,
+        yandex: meta?.yandex_verification,
+        bing: meta?.bing_verification,
+      },
+      
+      // Merge additional meta tags from admin
+      other: {
+        'format-detection': 'telephone=no',
+        ...otherMetaTags, // Dynamically added meta tags from admin
+      },
+      
       error: null,
     };
   } catch (error) {
@@ -48,7 +119,6 @@ async function getMetaData() {
     };
   }
 }
-
 export async function generateMetadata() {
   const { title, description, keywords, twitter, openGraph, alternates } =
     await getMetaData();
