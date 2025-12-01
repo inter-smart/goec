@@ -9,22 +9,15 @@ const buttonVariants = cva(
       variant: {
         default:
           "text-white bg-white/40 border border-white/20 backdrop-blur-md shadow-xs hover:border-white/40 hover:bg-white/50 ",
-        destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        blue: "text-white bg-transparent bg-gradient-to-r from-[#0f51a9] via-[#0055e0] to-[#0f51a9]",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default:
           "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-center has-[>svg, >img]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-center w-full h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full",
-        icon: "size-9",
+        // sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-center w-full h-[30px] sm:h-[35px] xl:h-[50px] 2xl:h-[60px] p-2 rounded-full",
+        // icon: "size-9",
       },
     },
     defaultVariants: {

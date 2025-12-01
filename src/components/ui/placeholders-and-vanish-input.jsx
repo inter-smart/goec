@@ -16,7 +16,7 @@ export function PlaceholdersAndVanishInput({
   const startAnimation = () => {
     intervalRef.current = setInterval(() => {
       setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
-    }, 3000);
+    }, 4000);
   };
   const handleVisibilityChange = () => {
     if (document.visibilityState !== "visible" && intervalRef.current) {
@@ -174,18 +174,19 @@ export function PlaceholdersAndVanishInput({
   return (
     <form
       className={cn(
-        "w-full relative max-w-xl mx-auto bg-[#1e1e1e] dark:bg-zinc-800 h-[30px] sm:h-[40px] xl:h-[50px] 2xl:h-[60px] rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 border border-white/30",
-        value && "bg-gray-50"
+        "w-full relative z-0 max-w-xl mx-auto bg-[#1e1e1e] dark:bg-zinc-800 h-[40px] sm:h-[40px] xl:h-[60px] 2xl:h-[80px] 3xl:h-[100px] rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 border border-white/30",
+        value && "bg-black-50"
       )}
       onSubmit={handleSubmit}
     >
       <canvas
         className={cn(
-          "absolute pointer-events-none text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20",
+          "absolute pointer-events-none text-base transform scale-50 top-[30%] left-[15px] xl:left-[20px] 2xl:left-[30px] 3xl:left-[40px] origin-top-left filter dark:invert-0 pr-20",
           !animating ? "opacity-0" : "opacity-100"
         )}
         ref={canvasRef}
       />
+      <label className="sr-only">subscribe</label>
       <input
         onChange={(e) => {
           if (!animating) {
@@ -198,8 +199,8 @@ export function PlaceholdersAndVanishInput({
         value={value}
         type="text"
         className={cn(
-          "w-full relative text-sm sm:text-base z-50 border-none dark:text-white bg-transparent text-black h-full rounded-full focus:outline-none focus:ring-0 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] pr-20",
-          animating && "text-transparent dark:text-transparent"
+          "w-full relative text-sm sm:text-base z-0 border-none dark:text-white bg-transparent text-white h-full rounded-full focus:outline-none focus:ring-0 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] 3xl:pl-[40px] pr-20",
+          animating && "text-white dark:text-black"
         )}
       />
       {/* <button
@@ -241,7 +242,7 @@ export function PlaceholdersAndVanishInput({
       <ActionButton
         disabled={!value}
         type="submit"
-        className="w-[160px] h-[48px] absolute right-2 top-1/2 z-50 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-black dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
+        className="text-black w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[45px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-1 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
       >
         <span>Get notified</span>
       </ActionButton>
@@ -266,7 +267,7 @@ export function PlaceholdersAndVanishInput({
                 duration: 0.3,
                 ease: "linear",
               }}
-              className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] text-left w-[calc(100%-2rem)] truncate"
+              className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] 3xl:pl-[40px] text-left w-[calc(100%-2rem)] truncate"
             >
               {placeholders[currentPlaceholder]}
             </motion.p>

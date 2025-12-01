@@ -2,11 +2,11 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import Link from "next/link";
-import BlogCard from "@/components/common/BlogCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import NewsCard from "@/components/common/NewsCard";
 
 const blogData = {
   title: "Explore our Blogs.",
@@ -14,7 +14,7 @@ const blogData = {
     link: "/",
     label: "View all",
   },
-  items_blog: [
+  item_blog: [
     {
       timestamp: "2025-08-14T05:00:00.000000Z",
       media: {
@@ -95,9 +95,9 @@ const blogData = {
 
 export default function LatestBlogSection({ data = blogData }) {
   return (
-    <section className="w-full h-auto block py-[40px_30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
+    <section className="w-full h-auto block py-[30px] sm:py-[60px_60px] xl:py-[80px_80px] 2xl:py-[100px_90px]">
       <div className="container">
-        <div className="flex flex-wrap items-center mb-[20px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
+        <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
           <div className="flex-1">
             <Heading
               as="h2"
@@ -121,23 +121,24 @@ export default function LatestBlogSection({ data = blogData }) {
           speed={600}
           watchSlidesProgress={true}
           watchOverflow={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
+          autoplay={false}
           breakpoints={{
             320: {
               slidesPerView: 1,
               spaceBetween: 10,
             },
-            448: {
+            384: {
               slidesPerView: 2,
               spaceBetween: 10,
             },
             640: {
               slidesPerView: 2,
               spaceBetween: 15,
+              autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              },
             },
             1024: {
               slidesPerView: 3,
@@ -149,10 +150,10 @@ export default function LatestBlogSection({ data = blogData }) {
             },
           }}
         >
-          {data?.items_blog.map((item, index) => {
+          {data?.item_blog.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <BlogCard data={item} />
+                <NewsCard index={index} data={item} variant={"home"} />
               </SwiperSlide>
             );
           })}
