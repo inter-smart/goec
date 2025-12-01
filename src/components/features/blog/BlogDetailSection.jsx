@@ -1,17 +1,12 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/Breadcrumb";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/Breadcrumb";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { MEDIA_URL } from "@/lib/api";
+import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function BlogDetailSection({ data, variant }) {
   return (
@@ -20,33 +15,30 @@ export default function BlogDetailSection({ data, variant }) {
         <div className="w-full mb-[20px] xl:mb-[30px] 2xl:mb-[40px]">
           <Breadcrumb>
             <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Insights</BreadcrumbLink>
+              {/* <BreadcrumbItem> */}
+              {/* <BreadcrumbLink href="/">Insights</BreadcrumbLink>
               </BreadcrumbItem>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator> */}
+              <BreadcrumbLink href={variant === "blog_details" ? "/blog" : `/${variant}`}>
+                {variant === "blog_details" ? "Blogs" : variant}
+              </BreadcrumbLink>
+
               <BreadcrumbSeparator>/</BreadcrumbSeparator>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/blog">Blogs</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator>/</BreadcrumbSeparator>
-              <BreadcrumbItem>
+              {/* <BreadcrumbItem>
                 <BreadcrumbLink href="/">Recent blogs</BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator>/</BreadcrumbSeparator>
+              <BreadcrumbSeparator>/</BreadcrumbSeparator> */}
               <BreadcrumbItem>
-                <BreadcrumbPage>India prioritising EV</BreadcrumbPage>
+                <BreadcrumbPage>{data?.slug}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
         <div className="w-full">
-          <Heading
-            as="h2"
-            size="heading2"
-            className="font-normal text-[#030303] mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
-          >
+          <Heading as="h2" size="heading2" className="font-normal text-[#030303] mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
             {data?.title}
           </Heading>
-          <div className="typography">{parse(data?.description)}</div>
+          <div className="typography">{renderHtml(data?.description)}</div>
           <Text
             as="div"
             size="none"
@@ -59,11 +51,11 @@ export default function BlogDetailSection({ data, variant }) {
               height={24}
               className="w-[10px] xl:w-[15px] 2xl:w-[20px] hover:scale-105 transition duration-300"
             />
-            {format(new Date(data.timestamp), "dd MMMM yyyy")}
+            {format(new Date(data?.published_on), "dd MMMM yyyy")}
             &nbsp;&nbsp;&nbsp;&nbsp;
-            {data?.category}
+            {variant}
             <span>-</span>
-            {data?.duration}
+            {data?.reading_time}
           </Text>
         </div>
       </div>
@@ -77,23 +69,24 @@ export default function BlogDetailSection({ data, variant }) {
         <div
           className={cn(
             "w-full overflow-hidden relative z-0 mb-[15px] xl:mb-[30px] 2xl:mb-[40px]",
-            variant === "news"
-              ? "aspect-[10/4] xl:aspect-[144/38] "
-              : "aspect-[10/4] rounded-[20px] sm:rounded-[25px]"
+            variant === "news" ? "aspect-[10/4] xl:aspect-[144/38] " : "aspect-[10/4] rounded-[20px] sm:rounded-[25px]"
           )}
         >
-          <Image
-            src={data?.media?.path}
-            alt={data?.media?.alt}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-            className="-z-1 transition hover:scale-105"
-          />
+          <picture className="absolute -z-1 inset-0">
+            <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${data?.media?.mobile?.media_path}`} />
+            <Image
+              src={`${MEDIA_URL}${data?.media?.desktop?.media_path}`}
+              alt={data?.media?.desktop?.media_alt || "No image available"}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+              className="-z-1 transition hover:scale-105"
+            />
+          </picture>
         </div>
       </div>
       <div className="w-full px-4 max-w-full sm:max-w-[576px] lg:max-w-[768px] xl:max-w-[840px] 2xl:max-w-[1000px] 3xl:max-w-[1260px] mx-auto">
         <div className="typography [&_h4]:font-medium [&_h4]:my-[15px] xl:[&_h4]:my-[20px] 2xl:[&_h4]:my-[30px]">
-          {parse(data?.sub_description)}
+          {renderHtml(data?.sub_description)}
         </div>
       </div>
     </section>

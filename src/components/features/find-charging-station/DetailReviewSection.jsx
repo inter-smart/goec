@@ -1,6 +1,7 @@
 "use client";
 import { Heading } from "@/components/utils/Heading";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Pagination,
   PaginationContent,
@@ -15,168 +16,66 @@ import ReviewCard from "@/components/common/ReviewCard";
 import { Rating } from "react-simple-star-rating";
 import { Text } from "@/components/utils/Text";
 
-const local_data = {
-  media: {
-    type: "image",
-    path: "/images/findChargingStaton-info-1.jpg",
-    alt: "hero",
-  },
-  title: "Rating & Reviews",
-  items: [
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-1.jpg",
-        alt: "user",
-      },
-      username: "Rodger Struck",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description:
-        "<p>I’ve been using the GO EC charging stations around the city, and I’ve learned that keeping my electric vehicle’s battery between 20% and 80% really helps with longevity. I make sure to avoid letting it drop to 0% or stay at 100% for too long, as I’ve heard this can harm the battery.</p>",
-      rating: 5,
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-2.jpg",
-        alt: "user",
-      },
-      username: "Alex Buckmaster",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description: "<p>Good experience</p>",
-      rating: 4,
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-3.jpg",
-        alt: "user",
-      },
-      username: "Joshua Jones",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description:
-        "<p>Using the GO EC charging stations has taught me the importance of battery management. I keep my electric vehicle’s charge between 20% and 80% to ensure it lasts longer. I avoid letting it drop to 0% or stay at 100% too long, which I know can damage the battery.</p>",
-      rating: 1,
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-4.jpg",
-        alt: "user",
-      },
-      username: "Judith Rodriguez",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description: "<p>lorem ipsum dolor sit amet consectetur.</p>",
-      rating: 3,
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-4.jpg",
-        alt: "user",
-      },
-      username: "Judith Rodriguez",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description: "<p>lorem ipsum dolor sit amet consectetur.</p>",
-      rating: 5,
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-4.jpg",
-        alt: "user",
-      },
-      username: "Judith Rodriguez",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description: "<p>lorem ipsum dolor sit amet consectetur.</p>",
-      rating: 2,
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/findChargingStaton-user-4.jpg",
-        alt: "user",
-      },
-      username: "Judith Rodriguez",
-      timestamp: "2025-08-14T05:00:00.000000Z",
-      description: "<p>lorem ipsum dolor sit amet consectetur.</p>",
-      rating: 4,
-    },
-  ],
-  avarege_rating: 4.5,
-  total_rating: 136,
-  total_review: 28,
-  reviews: [
-    { label: "Excellent", rating: 5, count: 365, color: "text-green-500" },
-    { label: "Very good", rating: 4, count: 199, color: "text-green-500" },
-    { label: "Good", rating: 3, count: 294, color: "text-yellow-500" },
-    { label: "Average", rating: 2, count: 199, color: "text-orange-500" },
-    { label: "Poor", rating: 1, count: 199, color: "text-red-500" },
-  ],
-};
-
-export default function DetailReviewSection({ data = local_data }) {
+export default function DetailReviewSection({
+  reviewsTitle = "Rating & Reviews",
+  reviewsData,
+  pagination,
+}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const paginationRef = useRef(null);
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
-  const resultItems = data?.items || [];
-  const totalPages = Math.ceil(resultItems.length / itemsPerPage);
+  // Extract reviews and pagination data from backend
+  const resultItems = reviewsData?.list || [];
+  const averageRating = reviewsData?.average_rating || 0;
+  const totalRating = reviewsData?.total_rating || 0;
+  const totalReview = reviewsData?.total_review || 0;
+  const reviewsBreakdown = reviewsData?.reviews || [];
 
-  // Calculate current items
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = resultItems.slice(indexOfFirstItem, indexOfLastItem);
+  const currentPage = pagination?.currentPage || 1;
+  const totalPages = pagination?.totalPages || 1;
+  const total = pagination?.total || 0;
+  const perPage = pagination?.perPage || 4;
 
-  // Generate page numbers to display
+  // Calculate display indices
+  const indexOfFirstItem = (currentPage - 1) * perPage;
+  const indexOfLastItem = Math.min(indexOfFirstItem + perPage, total);
+
+  // Page number logic
   const getPageNumbers = () => {
     const pages = [];
     const maxVisiblePages = 5;
 
     if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-      }
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
       pages.push(1);
-
-      if (currentPage > 3) {
-        pages.push("ellipsis-start");
-      }
+      if (currentPage > 3) pages.push("ellipsis-start");
 
       const start = Math.max(2, currentPage - 1);
       const end = Math.min(totalPages - 1, currentPage + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
 
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
-      }
-
-      if (currentPage < totalPages - 2) {
-        pages.push("ellipsis-end");
-      }
-
+      if (currentPage < totalPages - 2) pages.push("ellipsis-end");
       pages.push(totalPages);
     }
-
     return pages;
   };
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("reviews_page", page.toString());
+     // Use router.push with the full path (avoids reload)
+    router.push(`${window.location.pathname}?${params.toString()}`, { scroll: false });
 
       setTimeout(() => {
         if (paginationRef.current) {
           const offset = 150;
           const elementPosition =
-            paginationRef.current.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.scrollY - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
+            paginationRef.current.getBoundingClientRect().top + window.scrollY;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       }, 100);
     }
@@ -190,29 +89,35 @@ export default function DetailReviewSection({ data = local_data }) {
           size="heading3"
           className="text-[#030303] mb-[10px] xl:mb-[20px] 2xl:mb-[30px]"
         >
-          {data?.title}
+          {reviewsTitle}
         </Heading>
 
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px] max-md:flex-col-reverse">
+          {/* Left: Review List */}
           <div className="w-full md:w-[calc(100%_-_268px)] lg:w-[calc(100%_-_320px)] xl:w-[calc(100%_-_368px)] 2xl:w-[calc(100%_-_400px)]">
             <div className="w-full [&>*]:mb-[5px] xl:[&>*]:mb-[10px] 2xl:[&>*]:mb-[15px]">
-              {currentItems.map((item, index) => (
+              {resultItems.map((item, index) => (
                 <ReviewCard key={"user-" + index} item={item} />
               ))}
             </div>
 
+            {/* Pagination */}
             <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px] max-xs:flex-col">
               <div>
-                <div className={cn("text-[10px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] leading-normal font-normal", "text-[#7b7b75]")}>
-                  Showing {indexOfFirstItem + 1} to{" "}
-                  {Math.min(indexOfLastItem, resultItems.length)} of{" "}
-                  {resultItems.length} reviews
+                <div
+                  className={cn(
+                    "text-[10px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[24px] leading-normal font-normal",
+                    "text-[#7b7b75]"
+                  )}
+                >
+                  Showing {indexOfFirstItem + 1} to {indexOfLastItem} of {total}{" "}
+                  reviews
                 </div>
               </div>
 
               {totalPages > 1 && (
                 <div ref={paginationRef}>
-                  <Pagination className={"justify-end"}>
+                  <Pagination className="justify-end">
                     <PaginationContent>
                       <PaginationItem>
                         <PaginationPrevious
@@ -270,6 +175,8 @@ export default function DetailReviewSection({ data = local_data }) {
               )}
             </div>
           </div>
+
+          {/* Right: Rating Summary */}
           <div className="w-full md:w-[268px] lg:w-[320px] xl:w-[368px] 2xl:w-[400px]">
             <div className="w-full h-auto bg-black rounded-[15px] xl:rounded-[20px] p-[15px] xl:p-[20px] 2xl:p-[30px]">
               <div className="flex items-center">
@@ -278,15 +185,15 @@ export default function DetailReviewSection({ data = local_data }) {
                   size={44}
                   className="[&_svg]:size-[25px] sm:[&_svg]:size-[25px] md:[&_svg]:size-[30px] xl:[&_svg]:size-[44px] mr-1"
                   fillColor={
-                    data?.avarege_rating >= 5
+                    averageRating >= 5
                       ? "#239b44"
-                      : data?.avarege_rating >= 4
-                        ? "#32c95c"
-                        : data?.avarege_rating >= 3
-                          ? "#f5ca01"
-                          : data?.avarege_rating >= 2
-                            ? "#ffa826"
-                            : "#ff5a4f"
+                      : averageRating >= 4
+                      ? "#32c95c"
+                      : averageRating >= 3
+                      ? "#f5ca01"
+                      : averageRating >= 2
+                      ? "#ffa826"
+                      : "#ff5a4f"
                   }
                   initialValue={1}
                   iconsCount={1}
@@ -296,61 +203,68 @@ export default function DetailReviewSection({ data = local_data }) {
                   size="heading3"
                   className={cn(
                     "leading-normal",
-                    data?.avarege_rating >= 5
+                    averageRating >= 5
                       ? "text-[#239b44]"
-                      : data?.avarege_rating >= 4
-                        ? "text-[#32c95c]"
-                        : data?.avarege_rating >= 3
-                          ? "text-[#f5ca01]"
-                          : data?.avarege_rating >= 2
-                            ? "text-[#ffa826]"
-                            : "text-[#ff5a4f]"
+                      : averageRating >= 4
+                      ? "text-[#32c95c]"
+                      : averageRating >= 3
+                      ? "text-[#f5ca01]"
+                      : averageRating >= 2
+                      ? "text-[#ffa826]"
+                      : "text-[#ff5a4f]"
                   )}
                 >
-                  {data?.avarege_rating}
+                  {averageRating}
                 </Heading>
               </div>
+
               <Text
                 as="div"
                 size="text3"
                 className="text-white py-[2px_10px] xl:py-[5px_15px] mb-[10px] xl:mb-[15px] border-b border-[#333]"
               >
-                {data?.total_rating} ratings & {data?.total_review} reviews
+                {totalRating} ratings & {totalReview} reviews
               </Text>
-              {data?.reviews?.map((item) => (
-                <div
-                  key={item?.label}
-                  className="flex items-center justify-between md:my-[5px] xl:my-[15px]"
-                >
-                  <span className="text-[10px] sm:text-[12px] xl:text-[16px] 2xl:text-[18px] leading-none font-normal text-white min-w-[100px]">
-                    {item?.label}
-                  </span>
 
-                  <div className="flex gap-1">
+              {reviewsBreakdown?.map((item) => {
+                const starLabels = {
+                  5: "Excellent",
+                  4: "Very good",
+                  3: "Good",
+                  2: "Average",
+                  1: "Poor",
+                };
+                return (
+                  <div
+                    key={item?.star}
+                    className="flex items-center justify-between md:my-[5px] xl:my-[15px]"
+                  >
+                    <span className="text-[10px] sm:text-[12px] xl:text-[16px] 2xl:text-[18px] leading-none font-normal text-white min-w-[100px]">
+                      {starLabels[item?.star] || ""}
+                    </span>
                     <Rating
                       readonly
                       size={24}
                       className="[&_svg]:inline-block [&_svg]:size-[12px] sm:[&_svg]:size-[16px] xl:[&_svg]:size-[24px]"
                       fillColor={
-                        item?.rating >= 5
+                        item?.star >= 5
                           ? "#239b44"
-                          : item?.rating >= 4
-                            ? "#32c95c"
-                            : item?.rating >= 3
-                              ? "#f5ca01"
-                              : item?.rating >= 2
-                                ? "#ffa826"
-                                : "#ff5a4f"
+                          : item?.star >= 4
+                          ? "#32c95c"
+                          : item?.star >= 3
+                          ? "#f5ca01"
+                          : item?.star >= 2
+                          ? "#ffa826"
+                          : "#ff5a4f"
                       }
-                      initialValue={parseInt(item?.rating)}
+                      initialValue={parseInt(item?.star)}
                     />
+                    <span className="text-[10px] sm:text-[12px] xl:text-[16px] 2xl:text-[18px] leading-none font-normal text-right text-white min-w-[50px]">
+                      {item?.count}
+                    </span>
                   </div>
-
-                  <span className="text-[10px] sm:text-[12px] xl:text-[16px] 2xl:text-[18px] leading-none font-normal text-right text-white min-w-[50px]">
-                    {item?.count}
-                  </span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

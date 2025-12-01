@@ -1,116 +1,158 @@
+export const dynamic = "force-dynamic";
+
 import InnerHero from "@/components/common/InnerHero";
 import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
 import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
 import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
 import AppDownloadSection from "@/components/features/mobile-app/AppDownloadSection";
+import { fetchFromAPI } from "@/lib/api";
+import Error from "../error";
 
-const heroData = {
-  background_media: {
-    mobile: {
-      type: "image",
-      path: "/images/hero-about-bg-1.jpg",
-      alt: "hero",
-    },
-    desktop: {
-      type: "image",
-      path: "/images/hero-about-bg-1.jpg",
-      alt: "hero",
-    },
-  },
-  media: {
-    type: "image",
-    path: "/images/app-hero-1.png",
-    alt: "hero",
-  },
-  title: "Charge on the Go effortlessly with the GO EC App",
-  description: null,
-  button: [
-    {
-      media: {
-        type: "image",
-        path: "/images/icon-app_store.svg",
-        alt: "app",
-      },
-      type: "external",
-      label: "app store ",
-      link: "/",
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/icon-play_store.svg",
-        alt: "play",
-      },
-      type: "external",
-      label: "play store ",
-      link: "/",
-    },
-  ],
-};
+async function getMetaData() {
+  try {
+    const { data, error } = await fetchFromAPI(`meta-tags/app-page`);
+    const meta = data;
 
-const app_detail_data = {
-  description:
-    "<h4>With the GOEC mobile app, finding an electric vehicle charging station is just a tap away. Our smart locator helps users discover the nearest available chargers in real-time eliminating range anxiety and removing the guesswork from EV travel.</h4>",
-};
+    // Parse other meta tags if they exist
+    const otherMetaTags = {};
+    
+    if (meta?.other_meta_tags) {
+      try {
+        // If it's a JSON string, parse it
+        const parsedTags = typeof meta.other_meta_tags === 'string' 
+          ? JSON.parse(meta.other_meta_tags) 
+          : meta.other_meta_tags;
+        
+        // Convert array of meta tags to object format
+        if (Array.isArray(parsedTags)) {
+          parsedTags.forEach(tag => {
+            const key = tag.name || tag.property || tag.httpEquiv;
+            if (key && tag.content) {
+              otherMetaTags[key] = tag.content;
+            }
+          });
+        } else if (typeof parsedTags === 'object') {
+          // If already an object, use directly
+          Object.assign(otherMetaTags, parsedTags);
+        }
+      } catch (parseError) {
+        console.error('Error parsing other_meta_tags:', parseError);
+      }
+    }
 
-const how_charge_section_data = {
-  title: "How to charge your EV",
-  description: null,
-  item_howcharge: [
-    {
-      id: 1,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
+    return {
+      title: meta?.meta_title,
+      description: meta?.meta_description,
+      keywords: meta?.meta_keywords,
+      
+      // Author and publisher
+      authors: [{ name: meta?.author || "Your Company Name" }],
+      publisher: meta?.publisher || "Your Company Name",
+      
+      // Robots meta
+      robots: {
+        index: meta?.index !== false,
+        follow: meta?.follow !== false,
+        googleBot: {
+          index: meta?.index !== false,
+          follow: meta?.follow !== false,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
       },
-      title: "Locate Charger",
-      description:
-        "<p>Locate your nearest charging station from the GO EC app.</p>",
-    },
-    {
-      id: 2,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
+      
+      // OpenGraph
+      openGraph: {
+        title: meta?.og_title || meta?.meta_title,
+        description: meta?.og_description || meta?.meta_description,
+        images: meta?.og_image
+          ? [{ 
+              url: meta.og_image, 
+              width: 1200, 
+              height: 630,
+              alt: meta?.og_image_alt || meta?.meta_title 
+            }]
+          : [],
+        type: meta?.og_type || "website",
+        url: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+        siteName: meta?.site_name || "Your Site Name",
+        locale: meta?.og_locale || "en_US",
       },
-      title: "Connect Charger",
-      description:
-        "<p>Park your car in the slot and connect the charger to your EV.</p>",
-    },
-    {
-      id: 3,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
+      
+      // Twitter
+      twitter: {
+        card: meta?.twitter_card || "summary_large_image",
+        title: meta?.twitter_title || meta?.meta_title,
+        description: meta?.twitter_description || meta?.meta_description,
+        images: meta?.twitter_image ? [meta.twitter_image] : [],
+        creator: meta?.twitter_creator || "@yourusername",
+        site: meta?.twitter_site || "@yourusername",
       },
-      title: "Start Charging",
-      description: "<p>Use the GO EC app / RFID Card to start charging.</p>",
-    },
-    {
-      id: 4,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
+      
+      // Canonical URL
+      alternates: {
+        canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
       },
-      title: "Payment",
-      description:
-        "<p>Complete the payment conveniently using the app / RFID Card</p>",
-    },
-  ],
-};
+      
+      // Verification tags
+      verification: {
+        google: meta?.google_site_verification,
+        yandex: meta?.yandex_verification,
+        bing: meta?.bing_verification,
+      },
+      
+      // Merge additional meta tags from admin
+      other: {
+        'format-detection': 'telephone=no',
+        ...otherMetaTags, // Dynamically added meta tags from admin
+      },
+      
+      error: null,
+    };
+  } catch (error) {
+    return {
+      title: "Home",
+      description: "Welcome to our Home Page",
+      keywords: "home, welcome",
+      error: "Failed to fetch metadata",
+    };
+  }
+}
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } =
+    await getMetaData();
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
 
-export default function Page() {
+export default async function Page() {
+  const { data, error } = await fetchFromAPI("app");
+
+  if (error) {
+    return <Error path="/mobile-app" />;
+  }
+
+  const { banner_section, about_section, feature_section, how_to_charge_section, start_ur_ev_section } = data;
+
   return (
     <>
-      <InnerHero data={heroData} />
-      <AppDetailSection data={app_detail_data} />
-      <AppFeatureSection />
-      <HowChargeSection data={how_charge_section_data} />
-      <AppDownloadSection />
+      <InnerHero
+        data={banner_section}
+        title={banner_section?.title}
+        media={banner_section?.media}
+        button={banner_section?.button}
+      />
+      <AppDetailSection data={about_section} />
+      <AppFeatureSection title={feature_section?.title} list={feature_section?.list} />
+      <HowChargeSection title={how_to_charge_section?.title} list={how_to_charge_section?.list} />
+      <AppDownloadSection appDownloadData={start_ur_ev_section} />
     </>
   );
 }

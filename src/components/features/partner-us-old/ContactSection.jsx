@@ -15,7 +15,7 @@ const AboutBecomePartnerData = {
   },
 };
 
-export default function ContactSection({ data = AboutBecomePartnerData }) {
+export default function ContactSection({ title, description }) {
   return (
     <section className="w-full h-auto block py-[60px] sm:py-[100px] xl:py-[140px] 2xl:py-[180px] 3xl:py-[220px] bg-[#030303] relative z-0">
       <Image
@@ -32,13 +32,13 @@ export default function ContactSection({ data = AboutBecomePartnerData }) {
               as="p"
               className="text-[10px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] leading-normal font-normal text-center sm:text-start text-white mb-[5px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
             >
-              {data?.description}
+              {description}
             </Text>
             <Heading
               as="h2"
               className="text-[22px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px] leading-tight font-normal text-center sm:text-start text-white mb-[20px]"
             >
-              {data?.title}
+              {title}
             </Heading>
           </div>
           <div className="w-full xl:w-[calc(100%-360px)] lg:pl-[80px]">

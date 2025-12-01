@@ -20,6 +20,7 @@ const data = [
 ];
 
 export default function BlogCard({ blog = data, type }) {
+  console.log(type);
   let formattedDate = "";
   if (blog?.published_on) {
     const date = new Date(blog.published_on);
@@ -28,19 +29,20 @@ export default function BlogCard({ blog = data, type }) {
     }
   }
 
+  console.log(blog);
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Suspense fallback={<BlogCardSkeleton />}>
       <div className="w-full h-auto block rounded-[20px] sm:rounded-[30px] overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0]">
         <Link href={`/blog/${blog?.slug}`} key={blog?.slug}>
           <div className="w-full h-auto aspect-[4/2] overflow-hidden relative z-0">
             <Image
-              // src={
-              //   blog?.media?.media_path
-              //     ? `${MEDIA_URL}${blog?.media?.media_path}`
-              //     : "/images/Blog_1.png"
-              // }
-              src={`${blog?.media?.path}`}
-              alt={blog?.media?.alt}
+              src={
+                blog?.media?.media_path
+                  ? `${MEDIA_URL}${blog?.media?.media_path}`
+                  : "/images/Blog_1.png"
+              }
+              alt={blog?.media?.media_alt}
               fill
               sizes="512px"
               className="transition hover:scale-105"

@@ -2,6 +2,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect } from "react";
 import {
   Form,
   FormControl,
@@ -24,11 +26,9 @@ import { cn } from "@/lib/utils";
 
 // ✅ Fixed validation schema to match actual form fields
 const formSchema = z.object({
-  search: z.string().min(1, {
-    message: "Please enter a location to search.",
-  }),
+  search: z.string().optional(), // Made optional - users can filter without searching
   socketType: z.string().optional(),
-  electricType: z.string().optional(),
+  chargerType: z.string().optional(),
   powerType: z.string().optional(),
 });
 
@@ -52,24 +52,81 @@ const textareaStyle = `
   .replace(/\s+/g, " ")
   .trim();
 
-export default function SearchStationForm() {
-  // ✅ Fixed default values to match schema
+export default function SearchStationForm({filters, currentFilters = {}}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // ✅ Fixed default values to match schema and pre-fill with current filters
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      search: "",
-      socketType: "",
-      electricType: "",
-      powerType: "",
+      search: currentFilters.search || "",
+      socketType: currentFilters.socket_type_id || "",
+      chargerType: currentFilters.charger_type_id || "",
+      powerType: currentFilters.power_id || "",
     },
   });
 
-  // Handle form submission
+  // Auto-submit function to apply filters
+  const applyFilters = useCallback((filterUpdates = {}) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    // Reset to page 1 when filters change
+    params.set('page', '1');
+
+    // Get current form values and merge with updates
+    const currentValues = form.getValues();
+    const values = { ...currentValues, ...filterUpdates };
+
+    // Set search keyword
+    if (values.search && values.search.trim()) {
+      params.set('search', values.search.trim());
+    } else {
+      params.delete('search');
+    }
+
+    // Set filter parameters
+    if (values.socketType) {
+      params.set('socket_type_id', values.socketType);
+    } else {
+      params.delete('socket_type_id');
+    }
+
+    if (values.chargerType) {
+      params.set('charger_type_id', values.chargerType);
+    } else {
+      params.delete('charger_type_id');
+    }
+
+    if (values.powerType) {
+      params.set('power_id', values.powerType);
+    } else {
+      params.delete('power_id');
+    }
+
+    // Navigate with new parameters
+    router.push(`/find-charging-stations?${params.toString()}`);
+  }, [router, searchParams, form]);
+
+  // Handle form submission (for Enter key on search input)
   function onSubmit(values) {
-    console.log("Form submitted:", values);
-    // Add your form submission logic here
-    // Example: API call, toast notification, etc.
+    applyFilters(values);
   }
+
+  // Watch search field and apply debounced auto-search
+  const searchValue = form.watch("search");
+
+  useEffect(() => {
+    // Set up debounce timer for automatic search
+    const timer = setTimeout(() => {
+      if (searchValue !== currentFilters.search) {
+        applyFilters({ search: searchValue });
+      }
+    }, 600); // 600ms delay after user stops typing
+
+    // Cleanup function to cancel previous timer
+    return () => clearTimeout(timer);
+  }, [searchValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Form {...form}>
@@ -90,7 +147,7 @@ export default function SearchStationForm() {
                       {...field}
                     />
                   </FormControl>
-                  <Search className="text-[#200e32] size-3 xl:size-4 absolute left-4 top-1/2 -translate-y-1/2" />
+                  <Search className="text-[#a9a9a9] size-3 xl:size-4 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
                 <FormMessage />
               </FormItem>
@@ -104,8 +161,11 @@ export default function SearchStationForm() {
               <FormItem className="w-full xs:w-1/3">
                 <FormLabel className={"sr-only"}>Socket Type</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    applyFilters({ socketType: value });
+                  }}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
@@ -113,13 +173,11 @@ export default function SearchStationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["ICE 25123 1", "ICE 25123 2", "ICE 25123 3"].map(
-                      (item, index) => (
-                        <SelectItem key={"socket-item" + index} value={item}>
-                          {item}
-                        </SelectItem>
-                      )
-                    )}
+                    {filters?.socket_types?.map((item) => (
+                      <SelectItem key={"socket-item-" + item.id} value={String(item.id)}>
+                        {item.type}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -134,8 +192,11 @@ export default function SearchStationForm() {
               <FormItem className="w-full xs:w-1/3">
                 <FormLabel className={"sr-only"}>Charger Type</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    applyFilters({ chargerType: value });
+                  }}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
@@ -143,9 +204,9 @@ export default function SearchStationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["AC", "DC", "AC, DC"].map((item, index) => (
-                      <SelectItem key={"charger-item" + index} value={item}>
-                        {item}
+                    {filters?.charger_types?.map((item) => (
+                      <SelectItem key={"charger-item-" + item.id} value={String(item.id)}>
+                        {item.type}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -162,8 +223,11 @@ export default function SearchStationForm() {
               <FormItem className="w-full xs:w-1/3">
                 <FormLabel className={"sr-only"}>Power Type</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    applyFilters({ powerType: value });
+                  }}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
@@ -171,13 +235,11 @@ export default function SearchStationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["25 KW", "50 KW", "75 KW", "100 KW"].map(
-                      (item, index) => (
-                        <SelectItem key={"power-item" + index} value={item}>
-                          {item}
-                        </SelectItem>
-                      )
-                    )}
+                    {filters?.power_options?.map((item) => (
+                      <SelectItem key={"power-item-" + item.id} value={String(item.id)}>
+                        {item.power}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />

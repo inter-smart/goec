@@ -1,11 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "motion/react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
 import {
   NavigationMenu,
@@ -20,15 +15,9 @@ import {
 import Link from "next/link";
 import { ActionButton } from "@/components/utils/Button";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Heading } from "@/components/utils/Heading";
+import { generateMediaUrl } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 const headerData = {
@@ -54,27 +43,28 @@ const headerData = {
           item_about: [
             {
               label: "More about us",
-              link: "/about",
+              link: "/about#about-more",
             },
             {
               label: "Our Values",
-              link: "/about",
+              link: "/about#our-values",
             },
             {
               label: "Our Journey",
-              link: "/about",
+              link: "/about#our-journey",
             },
             {
               label: "Meet our team",
-              link: "/about",
+              link: "/about#meet-team",
             },
+
             {
               label: "Our Associates",
-              link: "/about",
+              link: "/about#our-associates",
             },
             {
               label: "Media & Recognit",
-              link: "/about",
+              link: "/about#media-recognition",
             },
           ],
         },
@@ -84,27 +74,27 @@ const headerData = {
           item_about: [
             {
               label: "More about us",
-              link: "/about",
+              link: "/about#about-more",
             },
             {
               label: "Our Values",
-              link: "/about",
+              link: "/about#our-values",
             },
             {
               label: "Our Journey",
-              link: "/about",
+              link: "/about#our-journey",
             },
             {
               label: "Meet our team",
-              link: "/about",
+              link: "/about#meet-team",
             },
             {
               label: "Our Associates",
-              link: "/about",
+              link: "/about#our-associates",
             },
             {
               label: "Media & Recognit",
-              link: "/about",
+              link: "/about#media-recognition",
             },
           ],
         },
@@ -150,7 +140,7 @@ const headerData = {
 const navigationMenuTriggerStyle =
   "text-[20px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium lg:font-normal text-start lg:text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[15px_20px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10";
 
-export default function Header() {
+export default function Header({ header_section }) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [appDownloadOpen, setAppDownloadOpen] = useState(false);
@@ -193,10 +183,10 @@ export default function Header() {
         <div className="container">
           <div className="flex justify-between">
             <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
-              <Link href={"/"}>
+              <Link href="/">
                 <Image
-                  src="/images/header-logo.svg"
-                  alt="logo"
+                  src={generateMediaUrl(header_section?.logo?.media_path)}
+                  alt={header_section?.logo?.media_alt}
                   width={90}
                   height={45}
                   className="w-full h-full"
@@ -219,15 +209,15 @@ export default function Header() {
                   </ActionButton>
                   {appDownloadOpen && (
                     <div className="absolute z-1 top-[110%] right-0">
-                      <AppDownloadDropdown />
+                      <AppDownloadDropdown qrData={header_section?.download} />
                     </div>
                   )}
                 </div>
               </div>
               <div>
                 <Sheet>
-                  <SheetTrigger className="lg:pointer-events-none">
-                    <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
+                  <SheetTrigger className="">
+                    <div className="lg:hidden text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
                       <Image
                         src="/images/header-hamburger.svg"
                         alt="hamburger"
@@ -242,9 +232,7 @@ export default function Header() {
                     <div className="fixed -z-1 bottom-0 left-0 w-10 h-10 bg-white blur-sm scale-[10] opacity-20" />
                     <SheetHeader>
                       <SheetTitle className={"sr-only"}>navigations</SheetTitle>
-                      <SheetDescription className={"sr-only"}>
-                        go ec navigations
-                      </SheetDescription>
+                      <SheetDescription className={"sr-only"}>go ec navigations</SheetDescription>
                       <div className="lg:hidden ">
                         <MegaNavigationMenubar />
                       </div>
@@ -271,50 +259,27 @@ function MegaNavigationMenubar() {
         sub_sub_item: [
           {
             label: "More about us",
-            link: "/about",
+            link: "/about#about-more",
           },
           {
             label: "Our Values",
-            link: "/about",
+            link: "/about#our-values",
           },
           {
             label: "Our Journey",
-            link: "/about",
+            link: "/about#our-journey",
           },
           {
             label: "Meet our team",
-            link: "/about",
+            link: "/about#meet-team",
           },
           {
             label: "Our Associates",
-            link: "/about",
+            link: "/about#our-associates",
           },
           {
             label: "Media & Recognition",
-            link: "/about",
-          },
-        ],
-      },
-      {
-        id: 2,
-        label: "Services",
-        link: "/services",
-        sub_sub_item: [
-          {
-            label: "Web Development",
-            link: "/services/web",
-          },
-          {
-            label: "Mobile Apps",
-            link: "/services/mobile",
-          },
-          {
-            label: "Cloud Solutions",
-            link: "/services/cloud",
-          },
-          {
-            label: "Consulting",
-            link: "/services/consulting",
+            link: "/about#media-recognition",
           },
         ],
       },
@@ -370,40 +335,27 @@ function MegaNavigationMenubar() {
   };
 
   return (
-    <NavigationMenu
-      viewport={false}
-      className={"max-w-full justify-normal [&>div]:w-full"}
-    >
-      <NavigationMenuList
-        className={
-          "max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px] "
-        }
-      >
+    <NavigationMenu viewport={false} className={"max-w-full justify-normal [&>div]:w-full"}>
+      <NavigationMenuList className={"max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px] "}>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle}>
             <Link href="/">Home</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
-            Company
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>Company</NavigationMenuTrigger>
           <NavigationMenuContent className={"p-0"}>
             <MegaNavigationMenuContent data={company_data} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
-            Invest in GO EC
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>Invest in GO EC</NavigationMenuTrigger>
           <NavigationMenuContent className={"p-0"}>
             <SmNavigationMenuContent data={invest_data} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
-            Solutions
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>Solutions</NavigationMenuTrigger>
           <NavigationMenuContent className={"p-0"}>
             <SmNavigationMenuContent data={solution_data} />
           </NavigationMenuContent>
@@ -428,8 +380,7 @@ function MegaNavigationMenuContent({ data }) {
         <div className="w-full lg:w-[168px] xl:w-[200px] 2xl:w-[240px] bg-[#fafafa] p-[8px] xl:p-[10px] 2xl:p-[20px]">
           <div className="flex flex-col">
             {data?.sub_item?.map((item, index) => {
-              const hasSubItems =
-                item?.sub_sub_item && item.sub_sub_item.length > 0;
+              const hasSubItems = item?.sub_sub_item && item.sub_sub_item.length > 0;
 
               return (
                 <div key={"navigation" + index} className="max-lg:mb-[10px]">
@@ -438,9 +389,7 @@ function MegaNavigationMenuContent({ data }) {
                       onClick={() => setActiveId(item.id)}
                       className={cn(
                         "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-black w-full h-auto flex justify-between items-center p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition-all",
-                        activeId === item.id
-                          ? "text-white bg-black max-lg:rounded-[8px_8px_0_0]"
-                          : "hover:bg-[#e0e0e0]"
+                        activeId === item.id ? "text-white bg-black max-lg:rounded-[8px_8px_0_0]" : "hover:bg-[#e0e0e0]"
                       )}
                     >
                       {item?.label}
@@ -451,9 +400,7 @@ function MegaNavigationMenuContent({ data }) {
                         height={8}
                         className={cn(
                           "w-[6px] xl:w-[8px] transition",
-                          activeId === item.id
-                            ? "lg:opacity-100 rotate-0"
-                            : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
+                          activeId === item.id ? "lg:opacity-100 rotate-0" : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
                         )}
                       />
                     </button>
@@ -469,21 +416,12 @@ function MegaNavigationMenuContent({ data }) {
                     </Link>
                   )}
 
-                  <div
-                    className={cn(
-                      "lg:hidden ",
-                      activeId === item.id ? "h-auto visible" : "h-0 invisible"
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        "w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]"
-                      )}
-                    >
+                  <div className={cn("lg:hidden ", activeId === item.id ? "h-auto visible" : "h-0 invisible")}>
+                    <div className={cn("w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]")}>
                       {item?.sub_sub_item?.map((subItem, subIndex) => (
                         <div key={subIndex} className="w-full max-w-full">
                           <Link
-                            href={subItem.link || "#"}
+                            href={subItem.link}
                             className={cn(
                               "text-[14px] leading-normal font-normal truncate text-[#373737] w-full h-auto block p-[4px_10px] rounded-[8px] transition",
                               "hover:bg-[#fafafa] hover:text-[#030303]"
@@ -505,10 +443,7 @@ function MegaNavigationMenuContent({ data }) {
           {filteredItems.length > 0 ? (
             <div className="w-full block columns-2 gap-2 2xl:gap-4">
               {filteredItems?.map((item, index) => (
-                <div
-                  key={index}
-                  className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] break-inside-avoid"
-                >
+                <div key={index} className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] break-inside-avoid">
                   <Link
                     href={item.link || "#"}
                     className={cn(
@@ -523,9 +458,7 @@ function MegaNavigationMenuContent({ data }) {
             </div>
           ) : (
             <div className="text-center text-[#999] py-8">
-              <p className="text-[14px] xl:text-[14px] 2xl:text-[16px]">
-                No sub-items available
-              </p>
+              <p className="text-[14px] xl:text-[14px] 2xl:text-[16px]">No sub-items available</p>
             </div>
           )}
         </div>
@@ -587,7 +520,7 @@ const heroData = {
   ],
 };
 
-function AppDownloadDropdown() {
+function AppDownloadDropdown({ qrData }) {
   return (
     <div className="w-[220px] sm:w-[276px] lg:w-[420px] xl:w-[540px] 2xl:w-[600px] 3xl:w-[640px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
       <div className="flex flex-wrap">
@@ -598,7 +531,7 @@ function AppDownloadDropdown() {
               size="heading4"
               className="line-clamp-3 text-center lg:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-black to-black bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
             >
-              Get GO EC <br /> App Now!
+              {qrData?.qr_code?.title}
             </Heading>
             <div className="flex space-x-[5px] xl:space-x-[10px] 2xl:space-x-[15px] max-lg:justify-center">
               <ActionButton
@@ -606,15 +539,10 @@ function AppDownloadDropdown() {
                 className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
                 asChild
               >
-                <a
-                  href="/"
-                  aria-label="app store"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={qrData?.app_store?.link} aria-label="app store" target="_blank" rel="noopener noreferrer">
                   <Image
-                    src="/images/header-icon-app_store.svg"
-                    alt="app"
+                    src={generateMediaUrl(qrData?.app_store?.media?.media_path)}
+                    alt={qrData?.app_store?.media?.media_alt}
                     width={176}
                     height={64}
                   />
@@ -625,15 +553,10 @@ function AppDownloadDropdown() {
                 className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
                 asChild
               >
-                <a
-                  href="/"
-                  aria-label="app store"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={qrData?.play_store?.link} aria-label="app store" target="_blank" rel="noopener noreferrer">
                   <Image
-                    src="/images/header-icon-play_store.svg"
-                    alt="app"
+                    src={generateMediaUrl(qrData?.play_store?.media?.media_path)}
+                    alt={qrData?.play_store?.media?.media_alt}
                     width={176}
                     height={64}
                     quality={100}
@@ -645,8 +568,8 @@ function AppDownloadDropdown() {
         </div>
         <div className="w-[120px] lg:w-[168px] xl:w-[200px] 2xl:w-[240px] mx-auto">
           <Image
-            src="/images/header-AppDownload-qr.jpg"
-            alt="AppDownload-qr"
+            src={generateMediaUrl(qrData?.qr_code?.media?.media_path)}
+            alt={qrData?.qr_code?.media?.media_alt}
             width={220}
             height={220}
             className="w-full h-full"

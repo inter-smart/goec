@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,13 +16,14 @@ import parse from "html-react-parser";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
 import CareerModal from "@/components/common/CareerModal";
+import { toast } from "sonner";
 
 const local_data = {
   slug: "marketing-intern",
   title: "Marketing Intern",
   department: "Marketing",
-  location: "Kochi",
-  type: "Full Time",
+  job_location: "Kochi",
+  job_type: "Full Time",
   experience: "Fresher",
   description:
     "<p>Lorem ipsum dolor sit amet consectetur. Lorem velit tempus a sit. Porta risus in eget egestas quisque tellus eu nulla convallis. Bibendum ut faucibus bibendum enim bibendum mattis diam. A tincidunt tellus massa aliquam porttitor. Placerat mauris neque eu tellus nec urna lacus egestas. Quis justo at egestas nunc sed enim sem et gravida. Ullamcorper sed pellentesque vitae gravida amet mi magna sed blandit.</p><p>Nisl nam arcu erat proin elit donec. Id faucibus maecenas adipiscing imperdiet libero. Pretium placerat proin morbi vel faucibus. Turpis magna maecenas commodo potenti vitae enim pretium congue. Vitae quis malesuada amet ut. Potenti at gravida lectus consectetur amet ac egestas.</p>",
@@ -31,6 +34,18 @@ const local_data = {
 };
 
 export default function CareerInfoSection({ slug, data = local_data }) {
+ const copyLink = () => {
+  const link = typeof window !== "undefined" ? window.location.href : "";
+
+  navigator.clipboard
+    .writeText(link)
+    .then(() => {
+     toast.success("Link copied!");
+    })
+    .catch(() => {
+     toast.success("Failed to copy link.");
+    });
+ }
   const isHover = false;
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[40px] xl:py-[70px_100px] 2xl:py-[100px_120px] mt-(--header-y)">
@@ -64,14 +79,14 @@ export default function CareerInfoSection({ slug, data = local_data }) {
           </div>
           <div>
             <div className="flex flex-wrap gap-[10px] xl:gap-[15px]">
-              <div>
+              <div onClick={copyLink}>
                 <ActionButton
                   size={"lg"}
                   variant={"link"}
                   className="text-[#0055e0]"
                   asChild
                 >
-                  <Link href={"#"}>
+                  <div>
                     <Image
                       src="/images/icon-share.svg"
                       alt="share"
@@ -80,11 +95,11 @@ export default function CareerInfoSection({ slug, data = local_data }) {
                       className="w-[10px] xl:w-[14px] 2xl:w-[16px]"
                     />
                     Share link
-                  </Link>
+                  </div>
                 </ActionButton>
               </div>
               <div>
-                <CareerModal>
+                <CareerModal data={data}>
                   <ActionButton
                     size={"lg"}
                     variant={"blue"}
@@ -111,26 +126,26 @@ export default function CareerInfoSection({ slug, data = local_data }) {
               <div className="w-[1px] h-[10px] xl:h-[15px] bg-[#373737] mx-[10px] xl:mx-[20px]" />
             </>
           )}
-          {data?.type && (
+          {data?.job_type && (
             <>
               <Text
                 as="div"
                 size="text3"
                 className={cn("!font-medium text-[#373737]")}
               >
-                {data?.type}
+                {data?.job_type}
               </Text>
               <div className="w-[1px] h-[10px] xl:h-[15px] bg-[#373737] mx-[10px] xl:mx-[20px]" />
             </>
           )}
-          {data?.type && (
+          {data?.job_type && (
             <>
               <Text
                 as="div"
                 size="text3"
                 className={cn("!font-medium text-[#373737]")}
               >
-                {data?.location}
+                {data?.job_location}
               </Text>
             </>
           )}
@@ -166,7 +181,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
           {parse(data?.requirements)}
         </div>
         <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
-          <CareerModal>
+          <CareerModal data={data}>
             <ActionButton size="lg" variant={"blue"} className="w-full" asChild>
               <Link href={"#"}>
                 Apply Now

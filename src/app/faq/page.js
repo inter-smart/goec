@@ -1,121 +1,73 @@
 import FaqHeroSection from "@/components/features/faq/FaqHeroSection";
 import FaqInfoSection from "@/components/features/faq/FaqInfoSection";
+import { fetchFromAPI } from "@/lib/api";
 
-const local_data = {
-  banner_section: {
-    media: {
-      mobile: {
-        media_path: "/images/faq-hero-1.jpg",
-        media_alt: "hero",
-      },
-      desktop: {
-        media_path: "/images/faq-hero-1.jpg",
-        media_alt: "hero",
-      },
-    },
-    title: "Frequently Asked <br /> Questions",
-  },
-  categories: {
-    list: [
-      {
-        id: 1,
-        title: "General FAQ",
-      },
-      {
-        id: 2,
-        title: "GO EC App",
-      },
-      {
-        id: 3,
-        title: "How to Charge",
-      },
-    ],
-  },
-  faqs: {
-    list: [
-      {
-        category: 1,
-        question:
-          "Can I reserve a charging slot in advance, and how do I do so?",
-        answer:
-          "You can apply for a student visa by submitting your university offer letter, financial documents, and valid passport through the visa portal of the respective country.",
-      },
-      {
-        category: 1,
-        question:
-          "Does GOEC offer an automatic stop feature once charging is finished?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 1,
-        question: "Do DC chargers charge more quickly than AC?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 1,
-        question: "Does GOEC provide fast charging facility?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        question: "How am I going to pay for the charge?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-        category: 2,
-      },
-      {
-        category: 2,
-        question: "What types of payment methods are accepted for charging?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 2,
-        question: "Are there any membership discounts for frequent users?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 2,
-        question:
-          "How long does it typically take to charge an electric vehicle?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 2,
-        question: "What are the advantages of using a public charging station?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 3,
-        question:
-          "33 What are the advantages of using a public charging station?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-      {
-        category: 3,
-        question:
-          "33 What are the advantages of using a public charging station?",
-        answer:
-          "Yes, When the charging is finished, the power will be turned off automatically, so there is no need to worry about the battery overheating.",
-      },
-    ],
-  },
-};
 
-export default function Page() {
+async function getMetaData() {
+  try {
+    const {data, error} = await fetchFromAPI(`meta-tags/faq`);
+    const meta = data;
+
+    console.log(meta)
+      return {
+        title: meta?.meta_title,
+        description: meta?.meta_description,
+        keywords: meta?.meta_keywords,
+        // Enhanced SEO fields
+        openGraph: {
+          title: meta?.og_title || meta?.meta_title,
+          description: meta?.og_description || meta?.meta_description,
+          images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
+          type: "website",
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: meta?.twitter_title || meta?.meta_title,
+          description: meta?.twitter_description || meta?.meta_description,
+          images: meta?.twitter_image ? [meta.twitter_image] : [],
+        },
+        alternates: {
+          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
+        },
+        error: null,
+      };
+  } catch (error) {
+    return {
+      title: "Home",
+      description: "Welcome to our Home Page",
+      keywords: "home, welcome",
+      error: "Failed to fetch metadata",
+    };
+  }
+}
+
+export async function generateMetadata() {
+  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData();
+  return {
+    title,
+    description,
+    keywords,
+    twitter,
+    openGraph,
+    alternates,
+  };
+}
+
+
+
+
+export default async function Page() {
+  const { data } = await fetchFromAPI("faqs");
+
+  const { banner_section, categories, faqs } = data;
+
+  console.log(banner_section)
+
   return (
     <>
-      <FaqHeroSection data={local_data?.banner_section} />
-      <FaqInfoSection
-        categories={local_data?.categories}
-        faq_items={local_data?.faqs}
-      />
+      <FaqHeroSection data={banner_section} />
+      <FaqInfoSection categories={categories} faq_items={faqs} />
     </>
   );
 }

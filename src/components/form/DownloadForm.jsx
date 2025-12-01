@@ -2,36 +2,83 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { useState, useEffect } from "react";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { ActionButton } from "../utils/Button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { fetchFromAPI, MEDIA_URL } from "@/lib/api";
+import { toast } from "sonner";
+
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  validateSecurity,
+  validateNotOnlySpecialChars,
+  validateNotEmpty,
+  validateNotOnlyWhitespace,
+  validateMessageLength,
+  validateSingleCharacter,
+} from "@/lib/validations";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "First name must be at least 2 characters.",
-  }),
-  lastName: z.string().optional(),
-  email: z.string().email({ message: "Invalid email address." }),
+  firstName: z
+    .string()
+    .transform((val) => val?.trim() || "")
+    .refine(validateNotEmpty, "Name is required")
+    .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
+    .refine((val) => val.length >= 2, "Name must be at least 2 characters")
+    .refine((val) => val.length <= 255, "Name is too long")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+    .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
+    .refine(
+      (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
+      "Name can only contain letters, spaces, hyphens, and apostrophes"
+    ),
+  lastName: z
+    .string()
+    .transform((val) => val?.trim() || "")
+    .refine(validateNotEmpty, "Last name is required")
+    .refine(validateNotOnlyWhitespace, "Last name cannot be only whitespace")
+    .refine((val) => val.length >= 2, "Last name must be at least 2 characters")
+    .refine((val) => val.length <= 255, "Last name is too long")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine(validateNotOnlySpecialChars, "Last name cannot contain only special characters")
+    .refine((val) => !/\d/.test(val), "Last name cannot contain numbers")
+    .refine(
+      (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
+      "Last name can only contain letters, spaces, hyphens, and apostrophes"
+    ),
+  email: z
+    .string()
+    .email("Please enter a valid email address")
+    .transform((val) => val?.trim().toLowerCase() || "")
+    .refine(validateNotEmpty, "Email is required")
+    .refine(validateNotOnlyWhitespace, "Email cannot be only whitespace")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => val.length <= 256, "Email is too long")
+    .refine((val) => val.includes("@"), "Email must contain @ symbol")
+    .refine((val) => {
+      const parts = val.split("@");
+      return parts.length === 2 && parts[1].length > 0;
+    }, "Email must have a valid domain"),
   phone: z
     .string()
-    .min(10, { message: "Phone number must be at least 10 digits." })
-    .regex(/^\+?[1-9]\d{1,14}$/, { message: "Invalid phone number format." }),
-  state: z.string().optional(),
-  city: z.string().optional(),
+    .transform((val) => val?.trim() || "")
+    .refine(validateNotEmpty, "Phone number is required")
+    .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
+    .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return cleaned.length >= 5 && cleaned.length <= 15;
+    }, "Phone number must be between 5-15 digits")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
+    }, "Phone number must contain valid digits and cannot be all zeros")
+    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+  state_id: z.string().optional(),
+  city_id: z.string().optional(),
 });
 
 const labelStyle = `
@@ -48,6 +95,13 @@ const inputStyle = `
   .trim();
 
 export default function DownloadForm({ onSuccess }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [loadingStates, setLoadingStates] = useState(false);
+  const [loadingCities, setLoadingCities] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,28 +109,113 @@ export default function DownloadForm({ onSuccess }) {
       lastName: "",
       email: "",
       phone: "",
-      state: "",
-      city: "",
+      state_id: "",
+      city_id: "",
     },
   });
 
+  // Fetch states on component mount
+  useEffect(() => {
+    const fetchStates = async () => {
+      setLoadingStates(true);
+      try {
+        const { data, error } = await fetchFromAPI("location/states");
+
+        if (error) return console.error("Error fetching states:", error);
+
+        setStates(data);
+      } catch (error) {
+        console.error("Error fetching states:", error);
+      } finally {
+        setLoadingStates(false);
+      }
+    };
+
+    fetchStates();
+  }, []);
+
+  // Watch state field to fetch cities when state changes
+  const selectedStateId = form.watch("state_id");
+
+  useEffect(() => {
+    if (selectedStateId) {
+      const fetchCities = async () => {
+        setLoadingCities(true);
+        setCities([]);
+        form.setValue("city_id", ""); // Reset city when state changes
+
+        try {
+          const { data, error } = await fetchFromAPI(`location/cities/${selectedStateId}`);
+          if (error) return console.error("Error fetching cities:", error);
+
+          setCities(data);
+        } catch (error) {
+          console.error("Error fetching cities:", error);
+        } finally {
+          setLoadingCities(false);
+        }
+      };
+
+      fetchCities();
+    } else {
+      setCities([]);
+      form.setValue("city_id", "");
+    }
+  }, [selectedStateId, form]);
+
   async function onSubmit(values) {
-    console.log("Form submitted:", values);
-
+    setIsSubmitting(true);
     try {
-      // Add your API call here
-      // Example: await submitFormData(values);
+      const recaptchaToken = await executeRecaptcha("brochureenquiry");
+      const payload = {
+        first_name: values.firstName,
+        last_name: values.lastName,
+        email: values.email,
+        phone_number: values.phone,
+        recaptcha_token: recaptchaToken,
+      };
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Only append if values exist
+      if (values.state_id) payload.state_id = values.state_id;
+      if (values.city_id) payload.city_id = values.city_id;
 
-      // Call the success callback
-      if (onSuccess) {
-        onSuccess();
+      const { data, error } = await fetchFromAPI("brochure-enquiry", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+
+      if (!error && data) {
+        toast.success("Brochure enquiry submitted successfully!");
+        // Reset form
+        form.reset({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          state_id: "",
+          city_id: "",
+        });
+
+        // Call the success callback to show success screen
+        if (onSuccess) {
+          onSuccess();
+        }
+      } else {
+        // Display validation errors if available
+        if (data && data.errors && Array.isArray(data.errors)) {
+          const errorMessages = data.errors.map((err) => err.msg || err.message).join("\n");
+          toast.error(`Validation errors:\n${errorMessages}`);
+        } else if (data && data.message) {
+          toast.error(data.message);
+        } else {
+          toast.error("Failed to submit enquiry. Please check your information and try again.");
+        }
       }
     } catch (error) {
-      console.error("Form submission error:", error);
-      // Handle error (show toast, etc.)
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred while submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -91,12 +230,7 @@ export default function DownloadForm({ onSuccess }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>First name*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter first name"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="text" placeholder="Enter first name" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -108,14 +242,9 @@ export default function DownloadForm({ onSuccess }) {
             name="lastName"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
-                <FormLabel className={labelStyle}>Last name</FormLabel>
+                <FormLabel className={labelStyle}>Last name*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Enter last name"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="text" placeholder="Enter last name" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -129,12 +258,7 @@ export default function DownloadForm({ onSuccess }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Email id*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="Enter email id"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="email" placeholder="Enter email id" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -148,12 +272,7 @@ export default function DownloadForm({ onSuccess }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Phone number*</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    placeholder="Enter phone number"
-                    className={inputStyle}
-                    {...field}
-                  />
+                  <Input type="tel" placeholder="Enter phone number" className={inputStyle} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -162,23 +281,20 @@ export default function DownloadForm({ onSuccess }) {
 
           <FormField
             control={form.control}
-            name="state"
+            name="state_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loadingStates}>
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select state" />
+                      <SelectValue placeholder={loadingStates ? "Loading states..." : "Select state"} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["state 1", "state 2", "state 3"].map((item, index) => (
-                      <SelectItem key={"state" + index} value={item}>
-                        {item}
+                    {states.map((state) => (
+                      <SelectItem key={state.id} value={state.id.toString()}>
+                        {state.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -190,23 +306,20 @@ export default function DownloadForm({ onSuccess }) {
 
           <FormField
             control={form.control}
-            name="city"
+            name="city_id"
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>City</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select onValueChange={field.onChange} defaultValue={field.value} disabled={!selectedStateId || loadingCities}>
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder="Select city" />
+                      <SelectValue placeholder={loadingCities ? "Loading cities..." : !selectedStateId ? "Select state first" : "Select city"} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {["city 1", "city 2", "city 3"].map((item, index) => (
-                      <SelectItem key={"city" + index} value={item}>
-                        {item}
+                    {cities.map((city) => (
+                      <SelectItem key={city.id} value={city.id.toString()}>
+                        {city.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -222,9 +335,9 @@ export default function DownloadForm({ onSuccess }) {
               variant={"blue"}
               className="max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] rounded-[8px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto"
               type="submit"
-              disabled={form.formState.isSubmitting}
+              disabled={isSubmitting}
             >
-              {form.formState.isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </ActionButton>
           </div>
         </div>

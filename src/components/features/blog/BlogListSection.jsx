@@ -20,18 +20,39 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { MEDIA_URL } from "@/lib/api";
 
-export default function BlogListSection({ data, variant }) {
+const data = {
+  button: [
+    {
+      type: "primary",
+      label: "Blogs",
+      link: "/blog",
+    },
+    {
+      type: "primary",
+      label: "News",
+      link: "/news",
+    },
+  ],
+};
+
+export default function BlogListSection({
+  featured_section,
+  popular_blogs_section,
+  all_blogs_section,
+  variant,
+}) {
   const blogSectionRef = useRef(null);
   const pathname = usePathname();
-  const popularItems = data?.popular?.item_popular || [];
-  const firstItem = popularItems[0];
-  const otherItems = popularItems.slice(1);
+  const popularItems = popular_blogs_section?.list || [];
+  const firstItem = featured_section?.list[0]||[]
+  const otherItems = popular_blogs_section?.list || [];
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-  const blogItems = data?.blog?.item_blog || [];
+  const blogItems = all_blogs_section?.list || [];
   const totalPages = Math.ceil(blogItems.length / itemsPerPage);
 
   // Calculate current items
@@ -39,6 +60,8 @@ export default function BlogListSection({ data, variant }) {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = blogItems.slice(indexOfFirstItem, indexOfLastItem);
 
+
+  console.log("first items", firstItem)
   // Generate page numbers to display
   const getPageNumbers = () => {
     const pages = [];
@@ -100,6 +123,7 @@ export default function BlogListSection({ data, variant }) {
     }
   };
 
+  console.log("weqeqw",data)
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px_60px] xl:py-[80px_80px] 2xl:py-[100px_90px] mt-(--header-y)">
       <div className="container">
@@ -109,7 +133,7 @@ export default function BlogListSection({ data, variant }) {
             size="heading1"
             className="font-semibold text-[#030303] max-sm:text-center"
           >
-            {data?.title}
+            {featured_section?.title}
           </Heading>
           <div className="ml-auto flex gap-[10px] xl:gap-[20px] 2xl:gap-[30px]">
             {data?.button?.map((item, index) => (
@@ -136,12 +160,12 @@ export default function BlogListSection({ data, variant }) {
             <div className="w-full md:w-1/2 lg:w-[calc(100%-448px)] xl:w-[calc(100%-448px)] 2xl:w-[calc(100%-540px)] 3xl:w-[calc(100%-620px)]">
               <div className="w-full h-auto block rounded-[20px] xl:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]">
                 <Link
-                  href={firstItem?.button?.link}
+                  href={`${variant}/${firstItem?.slug}`}
                   className="w-full h-auto block aspect-[92/44] rounded-[20px] xl:rounded-[30px] overflow-hidden relative z-0"
                 >
                   <Image
-                    src={firstItem.media?.path}
-                    alt={firstItem.media?.alt}
+                    src={`${MEDIA_URL}${firstItem?.media?.media_path}`}
+                    alt={firstItem.media?.media_alt}
                     fill
                     sizes="512px"
                     className="transition hover:scale-105"
@@ -159,9 +183,7 @@ export default function BlogListSection({ data, variant }) {
                         variant === "blog" && "font-semibold"
                       )}
                     >
-                      <Link href={firstItem?.button?.link}>
-                        {firstItem.title}
-                      </Link>
+                      <Link   href={`${variant}/${firstItem?.slug}`}>{firstItem.title}</Link>
                     </Heading>
                     <Text
                       as="div"
@@ -174,7 +196,7 @@ export default function BlogListSection({ data, variant }) {
                           "line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
                       )}
                     >
-                      {parse(firstItem.description)}
+                      {parse(firstItem?.description|| "description")}
                     </Text>
                   </div>
                   <div className="flex justify-between items-center gap-[10px]">
@@ -183,8 +205,11 @@ export default function BlogListSection({ data, variant }) {
                         <div className="w-full h-auto flex items-center">
                           <div className="w-[20px] xl:w-[30px] 2xl:w-[40px] h-auto aspect-square rounded-full overflow-hidden bg-white/20">
                             <Image
-                              src={firstItem?.author?.media?.path}
-                              alt={firstItem?.author?.media?.alt}
+                              src={`${MEDIA_URL}${firstItem?.author?.media?.media_path}`}
+                              alt={
+                                firstItem?.author?.media?.media_alt ||
+                                "author alt image "
+                              }
                               width={50}
                               height={50}
                               className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
@@ -198,7 +223,7 @@ export default function BlogListSection({ data, variant }) {
                               size="text3"
                               className="leading-tight font-semibold text-[#030303]"
                             >
-                              {firstItem?.author?.title}
+                              {firstItem?.author?.name}
                             </Text>
                           </div>
                         </div>
@@ -209,9 +234,9 @@ export default function BlogListSection({ data, variant }) {
                       size="none"
                       className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center"
                     >
-                      {format(new Date(firstItem.timestamp), "dd MMMM yyyy")}
+                      {format(new Date(firstItem?.published_on), "dd MMMM yyyy")}
                       <span className="w-[4px] h-[4px] inline-block bg-[#757575] rounded"></span>
-                      10 mins read
+                      {firstItem?.reading_time}
                     </Text>
                     {variant === "news" && (
                       <div>
@@ -220,8 +245,8 @@ export default function BlogListSection({ data, variant }) {
                           className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                           asChild
                         >
-                          <Link href={firstItem?.button?.link}>
-                            {firstItem?.button?.label}
+                          <Link href={`${variant}/${firstItem?.slug}`}>
+                            Read now
                             <svg
                               width="32"
                               height="8"
@@ -257,19 +282,19 @@ export default function BlogListSection({ data, variant }) {
               </div>
             </div>
           )}
-          {otherItems.length > 0 && (
+          {otherItems.length >= 0 && (
             <div className="w-full md:w-1/2 lg:w-[448px] xl:w-[448px] 2xl:w-[540px] 3xl:w-[620px] max-md:mt-[30px]">
               <Heading
                 as="h3"
                 size="none"
                 className="text-[20px] md:text-[16px] lg:text-[18px] xl:text-[22px] 2xl:text-[24px] 3xl:text-[32px] leading-tight font-semibold text-[#030303] max-md:text-center mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
-                {data?.popular?.title}
+                {popular_blogs_section?.title}
               </Heading>
               <div className="flex flex-wrap mx-[-5px] md:mx-0 [&>*]:p-[5px] md:[&>*]:p-0">
-                {otherItems.map((item, index) => {
+                {otherItems?.map((item, index) => {
                   const formattedDate = format(
-                    new Date(item.timestamp),
+                    new Date(item.published_on),
                     "dd MMMM yyyy"
                   );
                   return (
@@ -281,12 +306,12 @@ export default function BlogListSection({ data, variant }) {
                         <div className="h-full flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-12px] [&>*]:px-[5px] xl:[&>*]:px-[10px] 2xl:[&>*]:px-[12px]">
                           <div className="w-full md:w-[100px] lg:w-[140px] xl:w-[170px] 2xl:w-[200px] 3xl:w-[250px]">
                             <Link
-                              href={item?.button?.link}
+                                href={`${variant}/${item?.slug}`}
                               className="w-full h-full block aspect-[2/1] md:aspect-[240/220] rounded-[20px] xl:rounded-[30px] overflow-hidden relative z-0"
                             >
                               <Image
-                                src={item?.media?.path}
-                                alt={item?.media?.alt}
+                                src={`${MEDIA_URL}${item?.media?.media_path}`}
+                                alt={item?.media?.media_alt}
                                 fill
                                 sizes="512px"
                                 className="object-cover transition hover:scale-105"
@@ -297,7 +322,7 @@ export default function BlogListSection({ data, variant }) {
                             <div className="h-full flex flex-col justify-between py-[10px] 2xl:py-[15px] 3xl:py-[30px]">
                               <div>
                                 <div className="text-[14px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[24px] leading-tight font-semibold text-black line-clamp-2 mb-[2px] xl:mb-[4px] 3xl:mb-[8px]">
-                                  <Link href={item?.button?.link}>
+                                  <Link   href={`${variant}/${item?.slug}`}>
                                     {item?.title}
                                   </Link>
                                 </div>
@@ -317,9 +342,9 @@ export default function BlogListSection({ data, variant }) {
                                       size="none"
                                       className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575]"
                                     >
-                                      {item?.category}
+                                      {item?.category|| "Blog"}
                                       <span>&nbsp;-&nbsp;</span>
-                                      {item?.duration}
+                                      {item?.reading_time}
                                     </Text>
                                     <Text
                                       as="div"
@@ -338,15 +363,15 @@ export default function BlogListSection({ data, variant }) {
                                     >
                                       {formattedDate}
                                       <span className="w-[4px] h-[4px] inline-block bg-[#757575] rounded"></span>
-                                      {item?.duration}
+                                      {item?.reading_time}
                                     </Text>
                                     <ActionButton
                                       variant="link"
                                       className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                                       asChild
                                     >
-                                      <Link href={item?.button?.link}>
-                                        {item?.button?.label}
+                                      <Link href={`${variant}/${item?.slug}`}>
+                                      Read now
                                         <svg
                                           width="32"
                                           height="8"
@@ -396,13 +421,13 @@ export default function BlogListSection({ data, variant }) {
           size="heading2"
           className="font-medium text-[#030303] max-md:text-center mb-[15px] xl:mb-[20px] 2xl:mb-[30px] mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[60px]"
         >
-          {data?.blog?.title}
+          {all_blogs_section?.title}
         </Heading>
 
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-12px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
-          {currentItems.map((item, index) => (
-            <div key={"blogs" + index} className="w-full xs:w-1/2 lg:w-1/3">
-              <NewsCard data={item} variant={variant} />
+          {currentItems?.map((item, index) => (
+            <div key={"blog" + index} className="w-full xs:w-1/2 lg:w-1/3">
+              <NewsCard data={item} variant={variant} page={variant}/>
             </div>
           ))}
         </div>

@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,17 +27,13 @@ const aboutInfoData = {
     "<h2>We’re not just building charging stations—we’re driving India’s transition to clean, smart, and sustainable mobility. Born in 2020 with a handful of chargers and a big dream, we’ve grown into one of India’s fastest-growing EV charging networks, committed to making electric vehicle charging effortless, reliable, and accessible.</h2>",
 };
 
-export default function AboutInfoSection({ data = aboutInfoData }) {
+export default function AboutInfoSection({ data = aboutInfoData, description, media }) {
+  console.log(generateMediaUrl(media?.desktop?.media_path));
   const animatedTextRef = useRef(null);
-  const sanitizedText = DOMPurify.sanitize(data?.description);
+  const sanitizedText = DOMPurify.sanitize(description);
 
   const splitTextIntoWords = (element) => {
-    const walker = document.createTreeWalker(
-      element,
-      NodeFilter.SHOW_TEXT,
-      null,
-      false
-    );
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
 
     const textNodes = [];
     let node;
@@ -62,7 +60,7 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
         }
       });
 
-      textNode.parentNode.replaceChild(fragment, textNode);
+      textNode?.parentNode.replaceChild(fragment, textNode);
     });
   };
 
@@ -130,30 +128,19 @@ export default function AboutInfoSection({ data = aboutInfoData }) {
             height={78}
             className="w-[60px] xl:w-[70px] 2xl:w-[78px] aspect-square absolute z-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition hover:scale-105"
           />
-          {data?.media?.desktop?.type === "video" ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover absolute -z-2 inset-0"
-            >
-              <source src={data?.media?.desktop?.path} type="video/mp4" />
+          {media?.desktop?.media_type === "video" ? (
+            <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
+              <source src={generateMediaUrl(media?.desktop?.media_path)} type="video/mp4" />
             </video>
           ) : (
-            <picture className="w-full h-full absolute -z-1 inset-0">
-              <source
-                media="(max-width: 640px)"
-                srcSet={data?.media?.mobile?.path}
-              />
+            <picture className="absolute -z-1 inset-0">
+              <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`} />
               <Image
-                src={data?.media?.desktop?.path}
-                alt={data?.media?.desktop?.alt}
+                src={`${MEDIA_URL}${media?.desktop?.media_path}`}
+                alt={media?.desktop?.media_alt || "hero image"}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                 className="-z-1 object-cover transition hover:scale-105"
-                placeholder="blur"
-                blurDataURL="/images/placeholder.jpg"
               />
             </picture>
           )}

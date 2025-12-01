@@ -3,6 +3,7 @@ import { Text } from "@/components/utils/Text";
 import { cn } from "@/lib/utils";
 import { useEffect, useState, useRef } from "react";
 import parse from "html-react-parser";
+import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function LegalInfoSection({ data, variant }) {
   const [toc, setToc] = useState([]);
@@ -11,6 +12,7 @@ export default function LegalInfoSection({ data, variant }) {
 
   const description = data;
 
+  console.log("description  =>  ",description)
   useEffect(() => {
     if (!description || !contentRef.current) return;
 
@@ -188,7 +190,7 @@ export default function LegalInfoSection({ data, variant }) {
               ref={contentRef}
               className="typography [&,_&>p]:text-[#373737] [&>p]:mb-[15px] xl:[&>p]:mb-[20px] 2xl:[&>p]:mb-[30px]"
             >
-              {parse(description)}
+              {renderHtml(description.content)}
             </div>
           </div>
         </div>

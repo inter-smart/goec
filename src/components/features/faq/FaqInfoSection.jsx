@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { useState, useMemo } from "react";
+import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function FaqInfoSection({ faq_items, categories }) {
   const [activeId, setActiveId] = useState(1);
@@ -71,7 +72,7 @@ export default function FaqInfoSection({ faq_items, categories }) {
                       }
                     >
                       <div className="typography [&,_&>p]:text-[#757575]">
-                        {item?.answer}
+                        {renderHtml(item?.answer)}
                       </div>
                     </AccordionContent>
                   </AccordionItem>

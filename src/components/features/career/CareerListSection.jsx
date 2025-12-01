@@ -170,6 +170,11 @@ const departments = [
 export default function CareerListSection({ data = local_data }) {
   const [selected, setSelected] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const categoriesWithAll = useMemo(
+  () => [{ id: 0, title: "All positions" }, ...data.job_categories],
+  [data.job_categories]
+);
   const [currentPage, setCurrentPage] = useState(1);
   const paginationRef = useRef(null);
 
@@ -177,43 +182,43 @@ export default function CareerListSection({ data = local_data }) {
   const allJobs = data.jobs;
 
   // 🧮 Filter jobs based on search & department
-  const filteredJobs = useMemo(() => {
-    const activeDepartment = departments[selected].label;
-    return allJobs.filter((job) => {
-      const matchesDepartment =
-        activeDepartment === "All positions" ||
-        job.position === activeDepartment;
-      const matchesSearch = job.title
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-      return matchesDepartment && matchesSearch;
-    });
-  }, [selected, searchTerm, allJobs]);
+const filteredJobs = useMemo(() => {
+  const activeCategory = categoriesWithAll[selected];
 
-  // Reset to page 1 when filters change
+  return allJobs.filter((job) => {
+    const matchesCategory =
+      activeCategory.title === "All positions" ||
+      job.category === activeCategory.title ||
+      job.category === activeCategory.id;
+
+    const matchesSearch = job.title
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+}, [selected, searchTerm, allJobs, categoriesWithAll]);
+
   useMemo(() => {
     setCurrentPage(1);
   }, [selected, searchTerm]);
+const departmentCounts = useMemo(() => {
+  const counts = {};
 
-  const departmentCounts = useMemo(() => {
-    const counts = {};
+  counts["All positions"] = allJobs.filter((job) =>
+    job.title?.toLowerCase().includes(searchTerm.toLowerCase())
+  ).length;
 
-    departments.forEach((dep) => {
-      if (dep.label === "All positions") {
-        counts[dep.label] = allJobs.filter((job) =>
-          job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length;
-      } else {
-        counts[dep.label] = allJobs.filter(
-          (job) =>
-            job.position === dep.label &&
-            job.title.toLowerCase().includes(searchTerm.toLowerCase())
-        ).length;
-      }
-    });
+  data.job_categories.forEach((cat) => {
+    counts[cat.title] = allJobs.filter(
+      (job) =>
+        (job.category === cat.title || job.category === cat.id) &&
+        job.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    ).length;
+  });
 
     return counts;
-  }, [searchTerm, allJobs]);
+}, [allJobs, searchTerm, data.job_categories]);
 
   // Pagination calculations
   const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
@@ -307,9 +312,9 @@ export default function CareerListSection({ data = local_data }) {
               onChange={(e) => setSelected(Number(e.target.value))}
               className="text-[12px] w-full rounded-lg bg-white relative outline-none"
             >
-              {departments.map((dep, index) => (
-                <option key={dep.label} value={index}>
-                  {dep.label} ({departmentCounts[dep.label] || 0})
+              {categoriesWithAll?.map((dep, index) => (
+                <option key={dep.id} value={index}>
+                  {dep.title} ({departmentCounts[dep.title] || 0})
                 </option>
               ))}
             </select>
@@ -317,9 +322,9 @@ export default function CareerListSection({ data = local_data }) {
 
           <aside className="hidden sm:block w-[220px] xl:w-[260px] 2xl:w-[368px] flex-shrink-0">
             <ul className="sticky top-[var(--header-y)]">
-              {departments.map((dep, index) => (
+              {categoriesWithAll?.map((dep, index) => (
                 <div
-                  key={dep.label}
+                  key={dep.id}
                   onClick={() => setSelected(index)}
                   className={`flex justify-between items-center text-sm py-2.5 px-3 rounded-md cursor-pointer transition-colors ${
                     index === selected
@@ -331,8 +336,8 @@ export default function CareerListSection({ data = local_data }) {
                     <span className="w-4 flex justify-center">
                       {index === selected && <FaCaretRight />}
                     </span>
-                    <span className="ml-2 mr-1">{dep.label}</span>
-                    <span>({departmentCounts[dep.label] || 0})</span>
+                    <span className="ml-2 mr-1">{dep.title}</span>
+                    <span>({departmentCounts[dep.title] || 0})</span>
                   </Text>
                 </div>
               ))}
@@ -465,7 +470,7 @@ function JobCard({ job }) {
           <IconCard
             src="/images/career-exp.svg"
             alt="experience"
-            title={job?.job_experience}
+            title={job?.experience}
           />
         </div>
         <div>

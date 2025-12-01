@@ -2,6 +2,7 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import Link from "next/link";
+import BlogCard from "@/components/common/BlogCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -11,7 +12,7 @@ import NewsCard from "@/components/common/NewsCard";
 const blogData = {
   title: "Explore our Blogs.",
   button: {
-    link: "/",
+    link: "/blog",
     label: "View all",
   },
   item_blog: [
@@ -93,25 +94,28 @@ const blogData = {
   ],
 };
 
-export default function LatestBlogSection({ data = blogData }) {
+export default function LatestBlogSection({ data = blogData, title, blogs = [], type="home" }) {
   return (
-    <section className="w-full h-auto block py-[30px] sm:py-[60px_60px] xl:py-[80px_80px] 2xl:py-[100px_90px]">
+    <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
-          <div className="flex-1">
+          <div className={type === "similar_blogs" ? "w-full flex justify-center text-[40px] text-center" :"flex-1"}>
             <Heading
               as="h2"
               size="heading2"
               className="text-[#303030] xl:max-w-[840px]"
             >
-              {data?.title}
+              {title}
             </Heading>
           </div>
+          {
+            type==="home" &&
           <div>
             <ActionButton variant="link" className="text-black" asChild>
               <Link href={data?.button?.link}>{data?.button?.label}</Link>
             </ActionButton>
           </div>
+          }
         </div>
         <Swiper
           loop
@@ -150,10 +154,10 @@ export default function LatestBlogSection({ data = blogData }) {
             },
           }}
         >
-          {data?.item_blog.map((item, index) => {
+          {blogs.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <NewsCard index={index} data={item} variant={"home"} />
+                <NewsCard index={index} data={item} variant={"blog"} page={"blog"} />
               </SwiperSlide>
             );
           })}

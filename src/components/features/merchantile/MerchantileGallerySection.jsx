@@ -9,6 +9,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
+import { generateMediaUrl } from "@/lib/utils";
 
 const local_data = {
   title: "Gallery",
@@ -63,6 +64,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
     Autoplay({ delay: 3000, stopOnInteraction: false }),
   ]);
 
+  
   return (
     <section className="w-full h-auto block py-[15px_30px] sm:py-[30px_60px] xl:py-[60px_120px] 2xl:py-[80px_160px]">
       <div className="container">
@@ -83,16 +85,16 @@ export default function MerchantileGallerySection({ data = local_data }) {
                 key={"gallery" + index}
                 className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
               >
-                {item?.media_type === "video" ? (
+                {item?.media?.media_type === "video" ? (
                   <Item
                     html={`
                       <video 
                         controls 
                         autoplay 
                         style="width: 100%; height: 100%;"
-                        poster="${item?.poster || ""}"
+                        poster="${generateMediaUrl(item?.thumbnail?.media_path)}"
                       >
-                        <source src="${item?.media_path}" type="video/mp4" />
+                        <source src="${generateMediaUrl(item?.media?.media_path)}" type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     `}
@@ -112,7 +114,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
                           playsInline
                           className="w-full h-full object-cover transition group-hover:scale-105"
                         >
-                          <source src={item?.media_path} type="video/mp4" />
+                          <source src={generateMediaUrl(item?.media?.media_path)} type="video/mp4" />
                         </video>
                         {/* Play icon overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -129,19 +131,19 @@ export default function MerchantileGallerySection({ data = local_data }) {
                   </Item>
                 ) : (
                   <Item
-                    original={item?.media_path || "/images/placeholder.jpg"}
-                    thumbnail={item?.media_path || "/images/placeholder.jpg"}
+                    original={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                    thumbnail={generateMediaUrl(item?.thumbnail?.media_path) || "/images/placeholder.jpg"}
                     width="1200"
                     height="900"
-                    alt={item?.media_alt || "gallery"}
+                    alt={item?.media?.media_alt || "gallery"}
                   >
                     {({ ref, open }) => (
                       <div className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
                         <Image
                           ref={ref}
                           onClick={open}
-                          src={item?.media_path || "/images/placeholder.jpg"}
-                          alt={item?.media_alt || "gallery"}
+                          src={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                          alt={item?.media?.media_alt || "gallery"}
                           width={476}
                           height={268}
                           className="w-full h-full object-cover transition hover:scale-105"

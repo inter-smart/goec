@@ -6,6 +6,8 @@ import { Text } from "@/components/utils/Text";
 import { Heading } from "@/components/utils/Heading";
 import { motion, AnimatePresence } from "framer-motion";
 import { ActionButton } from "@/components/utils/Button";
+import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 const appInfoData = {
   media: {
@@ -59,12 +61,19 @@ function splitIntoGroups(arr, groupCount = 4) {
   );
 }
 
-export default function AppInfoSection({ data = appInfoData }) {
-  const groupedSpecs = splitIntoGroups(data?.item_specs || [], 4);
+
+export default function AppInfoSection({ appFeatures = appInfoData }) {
+const groupedSpecs = splitIntoGroups(
+  (appFeatures?.list || []).map((item) =>
+    typeof item === "string" ? item : item.title
+  ),
+  4
+);
+
   return (
     <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[30px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px]">
       <Image
-        src="/images/app_info-bg.svg"
+        src="/images/app_info-bg.png"
         alt="app_info-bg"
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
@@ -75,22 +84,19 @@ export default function AppInfoSection({ data = appInfoData }) {
         <div className="w-full h-full relative z-0">
           <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" />
           <div className="w-[72px] 3xs:w-[90px] sm:w-[112px] md:w-[152px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
-            {data?.media?.type === "video" ? (
               <video autoPlay loop muted playsInline className="w-full h-full">
-                <source src={data?.media?.path} type="video/mp4" />
+                <source src={generateMediaUrl(appFeatures?.hand_video)} type="video/mp4" />
               </video>
-            ) : (
               <Image
-                src={data?.media?.path}
-                alt={data?.media?.alt}
+                src={appFeatures?.hand_image ? `${MEDIA_URL}${appFeatures?.hand_image}` : '/images/app_info-hand.png' }
+                alt={appFeatures?.hand_image_alt}
                 width={255}
                 height={544}
                 className="w-full h-full"
               />
-            )}
           </div>
           <Image
-            src="/images/app_info-mockup-overlay.png"
+           src={appFeatures?.hand_image ? `${MEDIA_URL}${appFeatures?.hand_image}` : '/images/app_info-mockup-overlay.png' }
             alt="app_info-mockup-overlay"
             width={420}
             height={500}
@@ -120,7 +126,7 @@ export default function AppInfoSection({ data = appInfoData }) {
                 size="heading1"
                 className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
               >
-                {data?.title}
+                {appFeatures?.title}
               </Heading>
             </motion.div>
             <motion.div
@@ -141,7 +147,7 @@ export default function AppInfoSection({ data = appInfoData }) {
                 size="text2"
                 className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
               >
-                {data?.description}
+                {appFeatures?.description}
               </Text>
             </motion.div>
             <motion.div
@@ -158,7 +164,7 @@ export default function AppInfoSection({ data = appInfoData }) {
               viewport={{ once: false, amount: 0.3 }}
             >
               <ActionButton variant="link" className="text-white" asChild>
-                <Link href={data?.button?.link}>{data?.button?.label}</Link>
+                <Link href="/mobile-app">Learn more</Link>
               </ActionButton>
             </motion.div>
             <motion.div
@@ -180,31 +186,46 @@ export default function AppInfoSection({ data = appInfoData }) {
                 size="heading5"
                 className="text-white mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
-                {data.title}
+                {appFeatures.title}
               </Heading>
               <div className="flex flex-wrap space-x-[5px] xl:space-x-[10px] max-sm:justify-center">
-                {data?.app_download?.button.map((item, index) => (
-                  <div key={"app_download" + index}>
+                  <div key={"app_store"}>
                     <a
-                      href={item?.link}
+                      href="https://apps.apple.com/in/app/goec/id1600027947"
+                      target='_blank'
                       className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
                     >
                       <Image
-                        src={item?.media?.path}
-                        alt={item?.media?.alt}
+                        src={"/images/app_info-ios.svg"}
+                        alt="ios"
                         width={140}
                         height={50}
                       />
                     </a>
                   </div>
-                ))}
+
+
+                   <div key={"playstore"}>
+                    <a
+                      href="https://play.google.com/store/search?q=goec&c=apps"
+                      target='_blank'
+                      className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
+                    >
+                      <Image
+                      src="/images/app_info-android.svg"
+                        alt="android"
+                        width={140}
+                        height={50}
+                      />
+                    </a>
+                  </div>
               </div>
             </motion.div>
           </div>
           <div className="w-full sm:w-[320px] lg:w-[468px] xl:w-[580px] 2xl:w-[768px] 3xl:w-[860px]">
             <div className="w-full h-full relative z-0">
               <Image
-                src="/images/app_info-spec-bg.svg"
+                src="/images/app_info-spec-bg.png"
                 alt="app_info-spec-bg"
                 width={880}
                 height={640}
@@ -247,6 +268,8 @@ function SpecItem({ texts, duration = 3000 }) {
 
   if (!texts || texts.length === 0) return null;
 
+  const current = texts[index];
+
   return (
     <div className="w-[100px] sm:w-[100px] lg:w-[140px] xl:w-[176px] 2xl:w-[190px] 3xl:w-[230px] h-5 overflow-hidden relative z-0">
       <AnimatePresence mode="wait">
@@ -256,9 +279,25 @@ function SpecItem({ texts, duration = 3000 }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="absolute text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal line-clamp-1 text-left text-white"
+          className="absolute flex items-center gap-1 text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal line-clamp-1 text-left text-white"
         >
-          {texts[index]}
+          {/* If object → show icon + title */}
+          {typeof current === "string" ? (
+            current
+          ) : (
+            <>
+              {current?.icon && (
+                <Image
+                  src={`/${current.icon}`}
+                  alt={current.icon_alt || "icon"}
+                  width={14}
+                  height={14}
+                  className="inline-block"
+                />
+              )}
+              {current?.title}
+            </>
+          )}
         </motion.span>
       </AnimatePresence>
     </div>

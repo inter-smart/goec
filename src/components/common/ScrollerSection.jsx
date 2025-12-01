@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Heading } from "@/components/utils/Heading";
 import { Autoplay, FreeMode } from "swiper/modules";
+import { MEDIA_URL } from "@/lib/api";
+import { generateMediaUrl } from "@/lib/utils";
 
 const lifeImages = [
   {
@@ -112,11 +114,18 @@ export default function ScrollerSection({ title, list, page = "career" }) {
           }}
         >
           {" "}
-          {list.map((img, index) => {
+          {list?.map((img, index) => {
             return (
               <SwiperSlide key={"value" + index}>
                 <div className="relative w-full aspect-[640/360] rounded-[24px] overflow-hidden">
-                  <Image src={img.src} alt={img.alt} width={640} height={360} className="object-cover w-full h-full" quality={100} />
+                  <Image
+                    src={`${MEDIA_URL}${img?.media?.desktop?.media_path}`}
+                    alt={img?.media?.desktop?.media_alt}
+                    width={640}
+                    height={360}
+                    className="object-cover w-full h-full"
+                    quality={100}
+                  />
                 </div>
               </SwiperSlide>
             );
@@ -193,7 +202,14 @@ export default function ScrollerSection({ title, list, page = "career" }) {
             return (
               <SwiperSlide key={"value" + index}>
                 <div className="relative w-full aspect-[640/360] rounded-[24px] overflow-hidden">
-                  <Image src={img.src} alt={img.alt} width={640} height={360} className="object-cover w-full h-full" quality={100} />
+                  <Image
+                    src={generateMediaUrl(img?.media_path)}
+                    alt={img?.media_alt}
+                    width={640}
+                    height={360}
+                    className="object-cover w-full h-full"
+                    quality={100}
+                  />
                 </div>
               </SwiperSlide>
             );

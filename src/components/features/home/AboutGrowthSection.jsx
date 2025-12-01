@@ -11,6 +11,7 @@ import "swiper/css/thumbs";
 import { AnimatePresence, motion } from "motion/react";
 
 import { useRef, useState } from "react";
+import { MEDIA_URL } from "@/lib/api";
 
 const aboutGrowthData = [
   {
@@ -66,7 +67,7 @@ const aboutGrowthData = [
   },
 ];
 
-export default function AboutGrowthSection({ data = aboutGrowthData }) {
+export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -90,7 +91,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
           direction={"vertical"}
           className="h-[176px] sm:h-[276px] 2xl:h-[320px]"
         >
-          {data?.map((item, index) => (
+          {growthData?.map((item, index) => (
             <SwiperSlide key={"growth" + index}>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -127,7 +128,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                         ${currentSlide === index ? "opacity-100" : "opacity-60"}
                         `}
                 >
-                  {item?.timestamp?.slice(0, 4)}
+                  {item?.year}
                 </div>
               </motion.div>
             </SwiperSlide>
@@ -155,7 +156,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
         longSwipes={false}
         className="max-h-[1080px]"
       >
-        {data?.map((item, index) => (
+        {growthData?.map((item, index) => (
           <SwiperSlide key={"growth" + index}>
             <AnimatePresence mode="wait">
               <motion.div
@@ -166,7 +167,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                 transition={{ duration: 0.4 }}
                 className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]"
               >
-                {item?.media?.type === "video" ? (
+              {item?.media?.type === "video" ? (
                   <video
                     autoPlay
                     loop
@@ -174,18 +175,18 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                     playsInline
                     className="w-full h-full object-cover absolute -z-2 inset-0"
                   >
-                    {/* <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> */}
+                    <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> 
                     <source src={item?.media?.path} type="video/mp4" />
                   </video>
-                ) : (
+                ) :
                   <picture className="absolute -z-2 inset-0">
                     <source
                       media="(max-width: 640px)"
-                      srcSet={item?.media?.mobile?.path}
+                      srcSet={`${MEDIA_URL}${item?.media?.media_path}`}
                     />
                     <Image
-                      src={item?.media?.desktop?.path}
-                      alt={item?.media?.desktop?.alt}
+                      src={`${MEDIA_URL}${item?.media?.media_path}`}
+                      alt={item?.media?.media_alt}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                       priority={index === 0}
@@ -193,7 +194,7 @@ export default function AboutGrowthSection({ data = aboutGrowthData }) {
                       quality={100}
                     />
                   </picture>
-                )}
+                 } 
                 <motion.div
                   key={`heading-${currentSlide}`}
                   initial={{ opacity: 0, y: 40 }}

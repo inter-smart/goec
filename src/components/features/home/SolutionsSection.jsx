@@ -63,7 +63,7 @@ const expertiseData = {
   ],
 };
 
-export default function SolutionsSection({ data = expertiseData }) {
+export default function SolutionsSection({ title, description, solutions }) {
   const container = useRef(null);
 
   // global scroll progress
@@ -101,7 +101,7 @@ export default function SolutionsSection({ data = expertiseData }) {
               size="heading2"
               className="text-[#303030] max-sm:text-center"
             >
-              {data?.title}
+              {title}
             </Heading>
           </motion.div>
           <motion.div
@@ -119,13 +119,13 @@ export default function SolutionsSection({ data = expertiseData }) {
             className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center"
           >
             <Text as="p" size="text2" className="text-[#373737]">
-              {data?.description}
+              {description}
             </Text>
           </motion.div>
         </div>
         <div ref={container}>
-          {data?.item_expertise.map((item, i) => {
-            const targetScale = 1 - (data?.item_expertise.length - i) * 0.05;
+          {solutions.map((item, i) => {
+            const targetScale = 1 - (solutions.length - i) * 0.05;
             return (
               <SolutionCard
                 key={i}
@@ -145,7 +145,7 @@ export default function SolutionsSection({ data = expertiseData }) {
             className="text-black bg-[#f5f5f5] hover:bg-[#dddddd]"
             asChild
           >
-            <Link href={data?.button?.link}>{data?.button?.label}</Link>
+            <Link href="/investment">Explore more</Link>
           </ActionButton>
         </div>
       </div>

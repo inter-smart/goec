@@ -4,13 +4,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ActionButton } from "../utils/Button";
+import { fetchFromAPI } from "@/lib/api";
+import { toast } from "sonner";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-export function PlaceholdersAndVanishInput({
-  placeholders,
-  onChange,
-  onSubmit,
-}) {
+export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const intervalRef = useRef(null);
   const startAnimation = () => {
@@ -70,20 +71,11 @@ export function PlaceholdersAndVanishInput({
       let i = 4 * t * 800;
       for (let n = 0; n < 800; n++) {
         let e = i + 4 * n;
-        if (
-          pixelData[e] !== 0 &&
-          pixelData[e + 1] !== 0 &&
-          pixelData[e + 2] !== 0
-        ) {
+        if (pixelData[e] !== 0 && pixelData[e + 1] !== 0 && pixelData[e + 2] !== 0) {
           newData.push({
             x: n,
             y: t,
-            color: [
-              pixelData[e],
-              pixelData[e + 1],
-              pixelData[e + 2],
-              pixelData[e + 3],
-            ],
+            color: [pixelData[e], pixelData[e + 1], pixelData[e + 2], pixelData[e + 3]],
           });
         }
       }
@@ -158,18 +150,65 @@ export function PlaceholdersAndVanishInput({
 
     const value = inputRef.current?.value || "";
     if (value && inputRef.current) {
-      const maxX = newDataRef.current.reduce(
-        (prev, current) => (current.x > prev ? current.x : prev),
-        0
-      );
+      const maxX = newDataRef.current.reduce((prev, current) => (current.x > prev ? current.x : prev), 0);
       animate(maxX);
+    }
+  };
+
+  const handleNewsletterSubmit = async (email) => {
+    if (isSubmitting) return;
+
+    const recaptchaToken = await executeRecaptcha("newslettersubscription");
+
+    if (!email) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await fetchFromAPI("newsletter-subscription", {
+        method: "POST",
+        body: JSON.stringify({
+          email_id: email,
+          source: "footer",
+          recaptcha_token: recaptchaToken,
+        }),
+      });
+
+      if (!error && data) {
+        toast.success("Successfully subscribed to our newsletter! Thank you for joining us.");
+      } else {
+        if (error?.message) {
+          toast.error(error.message);
+        } else if (error?.errors && error.errors.length > 0) {
+          toast.error(error.errors[0].msg || "Subscription failed");
+        } else {
+          toast.error("Subscription failed. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     vanishAndSubmit();
-    onSubmit && onSubmit(e);
+    const emailInput = e.target.querySelector('input[type="text"]');
+    const email = emailInput?.value?.trim();
+    handleNewsletterSubmit(email);
   };
   return (
     <form
@@ -244,7 +283,7 @@ export function PlaceholdersAndVanishInput({
         type="submit"
         className="text-black w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[45px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-1 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
       >
-        <span>Get notified</span>
+        <span>{data?.button_label || "Subscribe"}</span>
       </ActionButton>
       <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
         <AnimatePresence mode="wait">

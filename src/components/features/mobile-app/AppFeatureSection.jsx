@@ -5,95 +5,28 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { Rating } from "react-simple-star-rating";
+import { MEDIA_URL } from "@/lib/api";
 
-const local_data = {
-  title: "Features to elevate your charging experience",
-  description: "",
-  item_feature: [
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-1.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: "<h4>Start & Stop</br>Charging</h4>",
-      description: "Effortless ",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-2.jpg",
-        alt: "feature",
-      },
-      media: {
-        type: "image",
-        path: "/images/app-app_feature-1.svg",
-        alt: "feature",
-      },
-      rating: 5,
-      title: "Pay with ease",
-      description: null,
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-3.jpg",
-        alt: "feature",
-      },
-      media: {
-        type: "image",
-        path: "/images/app-app_feature-2.png",
-        alt: "feature",
-      },
-      rating: null,
-      title: "Chargers",
-      description: "Locate",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-4.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: null,
-      description: "Endless more features",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-5.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: "<h4>Reserve your </br> Charger</h4>",
-      description: "Skip the waiting",
-    },
-    {
-      bg_media: {
-        type: "image",
-        path: "/images/mobileapp-app_feature-6.jpg",
-        alt: "feature",
-      },
-      media: null,
-      rating: null,
-      title: "<h4>View Charging </br> Progress</h4>",
-      description: "Monitor your Sessions",
-    },
-  ],
-};
 
-export default function AppFeatureSection({ data = local_data }) {
+const bgImages = [
+  "/images/mobileapp-app_feature-1.jpg",
+  "/images/mobileapp-app_feature-2.jpg",
+  "/images/mobileapp-app_feature-3.jpg",
+  "/images/mobileapp-app_feature-4.jpg",
+  "/images/mobileapp-app_feature-5.jpg",
+  "/images/mobileapp-app_feature-6.jpg",
+];
+
+export default function AppFeatureSection({ title, list }) {
   // ✅ Group features in sets of 2
   const grouped = [];
-  for (let i = 0; i < data.item_feature.length; i += 2) {
-    grouped.push(data.item_feature.slice(i, i + 2));
+  for (let i = 0; i < list?.length; i += 2) {
+    grouped.push(list?.slice(i, i + 2));
   }
 
+
+
+  console.log(grouped)
   return (
     <section className="w-full h-auto block py-[20px_30px] sm:py-[30px_60px] xl:py-[60px_80px] 2xl:py-[70px_100px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
@@ -102,7 +35,7 @@ export default function AppFeatureSection({ data = local_data }) {
           size="heading2"
           className="text-center text-[#030303] max-w-[468px] xl:max-w-[500px] 2xl:max-w-[600px] mb-[20px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px] mx-auto"
         >
-          {data?.title}
+          {title}
         </Heading>
 
         <div className="flex flex-wrap 3xs:mx-[-4px] xl:mx-[-10px] 3xl:mx-[-15px] 3xs:[&>*]:p-[4px] xl:[&>*]:p-[10px] 3xl:[&>*]:p-[15px]">
@@ -130,32 +63,32 @@ export default function AppFeatureSection({ data = local_data }) {
                     <div
                       className={cn(
                         "group w-full h-full bg-transparent bg-gradient-to-br from-[#030303] to-[#21bfed] rounded-[20px] xl:rounded-[25px] overflow-hidden relative z-0 flex flex-col",
-                        item?.media
+                        item?.media_path
                           ? "p-[20px_10px_0] sm:p-[40px_20px_0] xl:p-[60px_40px_0] 2xl:p-[60px_50px_0] 3xl:p-[80px_50px_0] justify-between"
                           : "p-[20px_10px] sm:p-[40px_20px] xl:p-[60px_40px] 2xl:p-[60px_50px] 3xl:p-[80px_50px] justify-center"
                       )}
                     >
                       <Image
-                        src={item?.bg_media?.path}
-                        alt={item?.bg_media?.alt}
+                        src={bgImages[groupIndex * 2 + itemIndex]} // pick static image by index
+                        alt={`feature-bg-${groupIndex * 2 + itemIndex + 1}`}
                         width={568}
                         height={800}
                         className="w-full h-full absolute -z-1 inset-0"
                       />
                       <div>
-                        {item?.rating && (
+                        {groupIndex === 0 && itemIndex === 1 && (
                           <div className="w-full h-auto flex justify-center">
                             <Rating
                               readonly
                               size={20}
                               className="[&_svg]:inline-block"
                               fillColor="#ffd24f"
-                              initialValue={parseInt(item?.rating)}
+                              initialValue={5}
                             />
                           </div>
                         )}
 
-                        {item?.description && (
+                        {item?.title && (
                           <Text
                             as="div"
                             size="text2"
@@ -168,10 +101,10 @@ export default function AppFeatureSection({ data = local_data }) {
                                 : ""
                             )}
                           >
-                            {item?.description}
+                            {item?.title}
                           </Text>
                         )}
-                        {item?.title && (
+                        {item?.highlight_title && (
                           <Heading
                             as="div"
                             size="heading3"
@@ -184,11 +117,11 @@ export default function AppFeatureSection({ data = local_data }) {
                                 : ""
                             )}
                           >
-                            {parse(item?.title)}
+                            {parse(item?.highlight_title)}
                           </Heading>
                         )}
                       </div>
-                      {item?.media && (
+                      {item?.media?.media_path && (
                         <div
                           className={cn(
                             "mt-[15px] sm:mt-[20px] xl:mt-[30px] 2xl:mt-[40px]",
@@ -200,11 +133,11 @@ export default function AppFeatureSection({ data = local_data }) {
                           )}
                         >
                           <Image
-                            src={item?.media?.path}
-                            alt={item?.media?.alt}
+                            src={`${MEDIA_URL}${item?.media?.media_path}`}
+                            alt={item?.media?.media_alt}
                             width={260}
                             height={360}
-                            className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition "
+                            className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition"
                           />
                         </div>
                       )}

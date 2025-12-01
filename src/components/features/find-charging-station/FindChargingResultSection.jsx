@@ -2,7 +2,8 @@
 import SearchStationForm from "@/components/form/SearchStationForm";
 import { Heading } from "@/components/utils/Heading";
 import parse from "html-react-parser";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Image from "next/image";
 
@@ -149,19 +150,26 @@ const textStyle = `
 `
   .replace(/\s+/g, " ")
   .trim();
-export default function FindChargingResultSection({ data = local_data }) {
+export default function FindChargingResultSection({
+  stations = { list: [] },
+  searchSection = { filters: {} },
+  pagination = { total: 0, currentPage: 1, perPage: 7, totalPages: 1 },
+  currentFilters = {},
+}) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const paginationRef = useRef(null);
 
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
-  const resultItems = data?.items || [];
-  const totalPages = Math.ceil(resultItems.length / itemsPerPage);
+  // Use server-side pagination data
+  const resultItems = stations?.list || [];
+  const currentPage = pagination?.currentPage || 1;
+  const totalPages = pagination?.totalPages || 1;
+  const total = pagination?.total || 0;
+  const perPage = pagination?.perPage || 7;
 
-  // Calculate current items
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = resultItems.slice(indexOfFirstItem, indexOfLastItem);
+  // Calculate display indices
+  const indexOfFirstItem = (currentPage - 1) * perPage;
+  const indexOfLastItem = Math.min(indexOfFirstItem + perPage, total);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -198,7 +206,9 @@ export default function FindChargingResultSection({ data = local_data }) {
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("page", page.toString());
+      router.push(`?${params.toString()}`);
 
       setTimeout(() => {
         if (paginationRef.current) {
@@ -225,20 +235,27 @@ export default function FindChargingResultSection({ data = local_data }) {
             size="heading3"
             className="text-center text-[#030303] mb-[10px] xl:mb-[20px] 2xl:mb-[30px]"
           >
-            Search Charging Stations
+            {searchSection?.title
+              ? parse(searchSection.title)
+              : "Find Charging Stations"}
           </Heading>
-          <SearchStationForm />
+          <SearchStationForm
+            filters={searchSection?.filters}
+            currentFilters={currentFilters}
+          />
         </div>
       </div>
       <div className="w-full py-[30px_40px] sm:py-[40px_60px] xl:py-[70px_100px] 2xl:py-[90px_120px]">
         <div className="container">
-          <Heading
-            as="div"
-            size="none"
-            className="text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-tight font-normal text-[#353535] [&>span]:text-[#030303] [&>span]:font-medium mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
-          >
-            {parse(data?.title)}
-          </Heading>
+          {currentFilters?.search && (
+            <Heading
+              as="div"
+              size="none"
+              className="text-[12px] sm:text-[14px] lg:text-[18px] xl:text-[22px] 2xl:text-[26px] 3xl:text-[32px] leading-tight font-normal text-[#353535] [&>span]:text-[#030303] [&>span]:font-medium mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+            >
+              Showing results for <span>{currentFilters.search}</span>
+            </Heading>
+          )}
           <div className="w-full max-sm:overflow-x-auto">
             <div className="w-full min-w-[468px]">
               <div className="flex max-xl:px-[10px] [&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
@@ -261,118 +278,135 @@ export default function FindChargingResultSection({ data = local_data }) {
                   </div>
                 ))}
               </div>
-              {currentItems.map((item, index) => (
-                <div
-                  key={"station-row-" + index}
-                  className={
-                    "flex flex-wrap items-center max-xl:px-[10px] [&>*]:p-[5px] sm:[&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] border-1 border-[#f0f0f0] bg-white rounded-[15px] xl:rounded-[24px] overflow-hidden my-[5px] xl:my-[10px] hover:shadow-[0_4px_30px_0_rgba(0,0,0,0.1)] transition duration-300"
-                  }
-                >
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    <Link href={item?.link}>{item?.station}</Link>
+              {resultItems.length > 0 ? (
+                resultItems.map((item, index) => (
+                  <div
+                    key={"station-row-" + index}
+                    className={
+                      "flex flex-wrap items-center max-xl:px-[10px] [&>*]:p-[5px] sm:[&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] border-1 border-[#f0f0f0] bg-white rounded-[15px] xl:rounded-[24px] overflow-hidden my-[5px] xl:my-[10px] hover:shadow-[0_4px_30px_0_rgba(0,0,0,0.1)] transition duration-300"
+                    }
+                  >
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      <Link href={`/find-charging-stations/${item?.slug}`}>
+                        {item?.station}
+                      </Link>
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.location}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.power}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.socket_type}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      {item?.charger_type}
+                    </div>
+                    <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
+                      <a
+                        href={item?.location_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#0055e0] hover:[&>img]:[filter:brightness(0)_saturate(100%)_invert(19%)_sepia(98%)_saturate(4315%)_hue-rotate(213deg)_brightness(93%)_contrast(102%)] transition flex"
+                      >
+                        <Image
+                          src="/images/icon-direction.svg"
+                          alt="direction"
+                          width={30}
+                          height={30}
+                          className="w-[12px] xl:w-[16px] aspect-square mr-1 inline-block transition"
+                        />
+                        Direction
+                      </a>
+                    </div>
                   </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.location}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.power}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.socket_type}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    {item?.charger_type}
-                  </div>
-                  <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                    <a
-                      href={item?.button?.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-[#0055e0] hover:[&>img]:[filter:brightness(0)_saturate(100%)_invert(19%)_sepia(98%)_saturate(4315%)_hue-rotate(213deg)_brightness(93%)_contrast(102%)] transition flex"
-                    >
-                      <Image
-                        src="/images/icon-direction.svg"
-                        alt="direction"
-                        width={30}
-                        height={30}
-                        className="w-[12px] xl:w-[16px] aspect-square mr-1 inline-block transition"
-                      />
-                      Direction
-                    </a>
-                  </div>
+                ))
+              ) : (
+                <div className="w-full text-center py-[40px] xl:py-[60px]">
+                  <p
+                    className={cn(
+                      textStyle,
+                      "text-[14px] xl:text-[18px] text-[#7b7b75]"
+                    )}
+                  >
+                    No charging stations found matching your criteria. Please
+                    try adjusting your filters.
+                  </p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
-          <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px] max-sm:flex-col">
-            <div>
-              <div className={cn(textStyle, "text-[#7b7b75]")}>
-                Showing {indexOfFirstItem + 1} to{" "}
-                {Math.min(indexOfLastItem, resultItems.length)} of{" "}
-                {resultItems.length} recent orders
+          {resultItems.length > 0 && (
+            <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px] max-sm:flex-col">
+              <div>
+                <div className={cn(textStyle, "text-[#7b7b75]")}>
+                  Showing {indexOfFirstItem + 1} to {indexOfLastItem} of {total}{" "}
+                  charging stations
+                </div>
               </div>
-            </div>
 
-            {totalPages > 1 && (
-              <div ref={paginationRef}>
-                <Pagination className={"justify-end"}>
-                  <PaginationContent>
-                    <PaginationItem>
-                      <PaginationPrevious
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(currentPage - 1);
-                        }}
-                        className={
-                          currentPage === 1
-                            ? "pointer-events-none opacity-50"
-                            : "cursor-pointer"
-                        }
-                      />
-                    </PaginationItem>
-
-                    {getPageNumbers().map((page, index) => (
-                      <PaginationItem key={index}>
-                        {page === "ellipsis-start" ||
-                        page === "ellipsis-end" ? (
-                          <PaginationEllipsis />
-                        ) : (
-                          <PaginationLink
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handlePageChange(page);
-                            }}
-                            isActive={currentPage === page}
-                            className="cursor-pointer"
-                          >
-                            {page}
-                          </PaginationLink>
-                        )}
+              {totalPages > 1 && (
+                <div ref={paginationRef}>
+                  <Pagination className={"justify-end"}>
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage - 1);
+                          }}
+                          className={
+                            currentPage === 1
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
+                          }
+                        />
                       </PaginationItem>
-                    ))}
 
-                    <PaginationItem>
-                      <PaginationNext
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(currentPage + 1);
-                        }}
-                        className={
-                          currentPage === totalPages
-                            ? "pointer-events-none opacity-50"
-                            : "cursor-pointer"
-                        }
-                      />
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
-              </div>
-            )}
-          </div>
+                      {getPageNumbers().map((page, index) => (
+                        <PaginationItem key={index}>
+                          {page === "ellipsis-start" ||
+                          page === "ellipsis-end" ? (
+                            <PaginationEllipsis />
+                          ) : (
+                            <PaginationLink
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handlePageChange(page);
+                              }}
+                              isActive={currentPage === page}
+                              className="cursor-pointer"
+                            >
+                              {page}
+                            </PaginationLink>
+                          )}
+                        </PaginationItem>
+                      ))}
+
+                      <PaginationItem>
+                        <PaginationNext
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage + 1);
+                          }}
+                          className={
+                            currentPage === totalPages
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
+                          }
+                        />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

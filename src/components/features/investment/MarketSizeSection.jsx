@@ -7,10 +7,7 @@ import DOMPurify from "isomorphic-dompurify";
 
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-const MarketSizeChart = dynamic(
-  () => import("@/components/common/MarketSizeChart"),
-  { ssr: false }
-);
+const MarketSizeChart = dynamic(() => import("@/components/common/MarketSizeChart"), { ssr: false });
 
 const futureData = {
   media: {
@@ -18,31 +15,23 @@ const futureData = {
     path: "/images/investment-future-1.svg",
     alt: "trip",
   },
-  title:
-    "Electric Vehicles are the future of Transportation. Make your seat reserved",
+  title: "Electric Vehicles are the future of Transportation. Make your seat reserved",
   description:
     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit.</p>",
-  tag_desription:
-    "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
+  tag_desription: "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
   button: {
     link: "/",
     label: "Plan a trip now",
   },
 };
 
-export default function MarketSizeSection({ data = futureData }) {
-  const sanitizedText = DOMPurify.sanitize(data?.description);
+export default function MarketSizeSection({ data = futureData, title, description, summary, media, chart }) {  
+  const sanitizedText = DOMPurify.sanitize(description);
   return (
     <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[25px] p-[20px] 3xs:p-[30px] sm:p-[30px] xl:p-[100px_80px] 2xl:p-[120px_100px] bg-black relative z-0">
-          <Image
-            src="/images/investment-future-bg.png"
-            alt="overlay"
-            fill
-            sizes="1820px"
-            className="-z-1 pointer-events-none"
-          />
+          <Image src="/images/investment-future-bg.png" alt="overlay" fill sizes="1820px" className="-z-1 pointer-events-none" />
           <Image
             src="/images/logo-vector.svg"
             alt="logo-vector"
@@ -58,7 +47,7 @@ export default function MarketSizeSection({ data = futureData }) {
                 size="heading2"
                 className="leading-tight font-medium text-white mb-[15px] sm:mb-[100px] xl:mb-[120px] 2xl:mb-[140px] 3xl:mb-[160px]"
               >
-                {data?.title}
+                {title}
               </Heading>
               <Text as="div" size="text2" className="text-[#ced1d0]">
                 {parse(sanitizedText)}
@@ -68,7 +57,7 @@ export default function MarketSizeSection({ data = futureData }) {
             <div className="w-full sm:w-1/2 sm:max-w-[376px] xl:max-w-[478px] 2xl:max-w-[576px] 3xl:max-w-[768px]">
               <div>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <MarketSizeChart />
+                  <MarketSizeChart data={chart} />
                 </Suspense>
                 {/* if media */}
                 {/* {data?.media?.type === "video" ? (
@@ -95,7 +84,7 @@ export default function MarketSizeSection({ data = futureData }) {
                     as="p"
                     className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-tight font-normal text-center text-[#ced1d0]"
                   >
-                    {data?.tag_desription}
+                    {summary}
                   </Text>
                 </div>
               </div>

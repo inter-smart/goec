@@ -1,15 +1,18 @@
 import CareerInfoSection from "@/components/features/career/CareerInfoSection";
+import { fetchFromAPI } from "@/lib/api";
 
 export default async function Page({ params }) {
   const { slug } = await params;
 
-  // const job = careerData.openings.find((item) => item.id === slug);
+    const { data, error } = await fetchFromAPI(`career/${slug}`);
 
-  // if (!job) return <div>Job not found.</div>;
+
+    console.log(data)
+  const {career_details_section} = data 
 
   return (
     <>
-      <CareerInfoSection slug={slug} />
+      <CareerInfoSection slug={slug} data={career_details_section} />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import { ActionButton } from "@/components/utils/Button";
 import Link from "next/link";
+import { generateMediaUrl } from "@/lib/utils";
 
 const local_data = {
   media: {
@@ -13,7 +14,7 @@ const local_data = {
   },
   title: "About GO EC Mercantile",
   description:
-    "<p>GO EC Auto Tech PVT LTD is on a mission to build the foundation for the EV Revolution in India. We're strategically placing electric vehicle chargers nationwide, making it convenient for EV drivers to travel long distances without the fear of running out of battery power.</p><p>Partnering with a variety of businesses we're installing chargers in their properties. As our network of charging stations expands, the EV market in India is surging, reducing concerns about charging accessibility and driving increased EV adoption.</p>",
+    "<p>GO EC PVT LTD is on a mission to build the foundation for the EV Revolution in India. We're strategically placing electric vehicle chargers nationwide, making it convenient for EV drivers to travel long distances without the fear of running out of battery power.</p><p>Partnering with a variety of businesses we're installing chargers in their properties. As our network of charging stations expands, the EV market in India is surging, reducing concerns about charging accessibility and driving increased EV adoption.</p>",
   items: [
     {
       media: {
@@ -43,8 +44,8 @@ export default function MerchantileInfoSection({ data = local_data }) {
         <div className="w-full h-auto mb-[20px] xl:mb-[40px] 2xl:mb-[60px]">
           <div className="w-full max-w-full 2xs:max-w-[200px] sm:max-w-[268px] xl:max-w-[49%] aspect-[4/2] 2xs:aspect-[50/44] overflow-hidden rounded-[15px] xl:rounded-[24px] 2xs:float-right 2xs:ml-[2%] xl:ml-[5%] max-sm:mb-[20px]">
             <Image
-              src={data?.media?.path}
-              alt={data?.media?.alt}
+              src={generateMediaUrl(data?.mainImage)}
+              alt={data?.title}
               width={750}
               height={660}
               className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -64,12 +65,12 @@ export default function MerchantileInfoSection({ data = local_data }) {
           <div className="clear-both"></div>
         </div>
         <div className="flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:px-[5px] xl:[&>*]:px-[10px] 2xl:[&>*]:px-[15px] max-sm:flex-col-reverse">
-          {data?.items?.map((item, index) => (
+          {data?.boxes?.map((item, index) => (
             <div key={"boxes" + index} className="w-full sm:w-1/2 xl:w-1/2">
               <div className="w-full h-auto bg-[#fcfcfc] border-1 border-[#f0f0f0] p-[20px] xl:p-[35px] 2xl:p-[40px] rounded-[15px] xl:rounded-[20px]">
                 <Image
-                  src={item?.media?.path}
-                  alt={item?.media?.alt}
+                  src={generateMediaUrl(item?.mediaPath)}
+                  alt={item?.mediaAlt}
                   width={100}
                   height={50}
                   className="w-[80px] xl:w-[100px] hover:scale-105 transition duration-300 mb-[20px] xl:mb-[40px] 2xl:mb-[60px]"

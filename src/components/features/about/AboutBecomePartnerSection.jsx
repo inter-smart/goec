@@ -1,9 +1,8 @@
 import ChargingStationForm from "@/components/form/ChargingStationForm";
-import { ActionButton } from "@/components/utils/Button";
+import RecaptchaProvider from "@/components/layout/CaptchaWrapper";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
-import Link from "next/link";
 
 const AboutBecomePartnerData = {
   title: "Let's conquer the journey together",
@@ -15,9 +14,7 @@ const AboutBecomePartnerData = {
   },
 };
 
-export default function AboutBecomePartnerSection({
-  data = AboutBecomePartnerData,
-}) {
+export default function AboutBecomePartnerSection({ data = AboutBecomePartnerData, title, description }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px] bg-[#0055e0] relative z-0">
       <Image
@@ -36,14 +33,14 @@ export default function AboutBecomePartnerSection({
                 as="p"
                 className="text-[10px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[22px] leading-normal font-normal text-white mb-[5px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
-                {data?.description}
+                {description}
               </Text>
               <Heading
                 as="h2"
                 size="heading1"
                 className="text-white xl:max-w-[576px] 2xl:max-w-[668px] mx-auto mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px]"
               >
-                {data?.title}
+                {title}
               </Heading>
               {/* <div className="flex">
                 <ActionButton
@@ -57,8 +54,10 @@ export default function AboutBecomePartnerSection({
             </div>
           </div>
 
-          <div className="flex-1">
-            <ChargingStationForm variant="about" />
+          <div className="flex-1" id="about-form">
+            <RecaptchaProvider>
+              <ChargingStationForm variant="about" />
+            </RecaptchaProvider>
           </div>
         </div>
       </div>
