@@ -24,28 +24,29 @@ export async function fetchFromAPI(endpoint, options = {}) {
   try {
     const response = await fetch(url, defaultOptions);
 
+    const data = await response.json();
+
     if (!response.ok) {
       return {
         data: null,
         error: true,
+        message: data?.message || data?.error || `Error: ${response.status} ${response.statusText}`,
       };
     }
 
-    const data = await response.json();
-
-    console.log(data);
     return {
       data: data?.success ? data?.data : null,
       error: !data?.success,
+      message: data?.success ? null : (data?.message || data?.error || "An error occurred"),
     };
   } catch (error) {
     return {
       data: null,
       error: true,
+      message: error?.message || "Network error. Please check your connection.",
     };
   }
 }
-
 export async function postWithFileAPI(endpoint, formData, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
 

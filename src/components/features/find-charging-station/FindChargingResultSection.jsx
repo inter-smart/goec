@@ -154,7 +154,7 @@ export default function FindChargingResultSection({
   stations = { list: [] },
   searchSection = { filters: {} },
   pagination = { total: 0, currentPage: 1, perPage: 7, totalPages: 1 },
-  currentFilters = {}
+  currentFilters = {},
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -204,11 +204,10 @@ export default function FindChargingResultSection({
     return pages;
   };
 
-
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       const params = new URLSearchParams(searchParams.toString());
-      params.set('page', page.toString());
+      params.set("page", page.toString());
       router.push(`?${params.toString()}`);
 
       setTimeout(() => {
@@ -236,9 +235,14 @@ export default function FindChargingResultSection({
             size="heading3"
             className="text-center text-[#030303] mb-[10px] xl:mb-[20px] 2xl:mb-[30px]"
           >
-            {searchSection?.title ? parse(searchSection.title) : "Find Charging Stations"}
+            {searchSection?.title
+              ? parse(searchSection.title)
+              : "Find Charging Stations"}
           </Heading>
-          <SearchStationForm filters={searchSection?.filters} currentFilters={currentFilters} />
+          <SearchStationForm
+            filters={searchSection?.filters}
+            currentFilters={currentFilters}
+          />
         </div>
       </div>
       <div className="w-full py-[30px_40px] sm:py-[40px_60px] xl:py-[70px_100px] 2xl:py-[90px_120px]">
@@ -283,7 +287,9 @@ export default function FindChargingResultSection({
                     }
                   >
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                      <Link href={`/find-charging-stations/${item?.slug}`}>{item?.station}</Link>
+                      <Link href={`/find-charging-stations/${item?.slug}`}>
+                        {item?.station}
+                      </Link>
                     </div>
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
                       {item?.location}
@@ -318,82 +324,89 @@ export default function FindChargingResultSection({
                 ))
               ) : (
                 <div className="w-full text-center py-[40px] xl:py-[60px]">
-                  <p className={cn(textStyle, "text-[14px] xl:text-[18px] text-[#7b7b75]")}>
-                    No charging stations found matching your criteria. Please try adjusting your filters.
+                  <p
+                    className={cn(
+                      textStyle,
+                      "text-[14px] xl:text-[18px] text-[#7b7b75]"
+                    )}
+                  >
+                    No charging stations found matching your criteria. Please
+                    try adjusting your filters.
                   </p>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px] max-sm:flex-col">
-            <div>
-              <div className={cn(textStyle, "text-[#7b7b75]")}>
-                Showing {indexOfFirstItem + 1} to{" "}
-                {indexOfLastItem} of{" "}
-                {total} charging stations
+          {resultItems.length > 0 && (
+            <div className="flex justify-between items-center gap-[20px] mt-[20px] xl:mt-[30px] 2xl:mt-[40px] max-sm:flex-col">
+              <div>
+                <div className={cn(textStyle, "text-[#7b7b75]")}>
+                  Showing {indexOfFirstItem + 1} to {indexOfLastItem} of {total}{" "}
+                  charging stations
+                </div>
               </div>
-            </div>
 
-            {totalPages > 1 && (
-              <div ref={paginationRef}>
-                <Pagination className={"justify-end"}>
-                  <PaginationContent>
-                    <PaginationItem>
-                      <PaginationPrevious
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(currentPage - 1);
-                        }}
-                        className={
-                          currentPage === 1
-                            ? "pointer-events-none opacity-50"
-                            : "cursor-pointer"
-                        }
-                      />
-                    </PaginationItem>
-
-                    {getPageNumbers().map((page, index) => (
-                      <PaginationItem key={index}>
-                        {page === "ellipsis-start" ||
-                        page === "ellipsis-end" ? (
-                          <PaginationEllipsis />
-                        ) : (
-                          <PaginationLink
-                            href="#"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handlePageChange(page);
-                            }}
-                            isActive={currentPage === page}
-                            className="cursor-pointer"
-                          >
-                            {page}
-                          </PaginationLink>
-                        )}
+              {totalPages > 1 && (
+                <div ref={paginationRef}>
+                  <Pagination className={"justify-end"}>
+                    <PaginationContent>
+                      <PaginationItem>
+                        <PaginationPrevious
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage - 1);
+                          }}
+                          className={
+                            currentPage === 1
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
+                          }
+                        />
                       </PaginationItem>
-                    ))}
 
-                    <PaginationItem>
-                      <PaginationNext
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handlePageChange(currentPage + 1);
-                        }}
-                        className={
-                          currentPage === totalPages
-                            ? "pointer-events-none opacity-50"
-                            : "cursor-pointer"
-                        }
-                      />
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
-              </div>
-            )}
-          </div>
+                      {getPageNumbers().map((page, index) => (
+                        <PaginationItem key={index}>
+                          {page === "ellipsis-start" ||
+                          page === "ellipsis-end" ? (
+                            <PaginationEllipsis />
+                          ) : (
+                            <PaginationLink
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handlePageChange(page);
+                              }}
+                              isActive={currentPage === page}
+                              className="cursor-pointer"
+                            >
+                              {page}
+                            </PaginationLink>
+                          )}
+                        </PaginationItem>
+                      ))}
+
+                      <PaginationItem>
+                        <PaginationNext
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage + 1);
+                          }}
+                          className={
+                            currentPage === totalPages
+                              ? "pointer-events-none opacity-50"
+                              : "cursor-pointer"
+                          }
+                        />
+                      </PaginationItem>
+                    </PaginationContent>
+                  </Pagination>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

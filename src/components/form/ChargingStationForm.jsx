@@ -181,7 +181,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
       if (values.city_id) payload.city_id = values.city_id;
       if (chargerId) payload.charger_id = chargerId;
 
-      const { data, error } = await fetchFromAPI(variant === "about" ? "contact-enquiry" : "chargers-enquiry", {
+      const { data, error, message } = await fetchFromAPI(variant === "about" ? "contact-enquiry" : "chargers-enquiry", {
         method: "POST",
         body: JSON.stringify(payload),
       });
@@ -198,7 +198,7 @@ export default function ChargingStationForm({ variant, chargerId }) {
           additionalInformation: "",
         });
       } else {
-        toast.error("Failed to submit enquiry. Please check your information and try again.");
+        toast.error(message||"Failed to submit enquiry. Please check your information and try again.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
