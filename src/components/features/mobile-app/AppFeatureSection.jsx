@@ -26,7 +26,6 @@ export default function AppFeatureSection({ title, list }) {
 
 
 
-  console.log(grouped)
   return (
     <section className="w-full h-auto block py-[20px_30px] sm:py-[30px_60px] xl:py-[60px_80px] 2xl:py-[70px_100px]">
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">

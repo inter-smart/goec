@@ -57,7 +57,6 @@ export default function BusinessModalSection({ data = businessModalData, title, 
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log("entry", entry);
             setActiveId(entry?.target?.id); // update active
           }
         });

@@ -169,7 +169,6 @@ export default function ApplyForm({ careerData }) {
     setLoadingStates(true);
     try {
       const { data, error } = await fetchFromAPI("location/states");
-      console.log("states ", data);
 
       if (error) return console.error("Error fetching states:", error);
 

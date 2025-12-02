@@ -45,7 +45,7 @@ export default function PartnerForm() {
   });
 
   const onSubmit = (data) => {
-    console.log("Form submitted:", data);
+    // console.log("Form submitted:", data);
     reset();
   };
 

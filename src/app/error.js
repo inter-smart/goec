@@ -3,7 +3,6 @@ import NotFoundSection from "@/components/features/error/NotFoundSection";
 
 export default function Error({ path }) {
 
-  console.log(path)
 
   const local_data = {
     error_code: "500",

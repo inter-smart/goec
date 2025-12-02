@@ -12,7 +12,6 @@ export default function LegalInfoSection({ data, variant }) {
 
   const description = data;
 
-  console.log("description  =>  ",description)
   useEffect(() => {
     if (!description || !contentRef.current) return;
 

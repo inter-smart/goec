@@ -48,7 +48,7 @@ async function getMetaData() {
     const {data, error} = await fetchFromAPI(`meta-tags/invest-in-go-ec`);
     const meta = data;
 
-    console.log(meta)
+    
       return {
         title: meta?.meta_title,
         description: meta?.meta_description,

@@ -42,7 +42,7 @@ export default function ContactForm() {
   });
 
   const onSubmit = (data) => {
-    console.log("Form submitted:", data);
+    // console.log("Form submitted:", data);
     reset();
   };
 

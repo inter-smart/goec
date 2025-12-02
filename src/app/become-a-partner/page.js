@@ -27,7 +27,7 @@ async function getMetaData() {
     const {data, error} = await fetchFromAPI(`meta-tags/become-a-partner`);
     const meta = data;
 
-    console.log(meta)
+    
       return {
         title: meta?.meta_title,
         description: meta?.meta_description,
@@ -78,10 +78,6 @@ export async function generateMetadata() {
 export default async function Page() {
 
   const {data, error} = await fetchFromAPI("become-partner");
-
-
-
-  console.log("data" , data)
 
   const {
     banner_section

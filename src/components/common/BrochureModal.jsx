@@ -52,6 +52,7 @@ export default function BrochureModal({ children, data = local_data }) {
                 width={460}
                 height={620}
                 className="w-full h-full block object-cover transition hover:scale-105"
+                priority
               />
             </div>
           </div>

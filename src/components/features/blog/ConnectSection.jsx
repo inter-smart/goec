@@ -7,7 +7,6 @@ import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function ConnectSection({ footer_section, page }) {
 
-  console.log(footer_section)
   return (
     <section className="w-full h-auto block py-[0_30px] sm:py-[0_60px] xl:py-[0_120px] 2xl:py-[0_140px]">
       <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-2 mt-[20px] sm:mt-[40px] xl:mt-[120px] 2xl:mt-[140px]">

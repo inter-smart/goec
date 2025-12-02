@@ -34,7 +34,6 @@ async function getMetaData(slug) {
       error: null,
     };
   } catch (error) {
-    console.log(error);
     return {
       title: "Home",
       description: "Welcome to our Home Page",

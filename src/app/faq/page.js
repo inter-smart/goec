@@ -8,7 +8,7 @@ async function getMetaData() {
     const {data, error} = await fetchFromAPI(`meta-tags/faq`);
     const meta = data;
 
-    console.log(meta)
+    
       return {
         title: meta?.meta_title,
         description: meta?.meta_description,
@@ -61,8 +61,6 @@ export default async function Page() {
   const { data } = await fetchFromAPI("faqs");
 
   const { banner_section, categories, faqs } = data;
-
-  console.log(banner_section)
 
   return (
     <>
