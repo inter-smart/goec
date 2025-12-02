@@ -82,6 +82,7 @@ const footerData = {
         {
           link: "https://play.google.com/store/apps/details?id=com.namp.azadpower&hl=en_IN",
           label: "GOEC application",
+          external: true,
         },
         {
           link: "/charging-stations",
@@ -299,6 +300,7 @@ export default function Footer({ data = footerData, footer_section }) {
                         >
                           <Link
                             href={linkItem?.link}
+                            target={linkItem?.external? "_blank" : "_self"}
                             className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] transition hover:text-primary block"
                           >
                             {linkItem?.label}
