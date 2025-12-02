@@ -88,7 +88,7 @@ const groupedSpecs = splitIntoGroups(
                 <source src={generateMediaUrl(appFeatures?.hand_video)} type="video/mp4" />
               </video>
               <Image
-                src={appFeatures?.hand_image ? `${MEDIA_URL}${appFeatures?.hand_image}` : '/images/app_info-hand.png' }
+                src='/images/app_info-mockup-overlay.png'
                 alt={appFeatures?.hand_image_alt}
                 width={255}
                 height={544}
@@ -281,23 +281,7 @@ function SpecItem({ texts, duration = 3000 }) {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="absolute flex items-center gap-1 text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal line-clamp-1 text-left text-white"
         >
-          {/* If object → show icon + title */}
-          {typeof current === "string" ? (
-            current
-          ) : (
-            <>
-              {current?.icon && (
-                <Image
-                  src={`/${current.icon}`}
-                  alt={current.icon_alt || "icon"}
-                  width={14}
-                  height={14}
-                  className="inline-block"
-                />
-              )}
-              {current?.title}
-            </>
-          )}
+          {current?.title}
         </motion.span>
       </AnimatePresence>
     </div>

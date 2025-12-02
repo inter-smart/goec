@@ -224,7 +224,7 @@ export default function HeroSection({ heroBanner = heroData }) {
               </>
             ) : (
               <picture className="absolute -z-2 inset-0">
-                <source media="(max-width: 640px)" srcSet={item?.media?.mobile?.media_path} />
+                <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`} />
                 <Image
                   src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
                   alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
