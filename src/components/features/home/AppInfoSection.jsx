@@ -271,15 +271,15 @@ function SpecItem({ texts, duration = 3000 }) {
   const current = texts[index];
 
   return (
-    <div className="w-[100px] sm:w-[100px] lg:w-[140px] xl:w-[176px] 2xl:w-[190px] 3xl:w-[230px] h-5 overflow-hidden relative z-0">
+    <div className="w-[100px] sm:w-[100px] xl:w-[135px] 2xl:w-[176px] 3xl:w-[200px] h-5 overflow-hidden relative z-0">
       <AnimatePresence mode="wait">
-        <motion.span
+        <motion.div
           key={index}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="absolute flex items-center gap-1 text-[8px] sm:text-[10px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal line-clamp-1 text-left text-white"
+          className="absolute flex items-center gap-1 text-[8px] sm:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-none font-normal line-clamp-1 text-left text-white truncate"
         >
           {/* If object → show icon + title */}
           {typeof current === "string" ? (
@@ -298,7 +298,7 @@ function SpecItem({ texts, duration = 3000 }) {
               {current?.title}
             </>
           )}
-        </motion.span>
+        </motion.div>
       </AnimatePresence>
     </div>
   );

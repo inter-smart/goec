@@ -46,7 +46,7 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
           delay: index * 0.2,
         }}
         viewport={{ once: true, amount: 0.3 }}
-        className="w-full h-auto block rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+        className="w-full h-full flex flex-col rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
       >
         <Link
           href={
@@ -68,12 +68,14 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
             alt={data?.media?.media_alt|| "News Image"}
             fill
             sizes="512px"
-            className="transition hover:scale-105"
+            // width={512}
+            // height={320}
+            className="w-full h-full object-cover transition hover:scale-105"
             placeholder="blur"
             blurDataURL="/images/placeholder.jpg"
           />
         </Link>
-        <div className="flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
+        <div className="flex-1 flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
           <div>
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               <Link

@@ -1,6 +1,11 @@
 "use client";
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "motion/react";
 import Image from "next/image";
 import {
   NavigationMenu,
@@ -15,7 +20,14 @@ import {
 import Link from "next/link";
 import { ActionButton } from "@/components/utils/Button";
 
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Heading } from "@/components/utils/Heading";
 import { generateMediaUrl } from "@/lib/utils";
 import { cn } from "@/lib/utils";
@@ -175,9 +187,10 @@ export default function Header({ header_section }) {
         transition={{
           duration: 0.2,
         }}
-        className={`w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/10 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center *:
-          ${visible && "bg-[#030303]/20"}
-          `}
+        className={cn(
+          "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/10 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center ",
+          visible && "bg-black/80"
+        )}
       >
         <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
         <div className="container">
@@ -232,7 +245,9 @@ export default function Header({ header_section }) {
                     <div className="fixed -z-1 bottom-0 left-0 w-10 h-10 bg-white blur-sm scale-[10] opacity-20" />
                     <SheetHeader>
                       <SheetTitle className={"sr-only"}>navigations</SheetTitle>
-                      <SheetDescription className={"sr-only"}>go ec navigations</SheetDescription>
+                      <SheetDescription className={"sr-only"}>
+                        go ec navigations
+                      </SheetDescription>
                       <div className="lg:hidden ">
                         <MegaNavigationMenubar />
                       </div>
@@ -335,27 +350,40 @@ function MegaNavigationMenubar() {
   };
 
   return (
-    <NavigationMenu viewport={false} className={"max-w-full justify-normal [&>div]:w-full"}>
-      <NavigationMenuList className={"max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px] "}>
+    <NavigationMenu
+      viewport={false}
+      className={"max-w-full justify-normal [&>div]:w-full"}
+    >
+      <NavigationMenuList
+        className={
+          "max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px] "
+        }
+      >
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle}>
             <Link href="/">Home</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>Company</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
+            Company
+          </NavigationMenuTrigger>
           <NavigationMenuContent className={"p-0"}>
             <MegaNavigationMenuContent data={company_data} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>Invest in GO EC</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
+            Invest in GO EC
+          </NavigationMenuTrigger>
           <NavigationMenuContent className={"p-0"}>
             <SmNavigationMenuContent data={invest_data} />
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>Solutions</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
+            Solutions
+          </NavigationMenuTrigger>
           <NavigationMenuContent className={"p-0"}>
             <SmNavigationMenuContent data={solution_data} />
           </NavigationMenuContent>
@@ -380,7 +408,8 @@ function MegaNavigationMenuContent({ data }) {
         <div className="w-full lg:w-[168px] xl:w-[200px] 2xl:w-[240px] bg-[#fafafa] p-[8px] xl:p-[10px] 2xl:p-[20px]">
           <div className="flex flex-col">
             {data?.sub_item?.map((item, index) => {
-              const hasSubItems = item?.sub_sub_item && item.sub_sub_item.length > 0;
+              const hasSubItems =
+                item?.sub_sub_item && item.sub_sub_item.length > 0;
 
               return (
                 <div key={"navigation" + index} className="max-lg:mb-[10px]">
@@ -389,7 +418,9 @@ function MegaNavigationMenuContent({ data }) {
                       onClick={() => setActiveId(item.id)}
                       className={cn(
                         "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-black w-full h-auto flex justify-between items-center p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition-all",
-                        activeId === item.id ? "text-white bg-black max-lg:rounded-[8px_8px_0_0]" : "hover:bg-[#e0e0e0]"
+                        activeId === item.id
+                          ? "text-white bg-black max-lg:rounded-[8px_8px_0_0]"
+                          : "hover:bg-[#e0e0e0]"
                       )}
                     >
                       {item?.label}
@@ -400,7 +431,9 @@ function MegaNavigationMenuContent({ data }) {
                         height={8}
                         className={cn(
                           "w-[6px] xl:w-[8px] transition",
-                          activeId === item.id ? "lg:opacity-100 rotate-0" : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
+                          activeId === item.id
+                            ? "lg:opacity-100 rotate-0"
+                            : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
                         )}
                       />
                     </button>
@@ -416,8 +449,17 @@ function MegaNavigationMenuContent({ data }) {
                     </Link>
                   )}
 
-                  <div className={cn("lg:hidden ", activeId === item.id ? "h-auto visible" : "h-0 invisible")}>
-                    <div className={cn("w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]")}>
+                  <div
+                    className={cn(
+                      "lg:hidden ",
+                      activeId === item.id ? "h-auto visible" : "h-0 invisible"
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]"
+                      )}
+                    >
                       {item?.sub_sub_item?.map((subItem, subIndex) => (
                         <div key={subIndex} className="w-full max-w-full">
                           <Link
@@ -443,7 +485,10 @@ function MegaNavigationMenuContent({ data }) {
           {filteredItems.length > 0 ? (
             <div className="w-full block columns-2 gap-2 2xl:gap-4">
               {filteredItems?.map((item, index) => (
-                <div key={index} className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] break-inside-avoid">
+                <div
+                  key={index}
+                  className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] break-inside-avoid"
+                >
                   <Link
                     href={item.link || "#"}
                     className={cn(
@@ -458,7 +503,9 @@ function MegaNavigationMenuContent({ data }) {
             </div>
           ) : (
             <div className="text-center text-[#999] py-8">
-              <p className="text-[14px] xl:text-[14px] 2xl:text-[16px]">No sub-items available</p>
+              <p className="text-[14px] xl:text-[14px] 2xl:text-[16px]">
+                No sub-items available
+              </p>
             </div>
           )}
         </div>
@@ -539,7 +586,12 @@ function AppDownloadDropdown({ qrData }) {
                 className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
                 asChild
               >
-                <a href={qrData?.app_store?.link} aria-label="app store" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={qrData?.app_store?.link}
+                  aria-label="app store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Image
                     src={generateMediaUrl(qrData?.app_store?.media?.media_path)}
                     alt={qrData?.app_store?.media?.media_alt}
@@ -553,9 +605,16 @@ function AppDownloadDropdown({ qrData }) {
                 className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
                 asChild
               >
-                <a href={qrData?.play_store?.link} aria-label="app store" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={qrData?.play_store?.link}
+                  aria-label="app store"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Image
-                    src={generateMediaUrl(qrData?.play_store?.media?.media_path)}
+                    src={generateMediaUrl(
+                      qrData?.play_store?.media?.media_path
+                    )}
                     alt={qrData?.play_store?.media?.media_alt}
                     width={176}
                     height={64}

@@ -12,65 +12,68 @@ import { AnimatePresence, motion } from "motion/react";
 
 import { useRef, useState } from "react";
 import { MEDIA_URL } from "@/lib/api";
+import { cn } from "@/lib/utils";
 
-const aboutGrowthData = [
-  {
-    media: {
-      mobile: {
-        type: "image",
-        path: "/images/about-growth-1.jpg",
-        alt: "about",
-      },
-      desktop: {
-        type: "image",
-        path: "/images/about-growth-1.jpg",
-        alt: "about",
-      },
-    },
-    title:
-      "GO EC started with one charging station in Kerala, sparking an electric revolution.",
-    timestamp: "2020-08-14T05:00:00.000000Z",
-  },
-  {
-    media: {
-      mobile: {
-        type: "image",
-        path: "/images/about-growth-2.jpg",
-        alt: "about",
-      },
-      desktop: {
-        type: "image",
-        path: "/images/about-growth-2.jpg",
-        alt: "about",
-      },
-    },
-    title:
-      "We're now Kerala's leading EV charging station and expanding across India.",
-    timestamp: "2025-08-14T05:00:00.000000Z",
-  },
-  {
-    media: {
-      mobile: {
-        type: "image",
-        path: "/images/about-growth-3.jpg",
-        alt: "about",
-      },
-      desktop: {
-        type: "image",
-        path: "/images/about-growth-3.jpg",
-        alt: "about",
-      },
-    },
-    title:
-      "By 2030, GOEC will power every state in India with EV charging stations.",
-    timestamp: "2030-08-14T05:00:00.000000Z",
-  },
-];
+// const aboutGrowthData = [
+//   {
+//     media: {
+//       mobile: {
+//         type: "image",
+//         path: "/images/about-growth-1.jpg",
+//         alt: "about",
+//       },
+//       desktop: {
+//         type: "image",
+//         path: "/images/about-growth-1.jpg",
+//         alt: "about",
+//       },
+//     },
+//     title:
+//       "GO EC started with one charging station in Kerala, sparking an electric revolution.",
+//     timestamp: "2020-08-14T05:00:00.000000Z",
+//   },
+//   {
+//     media: {
+//       mobile: {
+//         type: "image",
+//         path: "/images/about-growth-2.jpg",
+//         alt: "about",
+//       },
+//       desktop: {
+//         type: "image",
+//         path: "/images/about-growth-2.jpg",
+//         alt: "about",
+//       },
+//     },
+//     title:
+//       "We're now Kerala's leading EV charging station and expanding across India.",
+//     timestamp: "2025-08-14T05:00:00.000000Z",
+//   },
+//   {
+//     media: {
+//       mobile: {
+//         type: "image",
+//         path: "/images/about-growth-3.jpg",
+//         alt: "about",
+//       },
+//       desktop: {
+//         type: "image",
+//         path: "/images/about-growth-3.jpg",
+//         alt: "about",
+//       },
+//     },
+//     title:
+//       "By 2030, GOEC will power every state in India with EV charging stations.",
+//     timestamp: "2030-08-14T05:00:00.000000Z",
+//   },
+// ];
 
 export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  console.log("growthData==>", growthData);
 
   return (
     <section className="w-full h-auto block bg-black relative z-0">
@@ -83,16 +86,16 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
           slidesPerView={3}
           speed={600}
           autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
+            delay: 6000,
+            disableOnInteraction: true,
             pauseOnMouseEnter: true,
           }}
           navigation={false}
           direction={"vertical"}
-          className="h-[176px] sm:h-[276px] 2xl:h-[320px]"
+          className="h-[200px] sm:h-[276px] 2xl:h-[320px]"
         >
           {growthData?.map((item, index) => (
-            <SwiperSlide key={"growth" + index}>
+            <SwiperSlide key={"growth" + index} className="cursor-pointer">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{
@@ -105,28 +108,31 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                   delay: index * 0.15,
                 }}
                 viewport={{ once: false, amount: 0.3 }}
-                className="w-full h-auto flex relative z-0 pl-3 sm:pl-4"
+                className="w-full h-auto flex relative z-0 pl-3 sm:pl-4 pointer-events-none"
               >
                 <Image
                   src="/images/about_growth-vector-2.svg"
                   alt="about_growth-vector-2"
                   width={10}
                   height={10}
-                  className={`w-[8px] sm:w-[10px] aspect-square transition absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px]
-                        ${currentSlide === index ? "opacity-100" : "opacity-0"}
-                        `}
+                  className={cn(
+                    "w-[8px] sm:w-[10px] aspect-square transition absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px]",
+                    currentSlide === index ? "opacity-100" : "opacity-0"
+                  )}
                 />
                 <Image
                   src="/images/about_growth-vector-1.svg"
                   alt="about_growth-vector-1"
                   width={14}
                   height={72}
-                  className="w-[10px] sm:w-[16px] h-full object-contain mt-[5px] xl:mt-[10px] mr-[5px] sm:mr-[10px] xl:mr-[20px]"
+                  unoptimized
+                  className="w-[12px] sm:w-[16px] h-full object-contain mt-[5px] xl:mt-[10px] mr-[5px] sm:mr-[10px] xl:mr-[20px]"
                 />
                 <div
-                  className={`text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight font-semibold text-white cursor-pointer
-                        ${currentSlide === index ? "opacity-100" : "opacity-60"}
-                        `}
+                  className={cn(
+                    "text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight font-semibold text-white",
+                    currentSlide === index ? "opacity-100" : "opacity-60"
+                  )}
                 >
                   {item?.year}
                 </div>
@@ -147,11 +153,12 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
         slidesPerView={1}
         navigation={false}
         speed={600}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
+        // autoplay={{
+        //   delay: 6000,
+        //   disableOnInteraction: true,
+        //   pauseOnMouseEnter: true,
+        // }}
+        autoplay={false}
         noSwiping={true}
         longSwipes={false}
         className="max-h-[1080px]"
@@ -167,7 +174,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                 transition={{ duration: 0.4 }}
                 className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]"
               >
-              {item?.media?.type === "video" ? (
+                {item?.media?.type === "video" ? (
                   <video
                     autoPlay
                     loop
@@ -175,26 +182,19 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                     playsInline
                     className="w-full h-full object-cover absolute -z-2 inset-0"
                   >
-                    <source src="/videos/video-medium.mp4" media="(max-width: 640px)" /> 
                     <source src={item?.media?.path} type="video/mp4" />
                   </video>
-                ) :
-                  <picture className="absolute -z-2 inset-0">
-                    <source
-                      media="(max-width: 640px)"
-                      srcSet={`${MEDIA_URL}${item?.media?.media_path}`}
-                    />
-                    <Image
-                      src={`${MEDIA_URL}${item?.media?.media_path}`}
-                      alt={item?.media?.media_alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-                      priority={index === 0}
-                      className="-z-2 object-cover"
-                      quality={100}
-                    />
-                  </picture>
-                 } 
+                ) : (
+                  <Image
+                    src={`${MEDIA_URL}${item?.media?.media_path}`}
+                    alt={item?.media?.media_alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+                    priority={index === 0}
+                    className="-z-2 object-cover"
+                    quality={100}
+                  />
+                )}
                 <motion.div
                   key={`heading-${currentSlide}`}
                   initial={{ opacity: 0, y: 40 }}
@@ -211,7 +211,7 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                   <Heading
                     as="h3"
                     size="heading3"
-                    className="text-white max-w-[60%] xl:max-w-[60%] 2xl:max-w-[50%] max-sm:text-[14px]"
+                    className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%] max-sm:text-[18px]"
                   >
                     {item?.title}
                   </Heading>

@@ -19,7 +19,6 @@ export default function SolutionCard({
 }) {
   const container = useRef(null);
 
-
   // local scroll for image zoom
   const { scrollYProgress } = useScroll({
     target: container,
@@ -41,9 +40,10 @@ export default function SolutionCard({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className={`relative -top-[25%] origin-top w-full h-auto bg-[#fcfcfc] border border-[#f0f0f0] rounded-[20px] sm:rounded-[30px] overflow-hidden flex flex-wrap shadow-[0_0_40px_0_rgba(0,0,0,0.05)] max-sm:flex-col-reverse
-            ${index % 2 === 1 && "sm:flex-row-reverse"}
-            `}
+        className={cn(
+          "relative -top-[25%] origin-top w-full h-auto bg-[#fcfcfc] border border-[#f0f0f0] rounded-[20px] sm:rounded-[30px] overflow-hidden flex flex-wrap shadow-[0_0_40px_0_rgba(0,0,0,0.05)] max-sm:flex-col-reverse",
+          index % 2 === 1 && "sm:flex-row-reverse"
+        )}
       >
         <div className="w-full sm:w-[420px] md:w-[468px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
           <div className="w-full h-full relative z-0 p-[20px] xl:p-[40px] 2xl:p-[60px] flex flex-col justify-between">
@@ -121,8 +121,6 @@ export default function SolutionCard({
                 width={876}
                 height={676}
                 className="w-full h-full object-cover hover:scale-105 transition"
-                
-                
               />
             </motion.div>
           </div>
