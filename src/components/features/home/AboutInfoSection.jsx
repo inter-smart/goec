@@ -26,9 +26,13 @@ const aboutInfoData = {
     },
   ],
 };
-export default function AboutInfoSection({ description, milestones = aboutInfoData}) {
+export default function AboutInfoSection({
+  description,
+  milestones = aboutInfoData,
+}) {
   return (
     <section
+      id="AboutInfo"
       className="w-full h-auto block bg-black overflow-hidden relative z-0 pt-[40px] sm:pt-[80px] xl:pt-[140px] 2xl:pt-[180px] 3xl:pt-[200px]"
     >
       <Image
@@ -107,7 +111,7 @@ export default function AboutInfoSection({ description, milestones = aboutInfoDa
                       end={parseInt(item?.value)}
                       duration={2.75}
                       separator=","
-                      suffix='+'
+                      suffix="+"
                       enableScrollSpy
                     />
                   </div>

@@ -101,7 +101,7 @@ export default async function Home() {
 
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
       <HeroSection heroBanner={banner_section?.list || []} />
 
       <AboutInfoSection
