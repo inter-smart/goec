@@ -14,6 +14,7 @@ import { useEffect, useRef } from "react";
 import { MEDIA_URL } from "@/lib/api";
 
 import * as motion from "motion/react-client";
+import { generateMediaUrl } from "@/lib/utils";
 
 // const heroData = {
 //   item_banner: [
@@ -252,7 +253,7 @@ export default function HeroSection({ heroBanner = heroData }) {
               <picture className="absolute -z-2 inset-0">
                 <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`} />
                 <Image
-                  src={`${MEDIA_URL}${item?.media?.desktop?.media_path} || /images/placeholder.jpg`}
+                  src={generateMediaUrl(item?.media?.desktop?.media_path) || "/images/placeholder.jpg"}
                   alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
