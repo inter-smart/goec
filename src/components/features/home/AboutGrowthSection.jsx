@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState } from "react";
 import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { generateMediaUrl } from "@/lib/utils";
 
 // const aboutGrowthData = [
 //   {
@@ -182,7 +183,10 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
                     playsInline
                     className="w-full h-full object-cover absolute -z-2 inset-0"
                   >
-                    <source src={item?.media?.path} type="video/mp4" />
+                    <source
+                      src={generateMediaUrl(item?.media?.media_path)}
+                      type="video/mp4"
+                    />
                   </video>
                 ) : (
                   <Image

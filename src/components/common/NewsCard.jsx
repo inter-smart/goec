@@ -4,7 +4,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Suspense } from "react";
 import { Skeleton } from "../ui/skeleton";
-import { cn } from "@/lib/utils";
+import { cn, generateMediaUrl } from "@/lib/utils";
 import parse from "html-react-parser";
 import { Text } from "../utils/Text";
 import { motion } from "framer-motion";
@@ -30,7 +30,6 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
   const formattedDate = data?.published_on
     ? format(new Date(data?.published_on), "dd MMMM yyyy")
     : format(new Date(), "dd MMMM yyyy");
-
 
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
@@ -64,7 +63,7 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
           )}
         >
           <Image
-            src={`${MEDIA_URL}${data?.media?.media_path}`}
+            src={generateMediaUrl(data?.media?.media_path)}
             alt={data?.media?.media_alt|| "News Image"}
             fill
             sizes="512px"

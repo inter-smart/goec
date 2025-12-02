@@ -16,6 +16,7 @@ import "swiper/css/navigation";
 import useMedia from "use-media";
 import { MEDIA_URL } from "@/lib/api";
 import { motion } from "motion/react";
+import { generateMediaUrl } from "@/lib/utils";
 
 const newsData = {
   title: "Latest News",
@@ -99,6 +100,8 @@ const newsData = {
 };
 
 export default function LatestNewsSection({ data = newsData, title, news }) {
+
+
   const isMobile = useMedia("(max-width: 1024px)");
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
@@ -173,14 +176,14 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
             {news?.map((item, index) => {
               return (
                 <SwiperSlide key={"news" + index} style={{ width: "33.333%" }}>
-                  <NewsCard news={item} page={"news"} />
+                  <NewsCard data={item} page={"news"} />
                 </SwiperSlide>
               );
             })}
           </Swiper>
         ) : (
           <div className="flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:p-[4px] xl:[&>*]:p-[6px] 2xl:[&>*]:p-[12px]">
-            {news.map((item, index) => {
+            {news?.map((item, index) => {
               const formattedDate = format(new Date(item?.published_on), "dd MMMM yyyy");
               return index === 0 ? (
                 <div key={"news" + index} className="w-full sm:w-1/2 lg:w-2/3">
@@ -203,7 +206,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                         <div className="w-full sm:w-1/2">
                           <div className="w-full h-full aspect-[4/2] rounded-[30px] overflow-hidden relative z-0">
                             <Image
-                              src={`${MEDIA_URL}${item?.media?.media_path}`}
+                              src={generateMediaUrl(item?.media?.media_path)}
                               alt={item?.media?.media_alt}
                               fill
                               sizes="512px"
