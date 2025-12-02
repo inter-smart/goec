@@ -74,8 +74,6 @@ export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  console.log("growthData==>", growthData);
-
   return (
     <section className="w-full h-auto block bg-black relative z-0">
       <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">

@@ -61,7 +61,6 @@ export default function BlogListSection({
   const currentItems = blogItems.slice(indexOfFirstItem, indexOfLastItem);
 
 
-  console.log("first items", firstItem)
   // Generate page numbers to display
   const getPageNumbers = () => {
     const pages = [];
@@ -123,7 +122,6 @@ export default function BlogListSection({
     }
   };
 
-  console.log("weqeqw",data)
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px_60px] xl:py-[80px_80px] 2xl:py-[100px_90px] mt-(--header-y)">
       <div className="container">

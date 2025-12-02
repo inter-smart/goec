@@ -53,9 +53,6 @@ export const parseDescriptionToListItems = (htmlString, className) => {
         .filter(Boolean);
     }
   }
-
-  console.log(items);
-
   return items.map((item, i) => <li key={i} className={className} style={{ marginBottom: "10px" }} dangerouslySetInnerHTML={{ __html: item }} />);
 };
 

@@ -20,7 +20,6 @@ const data = [
 ];
 
 export default function BlogCard({ blog = data, type }) {
-  console.log(type);
   let formattedDate = "";
   if (blog?.published_on) {
     const date = new Date(blog.published_on);
@@ -29,7 +28,6 @@ export default function BlogCard({ blog = data, type }) {
     }
   }
 
-  console.log(blog);
   // await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <Suspense fallback={<BlogCardSkeleton />}>
@@ -46,6 +44,7 @@ export default function BlogCard({ blog = data, type }) {
               fill
               sizes="512px"
               className="transition hover:scale-105"
+              priority
             />
           </div>
           <div className="flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">

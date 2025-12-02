@@ -28,7 +28,6 @@ const aboutInfoData = {
 };
 
 export default function AboutInfoSection({ data = aboutInfoData, description, media }) {
-  console.log(generateMediaUrl(media?.desktop?.media_path));
   const animatedTextRef = useRef(null);
   const sanitizedText = DOMPurify.sanitize(description);
 

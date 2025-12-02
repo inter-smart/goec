@@ -84,7 +84,6 @@ const aboutMoreData = {
 };
 
 export default function AboutMoreSection({ data = aboutMoreData, aboutMore, partners, mission, vision, leadingTheGame  }) {
-  console.log(aboutMore)
   return (
     <section id="about-more" className="w-full h-auto block py-[20px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
       <div className="container">

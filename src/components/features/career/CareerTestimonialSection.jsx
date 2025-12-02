@@ -56,7 +56,6 @@ export default function CareerTestimonialSection({ data = local_data }) {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  console.log(emblaApi?.selectedScrollSnap());
   
 
   return (
