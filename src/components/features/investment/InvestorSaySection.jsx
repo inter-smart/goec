@@ -120,7 +120,7 @@ export default function InvestorSaySection({
                     <Text
                       as="div"
                       size="text1"
-                      className="text-[#373737] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+                      className="text-[#373737] h-[80px] sm:h-[120px] xl:h-[150px] 2xl:h-[200px] overflow-y-auto [mask-image:linear-gradient(to_bottom,black_0%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_95%,transparent_100%)] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
                     >
                       {parse(item?.description)}
                     </Text>
@@ -129,8 +129,8 @@ export default function InvestorSaySection({
                         <Image
                           src={`${MEDIA_URL}${item?.media?.media_path}`}
                           alt={item?.media?.media_alt}
-                          width={50}
-                          height={50}
+                          width={100}
+                          height={100}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
                         />
                       </div>

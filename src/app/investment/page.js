@@ -45,54 +45,70 @@ const heroData = {
 
 async function getMetaData() {
   try {
-    const {data, error} = await fetchFromAPI(`meta-tags/invest-in-go-ec`);
+    const { data, error } = await fetchFromAPI(`meta-tags/invest-in-go-ec`);
     const meta = data;
 
-    
-      return {
-        title: meta?.meta_title,
-        description: meta?.meta_description,
-        keywords: meta?.meta_keywords,
-        // Enhanced SEO fields
-        openGraph: {
-          title: meta?.og_title || meta?.meta_title,
-          description: meta?.og_description || meta?.meta_description,
-          images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
-          type: "website",
-          url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
-        },
-        twitter: {
-          card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title,
-          description: meta?.twitter_description || meta?.meta_description,
-          images: meta?.twitter_image ? [meta.twitter_image] : [],
-        },
-        alternates: {
-          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
-        },
-        error: null,
-      };
+    // Extract additional meta tags (JSON stored in TEXT)
+    let additional = {};
+    try {
+      additional = meta?.other_meta_tags ? JSON.parse(meta.other_meta_tags) : {};
+    } catch (e) {
+      additional = {};
+    }
+
+    return {
+      title: meta?.meta_title || "",
+      description: meta?.meta_description || "",
+      keywords: meta?.meta_keywords || "",
+
+      openGraph: {
+        title: additional?.og_title || meta?.meta_title,
+        description: additional?.og_description || meta?.meta_description,
+        images: additional?.og_image
+          ? [{ url: additional.og_image, width: 1200, height: 630 }]
+          : [],
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/invest-in-go-ec`,
+        type: "website",
+      },
+
+      twitter: {
+        card: "summary_large_image",
+        title: additional?.twitter_title || meta?.meta_title,
+        description: additional?.twitter_description || meta?.meta_description,
+        images: additional?.twitter_image ? [additional.twitter_image] : [],
+      },
+
+      alternates: {
+        canonical:
+          additional?.canonical_url ||
+          `${process.env.NEXT_PUBLIC_SITE_URL}/invest-in-go-ec`,
+      },
+
+      error: null,
+    };
   } catch (error) {
     return {
-      title: "Home",
-      description: "Welcome to our Home Page",
-      keywords: "home, welcome",
+      title: "Invest in GO EC",
+      description: "Investment opportunity at GO EC",
+      keywords: "goec, invest, ev",
       error: "Failed to fetch metadata",
     };
   }
 }
 
+
 export async function generateMetadata() {
-  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData();
+  const meta = await getMetaData();
   return {
-    title,
-    description,
-    keywords,
-    twitter,
-    openGraph,
-    alternates,
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    twitter: meta.twitter,
+    openGraph: meta.openGraph,
+    alternates: meta.alternates,
   };
 }
+
 
 
 

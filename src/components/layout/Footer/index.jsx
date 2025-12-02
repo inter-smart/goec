@@ -318,13 +318,13 @@ export default function Footer({ data = footerData, footer_section }) {
                   >
                     {data?.app_download?.title}
                   </Heading>
-                  <div className="flex flex-wrap sm:flex-col -mx-[4px] xl:-mx-[10px] 2xl:-mx-[12px] [&>*]:p-[4px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[12px]">
+                  <div className="flex flex-wrap sm:flex-col -mx-[4px] xl:-mx-[10px] [&>*]:p-[4px] xl:[&>*]:p-[10px]">
                     {footer_section?.app_download?.button.map((item, index) => (
                       <div key={"app_download" + index}>
                         <a
                           href={item?.link}
                           target="_blank"
-                          className="w-[100px] xl:w-[130px] 2xl:w-[150px] 3xl:w-[170px] h-auto block transition hover:scale-105"
+                          className="w-[100px] xl:w-[120px] 2xl:w-[140px] 3xl:w-[168px] h-auto block transition hover:scale-105"
                         >
                           <Image
                             src={generateMediaUrl(item?.media?.media_path)}

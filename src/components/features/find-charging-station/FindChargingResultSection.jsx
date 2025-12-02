@@ -257,29 +257,29 @@ export default function FindChargingResultSection({
             </Heading>
           )}
           <div className="w-full max-sm:overflow-x-auto">
-            <div className="w-full min-w-[468px]">
-              <div className="flex max-xl:px-[10px] [&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
-                {[
-                  "Station",
-                  "Location",
-                  "Power",
-                  "Socket Type",
-                  "Charger Type",
-                  "",
-                ].map((item, index) => (
-                  <div
-                    key={"title-item" + index}
-                    className={cn(
-                      textStyle,
-                      "text-normal text-[#a9a9a9] w-2/12"
-                    )}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-              {resultItems.length > 0 ? (
-                resultItems.map((item, index) => (
+            {resultItems.length > 0 ? (
+              <div className="w-full min-w-[468px]">
+                <div className="flex max-xl:px-[10px] [&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
+                  {[
+                    "Station",
+                    "Location",
+                    "Power",
+                    "Socket Type",
+                    "Charger Type",
+                    "",
+                  ].map((item, index) => (
+                    <div
+                      key={"title-item" + index}
+                      className={cn(
+                        textStyle,
+                        "text-normal text-[#a9a9a9] w-2/12"
+                      )}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                {resultItems.map((item, index) => (
                   <div
                     key={"station-row-" + index}
                     className={
@@ -321,21 +321,21 @@ export default function FindChargingResultSection({
                       </a>
                     </div>
                   </div>
-                ))
-              ) : (
-                <div className="w-full text-center py-[40px] xl:py-[60px]">
-                  <p
-                    className={cn(
-                      textStyle,
-                      "text-[14px] xl:text-[18px] text-[#7b7b75]"
-                    )}
-                  >
-                    No charging stations found matching your criteria. Please
-                    try adjusting your filters.
-                  </p>
-                </div>
-              )}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="w-full text-center py-[40px] xl:py-[60px]">
+                <p
+                  className={cn(
+                    textStyle,
+                    "text-[14px] xl:text-[18px] text-[#7b7b75]"
+                  )}
+                >
+                  No charging stations found matching your criteria. Please try
+                  adjusting your filters.
+                </p>
+              </div>
+            )}
           </div>
 
           {resultItems.length > 0 && (

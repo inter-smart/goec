@@ -61,14 +61,13 @@ function splitIntoGroups(arr, groupCount = 4) {
   );
 }
 
-
 export default function AppInfoSection({ appFeatures = appInfoData }) {
-const groupedSpecs = splitIntoGroups(
-  (appFeatures?.list || []).map((item) =>
-    typeof item === "string" ? item : item.title
-  ),
-  4
-);
+  const groupedSpecs = splitIntoGroups(
+    (appFeatures?.list || []).map((item) =>
+      typeof item === "string" ? item : item.title
+    ),
+    4
+  );
 
   return (
     <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[30px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px]">
@@ -84,19 +83,22 @@ const groupedSpecs = splitIntoGroups(
         <div className="w-full h-full relative z-0">
           <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" />
           <div className="w-[72px] 3xs:w-[90px] sm:w-[112px] md:w-[152px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
-              <video autoPlay loop muted playsInline className="w-full h-full">
-                <source src={generateMediaUrl(appFeatures?.hand_video)} type="video/mp4" />
-              </video>
-              <Image
-                src='/images/app_info-mockup-overlay.png'
-                alt={appFeatures?.hand_image_alt}
-                width={255}
-                height={544}
-                className="w-full h-full"
+            <video autoPlay loop muted playsInline className="w-full h-full">
+              <source
+                src={generateMediaUrl(appFeatures?.hand_video)}
+                type="video/mp4"
               />
+            </video>
+            <Image
+              src="/images/app_info-mockup-overlay.png"
+              alt={appFeatures?.hand_image_alt}
+              width={255}
+              height={544}
+              className="w-full h-full"
+            />
           </div>
           <Image
-           src={'/images/app_info-mockup-overlay.png' }
+            src={"/images/app_info-mockup-overlay.png"}
             alt="app_info-mockup-overlay"
             width={420}
             height={500}
@@ -189,36 +191,35 @@ const groupedSpecs = splitIntoGroups(
                 {appFeatures.title}
               </Heading>
               <div className="flex flex-wrap space-x-[5px] xl:space-x-[10px] max-sm:justify-center">
-                  <div key={"app_store"}>
-                    <a
-                      href="https://apps.apple.com/in/app/goec/id1600027947"
-                      target='_blank'
-                      className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
-                    >
-                      <Image
-                        src={"/images/app_info-ios.svg"}
-                        alt="ios"
-                        width={140}
-                        height={50}
-                      />
-                    </a>
-                  </div>
+                <div key={"app_store"}>
+                  <a
+                    href="https://apps.apple.com/in/app/goec/id1600027947"
+                    target="_blank"
+                    className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
+                  >
+                    <Image
+                      src={"/images/app_info-ios.svg"}
+                      alt="ios"
+                      width={140}
+                      height={50}
+                    />
+                  </a>
+                </div>
 
-
-                   <div key={"playstore"}>
-                    <a
-                      href="https://play.google.com/store/search?q=goec&c=apps"
-                      target='_blank'
-                      className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
-                    >
-                      <Image
+                <div key={"playstore"}>
+                  <a
+                    href="https://play.google.com/store/search?q=goec&c=apps"
+                    target="_blank"
+                    className="w-[80px] sm:w-[100px] xl:w-[120px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
+                  >
+                    <Image
                       src="/images/app_info-android.svg"
-                        alt="android"
-                        width={140}
-                        height={50}
-                      />
-                    </a>
-                  </div>
+                      alt="android"
+                      width={140}
+                      height={50}
+                    />
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>

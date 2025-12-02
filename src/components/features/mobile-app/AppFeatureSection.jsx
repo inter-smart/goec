@@ -7,7 +7,6 @@ import parse from "html-react-parser";
 import { Rating } from "react-simple-star-rating";
 import { MEDIA_URL } from "@/lib/api";
 
-
 const bgImages = [
   "/images/mobileapp-app_feature-1.jpg",
   "/images/mobileapp-app_feature-2.jpg",
@@ -24,7 +23,7 @@ export default function AppFeatureSection({ title, list }) {
     grouped.push(list?.slice(i, i + 2));
   }
 
-
+  console.log("grouped==>", grouped);
 
   return (
     <section className="w-full h-auto block py-[20px_30px] sm:py-[30px_60px] xl:py-[60px_80px] 2xl:py-[70px_100px]">
@@ -47,9 +46,9 @@ export default function AppFeatureSection({ title, list }) {
                 const isEvenGroup = (groupIndex + 1) % 2 === 0;
                 const height = isEvenGroup
                   ? itemIndex === 0
-                    ? "h-[240px] sm:h-[340px] xl:h-[540px] 2xl:h-[600px] 3xl:h-[720px]"
-                    : "h-[80px] sm:h-[100px] xl:h-[120px] 2xl:h-[160px] 3xl:h-[215px]"
-                  : "h-[160px] sm:h-[220px] xl:h-[340px] 2xl:h-[380px] 3xl:h-[468px]";
+                    ? "h-[260px] sm:h-[340px] xl:h-[540px] 2xl:h-[600px] 3xl:h-[720px]"
+                    : "h-[100px] sm:h-[100px] xl:h-[120px] 2xl:h-[160px] 3xl:h-[215px]"
+                  : "h-[180px] sm:h-[220px] xl:h-[340px] 2xl:h-[380px] 3xl:h-[468px]";
 
                 return (
                   <div
@@ -62,8 +61,10 @@ export default function AppFeatureSection({ title, list }) {
                     <div
                       className={cn(
                         "group w-full h-full bg-transparent bg-gradient-to-br from-[#030303] to-[#21bfed] rounded-[20px] xl:rounded-[25px] overflow-hidden relative z-0 flex flex-col",
-                        item?.media_path
-                          ? "p-[20px_10px_0] sm:p-[40px_20px_0] xl:p-[60px_40px_0] 2xl:p-[60px_50px_0] 3xl:p-[80px_50px_0] justify-between"
+                        isEvenGroup
+                          ? itemIndex === 0
+                            ? "p-[20px_10px_0] sm:p-[40px_20px_0] xl:p-[60px_40px_0] 2xl:p-[60px_50px_0] 3xl:p-[80px_50px_0] justify-between"
+                            : "p-[20px_10px] sm:p-[40px_15px] xl:p-[60px_20px] 2xl:p-[60px_30px] 3xl:p-[80px_40px] justify-center"
                           : "p-[20px_10px] sm:p-[40px_20px] xl:p-[60px_40px] 2xl:p-[60px_50px] 3xl:p-[80px_50px] justify-center"
                       )}
                     >
@@ -92,7 +93,7 @@ export default function AppFeatureSection({ title, list }) {
                             as="div"
                             size="text2"
                             className={cn(
-                              "font-medium text-center text-[#ced1d0] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]",
+                              "leading-tight font-medium text-center truncate text-[#ced1d0] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]",
                               isEvenGroup
                                 ? itemIndex === 1
                                   ? "text-[14px] sm:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] group-hover:text-transparent bg-clip-text bg-linear-to-r group-hover:bg-linear-90 group-hover:from-[#14eaa7] group-hover:via-[#2bc69c] group-hover:to-[#0d52b4] transition"
@@ -100,7 +101,7 @@ export default function AppFeatureSection({ title, list }) {
                                 : ""
                             )}
                           >
-                            {item?.title}
+                            {parse(item?.title)}
                           </Text>
                         )}
                         {item?.highlight_title && (
@@ -108,10 +109,10 @@ export default function AppFeatureSection({ title, list }) {
                             as="div"
                             size="heading3"
                             className={cn(
-                              "font-semibold text-center text-transparent bg-clip-text bg-linear-to-r from-white via-white/60 to-white/40 group-hover:bg-linear-90 group-hover:from-[#14eaa7] group-hover:via-[#2bc69c] group-hover:to-[#0d52b4] transition",
+                              "leading-tight font-semibold text-center line-clamp-2 text-transparent bg-clip-text bg-linear-to-r from-white via-white/60 to-white/40 group-hover:bg-linear-90 group-hover:from-[#14eaa7] group-hover:via-[#2bc69c] group-hover:to-[#0d52b4] transition",
                               isEvenGroup
                                 ? itemIndex === 0
-                                  ? "text-[22px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px]"
+                                  ? "text-[22px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px] line-clamp-2"
                                   : ""
                                 : ""
                             )}
@@ -136,7 +137,13 @@ export default function AppFeatureSection({ title, list }) {
                             alt={item?.media?.media_alt}
                             width={260}
                             height={360}
-                            className="w-full max-w-full h-auto max-h-full block mx-auto hover:scale-105 transition"
+                            className={cn("w-full h-auto max-h-full block mx-auto hover:scale-105 transition",
+                              isEvenGroup
+                              ? itemIndex === 0
+                                ? "max-w-[268px] sm:max-w-[320px] xl:max-w-[420px]"
+                                : ""
+                              : "max-w-[80px] sm:max-w-[120px] xl:max-w-[168px]"
+                            )}
                           />
                         </div>
                       )}
