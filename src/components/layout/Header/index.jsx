@@ -32,6 +32,16 @@ import { Heading } from "@/components/utils/Heading";
 import { generateMediaUrl } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+
 const headerData = {
   brand: {
     media: {
@@ -189,7 +199,7 @@ export default function Header({ header_section }) {
         }}
         className={cn(
           "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/10 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center ",
-          visible && "bg-black/80"
+          visible && "bg-[#030303]/20"
         )}
       >
         <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
@@ -211,21 +221,24 @@ export default function Header({ header_section }) {
                 <MegaNavigationMenubar />
               </div>
               <div>
-                <div className="relative z-0">
-                  <ActionButton
-                    as="div"
-                    onClick={() => setAppDownloadOpen(!appDownloadOpen)}
-                    size={"none"}
-                    className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[145px] 2xl:min-w-[180px] 3xl:min-w-[200px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full bg-white/20 hover:bg-white/30"
-                  >
-                    Download App
-                  </ActionButton>
-                  {appDownloadOpen && (
-                    <div className="absolute z-1 top-[110%] right-0">
+                <Menubar className="h-auto shadow-none p-0 gap-0 bg-background-transparent border-none">
+                  <MenubarMenu className="p-0 bg-none">
+                    <MenubarTrigger
+                      className={cn(
+                        "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white! focus:text-white w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[130px] 2xl:min-w-[155px] 3xl:min-w-[176px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full focus:bg-white/20 hover:bg-white/30 border border-white/20 flex items-center justify-center data-[state=open]:bg-white/20 data-[state=open]:text-white",
+                        visible && "focus:text-white"
+                      )}
+                    >
+                      Download App
+                    </MenubarTrigger>
+                    <MenubarContent
+                      className={"p-0 bg-background-none border-none"}
+                      align="end"
+                    >
                       <AppDownloadDropdown qrData={header_section?.download} />
-                    </div>
-                  )}
-                </div>
+                    </MenubarContent>
+                  </MenubarMenu>
+                </Menubar>
               </div>
               <div>
                 <Sheet>
@@ -536,42 +549,11 @@ function SmNavigationMenuContent({ data }) {
   );
 }
 
-const heroData = {
-  media: {
-    type: "image",
-    path: "/images/app-hero-1.png",
-    alt: "hero",
-  },
-  title: "Get GO EC App Now!",
-  button: [
-    {
-      media: {
-        type: "image",
-        path: "/images/icon-app_store.svg",
-        alt: "app",
-      },
-      type: "external",
-      label: "app store ",
-      link: "/",
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/icon-play_store.svg",
-        alt: "play",
-      },
-      type: "external",
-      label: "play store ",
-      link: "/",
-    },
-  ],
-};
-
 function AppDownloadDropdown({ qrData }) {
   return (
-    <div className="w-[220px] sm:w-[276px] lg:w-[420px] xl:w-[540px] 2xl:w-[600px] 3xl:w-[640px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
+    <div className="w-[220px] sm:w-[260px] lg:w-[420px] xl:w-[520px] 2xl:w-[576px] 3xl:w-[600px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
       <div className="flex flex-wrap">
-        <div className="w-full lg:w-[calc(100%_-_168px)] xl:w-[calc(100%_-_200px)] 2xl:w-[calc(100%_-_240px)] bg-[#fafafa] p-[15px] xl:p-[20px] 2xl:p-[30px] flex items-center">
+        <div className="w-full lg:w-[calc(100%_-_140px)] xl:w-[calc(100%_-_168px)] 2xl:w-[calc(100%_-_200px)] bg-[#fafafa] p-[15px] xl:p-[20px] 2xl:p-[30px] flex items-center max-lg:justify-center">
           <div>
             <Heading
               as={"div"}
@@ -583,7 +565,7 @@ function AppDownloadDropdown({ qrData }) {
             <div className="flex space-x-[5px] xl:space-x-[10px] 2xl:space-x-[15px] max-lg:justify-center">
               <ActionButton
                 size={"default"}
-                className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
+                className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[70px] sm:max-w-[80px] xl:max-w-[120px] 2xl:max-w-[140px]"
                 asChild
               >
                 <a
@@ -602,7 +584,7 @@ function AppDownloadDropdown({ qrData }) {
               </ActionButton>
               <ActionButton
                 size={"default"}
-                className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[90px] sm:max-w-[100px] xl:max-w-[130px] 2xl:max-w-[168px]"
+                className="bg-transparent border-none hover:bg-transparent hover:scale-105 max-w-[70px] sm:max-w-[80px] xl:max-w-[120px] 2xl:max-w-[140px]"
                 asChild
               >
                 <a
@@ -625,7 +607,7 @@ function AppDownloadDropdown({ qrData }) {
             </div>
           </div>
         </div>
-        <div className="w-[120px] lg:w-[168px] xl:w-[200px] 2xl:w-[240px] mx-auto">
+        <div className="w-[120px] lg:w-[140px] xl:w-[168px] 2xl:w-[200px] mx-auto">
           <Image
             src={generateMediaUrl(qrData?.qr_code?.media?.media_path)}
             alt={qrData?.qr_code?.media?.media_alt}
