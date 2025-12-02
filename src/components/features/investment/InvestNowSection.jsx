@@ -163,7 +163,7 @@ export default function InvestNowSection({
                 {milestones?.map((item, index) => (
                   <div
                     key={"spec" + index}
-                    className="w-full max-w-[80px] sm:max-w-[120px] xl:max-w-[140px] 2xl:max-w-[160px]"
+                    className="w-full max-w-[100px] sm:max-w-[120px] xl:max-w-[140px] 2xl:max-w-[160px]"
                   >
                     <div className="w-full h-auto block">
                       <div className="text-[16px] sm:text-[20px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] leading-none font-normal whitespace-nowrap text-ellipsis text-white mb-[4px] xl:mb-[6px] 2xl:mb-[10px]">

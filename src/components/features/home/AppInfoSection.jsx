@@ -98,11 +98,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
             />
           </div>
           <Image
-            src={
-              appFeatures?.hand_image
-                ? `${MEDIA_URL}${appFeatures?.hand_image}`
-                : "/images/app_info-mockup-overlay.png"
-            }
+            src={"/images/app_info-mockup-overlay.png"}
             alt="app_info-mockup-overlay"
             width={420}
             height={500}
@@ -286,7 +282,7 @@ function SpecItem({ texts, duration = 3000 }) {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="absolute flex items-center gap-1 text-[8px] sm:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-none font-normal line-clamp-1 text-left text-white truncate"
         >
-          {current?.title}
+          {current}
         </motion.div>
       </AnimatePresence>
     </div>

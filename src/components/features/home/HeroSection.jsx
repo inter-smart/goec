@@ -250,13 +250,16 @@ export default function HeroSection({ heroBanner = heroData }) {
               </>
             ) : (
               <picture className="absolute -z-2 inset-0">
-                <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`} />
+                <source
+                  media="(max-width: 640px)"
+                  srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`}
+                />
                 <Image
                   src={`${MEDIA_URL}${item?.media?.desktop?.media_path} || /images/placeholder.jpg`}
                   alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-                  className="-z-2"
+                  className="-z-2 object-cover"
                   priority={index === 0}
                 />
               </picture>
@@ -311,7 +314,10 @@ export default function HeroSection({ heroBanner = heroData }) {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="text-[9px] leading-none font-normal text-center text-white/50 flex flex-col gap-1 xl:gap-2 absolute z-2 bottom-[20px] xl:bottom-[40px] 2xl:bottom-[60px] left-0 right-0">
+      <Link
+        href={"#AboutInfo"}
+        className="text-[9px] leading-none font-normal text-center text-white/50 flex flex-col gap-1 xl:gap-2 absolute z-2 bottom-[20px] xl:bottom-[40px] 2xl:bottom-[60px] left-0 right-0"
+      >
         <span>SCROLL</span>
         <span className="w-7 h-7 border border-white/50 rounded-full flex justify-center items-center overflow-hidden mx-auto">
           <motion.svg
@@ -337,7 +343,7 @@ export default function HeroSection({ heroBanner = heroData }) {
             />
           </motion.svg>
         </span>
-      </div>
+      </Link>
       <div className="container absolute z-2 bottom-[100px] sm:bottom-[40px] xl:bottom-[60px] 2xl:bottom-[80px] 3xl:bottom-[100px] left-0 right-0">
         <div className="custom-pagination" />
       </div>
