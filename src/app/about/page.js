@@ -16,29 +16,47 @@ async function getMetaData() {
     const { data, error } = await fetchFromAPI(`meta-tags/about`);
     const meta = data;
 
+    // Parse other_meta_tags if it's JSON (optional)
+    let extras = {};
+    if (meta?.other_meta_tags) {
+      try {
+        extras = JSON.parse(meta.other_meta_tags);
+      } catch (e) {
+        extras = {};
+      }
+    }
+
+    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+
     return {
-      title: meta?.meta_title,
-      description: meta?.meta_description,
-      keywords: meta?.meta_keywords,
-      // Enhanced SEO fields
+      title: meta?.meta_title || "About",
+      description: meta?.meta_description || "",
+      keywords: meta?.meta_keywords || "",
+
+      // OPEN GRAPH
       openGraph: {
-        title: meta?.og_title || meta?.meta_title,
-        description: meta?.og_description || meta?.meta_description,
-        images: meta?.og_image
-          ? [{ url: meta.og_image, width: 1200, height: 630 }]
+        title: extras.og_title || meta?.meta_title,
+        description: extras.og_description || meta?.meta_description,
+        images: extras.og_image
+          ? [{ url: extras.og_image, width: 1200, height: 630 }]
           : [],
         type: "website",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
+        url: `${SITE_URL}/`,
       },
+
+      // TWITTER
       twitter: {
         card: "summary_large_image",
-        title: meta?.twitter_title || meta?.meta_title,
-        description: meta?.twitter_description || meta?.meta_description,
-        images: meta?.twitter_image ? [meta.twitter_image] : [],
+        title: extras.twitter_title || meta?.meta_title,
+        description: extras.twitter_description || meta?.meta_description,
+        images: extras.twitter_image ? [extras.twitter_image] : [],
       },
+
+      // CANONICAL URL
       alternates: {
-        canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
+        canonical: extras.canonical_url || `${SITE_URL}/`,
       },
+
       error: null,
     };
   } catch (error) {
@@ -51,18 +69,19 @@ async function getMetaData() {
   }
 }
 
+
 export async function generateMetadata() {
-  const { title, description, keywords, twitter, openGraph, alternates } =
-    await getMetaData();
+  const meta = await getMetaData();
   return {
-    title,
-    description,
-    keywords,
-    twitter,
-    openGraph,
-    alternates,
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    twitter: meta.twitter,
+    openGraph: meta.openGraph,
+    alternates: meta.alternates,
   };
 }
+
 
 export default async function AboutPage() {
   const { data, error } = await fetchFromAPI("about");

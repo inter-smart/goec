@@ -5,52 +5,66 @@ import { fetchFromAPI } from "@/lib/api";
 
 async function getMetaData() {
   try {
-    const {data, error} = await fetchFromAPI(`meta-tags/faq`);
+    const { data, error } = await fetchFromAPI(`meta-tags/faq`);
     const meta = data;
 
-    
-      return {
-        title: meta?.meta_title,
-        description: meta?.meta_description,
-        keywords: meta?.meta_keywords,
-        // Enhanced SEO fields
-        openGraph: {
-          title: meta?.og_title || meta?.meta_title,
-          description: meta?.og_description || meta?.meta_description,
-          images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
-          type: "website",
-          url: `${process.env.NEXT_PUBLIC_SITE_URL}/home`,
-        },
-        twitter: {
-          card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title,
-          description: meta?.twitter_description || meta?.meta_description,
-          images: meta?.twitter_image ? [meta.twitter_image] : [],
-        },
-        alternates: {
-          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}`,
-        },
-        error: null,
-      };
+    // Parse extra meta tags stored as JSON in TEXT column
+    let extra = {};
+    try {
+      extra = meta?.other_meta_tags ? JSON.parse(meta.other_meta_tags) : {};
+    } catch {
+      extra = {};
+    }
+
+    return {
+      title: meta?.meta_title || "",
+      description: meta?.meta_description || "",
+      keywords: meta?.meta_keywords || "",
+
+      openGraph: {
+        title: extra?.og_title || meta?.meta_title,
+        description: extra?.og_description || meta?.meta_description,
+        images: extra?.og_image
+          ? [{ url: extra.og_image, width: 1200, height: 630 }]
+          : [],
+        type: "website",
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/faq`,
+      },
+
+      twitter: {
+        card: "summary_large_image",
+        title: extra?.twitter_title || meta?.meta_title,
+        description: extra?.twitter_description || meta?.meta_description,
+        images: extra?.twitter_image ? [extra.twitter_image] : [],
+      },
+
+      alternates: {
+        canonical:
+          extra?.canonical_url ||
+          `${process.env.NEXT_PUBLIC_SITE_URL}/faq`,
+      },
+
+      error: null,
+    };
   } catch (error) {
     return {
-      title: "Home",
-      description: "Welcome to our Home Page",
-      keywords: "home, welcome",
+      title: "FAQ",
+      description: "Frequently Asked Questions",
+      keywords: "faq, help, questions",
       error: "Failed to fetch metadata",
     };
   }
 }
 
 export async function generateMetadata() {
-  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData();
+  const meta = await getMetaData();
   return {
-    title,
-    description,
-    keywords,
-    twitter,
-    openGraph,
-    alternates,
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    twitter: meta.twitter,
+    openGraph: meta.openGraph,
+    alternates: meta.alternates,
   };
 }
 
