@@ -292,7 +292,7 @@ export default function FindChargingResultSection({
                       </Link>
                     </div>
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                      {item?.location}
+                      {item?.place}
                     </div>
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
                       {item?.power}
@@ -301,7 +301,11 @@ export default function FindChargingResultSection({
                       {item?.socket_type}
                     </div>
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                      {item?.charger_type}
+                      {item?.charger_types.length > 0 &&
+                      (
+                        item?.charger_types?.map((item, index) => item?.title)
+                          .join(", ")
+                      )}
                     </div>
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
                       <a
