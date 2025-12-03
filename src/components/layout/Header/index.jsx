@@ -777,18 +777,25 @@ function MegaNavigationMenuContent({ data }) {
                       )}
                     >
                       {item?.label}
-                      <Image
-                        src="/images/header-arrow.svg"
-                        alt="arrow"
-                        width={8}
-                        height={8}
+                      <div
                         className={cn(
-                          "w-[6px] xl:w-[8px] transition",
-                          activeId === item.id || isActive
-                            ? "lg:opacity-100 rotate-0"
-                            : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
+                          "inline-block",
+                          "w-[8px] h-[8px]"
                         )}
-                      />
+                      >
+                        <Image
+                          src="/images/header-arrow.svg"
+                          alt="arrow"
+                          width={8}
+                          height={8}
+                          className={cn(
+                            "w-[6px] xl:w-[8px] transition",
+                            activeId === item.id || isActive
+                              ? "lg:opacity-100 rotate-0"
+                              : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
+                          )}
+                        />
+                      </div>
                     </button>
                   ) : (
                     <Link

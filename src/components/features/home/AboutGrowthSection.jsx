@@ -194,7 +194,7 @@ export default function AboutGrowthSection({ growthData }) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                     priority={index === 0}
                     className="-z-2 object-cover"
-                    quality={100}
+                    // quality={100}
                   />
                 )}
                 <motion.div

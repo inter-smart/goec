@@ -5,7 +5,6 @@ import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
 
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import parse from "html-react-parser";
 import { Text } from "@/components/utils/Text";
 import { ActionButton } from "@/components/utils/Button";

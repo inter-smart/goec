@@ -220,7 +220,7 @@ export default function HeroSection({ heroBanner = heroData }) {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
               className="-z-1 pointer-events-none"
-              quality={40}
+              // quality={40}
             />
             {item?.media?.desktop?.media_type === "video" ? (
               <>
