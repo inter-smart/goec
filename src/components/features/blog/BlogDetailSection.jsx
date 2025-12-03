@@ -5,6 +5,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { MEDIA_URL } from "@/lib/api";
 import { renderHtml } from "@/components/utils/parseHtml";
+import { format } from "date-fns";
 
 export default function BlogDetailSection({ data, variant }) {
   return (
