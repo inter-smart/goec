@@ -215,7 +215,7 @@ export default function HeroSection({ heroBanner = heroData }) {
         {heroBanner?.map((item, index) => (
           <SwiperSlide key={index}>
             <Image
-              src="/images/hero-overlay.png"
+              src="/images/hero-overlay.webp"
               alt="overlay"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"

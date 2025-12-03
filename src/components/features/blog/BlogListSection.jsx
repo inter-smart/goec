@@ -280,7 +280,7 @@ export default function BlogListSection({
               </div>
             </div>
           )}
-          {otherItems.length >= 0 && (
+          {otherItems.length > 0 && (
             <div className="w-full md:w-1/2 lg:w-[448px] xl:w-[448px] 2xl:w-[540px] 3xl:w-[620px] max-md:mt-[30px]">
               <Heading
                 as="h3"
@@ -430,7 +430,7 @@ export default function BlogListSection({
           ))}
         </div>
 
-        {totalPages > 1 && (
+        {totalPages > 0 && (
           <div
             ref={paginationRef}
             className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[60px]"

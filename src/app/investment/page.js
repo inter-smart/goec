@@ -51,7 +51,9 @@ async function getMetaData() {
     // Extract additional meta tags (JSON stored in TEXT)
     let additional = {};
     try {
-      additional = meta?.other_meta_tags ? JSON.parse(meta.other_meta_tags) : {};
+      additional = meta?.other_meta_tags
+        ? JSON.parse(meta.other_meta_tags)
+        : {};
     } catch (e) {
       additional = {};
     }
@@ -96,7 +98,6 @@ async function getMetaData() {
   }
 }
 
-
 export async function generateMetadata() {
   const meta = await getMetaData();
   return {
@@ -109,26 +110,49 @@ export async function generateMetadata() {
   };
 }
 
-
-
-
-
 export default async function Page() {
   const { data, error } = await fetchFromAPI("invest-in-go-ec");
 
-  const { banner_section, about_section, growth_section, explore_section, why_invest_section, testimonial_section, invest_in_goec_section } =
-    data || {};
+  const {
+    banner_section,
+    about_section,
+    growth_section,
+    explore_section,
+    why_invest_section,
+    testimonial_section,
+    invest_in_goec_section,
+  } = data || {};
 
   return (
     <>
-      <InnerHero data={heroData} button={heroData.button} title={banner_section?.title} media={banner_section?.media} varient="investment" />
+      <InnerHero
+        data={heroData}
+        button={heroData.button}
+        title={banner_section?.title}
+        media={banner_section?.media}
+        varient="investment"
+      />
 
-      <InvestmentInfoSection description={about_section?.description} media={about_section?.media} />
+      <InvestmentInfoSection
+        description={about_section?.description}
+        media={about_section?.media}
+      />
 
-      <MarketSizeSection title={growth_section?.title} summary={growth_section?.summary} description={growth_section?.description} media={growth_section?.media} chart={growth_section?.chart} />
+      <MarketSizeSection
+        title={growth_section?.title}
+        summary={growth_section?.summary}
+        description={growth_section?.description}
+        media={growth_section?.media}
+        chart={growth_section?.chart}
+      />
 
-      <BusinessModalSection title={explore_section?.title} list={explore_section?.list} />
-
+      {explore_section?.list.length > 0 && (
+        <BusinessModalSection
+          title={explore_section?.title}
+          list={explore_section?.list}
+        />
+      )}
+      
       <InvestNowSection
         title={why_invest_section?.title}
         description={why_invest_section?.description}
@@ -137,9 +161,15 @@ export default async function Page() {
         features={why_invest_section?.feature_list}
       />
 
-      <InvestorSaySection title={testimonial_section?.title} testimonials={testimonial_section?.list} />
+      <InvestorSaySection
+        title={testimonial_section?.title}
+        testimonials={testimonial_section?.list}
+      />
 
-      <InvestBrocureSection title={invest_in_goec_section?.title} media={invest_in_goec_section?.media} />
+      <InvestBrocureSection
+        title={invest_in_goec_section?.title}
+        media={invest_in_goec_section?.media}
+      />
     </>
   );
 }

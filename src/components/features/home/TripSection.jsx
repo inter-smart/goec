@@ -28,7 +28,7 @@ export default function TripSection({ title, highlightTitle, description, makeRi
       <div className="w-full h-1/2 bg-black absolute -z-1 top-[-2px] left-0 right-0" />
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full h-auto block overflow-hidden rounded-[20px] xl:rounded-[40px] p-[30px] sm:p-[60px] xl:p-[60px_80px] 2xl:p-[80px_100px] bg-black relative z-0">
-          <Image src="/images/hero-overlay.png" alt="overlay" fill sizes="1820px" className="-z-1 pointer-events-none" />
+          <Image src="/images/hero-overlay.webp" alt="overlay" fill sizes="1820px" className="-z-1 pointer-events-none" />
           <Image
             src="/images/logo-vector.svg"
             alt="logo-vector"

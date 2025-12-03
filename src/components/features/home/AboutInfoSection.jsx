@@ -36,7 +36,7 @@ export default function AboutInfoSection({
       className="w-full h-auto block bg-black overflow-hidden relative z-0 pt-[40px] sm:pt-[80px] xl:pt-[140px] 2xl:pt-[180px] 3xl:pt-[200px]"
     >
       <Image
-        src="/images/about-bg-1.png"
+        src="/images/about-bg-1.webp"
         alt="about-count-png"
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
