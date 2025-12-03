@@ -1,5 +1,4 @@
 import { renderHtml } from "@/components/utils/parseHtml";
-import parse from "html-react-parser";
 
 export default function AppDetailSection({ data }) {
   return (

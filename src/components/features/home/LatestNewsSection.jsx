@@ -14,7 +14,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import useMedia from "use-media";
-import { MEDIA_URL } from "@/lib/api";
 import { motion } from "motion/react";
 import { generateMediaUrl } from "@/lib/utils";
 

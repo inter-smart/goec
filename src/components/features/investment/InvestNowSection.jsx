@@ -8,7 +8,6 @@ import Image from "next/image";
 import CountUp from "react-countup";
 import {
   Parallax,
-  ParallaxBanner,
   ParallaxProvider,
 } from "react-scroll-parallax";
 

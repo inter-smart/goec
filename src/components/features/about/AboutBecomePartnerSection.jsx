@@ -4,17 +4,7 @@ import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
 
-const AboutBecomePartnerData = {
-  title: "Let's conquer the journey together",
-  description: "Contact us",
-  button: {
-    type: "primary",
-    label: "Become a partner",
-    link: "/become-a-partner",
-  },
-};
-
-export default function AboutBecomePartnerSection({ data = AboutBecomePartnerData, title, description }) {
+export default function AboutBecomePartnerSection({ title, description }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px] bg-[#0055e0] relative z-0">
       <Image

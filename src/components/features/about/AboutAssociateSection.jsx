@@ -4,168 +4,167 @@ import { MEDIA_URL } from "@/lib/api";
 import parse from "html-react-parser";
 import Image from "next/image";
 
-const AboutAssociateData = {
-  title: "Our Associates",
-  description:
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-  media: {
-    desktop: {
-      type: "image",
-      path: "/images/about-team-1.jpg",
-      alt: "about-team",
-    },
-    mobile: {
-      type: "image",
-      path: "/images/about-team-1.jpg",
-      alt: "about-team",
-    },
-  },
-  item_associate: [
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-0.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-1.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-2.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-3.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-4.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-5.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-6.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-7.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-8.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-9.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-10.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-11.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-12.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-7.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-8.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-9.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-10.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-11.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-12.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-11.png",
-        alt: "partners",
-      },
-    },
-  ],
-};
+// const AboutAssociateData = {
+//   title: "Our Associates",
+//   description:
+//     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+//   media: {
+//     desktop: {
+//       type: "image",
+//       path: "/images/about-team-1.jpg",
+//       alt: "about-team",
+//     },
+//     mobile: {
+//       type: "image",
+//       path: "/images/about-team-1.jpg",
+//       alt: "about-team",
+//     },
+//   },
+//   item_associate: [
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-0.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-1.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-2.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-3.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-4.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-5.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-6.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-7.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-8.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-9.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-10.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-11.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-12.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-7.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-8.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-9.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-10.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-11.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-12.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-11.png",
+//         alt: "partners",
+//       },
+//     },
+//   ],
+// };
 
 export default function AboutAssociateSection({
-  data = AboutAssociateData,
   title,
   description,
   list,

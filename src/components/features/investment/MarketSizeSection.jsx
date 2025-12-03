@@ -9,23 +9,23 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 const MarketSizeChart = dynamic(() => import("@/components/common/MarketSizeChart"), { ssr: false });
 
-const futureData = {
-  media: {
-    type: "image",
-    path: "/images/investment-future-1.svg",
-    alt: "trip",
-  },
-  title: "Electric Vehicles are the future of Transportation. Make your seat reserved",
-  description:
-    "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit.</p>",
-  tag_desription: "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
-  button: {
-    link: "/",
-    label: "Plan a trip now",
-  },
-};
+// const futureData = {
+//   media: {
+//     type: "image",
+//     path: "/images/investment-future-1.svg",
+//     alt: "trip",
+//   },
+//   title: "Electric Vehicles are the future of Transportation. Make your seat reserved",
+//   description:
+//     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit.</p>",
+//   tag_desription: "Electric Vehicle Charging Infrastructure Market Size, 2021 to 2030 (in USD Billion)",
+//   button: {
+//     link: "/",
+//     label: "Plan a trip now",
+//   },
+// };
 
-export default function MarketSizeSection({ data = futureData, title, description, summary, media, chart }) {  
+export default function MarketSizeSection({ title, description, summary, chart }) {  
   const sanitizedText = DOMPurify.sanitize(description);
   return (
     <section className="w-full h-auto block pb-[40px] sm:pb-[80px] xl:pb-[120px] 2xl:pb-[140px]">

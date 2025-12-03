@@ -6,7 +6,6 @@ import NewsCard from "@/components/common/NewsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { renderHtml } from "@/components/utils/parseHtml";
 
 export default function SimilarBlogSection({ similar_section, footer_section, variant }) {
   return (

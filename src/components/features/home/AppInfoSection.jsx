@@ -6,7 +6,6 @@ import { Text } from "@/components/utils/Text";
 import { Heading } from "@/components/utils/Heading";
 import { motion, AnimatePresence } from "framer-motion";
 import { ActionButton } from "@/components/utils/Button";
-import { MEDIA_URL } from "@/lib/api";
 import { generateMediaUrl } from "@/lib/utils";
 
 const appInfoData = {

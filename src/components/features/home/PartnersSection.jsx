@@ -5,104 +5,104 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const partnersData = {
-  title: "Our Associate Partners",
-  item_partners: [
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-0.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-1.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-2.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-3.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-4.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-5.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-6.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-7.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-8.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-9.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-10.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-11.png",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/partner-12.png",
-        alt: "partners",
-      },
-    },
-  ],
-};
+// const partnersData = {
+//   title: "Our Associate Partners",
+//   item_partners: [
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-0.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-1.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-2.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-3.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-4.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-5.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-6.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-7.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-8.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-9.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-10.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-11.png",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/partner-12.png",
+//         alt: "partners",
+//       },
+//     },
+//   ],
+// };
 
-export default function PartnersSection({ data = partnersData, title, associates }) {
+export default function PartnersSection({ title, associates }) {
   const containerRef = useRef(null);
   const scrollerRef = useRef(null);
 

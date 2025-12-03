@@ -10,59 +10,59 @@ import { motion } from "motion/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { MEDIA_URL } from "@/lib/api";
 
-const investData = {
-  media: {
-    mobile: {
-      type: "image",
-      path: "/images/invest-1.jpg",
-      alt: "invest",
-    },
-    desktop: {
-      type: "image",
-      path: "/images/invest-1.jpg",
-      alt: "invest",
-    },
-  },
-  title: "Invest in India's fast-growing electric vehicle infrastructure.",
-  button: {
-    link: "/",
-    label: "Learn more",
-  },
-  item_invest: [
-    {
-      title: "FOCO",
-      subtitle: "For people who want to maximize their returns by owning a charging station.",
-      description:
-        "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
-      button: {
-        link: "/",
-        label: "Learn more",
-      },
-    },
-    {
-      title: "Invest in COCO",
-      subtitle: "For people who want to maximize their returns by owning a charging station.",
-      description:
-        "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
-      button: {
-        link: "/",
-        label: "Learn more",
-      },
-    },
-    {
-      title: "COCO",
-      subtitle: "For people who want to maximize their returns by owning a charging station.",
-      description:
-        "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
-      button: {
-        link: "/",
-        label: "Learn more",
-      },
-    },
-  ],
-};
+// const investData = {
+//   media: {
+//     mobile: {
+//       type: "image",
+//       path: "/images/invest-1.jpg",
+//       alt: "invest",
+//     },
+//     desktop: {
+//       type: "image",
+//       path: "/images/invest-1.jpg",
+//       alt: "invest",
+//     },
+//   },
+//   title: "Invest in India's fast-growing electric vehicle infrastructure.",
+//   button: {
+//     link: "/",
+//     label: "Learn more",
+//   },
+//   item_invest: [
+//     {
+//       title: "FOCO",
+//       subtitle: "For people who want to maximize their returns by owning a charging station.",
+//       description:
+//         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
+//       button: {
+//         link: "/",
+//         label: "Learn more",
+//       },
+//     },
+//     {
+//       title: "Invest in COCO",
+//       subtitle: "For people who want to maximize their returns by owning a charging station.",
+//       description:
+//         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
+//       button: {
+//         link: "/",
+//         label: "Learn more",
+//       },
+//     },
+//     {
+//       title: "COCO",
+//       subtitle: "For people who want to maximize their returns by owning a charging station.",
+//       description:
+//         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada mauris. Interdum aenean pellentesque amet suspendisse lorem.</p>",
+//       button: {
+//         link: "/",
+//         label: "Learn more",
+//       },
+//     },
+//   ],
+// };
 
-export default function InvestSection({ data = investData, milestoneDescription, investMedia, investList }) {
+export default function InvestSection({ milestoneDescription, investMedia, investList }) {
   return (
     <section className="w-full h-auto block py-[40px_30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">

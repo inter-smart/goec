@@ -1,8 +1,8 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
-import { useEffect, useRef, useState } from "react";
+import { EffectCreative} from "swiper/modules";
+import { useRef, useState } from "react";
 
 // Import Swiper styles
 import "swiper/css";

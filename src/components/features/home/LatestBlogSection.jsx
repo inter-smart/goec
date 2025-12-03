@@ -2,7 +2,6 @@
 import { ActionButton } from "@/components/utils/Button";
 import { Heading } from "@/components/utils/Heading";
 import Link from "next/link";
-import BlogCard from "@/components/common/BlogCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

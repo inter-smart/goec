@@ -2,8 +2,6 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
 import Image from "next/image";
-import parse from "html-react-parser";
-import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { MEDIA_URL } from "@/lib/api";
 import { renderHtml } from "@/components/utils/parseHtml";

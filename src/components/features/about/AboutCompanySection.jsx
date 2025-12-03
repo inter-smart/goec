@@ -9,98 +9,98 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { MEDIA_URL } from "@/lib/api";
 
-const aboutCompanyData = {
-  value: {
-    title: "Our Values ",
-    description:
-      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-    item_value: [
-      {
-        media: null,
-        title: "Future Focused",
-        description:
-          "<p>We unite today for a sustainable future, aligning our strategies with future needs and ensuring efficiency in all operations.</p>",
-        button: {
-          link: "/",
-          label: "Learn more",
-        },
-      },
-      {
-        media: null,
-        title: "Honesty & Transparency",
-        description:
-          "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
-        button: {
-          link: "/",
-          label: "Learn more",
-        },
-      },
-      {
-        media: null,
-        title: "Collaborative Power",
-        description:
-          "<p>We aim to leverage collaboration and profit sharing by partnering with stakeholders who value teamwork and share a common vision.</p>",
-        button: {
-          link: "/",
-          label: "Learn more",
-        },
-      },
-    ],
-  },
-  journey: {
-    title: "Our Journey ",
-    description:
-      "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-    item_journey: [
-      {
-        timestamp: "2025-08-14T05:00:00.000000Z",
-        media: {
-          type: "image",
-          path: "/images/about-journey-1.jpg",
-          alt: "journey",
-        },
-        title: "All Starter with a Dream!",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
-      },
-      {
-        timestamp: "2025-08-14T05:00:00.000000Z",
-        media: {
-          type: "image",
-          path: "/images/about-journey-1.jpg",
-          alt: "journey",
-        },
-        title: "All Starter with a Dream!",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
-      },
-      {
-        timestamp: "2025-08-14T05:00:00.000000Z",
-        media: {
-          type: "image",
-          path: "/images/about-journey-2.jpg",
-          alt: "journey",
-        },
-        title: "Lorem ipsum dolor sit amet!",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
-      },
-      {
-        timestamp: "2025-08-14T05:00:00.000000Z",
-        media: {
-          type: "image",
-          path: "/images/about-journey-1.jpg",
-          alt: "journey",
-        },
-        title: "All Starter with a Dream!",
-        description:
-          "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
-      },
-    ],
-  },
-};
+// const aboutCompanyData = {
+//   value: {
+//     title: "Our Values ",
+//     description:
+//       "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+//     item_value: [
+//       {
+//         media: null,
+//         title: "Future Focused",
+//         description:
+//           "<p>We unite today for a sustainable future, aligning our strategies with future needs and ensuring efficiency in all operations.</p>",
+//         button: {
+//           link: "/",
+//           label: "Learn more",
+//         },
+//       },
+//       {
+//         media: null,
+//         title: "Honesty & Transparency",
+//         description:
+//           "<p>We prioritise honesty & transparency in our collaborations to foster collective power and maintain smooth operations.</p>",
+//         button: {
+//           link: "/",
+//           label: "Learn more",
+//         },
+//       },
+//       {
+//         media: null,
+//         title: "Collaborative Power",
+//         description:
+//           "<p>We aim to leverage collaboration and profit sharing by partnering with stakeholders who value teamwork and share a common vision.</p>",
+//         button: {
+//           link: "/",
+//           label: "Learn more",
+//         },
+//       },
+//     ],
+//   },
+//   journey: {
+//     title: "Our Journey ",
+//     description:
+//       "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+//     item_journey: [
+//       {
+//         timestamp: "2025-08-14T05:00:00.000000Z",
+//         media: {
+//           type: "image",
+//           path: "/images/about-journey-1.jpg",
+//           alt: "journey",
+//         },
+//         title: "All Starter with a Dream!",
+//         description:
+//           "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
+//       },
+//       {
+//         timestamp: "2025-08-14T05:00:00.000000Z",
+//         media: {
+//           type: "image",
+//           path: "/images/about-journey-1.jpg",
+//           alt: "journey",
+//         },
+//         title: "All Starter with a Dream!",
+//         description:
+//           "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
+//       },
+//       {
+//         timestamp: "2025-08-14T05:00:00.000000Z",
+//         media: {
+//           type: "image",
+//           path: "/images/about-journey-2.jpg",
+//           alt: "journey",
+//         },
+//         title: "Lorem ipsum dolor sit amet!",
+//         description:
+//           "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
+//       },
+//       {
+//         timestamp: "2025-08-14T05:00:00.000000Z",
+//         media: {
+//           type: "image",
+//           path: "/images/about-journey-1.jpg",
+//           alt: "journey",
+//         },
+//         title: "All Starter with a Dream!",
+//         description:
+//           "<p>Lorem ipsum dolor sit amet consectetur. Viverra aenean cursus arcu arcu tortor tellus. Accumsan nisl risus consequat ut ornare. Etiam volutpat aliquam.</p>",
+//       },
+//     ],
+//   },
+// };
 
-export default function AboutCompanySection({ data = aboutCompanyData, ourValues=[], ourJourney=[] }) {
+export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
   const valueData = ourValues;
   const journeyData = ourJourney;
   return (

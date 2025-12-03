@@ -69,7 +69,7 @@ import { generateMediaUrl } from "@/lib/utils";
 //   },
 // ];
 
-export default function AboutGrowthSection({ growthData = aboutGrowthData }) {
+export default function AboutGrowthSection({ growthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);

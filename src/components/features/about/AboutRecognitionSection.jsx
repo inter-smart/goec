@@ -15,98 +15,98 @@ import Autoplay from "embla-carousel-autoplay";
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-const AboutRecognitionData = {
-  title: "Media & Recognition",
-  description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-  item_recognition: [
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-1.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-2.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-1.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-2.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-1.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-2.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-1.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-2.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-1.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-2.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-1.jpg",
-        alt: "partners",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/about-recognition-2.jpg",
-        alt: "partners",
-      },
-    },
-  ],
-};
+// const AboutRecognitionData = {
+//   title: "Media & Recognition",
+//   description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
+//   item_recognition: [
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-1.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-2.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-1.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-2.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-1.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-2.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-1.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-2.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-1.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-2.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-1.jpg",
+//         alt: "partners",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/about-recognition-2.jpg",
+//         alt: "partners",
+//       },
+//     },
+//   ],
+// };
 
-export default function AboutRecognitionSection({ data = AboutRecognitionData, title, description, list }) {
+export default function AboutRecognitionSection({ title, description, list }) {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 3000, stopOnInteraction: false })]);
 
   return (

@@ -4,25 +4,25 @@ import { MEDIA_URL } from "@/lib/api";
 import parse from "html-react-parser";
 import Image from "next/image";
 
-const AboutTeamData = {
-  title: "Meet the team",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.",
-  media: {
-    desktop: {
-      type: "image",
-      path: "/images/about-team-1.jpg",
-      alt: "about-team",
-    },
-    mobile: {
-      type: "image",
-      path: "/images/about-team-1.jpg",
-      alt: "about-team",
-    },
-  },
-};
+// const AboutTeamData = {
+//   title: "Meet the team",
+//   description:
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.",
+//   media: {
+//     desktop: {
+//       type: "image",
+//       path: "/images/about-team-1.jpg",
+//       alt: "about-team",
+//     },
+//     mobile: {
+//       type: "image",
+//       path: "/images/about-team-1.jpg",
+//       alt: "about-team",
+//     },
+//   },
+// };
 
-export default function AboutTeamSection({ data = AboutTeamData, title, description, media }) {
+export default function AboutTeamSection({ title, description, media }) {
   return (
     <section  id="meet-team" className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_50px] 2xl:py-[140px_70px]">
       <div className="container">

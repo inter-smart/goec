@@ -9,59 +9,59 @@ import Link from "next/link";
 import { useRef } from "react";
 import { motion } from "motion/react";
 
-const expertiseData = {
-  title: "Explore our Expertise ",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.",
-  button: {
-    link: "/",
-    label: "Explore more",
-  },
-  item_expertise: [
-    {
-      media: {
-        type: "image",
-        path: "/images/expertise-1.png",
-        alt: "expertise",
-      },
-      title: "GOEC Charging Hub",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
-      button: {
-        link: "/",
-        label: "Learn more",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/expertise-2.png",
-        alt: "expertise",
-      },
-      title: "GOEC Exclusive",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
-      button: {
-        link: "/",
-        label: "Learn more",
-      },
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/expertise-3.png",
-        alt: "expertise",
-      },
-      title: "Public Commercial Parking",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
-      button: {
-        link: "/",
-        label: "Learn more",
-      },
-    },
-  ],
-};
+// const expertiseData = {
+//   title: "Explore our Expertise ",
+//   description:
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.",
+//   button: {
+//     link: "/",
+//     label: "Explore more",
+//   },
+//   item_expertise: [
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/expertise-1.png",
+//         alt: "expertise",
+//       },
+//       title: "GOEC Charging Hub",
+//       description:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
+//       button: {
+//         link: "/",
+//         label: "Learn more",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/expertise-2.png",
+//         alt: "expertise",
+//       },
+//       title: "GOEC Exclusive",
+//       description:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
+//       button: {
+//         link: "/",
+//         label: "Learn more",
+//       },
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/expertise-3.png",
+//         alt: "expertise",
+//       },
+//       title: "Public Commercial Parking",
+//       description:
+//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
+//       button: {
+//         link: "/",
+//         label: "Learn more",
+//       },
+//     },
+//   ],
+// };
 
 export default function SolutionsSection({ title, description, solutions }) {
   const container = useRef(null);

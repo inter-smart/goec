@@ -8,20 +8,20 @@ import Link from "next/link";
 
 import { motion } from "motion/react";
 
-const tripData = {
-  media: {
-    type: "video",
-    path: "/videos/trip-bg.mp4",
-    alt: "trip",
-  },
-  title: "Make every ride smoother, <span>greener</span> & smarter.",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae est varius fringilla. Pellentesque placerat vestibulum lorem sed porta. Nullam mattis tristique iaculis.",
-  button: {
-    link: "/",
-    label: "Plan a trip now",
-  },
-};
+// const tripData = {
+//   media: {
+//     type: "video",
+//     path: "/videos/trip-bg.mp4",
+//     alt: "trip",
+//   },
+//   title: "Make every ride smoother, <span>greener</span> & smarter.",
+//   description:
+//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae est varius fringilla. Pellentesque placerat vestibulum lorem sed porta. Nullam mattis tristique iaculis.",
+//   button: {
+//     link: "/",
+//     label: "Plan a trip now",
+//   },
+// };
 export default function TripSection({ title, highlightTitle, description, makeRideMedia }) {
   return (
     <section className="w-full h-auto block bg-white relative z-0 py-[20px_10px] sm:py-[80px_10px] xl:py-[100px_15px] 2xl:py-[120px_20px]">

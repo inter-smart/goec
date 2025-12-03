@@ -159,14 +159,6 @@ const local_data = {
   ],
 };
 
-const departments = [
-  { label: "All positions" },
-  { label: "Engineering" },
-  { label: "Design" },
-  { label: "Sales" },
-  { label: "Marketing" },
-];
-
 export default function CareerListSection({ data = local_data }) {
   const [selected, setSelected] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");

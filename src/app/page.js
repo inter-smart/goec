@@ -9,8 +9,6 @@ import PartnersSection from "@/components/features/home/PartnersSection";
 import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
-import Error from "./error";
-import Loading from "./loading";
 
 async function getMetaData() {
   try {
@@ -84,7 +82,7 @@ export async function generateMetadata() {
 
 
 export default async function Home() {
-  const { data, error } = await fetchFromAPI("home");
+  const { data } = await fetchFromAPI("home");
 
   const {
     banner_section,

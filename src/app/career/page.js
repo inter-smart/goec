@@ -7,17 +7,17 @@ import { fetchFromAPI } from "@/lib/api";
 import CareerTestimonialSection from "@/components/features/career/CareerTestimonialSection";
 import CareerValueSection from "@/components/features/career/CareerValueSection";
 
-const local_data = {
-  enquiry_data: {
-    title: "Explore opportunities in GO EC ",
-    description:
-      "<p>Elevate your career with strategic planning and decision-making skills! Join us at Entrepreneurial Insights to discover how a solid strategy can transform your business approach.</p>",
-    button: {
-      link: "/career",
-      label: "View openings",
-    },
-  },
-};
+// const local_data = {
+//   enquiry_data: {
+//     title: "Explore opportunities in GO EC ",
+//     description:
+//       "<p>Elevate your career with strategic planning and decision-making skills! Join us at Entrepreneurial Insights to discover how a solid strategy can transform your business approach.</p>",
+//     button: {
+//       link: "/career",
+//       label: "View openings",
+//     },
+//   },
+// };
 
 async function getMetaData() {
   try {

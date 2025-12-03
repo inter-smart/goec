@@ -5,26 +5,11 @@ import { format } from "date-fns";
 import { Suspense } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { cn, generateMediaUrl } from "@/lib/utils";
-import parse from "html-react-parser";
 import { Text } from "../utils/Text";
 import { motion } from "framer-motion";
-import { MEDIA_URL } from "@/lib/api";
 import { renderHtml } from "../utils/parseHtml";
 
-const section = {
-  button: [
-    {
-      type: "primary",
-      label: "Blogs",
-      link: "/blog",
-    },
-    {
-      type: "primary",
-      label: "News",
-      link: "/news",
-    },
-  ],
-};
+
 
 export default function NewsCard({ data, index = 1, variant = "news", page="" }) {
   const formattedDate = data?.published_on

@@ -1,37 +1,35 @@
 import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
-import Link from "next/link";
-import parse from "html-react-parser";
 import { MEDIA_URL } from "@/lib/api";
 
-const local_data = {
-  media: {
-    type: "image",
-    path: "/images/mobileapp-appdownload-1.png",
-    alt: "mobileapp-appdownload-1",
-  },
-  title: "Start your EV journey with confidence - anywhere, anytime.",
-  button: [
-    {
-      media: {
-        type: "image",
-        path: "/images/app_info-ios.svg",
-        alt: "ios",
-      },
-      type: "external",
-      link: "#",
-    },
-    {
-      media: {
-        type: "image",
-        path: "/images/app_info-android.svg",
-        alt: "android",
-      },
-      type: "external",
-      link: "#",
-    },
-  ],
-};
+// const local_data = {
+//   media: {
+//     type: "image",
+//     path: "/images/mobileapp-appdownload-1.png",
+//     alt: "mobileapp-appdownload-1",
+//   },
+//   title: "Start your EV journey with confidence - anywhere, anytime.",
+//   button: [
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/app_info-ios.svg",
+//         alt: "ios",
+//       },
+//       type: "external",
+//       link: "#",
+//     },
+//     {
+//       media: {
+//         type: "image",
+//         path: "/images/app_info-android.svg",
+//         alt: "android",
+//       },
+//       type: "external",
+//       link: "#",
+//     },
+//   ],
+// };
 
 export default function AppDownloadSection({ appDownloadData }) {
   return (

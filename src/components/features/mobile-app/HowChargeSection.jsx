@@ -1,73 +1,72 @@
 "use client";
 import { Heading } from "@/components/utils/Heading";
 import { Text } from "@/components/utils/Text";
-import { MEDIA_URL } from "@/lib/api";
 import { cn, generateMediaUrl } from "@/lib/utils";
 import parse from "html-react-parser";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const local_data = {
-  media: {
-    mobile: {
-      type: "image",
-      path: "/images/invest-1.jpg",
-      alt: "invest",
-    },
-    desktop: {
-      type: "image",
-      path: "/images/invest-1.jpg",
-      alt: "invest",
-    },
-  },
-  title: "How to charge your EV",
-  button: {
-    link: "/",
-    label: "Learn more",
-  },
-  item_howcharge: [
-    {
-      id: 1,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
-      },
-      title: "Locate Charger",
-      description: "<p>Locate your nearest charging station from the GO EC app.</p>",
-    },
-    {
-      id: 2,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
-      },
-      title: "Connect Charger",
-      description: "<p>Park your car in the slot and connect the charger to your EV.</p>",
-    },
-    {
-      id: 3,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
-      },
-      title: "Start Charging",
-      description: "<p>Use the GO EC app / RFID Card to start charging.</p>",
-    },
-    {
-      id: 4,
-      media: {
-        type: "image",
-        path: "/images/mobileapp-howcharge-1.jpg",
-        alt: "mobileapp-howcharge-1",
-      },
-      title: "Payment",
-      description: "<p>Complete the payment conveniently using the app / RFID Card</p>",
-    },
-  ],
-};
+// const local_data = {
+//   media: {
+//     mobile: {
+//       type: "image",
+//       path: "/images/invest-1.jpg",
+//       alt: "invest",
+//     },
+//     desktop: {
+//       type: "image",
+//       path: "/images/invest-1.jpg",
+//       alt: "invest",
+//     },
+//   },
+//   title: "How to charge your EV",
+//   button: {
+//     link: "/",
+//     label: "Learn more",
+//   },
+//   item_howcharge: [
+//     {
+//       id: 1,
+//       media: {
+//         type: "image",
+//         path: "/images/mobileapp-howcharge-1.jpg",
+//         alt: "mobileapp-howcharge-1",
+//       },
+//       title: "Locate Charger",
+//       description: "<p>Locate your nearest charging station from the GO EC app.</p>",
+//     },
+//     {
+//       id: 2,
+//       media: {
+//         type: "image",
+//         path: "/images/mobileapp-howcharge-1.jpg",
+//         alt: "mobileapp-howcharge-1",
+//       },
+//       title: "Connect Charger",
+//       description: "<p>Park your car in the slot and connect the charger to your EV.</p>",
+//     },
+//     {
+//       id: 3,
+//       media: {
+//         type: "image",
+//         path: "/images/mobileapp-howcharge-1.jpg",
+//         alt: "mobileapp-howcharge-1",
+//       },
+//       title: "Start Charging",
+//       description: "<p>Use the GO EC app / RFID Card to start charging.</p>",
+//     },
+//     {
+//       id: 4,
+//       media: {
+//         type: "image",
+//         path: "/images/mobileapp-howcharge-1.jpg",
+//         alt: "mobileapp-howcharge-1",
+//       },
+//       title: "Payment",
+//       description: "<p>Complete the payment conveniently using the app / RFID Card</p>",
+//     },
+//   ],
+// };
 
 export default function HowChargeSection({ title, list, description = "", variant }) {
   const [activeIndex, setActiveIndex] = useState(0);

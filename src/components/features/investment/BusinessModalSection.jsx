@@ -1,55 +1,54 @@
 "use client";
 import { Heading } from "@/components/utils/Heading";
-import { MEDIA_URL } from "@/lib/api";
 import { generateMediaUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useMedia from "use-media";
 
-const businessModalData = {
-  title: "Explore our Business Models",
-  item_business: [
-    {
-      id: 1,
-      tag: "FOCO",
-      media: {
-        type: "image",
-        path: "/images/investment-business_model-1.jpg",
-        alt: "investment",
-      },
-      title: "FOCO – Franchise Owned & Company Operated",
-      description:
-        "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada.</p><ul><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum <b> dolor sit amet nisnulla consectetur.</b> Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla onsectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li></ul>",
-    },
-    {
-      id: 2,
-      tag: "COCO",
-      media: {
-        type: "image",
-        path: "/images/investment-business_model-2.jpg",
-        alt: "investment",
-      },
-      title: "COCO – Company Owned & Company Operated",
-      description:
-        "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada.</p><ul><li>Lorem ipsum<b> dolor sit amet nisnulla consectetur. </b>Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla onsectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li></ul>",
-    },
-    {
-      id: 3,
-      tag: "I-COCO",
-      media: {
-        type: "image",
-        path: "/images/investment-business_model-3.jpg",
-        alt: "investment",
-      },
-      title: "I-COCO – Invest in Company Owned Company Operated",
-      description:
-        "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada.</p><ul><li>Lorem ipsum<b> dolor sit amet nisnulla consectetur.</b> Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla onsectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li></ul>",
-    },
-  ],
-};
+// const businessModalData = {
+//   title: "Explore our Business Models",
+//   item_business: [
+//     {
+//       id: 1,
+//       tag: "FOCO",
+//       media: {
+//         type: "image",
+//         path: "/images/investment-business_model-1.jpg",
+//         alt: "investment",
+//       },
+//       title: "FOCO – Franchise Owned & Company Operated",
+//       description:
+//         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada.</p><ul><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum <b> dolor sit amet nisnulla consectetur.</b> Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla onsectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li></ul>",
+//     },
+//     {
+//       id: 2,
+//       tag: "COCO",
+//       media: {
+//         type: "image",
+//         path: "/images/investment-business_model-2.jpg",
+//         alt: "investment",
+//       },
+//       title: "COCO – Company Owned & Company Operated",
+//       description:
+//         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada.</p><ul><li>Lorem ipsum<b> dolor sit amet nisnulla consectetur. </b>Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla onsectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li></ul>",
+//     },
+//     {
+//       id: 3,
+//       tag: "I-COCO",
+//       media: {
+//         type: "image",
+//         path: "/images/investment-business_model-3.jpg",
+//         alt: "investment",
+//       },
+//       title: "I-COCO – Invest in Company Owned Company Operated",
+//       description:
+//         "<p>Duis cras auctor sit felis quisque nibh sed in. Sed sed lorem auctor non. Diam diam quam quisque ac nulla laoreet ultrices. Faucibus amet cursus natoque cras orci cursus quisque vitae. Ipsum adipiscing sed mauris orci. Eget ut sed placerat tellus semper porttitor malesuada.</p><ul><li>Lorem ipsum<b> dolor sit amet nisnulla consectetur.</b> Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla onsectetur. Quam id nisl nulla elem.</li><li>Lorem ipsum dolor sit amet nisnulla consectetur. Quam id nisl nulla elem.</li></ul>",
+//     },
+//   ],
+// };
 
-export default function BusinessModalSection({ data = businessModalData, title, list }) {
+export default function BusinessModalSection({ title, list }) {
   const [activeId, setActiveId] = useState(list?.[0]?.name);
 
   useEffect(() => {
