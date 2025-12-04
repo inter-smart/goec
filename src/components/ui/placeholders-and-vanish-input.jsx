@@ -71,11 +71,20 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
       let i = 4 * t * 800;
       for (let n = 0; n < 800; n++) {
         let e = i + 4 * n;
-        if (pixelData[e] !== 0 && pixelData[e + 1] !== 0 && pixelData[e + 2] !== 0) {
+        if (
+          pixelData[e] !== 0 &&
+          pixelData[e + 1] !== 0 &&
+          pixelData[e + 2] !== 0
+        ) {
           newData.push({
             x: n,
             y: t,
-            color: [pixelData[e], pixelData[e + 1], pixelData[e + 2], pixelData[e + 3]],
+            color: [
+              pixelData[e],
+              pixelData[e + 1],
+              pixelData[e + 2],
+              pixelData[e + 3],
+            ],
           });
         }
       }
@@ -150,7 +159,10 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
 
     const value = inputRef.current?.value || "";
     if (value && inputRef.current) {
-      const maxX = newDataRef.current.reduce((prev, current) => (current.x > prev ? current.x : prev), 0);
+      const maxX = newDataRef.current.reduce(
+        (prev, current) => (current.x > prev ? current.x : prev),
+        0
+      );
       animate(maxX);
     }
   };
@@ -185,7 +197,9 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
       });
 
       if (!error && data) {
-        toast.success("Successfully subscribed to our newsletter! Thank you for joining us.");
+        toast.success(
+          "Successfully subscribed to our newsletter! Thank you for joining us."
+        );
       } else {
         if (error?.message) {
           toast.error(error.message);
@@ -225,7 +239,9 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
         )}
         ref={canvasRef}
       />
-      <label className="sr-only">subscribe</label>
+      <label htmlFor="subscribe-field" className="sr-only">
+        subscribe
+      </label>
       <input
         onChange={(e) => {
           if (!animating) {
@@ -237,6 +253,7 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
         ref={inputRef}
         value={value}
         type="text"
+        id="subscribe-field"
         className={cn(
           "w-full relative text-sm sm:text-base z-0 border-none dark:text-white bg-transparent text-white h-full rounded-full focus:outline-none focus:ring-0 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] 3xl:pl-[40px] pr-20",
           animating && "text-white dark:text-black"

@@ -93,12 +93,7 @@ export default function AppFeatureSection({ title, list }) {
                             as="div"
                             size="text2"
                             className={cn(
-                              "leading-tight font-medium text-center truncate text-[#ced1d0] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]",
-                              isEvenGroup
-                                ? itemIndex === 1
-                                  ? "text-[14px] sm:text-[18px] lg:text-[22px] xl:text-[28px] 2xl:text-[32px] 3xl:text-[38px] group-hover:text-transparent bg-clip-text bg-linear-to-r group-hover:bg-linear-90 group-hover:from-[#14eaa7] group-hover:via-[#2bc69c] group-hover:to-[#0d52b4] transition"
-                                  : ""
-                                : ""
+                              "leading-tight font-medium text-center truncate text-[#ced1d0] mb-[4px] xl:mb-[6px] 2xl:mb-[10px]"
                             )}
                           >
                             {parse(item?.title)}
@@ -137,12 +132,13 @@ export default function AppFeatureSection({ title, list }) {
                             alt={item?.media?.media_alt}
                             width={260}
                             height={360}
-                            className={cn("w-full h-auto max-h-full block mx-auto hover:scale-105 transition",
+                            className={cn(
+                              "w-full h-auto max-h-full block mx-auto hover:scale-105 transition",
                               isEvenGroup
-                              ? itemIndex === 0
-                                ? "max-w-[268px] sm:max-w-[320px] xl:max-w-[420px]"
-                                : ""
-                              : "max-w-[80px] sm:max-w-[120px] xl:max-w-[168px]"
+                                ? itemIndex === 0
+                                  ? "max-w-[268px] sm:max-w-[320px] xl:max-w-[420px]"
+                                  : ""
+                                : "max-w-[80px] sm:max-w-[120px] xl:max-w-[168px]"
                             )}
                           />
                         </div>
