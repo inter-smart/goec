@@ -10,32 +10,45 @@ import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
 
-async function getMetaData() {
+
+export async function generateMetadata() {
   try {
     const { data, error } = await fetchFromAPI(`meta-tags/home`);
-    const meta = data;
+    
+    // If API fails, return default metadata immediately
+    if (error || !data) {
+      console.error('Metadata API Error:', error);
+      return {
+        title: "Goec | EV Charging Solutions for Homes & Commercial Spaces",
+        description: "Goec is a fast-growing EV charging station network offering reliable, smart, and eco-friendly charging solutions for electric vehicles across India.",
+        keywords: "EV charging station, electric vehicle charging, Goec, EV charging India, fast charging stations",
+      };
+    }
 
-    // Parse other_meta_tags if it's JSON (optional)
+    const meta = data;
+    
+    // Parse other_meta_tags if it's JSON
     let extras = {};
     if (meta?.other_meta_tags) {
       try {
         extras = JSON.parse(meta.other_meta_tags);
       } catch (e) {
+        console.error('Error parsing other_meta_tags:', e);
         extras = {};
       }
     }
 
-    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://goec-beta-dev.netlify.app';
 
     return {
-      title: meta?.meta_title || "Home",
+      title: meta?.meta_title || "Goec | EV Charging Solutions",
       description: meta?.meta_description || "",
       keywords: meta?.meta_keywords || "",
-
+      
       // OPEN GRAPH
       openGraph: {
-        title: extras.og_title || meta?.meta_title,
-        description: extras.og_description || meta?.meta_description,
+        title: extras.og_title || meta?.meta_title || "Goec | EV Charging Solutions",
+        description: extras.og_description || meta?.meta_description || "",
         images: extras.og_image
           ? [{ url: extras.og_image, width: 1200, height: 630 }]
           : [],
@@ -46,8 +59,8 @@ async function getMetaData() {
       // TWITTER
       twitter: {
         card: "summary_large_image",
-        title: extras.twitter_title || meta?.meta_title,
-        description: extras.twitter_description || meta?.meta_description,
+        title: extras.twitter_title || meta?.meta_title || "Goec | EV Charging Solutions",
+        description: extras.twitter_description || meta?.meta_description || "",
         images: extras.twitter_image ? [extras.twitter_image] : [],
       },
 
@@ -55,29 +68,16 @@ async function getMetaData() {
       alternates: {
         canonical: extras.canonical_url || `${SITE_URL}/`,
       },
-
-      error: null,
     };
   } catch (error) {
+    console.error('Fatal error generating metadata:', error);
+    // Always return valid metadata even on error
     return {
-      title: "Home",
-      description: "Welcome to our Home Page",
-      keywords: "home, welcome",
-      error: "Failed to fetch metadata",
+      title: "Goec | EV Charging Solutions for Homes & Commercial Spaces",
+      description: "Goec is a fast-growing EV charging station network offering reliable, smart, and eco-friendly charging solutions for electric vehicles across India.",
+      keywords: "EV charging station, electric vehicle charging, Goec",
     };
   }
-}
-
-export async function generateMetadata() {
-  const meta = await getMetaData();
-  return {
-    title: meta.title,
-    description: meta.description,
-    keywords: meta.keywords,
-    twitter: meta.twitter,
-    openGraph: meta.openGraph,
-    alternates: meta.alternates,
-  };
 }
 
 
