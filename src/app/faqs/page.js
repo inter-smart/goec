@@ -1,11 +1,11 @@
-import FaqHeroSection from "@/components/features/faq/FaqHeroSection";
-import FaqInfoSection from "@/components/features/faq/FaqInfoSection";
+import FaqHeroSection from "@/components/features/faqs/FaqHeroSection";
+import FaqInfoSection from "@/components/features/faqs/FaqInfoSection";
 import { fetchFromAPI } from "@/lib/api";
 
 
 async function getMetaData() {
   try {
-    const { data, error } = await fetchFromAPI(`meta-tags/faq`);
+    const { data, error } = await fetchFromAPI(`meta-tags/faqs`);
     const meta = data;
 
     // Parse extra meta tags stored as JSON in TEXT column
@@ -28,7 +28,7 @@ async function getMetaData() {
           ? [{ url: extra.og_image, width: 1200, height: 630 }]
           : [],
         type: "website",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/faq`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/faqs`,
       },
 
       twitter: {
@@ -41,7 +41,7 @@ async function getMetaData() {
       alternates: {
         canonical:
           extra?.canonical_url ||
-          `${process.env.NEXT_PUBLIC_SITE_URL}/faq`,
+          `${process.env.NEXT_PUBLIC_SITE_URL}/faqs`,
       },
 
       error: null,
@@ -50,7 +50,7 @@ async function getMetaData() {
     return {
       title: "FAQ",
       description: "Frequently Asked Questions",
-      keywords: "faq, help, questions",
+      keywords: "faqs, help, questions",
       error: "Failed to fetch metadata",
     };
   }

@@ -71,7 +71,7 @@ const footerData = {
           label: "NFC Smart Card",
         },
         {
-          link: "/faq",
+          link: "/faqs",
           label: "FAQs",
         },
       ],

@@ -1,4 +1,4 @@
-import FaqHeroSection from "@/components/features/faq/FaqHeroSection";
+import FaqHeroSection from "@/components/features/faqs/FaqHeroSection";
 import LegalInfoSection from "@/components/features/legal/LegalInfoSection";
 import { fetchFromAPI } from "@/lib/api";
 
