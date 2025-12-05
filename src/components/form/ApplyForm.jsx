@@ -39,7 +39,6 @@ const formSchema = z.object({
     .transform((val) => val?.trim() || "")
     .refine(validateNotEmpty, "Name is required")
     .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
-    .refine((val) => val.length >= 2, "Name must be at least 2 characters")
     .refine((val) => val.length <= 255, "Name is too long")
     .refine(validateSecurity, "Invalid characters detected")
     .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
@@ -90,10 +89,7 @@ const formSchema = z.object({
   designation: z.string().optional(),
   experience: z
     .string()
-    .min(1, "Experience is required")
-    .refine((val) => !isNaN(Number(val)), "Experience must be a number")
-    .transform((val) => Number(val))
-    .refine((val) => val >= 0 && val <= 50, "Experience must be between 0 and 50 years"),
+    .min(1, "Experience is required"),
   state_id: z.string().optional(),
   city_id: z.string().optional(),
   additionalInformation: z

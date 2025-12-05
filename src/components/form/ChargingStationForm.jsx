@@ -29,7 +29,6 @@ const formSchema = z.object({
     .transform((val) => val?.trim() || "")
     .refine(validateNotEmpty, "Name is required")
     .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
-    .refine((val) => val.length >= 2, "Name must be at least 2 characters")
     .refine((val) => val.length <= 255, "Name is too long")
     .refine(validateSecurity, "Invalid characters detected")
     .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")

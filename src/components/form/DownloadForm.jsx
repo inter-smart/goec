@@ -21,34 +21,41 @@ import {
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formSchema = z.object({
-  firstName: z
-    .string()
-    .transform((val) => val?.trim() || "")
-    .refine(validateNotEmpty, "Name is required")
-    .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
-    .refine((val) => val.length >= 2, "Name must be at least 2 characters")
-    .refine((val) => val.length <= 255, "Name is too long")
-    .refine(validateSecurity, "Invalid characters detected")
-    .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
-    .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
-    .refine(
-      (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
-      "Name can only contain letters, spaces, hyphens, and apostrophes"
-    ),
-  lastName: z
-    .string()
-    .transform((val) => val?.trim() || "")
-    .refine(validateNotEmpty, "Last name is required")
-    .refine(validateNotOnlyWhitespace, "Last name cannot be only whitespace")
-    .refine((val) => val.length >= 2, "Last name must be at least 2 characters")
-    .refine((val) => val.length <= 255, "Last name is too long")
-    .refine(validateSecurity, "Invalid characters detected")
-    .refine(validateNotOnlySpecialChars, "Last name cannot contain only special characters")
-    .refine((val) => !/\d/.test(val), "Last name cannot contain numbers")
-    .refine(
-      (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
-      "Last name can only contain letters, spaces, hyphens, and apostrophes"
-    ),
+ firstName: z
+  .string()
+  .transform((val) => val?.trim() || "")
+  .refine(validateNotEmpty, "Name is required")
+  .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
+  .refine((val) => val.length <= 255, "Name is too long")
+  .refine(validateSecurity, "Invalid characters detected")
+  .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+  .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
+  .refine(
+    (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\u0900-\u097F\s'\-]+$/u.test(val),
+    "Name can only contain letters, spaces, hyphens, and apostrophes"
+  )
+  .refine(
+    (val) => !/\s{2,}/.test(val.trim()),
+    "Name cannot contain multiple consecutive spaces"
+  ),
+
+lastName: z
+  .string()
+  .transform((val) => val?.trim() || "")
+  .refine(validateNotEmpty, "Last name is required")
+  .refine(validateNotOnlyWhitespace, "Last name cannot be only whitespace")
+  .refine((val) => val.length <= 255, "Last name is too long")
+  .refine(validateSecurity, "Invalid characters detected")
+  .refine(validateNotOnlySpecialChars, "Last name cannot contain only special characters")
+  .refine((val) => !/\d/.test(val), "Last name cannot contain numbers")
+  .refine(
+    (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\u0900-\u097F\s'\-]+$/u.test(val),
+    "Last name can only contain letters, spaces, hyphens, and apostrophes"
+  )
+  .refine(
+    (val) => !/\s{2,}/.test(val.trim()),
+    "Last name cannot contain multiple consecutive spaces"
+  ),
   email: z
     .string()
     .email("Please enter a valid email address")
