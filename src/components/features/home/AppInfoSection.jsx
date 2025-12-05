@@ -165,7 +165,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               viewport={{ once: false, amount: 0.3 }}
             >
               <ActionButton variant="link" className="text-white" asChild>
-                <Link href="/mobile-app">Learn more</Link>
+                <Link href="/app-page">Learn more</Link>
               </ActionButton>
             </motion.div>
             <motion.div

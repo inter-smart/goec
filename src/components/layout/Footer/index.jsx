@@ -59,7 +59,7 @@ const footerData = {
           label: "Blog",
         },
         {
-          link: "/mobile-app#how-to-charge",
+          link: "/app-page#how-to-charge",
           label: "How to charge",
         },
         {

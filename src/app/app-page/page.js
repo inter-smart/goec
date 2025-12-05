@@ -1,10 +1,10 @@
 export const dynamic = "force-dynamic";
 
 import InnerHero from "@/components/common/InnerHero";
-import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
-import AppFeatureSection from "@/components/features/mobile-app/AppFeatureSection";
-import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
-import AppDownloadSection from "@/components/features/mobile-app/AppDownloadSection";
+import AppDetailSection from "@/components/features/app-page/AppDetailSection";
+import AppFeatureSection from "@/components/features/app-page/AppFeatureSection";
+import HowChargeSection from "@/components/features/app-page/HowChargeSection";
+import AppDownloadSection from "@/components/features/app-page/AppDownloadSection";
 import { fetchFromAPI } from "@/lib/api";
 import Error from "../error";
 
@@ -107,7 +107,7 @@ export default async function Page() {
   const { data, error } = await fetchFromAPI("app");
 
   if (error) {
-    return <Error path="/mobile-app" />;
+    return <Error path="/app-page" />;
   }
 
   const { banner_section, about_section, feature_section, how_to_charge_section, start_ur_ev_section } = data;

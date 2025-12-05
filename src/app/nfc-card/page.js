@@ -1,8 +1,8 @@
 export const dynamic = "force-dynamic";
 
 import InnerHero from "@/components/common/InnerHero";
-import AppDetailSection from "@/components/features/mobile-app/AppDetailSection";
-import HowChargeSection from "@/components/features/mobile-app/HowChargeSection";
+import AppDetailSection from "@/components/features/app-page/AppDetailSection";
+import HowChargeSection from "@/components/features/app-page/HowChargeSection";
 import AppDownloadSection from "@/components/features/nfc-card/AppDownloadSection";
 import KeyBenefitSection from "@/components/features/nfc-card/KeyBenefitSection";
 import { fetchFromAPI } from "@/lib/api";
