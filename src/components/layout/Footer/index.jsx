@@ -98,7 +98,7 @@ const footerData = {
       title: "Discover",
       item_navigation: [
         {
-          link: "/find-charging-stations",
+          link: "/ev-charging-stations",
           label: "Explore chargers",
         },
         {

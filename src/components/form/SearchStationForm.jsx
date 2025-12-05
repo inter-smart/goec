@@ -105,7 +105,7 @@ export default function SearchStationForm({filters, currentFilters = {}}) {
     }
 
     // Navigate with new parameters
-    router.push(`/find-charging-stations?${params.toString()}`);
+    router.push(`/ev-charging-stations?${params.toString()}`);
   }, [router, searchParams, form]);
 
   // Handle form submission (for Enter key on search input)

@@ -23,7 +23,7 @@ const local_data = {
   title: "Showing results for <span>Kochi</span>",
   items: [
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "Kochi Metro, Ernakulam",
       location: "Ernakulam, Kochi, 682011",
       power: "40 KW",
@@ -35,7 +35,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "GO EC, Pnampolly Nagar, Kochi",
       location: "Panampally Nagar, Kochi, 682036",
       power: "60 KW",
@@ -47,7 +47,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "High Court, Kochi",
       location: "High Court Junction, Kochi, 682031",
       power: "80 KW",
@@ -59,7 +59,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "Cochin Shipyard, Kochi",
       location: "Cochin Shipyard Road, Kochi, 682015",
       power: "100 KW",
@@ -71,7 +71,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "High Court, Kochi",
       location: "High Court Junction, Kochi, 682031",
       power: "80 KW",
@@ -83,7 +83,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "Cochin International Airport",
       location: "Nedumbassery, Kochi, 683111",
       power: "120 KW",
@@ -95,7 +95,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "Fort Kochi Beach",
       location: "Fort Kochi, Kochi, 682001",
       power: "30 KW",
@@ -107,7 +107,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "Cochin Shipyard, Kochi",
       location: "Cochin Shipyard Road, Kochi, 682015",
       power: "100 KW",
@@ -119,7 +119,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "High Court, Kochi",
       location: "High Court Junction, Kochi, 682031",
       power: "80 KW",
@@ -131,7 +131,7 @@ const local_data = {
       },
     },
     {
-      link: "/find-charging-stations/1",
+      link: "/ev-charging-stations/1",
       station: "Cochin Shipyard, Kochi",
       location: "Cochin Shipyard Road, Kochi, 682015",
       power: "100 KW",
@@ -287,7 +287,7 @@ export default function FindChargingResultSection({
                     }
                   >
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                      <Link href={`/find-charging-stations/${item?.slug}`}>
+                      <Link href={`/ev-charging-stations/${item?.slug}`}>
                         {item?.station}
                       </Link>
                     </div>

@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
-import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
-import FindChargingResultSection from "@/components/features/find-charging-station/FindChargingResultSection";
+import FindChargingHeroSection from "@/components/features/ev-charging-station/FindChargingHeroSection";
+import FindChargingResultSection from "@/components/features/ev-charging-station/FindChargingResultSection";
 
 import { fetchFromAPI } from "@/lib/api";
 

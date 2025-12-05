@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import BecomePartnerFormSection from "@/components/features/become-a-partner/BecomePartnerFormSection";
-import FindChargingHeroSection from "@/components/features/find-charging-station/FindChargingHeroSection";
+import FindChargingHeroSection from "@/components/features/ev-charging-station/FindChargingHeroSection";
 import { fetchFromAPI } from "@/lib/api";
 
 const header_data = {

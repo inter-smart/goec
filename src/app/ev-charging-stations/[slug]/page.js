@@ -1,7 +1,7 @@
 import ConnectSection from "@/components/features/blog/ConnectSection";
-import DetailHeroSection from "@/components/features/find-charging-station/DetailHeroSection";
-import DetailInfoSection from "@/components/features/find-charging-station/DetailInfoSection";
-import DetailReviewSection from "@/components/features/find-charging-station/DetailReviewSection";
+import DetailHeroSection from "@/components/features/ev-charging-station/DetailHeroSection";
+import DetailInfoSection from "@/components/features/ev-charging-station/DetailInfoSection";
+import DetailReviewSection from "@/components/features/ev-charging-station/DetailReviewSection";
 import { fetchFromAPI } from "@/lib/api";
 
 const local_data = {
@@ -41,7 +41,7 @@ async function getMetaData(slug) {
     // Build canonical URL
     const canonical =
       otherMetaTags?.canonical_url ||
-      `${process.env.NEXT_PUBLIC_SITE_URL}/find-charging-stations/${slug}`;
+      `${process.env.NEXT_PUBLIC_SITE_URL}/ev-charging-stations/${slug}`;
 
     return {
       title: meta?.meta_title,

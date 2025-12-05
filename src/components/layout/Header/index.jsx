@@ -352,7 +352,7 @@ export default function Header({ header_section }) {
 //       {
 //         id: 1,
 //         label: "Find charging stations",
-//         link: "/find-charging-stations",
+//         link: "/ev-charging-stations",
 //       },
 //       {
 //         id: 2,
@@ -629,7 +629,7 @@ function MegaNavigationMenubar() {
       {
         id: 1,
         label: "Find charging stations",
-        link: "/find-charging-stations",
+        link: "/ev-charging-stations",
       },
       {
         id: 2,
