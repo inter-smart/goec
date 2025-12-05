@@ -46,6 +46,7 @@ lastName: z
   .refine(validateNotOnlyWhitespace, "Last name cannot be only whitespace")
   .refine((val) => val.length <= 255, "Last name is too long")
   .refine(validateSecurity, "Invalid characters detected")
+  .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
   .refine(validateNotOnlySpecialChars, "Last name cannot contain only special characters")
   .refine((val) => !/\d/.test(val), "Last name cannot contain numbers")
   .refine(
@@ -69,21 +70,30 @@ lastName: z
       const parts = val.split("@");
       return parts.length === 2 && parts[1].length > 0;
     }, "Email must have a valid domain"),
-  phone: z
+    phone: z
     .string()
     .transform((val) => val?.trim() || "")
     .refine(validateNotEmpty, "Phone number is required")
     .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
     .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters")
     .refine((val) => {
       const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
       return cleaned.length >= 5 && cleaned.length <= 15;
     }, "Phone number must be between 5-15 digits")
     .refine((val) => {
       const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
-      return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
-    }, "Phone number must contain valid digits and cannot be all zeros")
-    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+      return /^\d+$/.test(cleaned);
+    }, "Phone number must contain valid digits")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return !/^0+$/.test(cleaned);
+    }, "Phone number cannot be all zeros")
+    .refine((val) => {
+      // Reject multiple consecutive + signs
+      return !/\+{2,}/.test(val);
+    }, "Invalid phone number format"),
+
   state_id: z.string().optional(),
   city_id: z.string().optional(),
 });
@@ -292,7 +302,7 @@ export default function DownloadForm({ onSuccess }) {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loadingStates}>
+                <Select onValueChange={field.onChange} value={field.value} disabled={loadingStates}>
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
                       <SelectValue placeholder={loadingStates ? "Loading states..." : "Select state"} />

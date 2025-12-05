@@ -11,7 +11,6 @@ import "swiper/css/effect-creative";
 import "swiper/css/pagination";
 import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useRef } from "react";
-import { MEDIA_URL } from "@/lib/api";
 
 import * as motion from "motion/react-client";
 import { generateMediaUrl } from "@/lib/utils";
@@ -232,7 +231,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                   className="w-full h-full object-cover absolute -z-2 inset-0 block sm:hidden"
                 >
                   <source
-                    src={`${MEDIA_URL}${item?.media?.mobile?.media_path}`}
+                    src={generateMediaUrl(item?.media?.mobile?.media_path)}
                     type="video/mp4"
                   />
                 </video>
@@ -244,7 +243,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                   className="w-full h-full object-cover absolute -z-2 inset-0 hidden sm:block"
                 >
                   <source
-                    src={`${MEDIA_URL}${item?.media?.desktop?.media_path}`}
+                    src={generateMediaUrl(item?.media?.desktop?.media_path)}
                     type="video/mp4"
                   />
                 </video>
@@ -253,11 +252,11 @@ export default function HeroSection({ heroBanner = heroData }) {
               <picture className="absolute -z-2 inset-0">
                 <source
                   media="(max-width: 640px)"
-                  srcSet={`${MEDIA_URL}${item?.media?.mobile?.media_path}`}
+                  srcSet={generateMediaUrl(item?.media?.mobile?.media_path)}
                 />
                 <Image
                   src={generateMediaUrl(item?.media?.desktop?.media_path) || "/images/placeholder.jpg"}
-                  alt={`${MEDIA_URL}${item?.media?.desktop?.media_alt}`}
+                  alt={item?.media?.desktop?.media_alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                   className="-z-2 object-cover"
@@ -334,7 +333,6 @@ export default function HeroSection({ heroBanner = heroData }) {
             height="14"
             viewBox="0 0 5 14"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
             className={"mx-auto block"}
           >
             <path

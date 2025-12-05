@@ -5,8 +5,41 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export const generateMediaUrl = (url) => {
-  return `${process.env.NEXT_PUBLIC_API_BASE_URL || ""}${url}`;
+export const generateMediaUrl = (path) => {
+  // Handle null, undefined, or empty string
+  if (!path || typeof path !== 'string') {
+    return '';
+  }
+
+  // Trim whitespace
+  const trimmedPath = path.trim();
+
+  if (!trimmedPath) {
+    return '';
+  }
+
+  // Check if path is already a complete URL (starts with http:// or https://)
+  if (trimmedPath.startsWith('http://') || trimmedPath.startsWith('https://')) {
+    return trimmedPath;
+  }
+
+  // Check if path is a protocol-relative URL (starts with //)
+  if (trimmedPath.startsWith('//')) {
+    return trimmedPath;
+  }
+
+  // Get base URL from environment
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || '';
+
+  if (!baseUrl) {
+    return trimmedPath;
+  }
+
+  // Normalize slashes to prevent double slashes or missing slashes
+  const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  const normalizedPath = trimmedPath.startsWith('/') ? trimmedPath : `/${trimmedPath}`;
+
+  return `${normalizedBaseUrl}${normalizedPath}`;
 };
 
 export function extractFirstParagraph(html) {

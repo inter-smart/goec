@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { motion } from "motion/react";
+import { generateMediaUrl } from "@/lib/utils";
 
 // const tripData = {
 //   media: {
@@ -39,13 +40,13 @@ export default function TripSection({ title, highlightTitle, description, makeRi
           {makeRideMedia?.desktop?.media_type === "video" ? (
             <video autoPlay loop muted playsInline className="w-full h-full opacity-90 object-cover absolute -z-2 inset-0">
               <source
-                src={makeRideMedia?.desktop?.media_path ? `${MEDIA_URL}${makeRideMedia?.desktop?.media_path}` : "videos/trip-bg.mp4"}
+                src={makeRideMedia?.desktop?.media_path ? generateMediaUrl(makeRideMedia?.desktop?.media_path): "videos/trip-bg.mp4"}
                 type="video/mp4"
               />
             </video>
           ) : (
             <picture className="absolute -z-2 inset-0">
-              <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${makeRideMedia?.mobile?.media_path}`} />
+              <source media="(max-width: 640px)" srcSet={generateMediaUrl(makeRideMedia?.mobile?.media_path)} />
               <Image
                 src={`${MEDIA_URL}${makeRideMedia?.desktop?.media_path}`}
                 alt={makeRideMedia?.desktop?.media_alt}

@@ -4,11 +4,24 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ActionButton } from "../utils/Button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { fetchFromAPI, postWithFileAPI } from "@/lib/api";
@@ -41,10 +54,14 @@ const formSchema = z.object({
     .refine(validateNotOnlyWhitespace, "Name cannot be only whitespace")
     .refine((val) => val.length <= 255, "Name is too long")
     .refine(validateSecurity, "Invalid characters detected")
-    .refine(validateNotOnlySpecialChars, "Name cannot contain only special characters")
+    .refine(
+      validateNotOnlySpecialChars,
+      "Name cannot contain only special characters"
+    )
     .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
     .refine(
-      (val) => /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
+      (val) =>
+        /^[a-zA-Z\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF\s'\-]+$/u.test(val),
       "Name can only contain letters, spaces, hyphens, and apostrophes"
     ),
   lastName: z
@@ -52,12 +69,29 @@ const formSchema = z.object({
     .optional()
     .transform((val) => val?.trim() || "")
     // Only run validations if value is not empty
+    .refine((val) => !/\d/.test(val), "Name cannot contain numbers")
+
     .refine((val) => !val || validateNotEmpty(val), "Last name is required")
-    .refine((val) => !val || validateNotOnlyWhitespace(val), "Last name cannot be only whitespace")
-    .refine((val) => !val || validateSingleCharacter(val), "Last name must be at least 2 characters")
-    .refine((val) => !val || validateMessageLength(val), "Last name is too long (maximum 5000 characters)")
-    .refine((val) => !val || validateSecurity(val), "Last name contains invalid characters or potential security risk")
-    .refine((val) => !val || validateNotOnlySpecialChars(val), "Last name cannot contain only special characters"),
+    .refine(
+      (val) => !val || validateNotOnlyWhitespace(val),
+      "Last name cannot be only whitespace"
+    )
+    .refine(
+      (val) => !val || validateSingleCharacter(val),
+      "Last name must be at least 2 characters"
+    )
+    .refine(
+      (val) => !val || validateMessageLength(val),
+      "Last name is too long (maximum 5000 characters)"
+    )
+    .refine(
+      (val) => !val || validateSecurity(val),
+      "Last name contains invalid characters or potential security risk"
+    )
+    .refine(
+      (val) => !val || validateNotOnlySpecialChars(val),
+      "Last name cannot contain only special characters"
+    ),
   email: z
     .string()
     .email("Please enter a valid email address")
@@ -71,25 +105,32 @@ const formSchema = z.object({
       const parts = val.split("@");
       return parts.length === 2 && parts[1].length > 0;
     }, "Email must have a valid domain"),
-  phone: z
+   phone: z
     .string()
     .transform((val) => val?.trim() || "")
     .refine(validateNotEmpty, "Phone number is required")
     .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
     .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters")
     .refine((val) => {
       const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
       return cleaned.length >= 5 && cleaned.length <= 15;
     }, "Phone number must be between 5-15 digits")
     .refine((val) => {
       const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
-      return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
-    }, "Phone number must contain valid digits and cannot be all zeros")
-    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+      return /^\d+$/.test(cleaned);
+    }, "Phone number must contain valid digits")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return !/^0+$/.test(cleaned);
+    }, "Phone number cannot be all zeros")
+    .refine((val) => {
+      // Reject multiple consecutive + signs
+      return !/\+{2,}/.test(val);
+    }, "Invalid phone number format"),
+
   designation: z.string().optional(),
-  experience: z
-    .string()
-    .min(1, "Experience is required"),
+  experience: z.string().min(1, "Experience is required"),
   state_id: z.string().optional(),
   city_id: z.string().optional(),
   additionalInformation: z
@@ -97,15 +138,40 @@ const formSchema = z.object({
     .optional()
     .transform((val) => val?.trim() || "")
     // Only run validations if value is not empty
-    .refine((val) => !val || validateNotEmpty(val), "Additional information is required")
-    .refine((val) => !val || validateNotOnlyWhitespace(val), "Additional information cannot be only whitespace")
-    .refine((val) => !val || validateSingleCharacter(val), "Additional information must be at least 2 characters")
-    .refine((val) => !val || validateMessageLength(val), "Additional information is too long (maximum 5000 characters)")
-    .refine((val) => !val || validateSecurity(val), "Additional information contains invalid characters or potential security risk")
-    .refine((val) => !val || validateNotOnlySpecialChars(val), "Additional information cannot contain only special characters"),
+    .refine(
+      (val) => !val || validateNotEmpty(val),
+      "Additional information is required"
+    )
+    // min 2 characters required
+    .refine(
+      (val) => !val || val.length >= 2,
+      "Additional information must be at least 2 characters"
+    )
+    .refine(
+      (val) => !val || validateNotOnlyWhitespace(val),
+      "Additional information cannot be only whitespace"
+    )
+    .refine(
+      (val) => !val || validateSingleCharacter(val),
+      "Additional information must be at least 2 characters"
+    )
+    .refine(
+      (val) => !val || validateMessageLength(val),
+      "Additional information is too long (maximum 5000 characters)"
+    )
+    .refine(
+      (val) => !val || validateSecurity(val),
+      "Additional information contains invalid characters or potential security risk"
+    )
+    .refine(
+      (val) => !val || validateNotOnlySpecialChars(val),
+      "Additional information cannot contain only special characters"
+    ),
   attachment: z
     .any()
-    .refine((file) => file instanceof File, { message: "Attachment is required." })
+    .refine((file) => file instanceof File, {
+      message: "Attachment is required.",
+    })
     .refine((file) => file?.size <= MAX_FILE_SIZE, {
       message: "File size must be less than 10 MB.",
     })
@@ -192,7 +258,9 @@ export default function ApplyForm({ careerData }) {
         form.setValue("city_id", ""); // Reset city when state changes
 
         try {
-          const { data, error } = await fetchFromAPI(`location/cities/${selectedStateId}`);
+          const { data, error } = await fetchFromAPI(
+            `location/cities/${selectedStateId}`
+          );
           if (error) return console.error("Error fetching cities:", error);
 
           setCities(data);
@@ -241,12 +309,16 @@ export default function ApplyForm({ careerData }) {
       formData.append("recaptcha_token", recaptchaToken);
 
       // Only append if values exist
-      if (careerData?.category?.title) formData.append("designation", careerData.category.title);
+      if (careerData?.category?.title)
+        formData.append("designation", careerData.category.title);
       if (values.experience) formData.append("experience", values.experience);
       if (values.state_id) formData.append("state_id", values.state_id);
       if (values.city_id) formData.append("city_id", values.city_id);
       if (careerData?.title) formData.append("job_title", careerData.title);
-      formData.append("additional_information", values.additionalInformation || "");
+      formData.append(
+        "additional_information",
+        values.additionalInformation || ""
+      );
 
       // Append file if exists
       if (uploadedFile) {
@@ -273,17 +345,23 @@ export default function ApplyForm({ careerData }) {
       } else {
         // Display validation errors if available
         if (data && data.errors && Array.isArray(data.errors)) {
-          const errorMessages = data.errors.map((err) => err.msg || err.message).join("\n");
+          const errorMessages = data.errors
+            .map((err) => err.msg || err.message)
+            .join("\n");
           toast.error(`Validation errors:\n${errorMessages}`);
         } else if (data && data.message) {
           toast.error(data.message);
         } else {
-          toast.error("Failed to submit application. Please check your information and try again.");
+          toast.error(
+            "Failed to submit application. Please check your information and try again."
+          );
         }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("An error occurred while submitting the form. Please try again.");
+      toast.error(
+        "An error occurred while submitting the form. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -300,7 +378,12 @@ export default function ApplyForm({ careerData }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>First name*</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter first name" className={inputStyle} {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter first name"
+                    className={inputStyle}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -314,7 +397,12 @@ export default function ApplyForm({ careerData }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Last name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter last name" className={inputStyle} {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter last name"
+                    className={inputStyle}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -328,7 +416,12 @@ export default function ApplyForm({ careerData }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Email id*</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="Enter email id" className={inputStyle} {...field} />
+                  <Input
+                    type="email"
+                    placeholder="Enter email id"
+                    className={inputStyle}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -342,7 +435,12 @@ export default function ApplyForm({ careerData }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Phone number*</FormLabel>
                 <FormControl>
-                  <Input type="tel" placeholder="Enter phone number" className={inputStyle} {...field} />
+                  <Input
+                    type="tel"
+                    placeholder="Enter phone number"
+                    className={inputStyle}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -356,7 +454,12 @@ export default function ApplyForm({ careerData }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Designation</FormLabel>
                 <FormControl>
-                  <Input {...field} value={careerData?.category?.title ?? ""} readOnly className={inputStyle + " cursor-not-allowed bg-gray-100"} />
+                  <Input
+                    {...field}
+                    value={careerData?.category?.title ?? ""}
+                    readOnly
+                    className={inputStyle + " cursor-not-allowed bg-gray-100"}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -370,7 +473,12 @@ export default function ApplyForm({ careerData }) {
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>Experience</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="Enter your total experience" className={inputStyle} {...field} />
+                  <Input
+                    type="text"
+                    placeholder="Enter your total experience"
+                    className={inputStyle}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -383,10 +491,18 @@ export default function ApplyForm({ careerData }) {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>State</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value} disabled={loadingStates}>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  disabled={loadingStates}
+                >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder={loadingStates ? "Loading..." : "Select state"} />
+                      <SelectValue
+                        placeholder={
+                          loadingStates ? "Loading..." : "Select state"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -408,10 +524,22 @@ export default function ApplyForm({ careerData }) {
             render={({ field }) => (
               <FormItem className="w-full sm:w-1/2">
                 <FormLabel className={labelStyle}>City</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value} disabled={!selectedStateId || loadingCities}>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  disabled={!selectedStateId || loadingCities}
+                >
                   <FormControl>
                     <SelectTrigger size="none" className={inputStyle}>
-                      <SelectValue placeholder={!selectedStateId ? "Select state first" : loadingCities ? "Loading..." : "Select city"} />
+                      <SelectValue
+                        placeholder={
+                          !selectedStateId
+                            ? "Select state first"
+                            : loadingCities
+                              ? "Loading..."
+                              : "Select city"
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -432,9 +560,15 @@ export default function ApplyForm({ careerData }) {
             name="additionalInformation"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className={labelStyle}>Additional information</FormLabel>
+                <FormLabel className={labelStyle}>
+                  Additional information
+                </FormLabel>
                 <FormControl>
-                  <Textarea className={textareaStyle} placeholder="Add additional enquiry or notes" {...field} />
+                  <Textarea
+                    className={textareaStyle}
+                    placeholder="Add additional enquiry or notes"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -446,7 +580,9 @@ export default function ApplyForm({ careerData }) {
             name="attachment"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className={cn(labelStyle, "sr-only")}>Add an attachment</FormLabel>
+                <FormLabel className={cn(labelStyle, "sr-only")}>
+                  Add an attachment
+                </FormLabel>
                 <FormControl>
                   <div className="max-w-full space-y-2">
                     {!uploadedFile ? (
@@ -454,23 +590,49 @@ export default function ApplyForm({ careerData }) {
                         htmlFor="file-upload"
                         className={`${inputStyle} text-[#030303] !px-0 flex flex-wrap items-center cursor-pointer hover:border-[#737373] transition-colors`}
                       >
-                        <Image src="/images/icon-attachment.svg" alt="icon-attachment" width={20} height={20} className="w-[15px] xl:w-[20px]" />
-                        <span className={cn(labelStyle, "font-medium")}>Add an attachment</span>
+                        <Image
+                          src="/images/icon-attachment.svg"
+                          alt="icon-attachment"
+                          width={20}
+                          height={20}
+                          className="w-[15px] xl:w-[20px]"
+                        />
+                        <span className={cn(labelStyle, "font-medium")}>
+                          Add an attachment
+                        </span>
 
                         <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] text-[#373737]">
                           &nbsp;Max. 10 MB. (Type: pdf, doc, png, jpeg, docx)
                         </span>
-                        <input id="file-upload" type="file" className="hidden" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" onChange={handleFileChange} />
+                        <input
+                          id="file-upload"
+                          type="file"
+                          className="hidden"
+                          accept=".pdf,.doc,.docx,.png,.jpeg,.jpg"
+                          onChange={handleFileChange}
+                        />
                       </label>
                     ) : (
-                      <div className={`${inputStyle} break-all flex flex-wrap items-center justify-between !bg-gray-50`}>
-                        <span className="line-clamp-1 max-w-[70%] flex-1 pr-2">{uploadedFile.name}</span>
-                        <button type="button" onClick={handleFileRemove} className="text-red-500 hover:text-red-700 transition-colors flex-shrink-0">
+                      <div
+                        className={`${inputStyle} break-all flex flex-wrap items-center justify-between !bg-gray-50`}
+                      >
+                        <span className="line-clamp-1 max-w-[70%] flex-1 pr-2">
+                          {uploadedFile.name}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleFileRemove}
+                          className="text-red-500 hover:text-red-700 transition-colors flex-shrink-0"
+                        >
                           <X className="size-3 xl:size-4" />
                         </button>
                       </div>
                     )}
-                    {fileError && <p className="text-[9px] sm:text-[10px] xl:text-[11px] 2xl:text-[12px] text-red-500">{fileError}</p>}
+                    {fileError && (
+                      <p className="text-[9px] sm:text-[10px] xl:text-[11px] 2xl:text-[12px] text-red-500">
+                        {fileError}
+                      </p>
+                    )}
                   </div>
                 </FormControl>
                 <FormMessage />

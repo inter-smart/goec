@@ -55,6 +55,7 @@ const formSchema = z.object({
     .refine((val) => !val || validateNotEmpty(val), "Last name is required")
     .refine((val) => !val || validateNotOnlyWhitespace(val), "Last name cannot be only whitespace")
     .refine((val) => !val || validateMessageLength(val), "Last name is too long (maximum 5000 characters)")
+    .refine((val) => !/\d/.test(val), "Last name cannot contain numbers")
     .refine((val) => !val || validateSecurity(val), "Last name contains invalid characters or potential security risk")
     .refine((val) => !val || validateNotOnlySpecialChars(val), "Last name cannot contain only special characters"),
   email: z
@@ -76,15 +77,24 @@ const formSchema = z.object({
     .refine(validateNotEmpty, "Phone number is required")
     .refine(validateNotOnlyWhitespace, "Phone number cannot be only whitespace")
     .refine(validateSecurity, "Invalid characters detected")
+    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters")
     .refine((val) => {
       const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
       return cleaned.length >= 5 && cleaned.length <= 15;
     }, "Phone number must be between 5-15 digits")
     .refine((val) => {
       const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
-      return /^\d+$/.test(cleaned) && !/^0+$/.test(cleaned);
-    }, "Phone number must contain valid digits and cannot be all zeros")
-    .refine((val) => /^[\d\s\(\)\-\+]+$/.test(val), "Phone number contains invalid characters"),
+      return /^\d+$/.test(cleaned);
+    }, "Phone number must contain valid digits")
+    .refine((val) => {
+      const cleaned = val.replace(/[\s\(\)\-\+]/g, "");
+      return !/^0+$/.test(cleaned);
+    }, "Phone number cannot be all zeros")
+    .refine((val) => {
+      // Reject multiple consecutive + signs
+      return !/\+{2,}/.test(val);
+    }, "Invalid phone number format"),
+
   state_id: z.string().optional(),
   city_id: z.string().optional(),
   pincode: z.string().optional(),
@@ -95,6 +105,7 @@ const formSchema = z.object({
     .transform((val) => val?.trim() || "")
     // Only run validations if value is not empty
     .refine((val) => !val || validateNotEmpty(val), "Additional information is required")
+    .refine((val) => !val || val.length >= 2, "Additional information must be at least 2 characters")
     .refine((val) => !val || validateNotOnlyWhitespace(val), "Additional information cannot be only whitespace")
     .refine((val) => !val || validateSingleCharacter(val), "Additional information must be at least 2 characters")
     .refine((val) => !val || validateMessageLength(val), "Additional information is too long (maximum 5000 characters)")
