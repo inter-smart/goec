@@ -23,7 +23,7 @@ import {
 } from "@/lib/validations";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-const MAX_FILE_SIZE = 1 * 1024 * 1024; // 10 MB
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
 const ACCEPTED_FILE_TYPES = [
   "application/pdf",
   "application/msword",
@@ -115,7 +115,7 @@ const formSchema = z.object({
     .any()
     .refine((file) => file instanceof File, { message: "Attachment is required." })
     .refine((file) => file?.size <= MAX_FILE_SIZE, {
-      message: "File size must be less than 10 MB.",
+      message: "File size must be less than 2 MB.",
     })
     .refine((file) => ACCEPTED_FILE_TYPES.includes(file?.type), {
       message: "Invalid file type. Allowed: pdf, doc, docx, png, jpeg.",
@@ -477,7 +477,7 @@ export default function BecomePartnerForm() {
                         <span className={cn(labelStyle, "font-medium")}>Add an attachment*</span>
 
                         <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] text-[#373737]">
-                          &nbsp;Max. 10 MB. (Type: pdf, doc, png, jpeg, docx)
+                          &nbsp;Max. 2 MB. (Type: pdf, doc, png, jpeg, docx)
                         </span>
                         <input id="file-upload" type="file" className="hidden" accept=".pdf,.doc,.docx,.png,.jpeg,.jpg" onChange={handleFileChange} />
                       </label>
