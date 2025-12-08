@@ -5,7 +5,7 @@ import { fetchFromAPI } from "@/lib/api";
 
 async function getMetaData() {
   try {
-    const { data, error } = await fetchFromAPI(`meta-tags/faq`);
+    const { data, error } = await fetchFromAPI(`meta-tags/faqs`);
     const meta = data;
 
     // Parse extra meta tags stored as JSON in TEXT column
