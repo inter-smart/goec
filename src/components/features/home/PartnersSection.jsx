@@ -142,7 +142,7 @@ export default function PartnersSection({ title, associates }) {
   return (
     <section className="w-full h-auto block bg-[#030303] relative z-0 py-[40px_20px] sm:py-[100px_25px] xl:py-[120px_30px] 2xl:py-[160px_40px] overflow-hidden">
       <Image
-        src="/images/partner-bg.svg"
+        src="/images/partner-bg2.svg"
         alt="partners-bg"
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"

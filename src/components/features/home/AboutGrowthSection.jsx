@@ -15,59 +15,6 @@ import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { generateMediaUrl } from "@/lib/utils";
 
-// const aboutGrowthData = [
-//   {
-//     media: {
-//       mobile: {
-//         type: "image",
-//         path: "/images/about-growth-1.jpg",
-//         alt: "about",
-//       },
-//       desktop: {
-//         type: "image",
-//         path: "/images/about-growth-1.jpg",
-//         alt: "about",
-//       },
-//     },
-//     title:
-//       "GO EC started with one charging station in Kerala, sparking an electric revolution.",
-//     timestamp: "2020-08-14T05:00:00.000000Z",
-//   },
-//   {
-//     media: {
-//       mobile: {
-//         type: "image",
-//         path: "/images/about-growth-2.jpg",
-//         alt: "about",
-//       },
-//       desktop: {
-//         type: "image",
-//         path: "/images/about-growth-2.jpg",
-//         alt: "about",
-//       },
-//     },
-//     title:
-//       "We're now Kerala's leading EV charging station and expanding across India.",
-//     timestamp: "2025-08-14T05:00:00.000000Z",
-//   },
-//   {
-//     media: {
-//       mobile: {
-//         type: "image",
-//         path: "/images/about-growth-3.jpg",
-//         alt: "about",
-//       },
-//       desktop: {
-//         type: "image",
-//         path: "/images/about-growth-3.jpg",
-//         alt: "about",
-//       },
-//     },
-//     title:
-//       "By 2030, GOEC will power every state in India with EV charging stations.",
-//     timestamp: "2030-08-14T05:00:00.000000Z",
-//   },
-// ];
 
 export default function AboutGrowthSection({ growthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -213,7 +160,7 @@ export default function AboutGrowthSection({ growthData }) {
                   <Heading
                     as="h3"
                     size="heading3"
-                    className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%] max-sm:text-[18px]"
+                    className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%] max-2xs:text-[14px]"
                   >
                     {item?.title}
                   </Heading>

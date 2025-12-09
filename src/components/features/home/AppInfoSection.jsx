@@ -71,10 +71,10 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
   return (
     <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[30px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px]">
       <Image
-        src="/images/app_info-bg.png"
+        src="/images/app_info-bg2.png"
         alt="app_info-bg"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
         className="-z-3 object-cover pointer-events-none"
       />
 
@@ -88,13 +88,6 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
                 type="video/mp4"
               />
             </video>
-            <Image
-              src="/images/app_info-mockup-overlay.png"
-              alt={appFeatures?.hand_image_alt}
-              width={255}
-              height={544}
-              className="w-full h-full"
-            />
           </div>
           <Image
             src={"/images/app_info-mockup-overlay.png"}
@@ -225,27 +218,27 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
           <div className="w-full sm:w-[320px] lg:w-[468px] xl:w-[580px] 2xl:w-[768px] 3xl:w-[860px]">
             <div className="w-full h-full relative z-0">
               <Image
-                src="/images/app_info-spec-bg.png"
+                src="/images/app_info-spec-bg2.svg"
                 alt="app_info-spec-bg"
                 width={880}
                 height={640}
                 className="w-full h-full"
               />
 
-              <div className="absolute top-[7.5%] left-[58%]">
-                <SpecItem texts={groupedSpecs[0]} />
+              <div className="absolute top-[7.5%] left-[58%] w-[24%] sm:w-[75px] lg:w-[100px] xl:w-[135px] 2xl:w-[176px] 3xl:w-[200px]">
+                <SpecItem className="" texts={groupedSpecs[0]} />
               </div>
 
-              <div className="absolute top-[34.5%] left-[68%]">
-                <SpecItem texts={groupedSpecs[1]} />
+              <div className="absolute top-[34.5%] left-[68%] w-[24%] sm:w-[75px] lg:w-[100px] xl:w-[135px] 2xl:w-[176px] 3xl:w-[200px]">
+                <SpecItem className="" texts={groupedSpecs[1]} />
               </div>
 
-              <div className="absolute top-[61.5%] left-[66%]">
-                <SpecItem texts={groupedSpecs[2]} />
+              <div className="absolute top-[61.5%] left-[66%] w-[32%] sm:w-[100px] lg:w-[140px] xl:w-[180px] 2xl:w-[230px] 3xl:w-[260px]">
+                <SpecItem className="" texts={groupedSpecs[2]} />
               </div>
 
-              <div className="absolute top-[88.5%] left-[62%]">
-                <SpecItem texts={groupedSpecs[3]} />
+              <div className="absolute top-[88.5%] left-[62%] w-[24%] sm:w-[75px] lg:w-[100px] xl:w-[135px] 2xl:w-[176px] 3xl:w-[200px]">
+                <SpecItem className="" texts={groupedSpecs[3]} />
               </div>
             </div>
           </div>
@@ -271,7 +264,7 @@ function SpecItem({ texts, duration = 3000 }) {
   const current = texts[index];
 
   return (
-    <div className="w-[100px] sm:w-[100px] xl:w-[135px] 2xl:w-[176px] 3xl:w-[200px] h-5 overflow-hidden relative z-0">
+    <div className="w-full h-5 overflow-hidden relative z-0">
       <AnimatePresence mode="wait">
         <motion.div
           key={index}

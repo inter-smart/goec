@@ -15,106 +15,24 @@ import Autoplay from "embla-carousel-autoplay";
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-// const AboutRecognitionData = {
-//   title: "Media & Recognition",
-//   description: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-//   item_recognition: [
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-1.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-2.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-1.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-2.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-1.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-2.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-1.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-2.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-1.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-2.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-1.jpg",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/about-recognition-2.jpg",
-//         alt: "partners",
-//       },
-//     },
-//   ],
-// };
-
 export default function AboutRecognitionSection({ title, description, list }) {
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 3000, stopOnInteraction: false })]);
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 3000, stopOnInteraction: false }),
+  ]);
 
   return (
-    <section id="media-recognition" className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]">
+    <section
+      id="media-recognition"
+      className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#fafafa]"
+    >
       <div className="container">
         <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">
-            <Heading as="h2" size="heading2" className="text-[#030303] max-sm:text-center">
+            <Heading
+              as="h2"
+              size="heading2"
+              className="text-[#030303] max-sm:text-center"
+            >
               {title}
             </Heading>
           </div>
@@ -130,7 +48,10 @@ export default function AboutRecognitionSection({ title, description, list }) {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -mx-1 lg:-mx-2 cursor-grab">
             {list?.map((item, index) => (
-              <div key={"gallery" + index} className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2">
+              <div
+                key={"gallery" + index}
+                className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
+              >
                 {item?.media?.media_type === "video" ? (
                   <Item
                     html={`
@@ -162,11 +83,18 @@ export default function AboutRecognitionSection({ title, description, list }) {
                           poster={generateMediaUrl(item?.thumbnail?.media_path)}
                           className="w-full h-full object-cover transition group-hover:scale-105"
                         >
-                          <source src={generateMediaUrl(item?.media?.media_path)} type="video/mp4" />
+                          <source
+                            src={generateMediaUrl(item?.media?.media_path)}
+                            type="video/mp4"
+                          />
                         </video>
                         {/* Play icon overlay */}
                         <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <svg
+                            className="w-16 h-16 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
                             <path d="M8 5v14l11-7z" />
                           </svg>
                         </div>
@@ -175,8 +103,14 @@ export default function AboutRecognitionSection({ title, description, list }) {
                   </Item>
                 ) : (
                   <Item
-                    original={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
-                    thumbnail={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                    original={
+                      generateMediaUrl(item?.media?.media_path) ||
+                      "/images/placeholder.jpg"
+                    }
+                    thumbnail={
+                      generateMediaUrl(item?.media?.media_path) ||
+                      "/images/placeholder.jpg"
+                    }
                     width="1200"
                     height="900"
                     alt={item?.media_alt || "gallery"}
@@ -186,7 +120,10 @@ export default function AboutRecognitionSection({ title, description, list }) {
                         <Image
                           ref={ref}
                           onClick={open}
-                          src={generateMediaUrl(item?.media?.media_path) || "/images/placeholder.jpg"}
+                          src={
+                            generateMediaUrl(item?.media?.media_path) ||
+                            "/images/placeholder.jpg"
+                          }
                           alt={item?.media_alt || "gallery"}
                           width={476}
                           height={268}
