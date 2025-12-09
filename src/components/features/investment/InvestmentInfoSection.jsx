@@ -3,23 +3,6 @@ import DOMPurify from "isomorphic-dompurify";
 import { MEDIA_URL } from "@/lib/api";
 import parse from "html-react-parser";
 
-// const investmentData = {
-//   media: {
-//     desktop: {
-//       type: "video",
-//       path: "/videos/investment-info-1.mp4",
-//       alt: "investment",
-//     },
-//     mobile: {
-//       type: "video",
-//       path: "/videos/investment-info-1.mp4",
-//       alt: "investment",
-//     },
-//   },
-//   description:
-//     "<h4>GO EC is envisioned to meet the opportunities for sustainable mobility through collaborations with wiling and progressive partners. Our focus remains on creating a chain of EV Charging Stations that are optimized within the best-given space and infrastructure capacities.</h4>",
-// };
-
 export default function InvestmentInfoSection({ description, media }) {
   const sanitizedText = DOMPurify.sanitize(description);
   return (
