@@ -54,7 +54,7 @@ export default function SolutionCard({
               <Heading
                 as={"h4"}
                 size={"heading3"}
-                className="font-medium line-clamp-2 text-[#191a19] mb-[15px] md:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+                className="font-medium line-clamp-2 text-[#191a19] mb-[15px] md:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
@@ -94,9 +94,38 @@ export default function SolutionCard({
                 </motion.span>
               </Text>
             </div>
-            <div>
-              <ActionButton variant="link" className="text-black" asChild>
-                <Link href={"/investment"}>Learn more</Link>
+            <div className="mt-4 sm:mt-1">
+              <ActionButton
+                // variant="link"
+                size={"lg"}
+                className={cn(
+                  "text-black max-w-[100px] sm:max-w-[140px] xl:max-w-[180px] 2xl:max-w-[200px] bg-transparent shadow-none transition duration-500 max-xl:bg-white max-xl:border-[#f0f0f0]",
+                  "xl:not-hover:-translate-x-8 2xl:not-hover:-translate-x-9",
+                  "hover:text-white hover:border-white/80 hover:bg-transparent hover:bg-gradient-to-r hover:from-[#0f51a9] hover:via-[#0055e0] hover:to-[#0f51a9]",
+                  "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                  "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                )}
+                asChild
+              >
+                <Link href={"/investment"}>
+                  Learn more
+                  <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                    <Image
+                      src="/images/icon-btn-arrow-dark.svg"
+                      alt="icon-btn-arrow-dark"
+                      width={41}
+                      height={23}
+                      className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                    />
+                    <Image
+                      src="/images/icon-btn-arrow-hover.svg"
+                      alt="icon-btn-arrow-hover"
+                      width={41}
+                      height={23}
+                      className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                    />
+                  </span>
+                </Link>
               </ActionButton>
             </div>
             <Image

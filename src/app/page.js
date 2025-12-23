@@ -9,45 +9,49 @@ import PartnersSection from "@/components/features/home/PartnersSection";
 import LatestNewsSection from "@/components/features/home/LatestNewsSection";
 import LatestBlogSection from "@/components/features/home/LatestBlogSection";
 import { fetchFromAPI } from "@/lib/api";
-
+import InitialLoading from "./initial-loading";
 
 export async function generateMetadata() {
   try {
     const { data, error } = await fetchFromAPI(`meta-tags/home`);
-    
+
     // If API fails, return default metadata immediately
     if (error || !data) {
-      console.error('Metadata API Error:', error);
+      console.error("Metadata API Error:", error);
       return {
         title: "Goec | EV Charging Solutions for Homes & Commercial Spaces",
-        description: "Goec is a fast-growing EV charging station network offering reliable, smart, and eco-friendly charging solutions for electric vehicles across India.",
-        keywords: "EV charging station, electric vehicle charging, Goec, EV charging India, fast charging stations",
+        description:
+          "Goec is a fast-growing EV charging station network offering reliable, smart, and eco-friendly charging solutions for electric vehicles across India.",
+        keywords:
+          "EV charging station, electric vehicle charging, Goec, EV charging India, fast charging stations",
       };
     }
 
     const meta = data;
-    
+
     // Parse other_meta_tags if it's JSON
     let extras = {};
     if (meta?.other_meta_tags) {
       try {
         extras = JSON.parse(meta.other_meta_tags);
       } catch (e) {
-        console.error('Error parsing other_meta_tags:', e);
+        console.error("Error parsing other_meta_tags:", e);
         extras = {};
       }
     }
 
-    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://goec-beta-dev.netlify.app';
+    const SITE_URL =
+      process.env.NEXT_PUBLIC_SITE_URL || "https://goec-beta-dev.netlify.app";
 
     return {
       title: meta?.meta_title || "Goec | EV Charging Solutions",
       description: meta?.meta_description || "",
       keywords: meta?.meta_keywords || "",
-      
+
       // OPEN GRAPH
       openGraph: {
-        title: extras.og_title || meta?.meta_title || "Goec | EV Charging Solutions",
+        title:
+          extras.og_title || meta?.meta_title || "Goec | EV Charging Solutions",
         description: extras.og_description || meta?.meta_description || "",
         images: extras.og_image
           ? [{ url: extras.og_image, width: 1200, height: 630 }]
@@ -59,7 +63,10 @@ export async function generateMetadata() {
       // TWITTER
       twitter: {
         card: "summary_large_image",
-        title: extras.twitter_title || meta?.meta_title || "Goec | EV Charging Solutions",
+        title:
+          extras.twitter_title ||
+          meta?.meta_title ||
+          "Goec | EV Charging Solutions",
         description: extras.twitter_description || meta?.meta_description || "",
         images: extras.twitter_image ? [extras.twitter_image] : [],
       },
@@ -70,16 +77,16 @@ export async function generateMetadata() {
       },
     };
   } catch (error) {
-    console.error('Fatal error generating metadata:', error);
+    console.error("Fatal error generating metadata:", error);
     // Always return valid metadata even on error
     return {
       title: "Goec | EV Charging Solutions for Homes & Commercial Spaces",
-      description: "Goec is a fast-growing EV charging station network offering reliable, smart, and eco-friendly charging solutions for electric vehicles across India.",
+      description:
+        "Goec is a fast-growing EV charging station network offering reliable, smart, and eco-friendly charging solutions for electric vehicles across India.",
       keywords: "EV charging station, electric vehicle charging, Goec",
     };
   }
 }
-
 
 export default async function Home() {
   const { data } = await fetchFromAPI("home");
@@ -99,7 +106,7 @@ export default async function Home() {
 
   return (
     <>
-      {/* <Loading /> */}
+      <InitialLoading />
       <HeroSection heroBanner={banner_section?.list || []} />
 
       <AboutInfoSection

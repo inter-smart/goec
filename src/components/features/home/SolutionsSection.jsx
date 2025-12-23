@@ -8,60 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion } from "motion/react";
-
-// const expertiseData = {
-//   title: "Explore our Expertise ",
-//   description:
-//     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.",
-//   button: {
-//     link: "/",
-//     label: "Explore more",
-//   },
-//   item_expertise: [
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/expertise-1.png",
-//         alt: "expertise",
-//       },
-//       title: "GOEC Charging Hub",
-//       description:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
-//       button: {
-//         link: "/",
-//         label: "Learn more",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/expertise-2.png",
-//         alt: "expertise",
-//       },
-//       title: "GOEC Exclusive",
-//       description:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
-//       button: {
-//         link: "/",
-//         label: "Learn more",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/expertise-3.png",
-//         alt: "expertise",
-//       },
-//       title: "Public Commercial Parking",
-//       description:
-//         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae. consectetur adipiscing elit. Sed sit",
-//       button: {
-//         link: "/",
-//         label: "Learn more",
-//       },
-//     },
-//   ],
-// };
+import { cn } from "@/lib/utils";
 
 export default function SolutionsSection({ title, description, solutions }) {
   const container = useRef(null);
@@ -142,10 +89,33 @@ export default function SolutionsSection({ title, description, solutions }) {
         <div className="max-w-[95%] mx-auto mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[60px]">
           <ActionButton
             size="lg"
-            className="text-black bg-[#f5f5f5] hover:bg-[#dddddd]"
+            className={cn(
+              "text-black bg-[#f5f5f5]",
+              "hover:text-white",
+              "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+              "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+            )}
             asChild
           >
-            <Link href="/investment">Explore more</Link>
+            <Link href="/investment">
+              Explore more
+              <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                <Image
+                  src="/images/icon-btn-arrow-dark.svg"
+                  alt="icon-btn-arrow-dark"
+                  width={41}
+                  height={23}
+                  className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                />
+                <Image
+                  src="/images/icon-btn-arrow-hover.svg"
+                  alt="icon-btn-arrow-hover"
+                  width={41}
+                  height={23}
+                  className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                />
+              </span>
+            </Link>
           </ActionButton>
         </div>
       </div>

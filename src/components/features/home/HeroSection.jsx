@@ -12,70 +12,9 @@ import "swiper/css/pagination";
 import { EffectCreative, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useRef } from "react";
 
-import * as motion from "motion/react-client";
-import { generateMediaUrl } from "@/lib/utils";
+import { motion } from "motion/react";
 
-// const heroData = {
-//   item_banner: [
-//     {
-//       media: {
-//         mobile: {
-//           type: "image",
-//           path: "/images/hero-banner-1.jpg",
-//           alt: "hero",
-//         },
-//         desktop: {
-//           type: "image",
-//           path: "/images/hero-banner-1.jpg..",
-//           alt: "hero",
-//         },
-//       },
-//       title: "Powering Your Journey with Lightning Charging Nationwide",
-//       description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
-//       description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
-//       button: [
-//         {
-//           type: "primary",
-//           label: "Learn more",
-//           link: "/",
-//         },
-//         {
-//           type: "secondary",
-//           label: "Find Nearest Station",
-//           link: "/",
-//         },
-//       ],
-//     },
-//     {
-//       media: {
-//         mobile: {
-//           type: "image",
-//           path: "/images/hero-banner-1.jpg",
-//           alt: "hero",
-//         },
-//         desktop: {
-//           type: "image",
-//           path: "/images/hero-banner-1.jpg",
-//           alt: "hero",
-//         },
-//       },
-//       title: "Powering Your Journey with Lightning Charging Nationwide 22",
-//       description: "Nationwide network of ultra-fast EV chargers with 99.9% uptime. Sustainable energy, seamless experience.",
-//       button: [
-//         {
-//           type: "primary",
-//           label: "Learn more",
-//           link: "/",
-//         },
-//         {
-//           type: "secondary",
-//           label: "Find Nearest Station",
-//           link: "/",
-//         },
-//       ],
-//     },
-//   ],
-// };
+import { cn, generateMediaUrl } from "@/lib/utils";
 
 const titleVariants = {
   initial: {
@@ -151,6 +90,7 @@ export default function HeroSection({ heroBanner = heroData }) {
       }
     };
   }, []);
+
   return (
     <section className="w-full h-auto block bg-black relative z-0">
       <Swiper
@@ -168,10 +108,11 @@ export default function HeroSection({ heroBanner = heroData }) {
             translate: ["100%", 0, 0],
           },
         }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+        autoplay={false}
+        // autoplay={{
+        //   delay: 5000,
+        //   disableOnInteraction: false,
+        // }}
         speed={1000}
         pagination={{
           el: ".custom-pagination",
@@ -255,10 +196,13 @@ export default function HeroSection({ heroBanner = heroData }) {
                   srcSet={generateMediaUrl(item?.media?.mobile?.media_path)}
                 />
                 <Image
-                  src={generateMediaUrl(item?.media?.desktop?.media_path) || "/images/placeholder.jpg"}
+                  src={
+                    generateMediaUrl(item?.media?.desktop?.media_path) ||
+                    "/images/placeholder.jpg"
+                  }
                   alt={item?.media?.desktop?.media_alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
                   className="-z-2 object-cover"
                   priority={index === 0}
                 />
@@ -287,22 +231,65 @@ export default function HeroSection({ heroBanner = heroData }) {
                         <ActionButton
                           key={index}
                           size={"lg"}
-                          className="max-w-[100px] sm:max-w-[120px] xl:max-w-[145px] 2xl:max-w-[160px]"
+                          className={cn(
+                            "max-w-[120px] sm:max-w-[120px] xl:max-w-[150px] 2xl:max-w-[180px] ",
+                            "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                            "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                          )}
                           asChild
                         >
                           <Link href={buttonItem?.link}>
                             {buttonItem?.text}
+
+                            <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                              <Image
+                                src="/images/icon-btn-arrow-light.svg"
+                                alt="icon-btn-arrow-light"
+                                width={41}
+                                height={23}
+                                className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                              />
+                              <Image
+                                src="/images/icon-btn-arrow-hover.svg"
+                                alt="icon-btn-arrow-hover"
+                                width={41}
+                                height={23}
+                                className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                              />
+                            </span>
                           </Link>
                         </ActionButton>
                       ) : (
                         <ActionButton
                           key={index}
                           size={"lg"}
-                          className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                          className={cn(
+                            "text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]",
+                            "hover:text-white",
+                            "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                            "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                          )}
                           asChild
                         >
                           <Link href={buttonItem?.link}>
                             {buttonItem?.text}
+
+                            <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                              <Image
+                                src="/images/icon-btn-arrow-dark.svg"
+                                alt="icon-btn-arrow-dark"
+                                width={41}
+                                height={23}
+                                className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                              />
+                              <Image
+                                src="/images/icon-btn-arrow-hover.svg"
+                                alt="icon-btn-arrow-hover"
+                                width={41}
+                                height={23}
+                                className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                              />
+                            </span>
                           </Link>
                         </ActionButton>
                       )

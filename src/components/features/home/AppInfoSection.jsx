@@ -6,7 +6,7 @@ import { Text } from "@/components/utils/Text";
 import { Heading } from "@/components/utils/Heading";
 import { motion, AnimatePresence } from "framer-motion";
 import { ActionButton } from "@/components/utils/Button";
-import { generateMediaUrl } from "@/lib/utils";
+import { cn, generateMediaUrl } from "@/lib/utils";
 
 const appInfoData = {
   media: {
@@ -139,7 +139,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               <Text
                 as="p"
                 size="text2"
-                className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+                className="text-white mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
                 {appFeatures?.description}
               </Text>
@@ -157,8 +157,37 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               }}
               viewport={{ once: false, amount: 0.3 }}
             >
-              <ActionButton variant="link" className="text-white" asChild>
-                <Link href="/app-page">Learn more</Link>
+              <ActionButton
+                // variant="link"
+                size={"lg"}
+                className={cn(
+                  "text-white max-w-[140px] sm:max-w-[160px] xl:max-w-[180px] 2xl:max-w-[180px] bg-transparent border-none shadow-none transition duration-500",
+                  "sm:not-hover:-translate-x-8 xl:not-hover:-translate-x-8 2xl:not-hover:-translate-x-7",
+                  "hover:text-white hover:border-white/80 hover:bg-transparent hover:bg-gradient-to-r hover:from-[#0f51a9] hover:via-[#0055e0] hover:to-[#0f51a9]",
+                  "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                  "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                )}
+                asChild
+              >
+                <Link href="/app-page">
+                  Learn more
+                  <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                    <Image
+                      src="/images/icon-btn-arrow-light.svg"
+                      alt="icon-btn-arrow-light"
+                      width={41}
+                      height={23}
+                      className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                    />
+                    <Image
+                      src="/images/icon-btn-arrow-hover.svg"
+                      alt="icon-btn-arrow-hover"
+                      width={41}
+                      height={23}
+                      className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                    />
+                  </span>
+                </Link>
               </ActionButton>
             </motion.div>
             <motion.div
@@ -173,7 +202,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
                 delay: 0.2,
               }}
               viewport={{ once: false, amount: 0.3 }}
-              className="mt-[30px] xl:mt-[40px] 2xl:mt-[60px]"
+              className="mt-[20px] xl:mt-[30px] 2xl:mt-[40px]"
             >
               <Heading
                 as="h3"

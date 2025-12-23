@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { motion } from "motion/react";
-import { generateMediaUrl } from "@/lib/utils";
+import { cn, generateMediaUrl } from "@/lib/utils";
 
 export default function TripSection({
   title,
@@ -128,10 +128,33 @@ export default function TripSection({
             >
               <ActionButton
                 size={"lg"}
-                className="text-black bg-white min-w-[140px] sm:min-w-[180px] xl:min-w-[200px] 2xl:min-w-[220px]"
+                className={cn(
+                  "text-black bg-white min-w-[140px] sm:min-w-[180px] xl:min-w-[200px] 2xl:min-w-[200px]",
+                  "hover:text-white",
+                  "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                  "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                )}
                 asChild
               >
-                <Link href="/app-page">Plan a Trip Now</Link>
+                <Link href="/app-page">
+                  Plan a Trip Now
+                  <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                    <Image
+                      src="/images/icon-btn-arrow-dark.svg"
+                      alt="icon-btn-arrow-dark"
+                      width={41}
+                      height={23}
+                      className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                    />
+                    <Image
+                      src="/images/icon-btn-arrow-hover.svg"
+                      alt="icon-btn-arrow-hover"
+                      width={41}
+                      height={23}
+                      className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                    />
+                  </span>
+                </Link>
               </ActionButton>
             </motion.div>
           </div>

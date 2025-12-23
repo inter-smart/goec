@@ -3,27 +3,43 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-export default function Loading() {
+export default function InitialLoading() {
   const [progress, setProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
+    const startTime = Date.now();
+    const minDuration = 3000; // 3 seconds minimum
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
+
+          // Only hide after minimum duration has passed
+          const elapsed = Date.now() - startTime;
+          if (elapsed >= minDuration) {
+            setIsComplete(true);
+          } else {
+            setTimeout(() => setIsComplete(true), minDuration - elapsed);
+          }
+
           return 100;
         }
         return prev + 1;
       });
-    }, 30);
+    }, 40); // Adjusted to 40ms so 100 steps = 4000ms
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className={cn("w-full min-h-screen flex items-center justify-center bg-[#030303] fixed inset-0 z-99",
-        progress === 100 && "opacity-0 hidden",
-    )}>
+    <div
+      className={cn(
+        "w-full min-h-screen flex items-center justify-center bg-[#030303] fixed inset-0 z-99 transition-opacity duration-300",
+        isComplete && "opacity-0 pointer-events-none"
+      )}
+    >
       <div>
         {progress < 90 ? (
           <div className="text-[22px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px] leading-none font-light text-center text-white transition duration-300 ease-out">
@@ -55,9 +71,3 @@ export default function Loading() {
     </div>
   );
 }
-
-// import LoadingComp from "@/components/common/LoadingComp";
-
-// export default function Loading() {
-//   return <LoadingComp />;
-// }
