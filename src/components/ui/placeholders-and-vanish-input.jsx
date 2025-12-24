@@ -7,6 +7,7 @@ import { ActionButton } from "../utils/Button";
 import { fetchFromAPI } from "@/lib/api";
 import { toast } from "sonner";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import Image from "next/image";
 
 export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -259,48 +260,37 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
           animating && "text-white dark:text-black"
         )}
       />
-      {/* <button
-        disabled={!value}
-        type="submit"
-        className="absolute right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-gray-100 bg-black dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
-      >
-        <motion.svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-gray-300 h-4 w-4"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <motion.path
-            d="M5 12l14 0"
-            initial={{
-              strokeDasharray: "50%",
-              strokeDashoffset: "50%",
-            }}
-            animate={{
-              strokeDashoffset: value ? 0 : "50%",
-            }}
-            transition={{
-              duration: 0.3,
-              ease: "linear",
-            }}
-          />
-          <path d="M13 18l6 -6" />
-          <path d="M13 6l6 6" />
-        </motion.svg>
-      </button> */}
+
       <ActionButton
         disabled={!value}
         type="submit"
-        className="text-black w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[45px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-1 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
+        size={"lg"}
+        className={cn(
+          "text-black w-[120px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px] h-[30px] sm:h-[40px] xl:h-[45px] 2xl:h-[70px] 3xl:h-[80px] absolute right-2 top-1/2 z-1 -translate-y-1/2 rounded-full disabled:bg-gray-100 bg-white dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center",
+          "hover:text-white",
+          "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+          "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+        )}
       >
-        <span>{data?.button_label || "Subscribe"}</span>
+        <>
+          {data?.button_label || "Subscribe"}
+          <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+            <Image
+              src="/images/icon-btn-arrow-dark.svg"
+              alt="icon-btn-arrow-dark"
+              width={41}
+              height={23}
+              className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+            />
+            <Image
+              src="/images/icon-btn-arrow-hover.svg"
+              alt="icon-btn-arrow-hover"
+              width={41}
+              height={23}
+              className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+            />
+          </span>
+        </>
       </ActionButton>
       <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
         <AnimatePresence mode="wait">

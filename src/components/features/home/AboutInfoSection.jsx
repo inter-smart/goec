@@ -5,27 +5,27 @@ import Image from "next/image";
 import CountUp from "react-countup";
 import { motion } from "motion/react";
 
-const aboutInfoData = {
-  title:
-    "We transform the future of electric automobiles by building a strategic and collective network of Electric Vehicle (EV) charging stations across India.",
-  item_specs: [
-    {
-      title: "Hours of Charging",
-      value: "85000",
-      sufix: "+",
-    },
-    {
-      title: "Active Users",
-      value: "25000",
-      sufix: "+",
-    },
-    {
-      title: "Charging Stations",
-      value: "225",
-      sufix: "+",
-    },
-  ],
-};
+// const aboutInfoData = {
+//   title:
+//     "We transform the future of electric automobiles by building a strategic and collective network of Electric Vehicle (EV) charging stations across India.",
+//   item_specs: [
+//     {
+//       title: "Hours of Charging",
+//       value: "85000",
+//       sufix: "+",
+//     },
+//     {
+//       title: "Active Users",
+//       value: "25000",
+//       sufix: "+",
+//     },
+//     {
+//       title: "Charging Stations",
+//       value: "225",
+//       sufix: "+",
+//     },
+//   ],
+// };
 export default function AboutInfoSection({
   description,
   milestones = aboutInfoData,
@@ -36,11 +36,11 @@ export default function AboutInfoSection({
       className="w-full h-auto block bg-black overflow-hidden relative z-0 pt-[40px] sm:pt-[80px] xl:pt-[140px] 2xl:pt-[180px] 3xl:pt-[200px]"
     >
       <Image
-        src="/images/about-bg-1.webp"
+        src="/images/about-bg-2-3.png"
         alt="about-count-png"
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-        className="w-full h-auto absolute -z-2 inset-0"
+        className="w-full h-auto object-bottom -z-2"
       />
 
       <Image
@@ -84,7 +84,7 @@ export default function AboutInfoSection({
                 className="w-full h-auto flex items-center justify-center aspect-square relative z-1"
               >
                 <motion.div
-                  initial={{ rotate: 180 }}
+                  initial={{ rotate: 0 }}
                   whileInView={{
                     rotate: 360,
                   }}
@@ -94,7 +94,7 @@ export default function AboutInfoSection({
                     repeat: false,
                     delay: 0.3,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   className="w-full h-full absolute z-0 inset-0 pointer-events-none"
                 >
                   <Image

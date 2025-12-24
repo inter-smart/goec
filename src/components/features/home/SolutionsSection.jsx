@@ -62,8 +62,8 @@ export default function SolutionsSection({ title, description, solutions }) {
               ease: "easeOut",
               delay: 0.2,
             }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center"
+            viewport={{ once: false, amount: 0.3 }}
+            className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] overflow-hidden max-sm:mx-auto max-sm:text-center"
           >
             <Text as="p" size="text2" className="text-[#373737]">
               {description}

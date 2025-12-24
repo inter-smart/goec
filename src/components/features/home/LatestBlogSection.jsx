@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import NewsCard from "@/components/common/NewsCard";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const blogData = {
   title: "Explore our Blogs.",
@@ -93,12 +95,23 @@ const blogData = {
   ],
 };
 
-export default function LatestBlogSection({ data = blogData, title, blogs = [], type="home" }) {
+export default function LatestBlogSection({
+  data = blogData,
+  title,
+  blogs = [],
+  type = "home",
+}) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
-          <div className={type === "similar_blogs" ? "w-full flex justify-center text-[40px] text-center" :"flex-1"}>
+          <div
+            className={
+              type === "similar_blogs"
+                ? "w-full flex justify-center text-[40px] text-center"
+                : "flex-1"
+            }
+          >
             <Heading
               as="h2"
               size="heading2"
@@ -107,14 +120,40 @@ export default function LatestBlogSection({ data = blogData, title, blogs = [], 
               {title}
             </Heading>
           </div>
-          {
-            type==="home" &&
-          <div>
-            <ActionButton variant="link" className="text-black" asChild>
-              <Link href={data?.button?.link}>{data?.button?.label}</Link>
-            </ActionButton>
-          </div>
-          }
+          {type === "home" && (
+            <div>
+              <ActionButton
+                size={"lg"}
+                className={cn(
+                  "text-black min-w-[100px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] bg-transparent shadow-none transition duration-500 max-xl:bg-white max-xl:border-[#f0f0f0]",
+                  "hover:text-white",
+                  "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                  "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                )}
+                asChild
+              >
+                <Link href={data?.button?.link}>
+                  {data?.button?.label}
+                  <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                    <Image
+                      src="/images/icon-btn-arrow-dark.svg"
+                      alt="icon-btn-arrow-dark"
+                      width={41}
+                      height={23}
+                      className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                    />
+                    <Image
+                      src="/images/icon-btn-arrow-hover.svg"
+                      alt="icon-btn-arrow-hover"
+                      width={41}
+                      height={23}
+                      className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                    />
+                  </span>
+                </Link>
+              </ActionButton>
+            </div>
+          )}
         </div>
         <Swiper
           loop
@@ -156,7 +195,12 @@ export default function LatestBlogSection({ data = blogData, title, blogs = [], 
           {blogs.map((item, index) => {
             return (
               <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
-                <NewsCard index={index} data={item} variant={"blog"} page={"blog"} />
+                <NewsCard
+                  index={index}
+                  data={item}
+                  variant={"blog"}
+                  page={"blog"}
+                />
               </SwiperSlide>
             );
           })}

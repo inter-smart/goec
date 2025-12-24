@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { MEDIA_URL } from "@/lib/api";
+import { cn } from "@/lib/utils";
 
 export default function InvestSection({
   milestoneDescription,
@@ -59,8 +60,36 @@ export default function InvestSection({
             }}
             viewport={{ once: false, amount: 0.3 }}
           >
-            <ActionButton variant="link" className="text-black" asChild>
-              <Link href="/investment">Learn More</Link>
+            <ActionButton
+              size={"lg"}
+              className={cn(
+                "text-black min-w-[100px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] bg-transparent shadow-none transition duration-500 max-xl:bg-white max-xl:border-[#f0f0f0]",
+                // "xl:not-hover:translate-x-8 2xl:not-hover:translate-x-9",
+                "hover:text-white hover:border-white/80 hover:bg-transparent hover:bg-gradient-to-r hover:from-[#0f51a9] hover:via-[#0055e0] hover:to-[#0f51a9]",
+                "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+              )}
+              asChild
+            >
+              <Link href={"/investment"}>
+                Learn more
+                <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                  <Image
+                    src="/images/icon-btn-arrow-dark.svg"
+                    alt="icon-btn-arrow-dark"
+                    width={41}
+                    height={23}
+                    className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                  />
+                  <Image
+                    src="/images/icon-btn-arrow-hover.svg"
+                    alt="icon-btn-arrow-hover"
+                    width={41}
+                    height={23}
+                    className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                  />
+                </span>
+              </Link>
             </ActionButton>
           </motion.div>
         </div>
@@ -132,12 +161,35 @@ export default function InvestSection({
                     />
                     <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
                       <ActionButton
-                        size="lg"
+                        size={"lg"}
                         variant={"blue"}
-                        className="w-full"
+                        className={cn(
+                          "w-full",
+                          "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]",
+                          "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                          "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                        )}
                         asChild
                       >
-                        <Link href={"/investment"}>Learn more</Link>
+                        <Link href={"/investment"}>
+                          Learn more
+                          <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                            <Image
+                              src="/images/icon-btn-arrow-light.svg"
+                              alt="icon-btn-arrow-light"
+                              width={41}
+                              height={23}
+                              className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                            />
+                            <Image
+                              src="/images/icon-btn-arrow-hover.svg"
+                              alt="icon-btn-arrow-hover"
+                              width={41}
+                              height={23}
+                              className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                            />
+                          </span>
+                        </Link>
                       </ActionButton>
                     </div>
                   </div>

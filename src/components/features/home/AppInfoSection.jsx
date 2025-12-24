@@ -118,7 +118,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               <Heading
                 as="h2"
                 size="heading1"
-                className="text-white mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+                className="text-white mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
                 {appFeatures?.title}
               </Heading>
@@ -139,7 +139,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               <Text
                 as="p"
                 size="text2"
-                className="text-white mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                className="leading-tight text-white mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
                 {appFeatures?.description}
               </Text>
@@ -207,7 +207,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               <Heading
                 as="h3"
                 size="heading5"
-                className="text-white mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                className="text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
               >
                 {appFeatures.title}
               </Heading>

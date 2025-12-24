@@ -15,7 +15,6 @@ import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { generateMediaUrl } from "@/lib/utils";
 
-
 export default function AboutGrowthSection({ growthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
@@ -88,7 +87,7 @@ export default function AboutGrowthSection({ growthData }) {
         </Swiper>
       </div>
 
-      <Swiper
+      {/* <Swiper
         effect={"fade"}
         modules={[EffectFade, Thumbs, Autoplay]}
         thumbs={{ swiper: thumbsSwiper }}
@@ -99,11 +98,6 @@ export default function AboutGrowthSection({ growthData }) {
         slidesPerView={1}
         navigation={false}
         speed={600}
-        // autoplay={{
-        //   delay: 6000,
-        //   disableOnInteraction: true,
-        //   pauseOnMouseEnter: true,
-        // }}
         autoplay={false}
         noSwiping={true}
         longSwipes={false}
@@ -126,7 +120,7 @@ export default function AboutGrowthSection({ growthData }) {
                     loop
                     mutedc
                     playsInline
-                    className="w-full h-full object-cover absolute -z-2 inset-0"
+                    className="w-full h-full object-cover absolute -z-1 inset-0"
                   >
                     <source
                       src={generateMediaUrl(item?.media?.media_path)}
@@ -140,8 +134,7 @@ export default function AboutGrowthSection({ growthData }) {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
                     priority={index === 0}
-                    className="-z-2 object-cover"
-                    // quality={100}
+                    className="-z-1 object-cover"
                   />
                 )}
                 <motion.div
@@ -169,6 +162,94 @@ export default function AboutGrowthSection({ growthData }) {
                 <div className="w-full h-full bg-black absolute -z-1 inset-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)] [-webkit-mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)]" />
               </motion.div>
             </AnimatePresence>
+          </SwiperSlide>
+        ))}
+      </Swiper> */}
+
+      <Swiper
+        effect={"fade"}
+        modules={[EffectFade, Thumbs, Autoplay]}
+        thumbs={{ swiper: thumbsSwiper }}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+        loop={false}
+        spaceBetween={10}
+        slidesPerView={1}
+        navigation={false}
+        speed={600}
+        autoplay={false}
+        noSwiping={true}
+        longSwipes={false}
+        className="max-h-[1080px]"
+      >
+        {growthData?.map((item, index) => (
+          <SwiperSlide key={"growth" + index}>
+            <div className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+              {/* Background Media */}
+              <motion.div
+                key={`media-${index}`}
+                initial={{ scale: 1.2 }}
+                animate={{
+                  scale: currentSlide === index ? 1 : 1.2,
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="w-full h-full absolute -z-1 inset-0"
+              >
+                {item?.media?.type === "video" ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source
+                      src={generateMediaUrl(item?.media?.media_path)}
+                      type="video/mp4"
+                    />
+                  </video>
+                ) : (
+                  <Image
+                    // src={`${MEDIA_URL}${item?.media?.media_path}`}
+                    src={generateMediaUrl(item?.media?.media_path)}
+                    alt={item?.media?.media_alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+                    priority={index === 0}
+                    className="object-cover"
+                  />
+                )}
+              </motion.div>
+
+              {/* Animated Content - Only animate when slide becomes active */}
+              <motion.div
+                key={`heading-${index}`}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{
+                  opacity: currentSlide === index ? 1 : 0,
+                  y: currentSlide === index ? 0 : 40,
+                }}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="container px-[80px] sm:px-[120px] xl:px-[180px]"
+              >
+                <Heading
+                  as="h3"
+                  size="heading3"
+                  className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%] max-2xs:text-[14px]"
+                >
+                  {item?.title}
+                </Heading>
+              </motion.div>
+
+              {/* Gradient Overlay */}
+              <div className="w-full h-full bg-black absolute -z-1 inset-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)] [-webkit-mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)]" />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
