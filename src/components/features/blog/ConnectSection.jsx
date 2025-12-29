@@ -37,7 +37,7 @@ export default function ConnectSection({ footer_section, page }) {
             </div>
             <ActionButton
               size={"lg"}
-              className="text-black bg-white max-w-[140px] sm:max-~w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]"
+              className="text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px] hover:text-white"
               asChild
             >
               <Link href={footer_section?.button?.link? footer_section?.button?.link : (page === "career" ? "/career" : "#about-form")}>{footer_section?.button?.text || footer_section?.button?.label|| "Get in touch"}</Link>

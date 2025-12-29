@@ -107,7 +107,7 @@ export default function DetailHeroSection({ station = header_station }) {
             <div>
               <ActionButton
                 size={"lg"}
-                className="text-black bg-white min-w-[120px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] ml-auto"
+                className="text-black bg-white min-w-[120px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] ml-auto hover:text-white"
                 asChild
               >
                 <a

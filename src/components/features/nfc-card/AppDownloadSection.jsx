@@ -39,7 +39,7 @@ export default function AppDownloadSection({ title = local_data?.title, button =
             <div className="w-[140px] sm:w-[180px] xl:w-[276px] 2xl:w-[320px] flex">
               <ActionButton
                 size={"lg"}
-                className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px] ml-auto"
+                className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px] ml-auto hover:text-white"
                 asChild
               >
                 <Link target="_blank" href={button?.link}>{button?.text || button?.label}</Link>

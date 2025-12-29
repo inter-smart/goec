@@ -15,12 +15,15 @@ import {
 } from "@/components/ui/accordion";
 import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 export default function InvestSection({
   milestoneDescription,
   investMedia,
   investList,
 }) {
+  const [activeItem, setActiveItem] = useState("item-0");
+
   return (
     <section className="w-full h-auto block py-[40px_30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
       <div className="container">
@@ -64,7 +67,6 @@ export default function InvestSection({
               size={"lg"}
               className={cn(
                 "text-black min-w-[100px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] bg-transparent shadow-none transition duration-500 max-xl:bg-white max-xl:border-[#f0f0f0]",
-                // "xl:not-hover:translate-x-8 2xl:not-hover:translate-x-9",
                 "hover:text-white hover:border-white/80 hover:bg-transparent hover:bg-gradient-to-r hover:from-[#0f51a9] hover:via-[#0055e0] hover:to-[#0f51a9]",
                 "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
                 "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
@@ -95,20 +97,7 @@ export default function InvestSection({
         </div>
       </div>
       <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto px-1.5 mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{
-            opacity: 1,
-            scale: 1,
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut",
-            delay: 0.2,
-          }}
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-full aspect-[1820/420] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-0"
-        >
+        <div className="w-full aspect-[1820/420] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-0">
           <picture className="absolute -z-1 inset-0">
             <source
               media="(max-width: 640px)"
@@ -119,13 +108,18 @@ export default function InvestSection({
               alt={investMedia?.desktop?.media_alt}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-              className="-z-1 transition hover:scale-105"
+              className="-z-1"
             />
           </picture>
-        </motion.div>
+        </div>
       </div>
       <div className="container">
-        <Accordion type="single" collapsible>
+        <Accordion
+          type="single"
+          collapsible
+          value={activeItem}
+          onValueChange={setActiveItem}
+        >
           {investList.map((item, index) => {
             const sanitizedText = DOMPurify.sanitize(item?.description);
             return (
@@ -133,6 +127,7 @@ export default function InvestSection({
                 key={"invest" + index}
                 value={"item-" + index}
                 className="border-0"
+                onMouseEnter={() => setActiveItem(`item-${index}`)}
               >
                 <AccordionTrigger className="hover:underline-none [&>svg]:w-0 [&>svg]:hidden py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[50px]">
                   <div className="w-full flex items-center space-x-[15px] sm:space-x-[20px] xl:space-x-[60px] 2xl:space-x-[80px]">

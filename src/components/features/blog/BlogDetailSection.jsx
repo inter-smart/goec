@@ -78,7 +78,7 @@ export default function BlogDetailSection({ data, variant }) {
               alt={data?.media?.desktop?.media_alt || "No image available"}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
-              className="-z-1 transition hover:scale-105"
+              className="-z-1 object-cover transition hover:scale-105"
             />
           </picture>
         </div>

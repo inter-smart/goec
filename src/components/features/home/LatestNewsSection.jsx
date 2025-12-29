@@ -106,9 +106,9 @@ const newsData = {
 export default function LatestNewsSection({ data = newsData, title, news }) {
   const isMobile = useMedia("(max-width: 1024px)");
   return (
-    <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
+    <section className="w-full h-auto block py-[30px] sm:py-[80px_40px] xl:py-[120px_60px] 2xl:py-[140px_80px]">
       <div className="container">
-        <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
+        <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[70px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{
@@ -118,9 +118,9 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
             transition={{
               duration: 0.4,
               ease: "easeOut",
-              delay: 0.2,
+              repeat: false,
             }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false }}
             className="flex-1"
           >
             <Heading
@@ -138,16 +138,12 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
               y: 0,
             }}
             transition={{
-              duration: 0.4,
+              duration: 0.6,
               ease: "easeOut",
-              delay: 0.2,
+              repeat: false,
             }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false }}
           >
-            {/* <ActionButton variant="link" className="text-black" asChild>
-              <Link href={data?.button?.link}>{data?.button?.label}</Link>
-            </ActionButton> */}
-
             <ActionButton
               size={"lg"}
               className={cn(
@@ -212,7 +208,11 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
           >
             {news?.map((item, index) => {
               return (
-                <SwiperSlide key={"news" + index} style={{ width: "33.333%" }}>
+                <SwiperSlide
+                  key={"news" + index}
+                  style={{ width: "33.333%" }}
+                  className="h-auto!"
+                >
                   <NewsCard data={item} page={"news"} />
                 </SwiperSlide>
               );
@@ -234,15 +234,22 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                         opacity: 1,
                         y: 0,
                       }}
+                      whileHover={{
+                        scale: 1.02,
+                        transition: { duration: 0.1 },
+                      }}
                       transition={{
                         duration: 0.4,
                         ease: "easeOut",
-                        delay: 0.2,
+                        repeat: false,
                       }}
-                      viewport={{ once: true, amount: 0.3 }}
+                      viewport={{ once: false, amount: 0.2 }}
                       className="w-full h-full block rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
                     >
-                      <div className="h-full flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:px-[4px] xl:[&>*]:px-[6px] 2xl:[&>*]:px-[12px]">
+                      <Link
+                        href={`/news/${item?.slug}`}
+                        className="h-full flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:px-[4px] xl:[&>*]:px-[6px] 2xl:[&>*]:px-[12px]"
+                      >
                         <div className="w-full sm:w-1/2">
                           <div className="w-full h-full aspect-[4/2] rounded-[30px] overflow-hidden relative z-0">
                             <Image
@@ -255,7 +262,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                           </div>
                         </div>
                         <div className="w-full sm:w-1/2">
-                          <div className="h-full flex flex-col justify-between p-[15px_20px_15px_10px] xl:p-[30px_30px_30px_15px] 2xl:p-[30px_40px_30px_20px]">
+                          <div className="h-full flex flex-col justify-between p-[15px_20px_15px_10px] xl:p-[30px_30px_22px_15px] 2xl:p-[30px_40px_32px_20px]">
                             <div>
                               <div className="text-[14px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                                 {item?.title}
@@ -269,38 +276,39 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                               </Text>
                             </div>
                             <div className="flex justify-between items-center">
-                              <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-none font-normal text-[#757575]">
+                              <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#757575]">
                                 {formattedDate}
                               </div>
                               <div>
                                 <ActionButton
                                   variant="link"
-                                  className="text-black"
-                                  asChild
+                                  className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                                 >
-                                  <Link href={`/news/${item?.slug}`}>
-                                    Read Now
-                                    <Image
-                                      src="/images/icon-btn-arrow-dark.svg"
-                                      alt="icon-btn-arrow-dark"
-                                      width={41}
-                                      height={23}
-                                      className="w-5 xl:w-7 aspect-4/2"
-                                    />
-                                  </Link>
+                                  Read Now
+                                  <Image
+                                    src="/images/icon-btn-arrow-dark.svg"
+                                    alt="icon-btn-arrow-dark"
+                                    width={41}
+                                    height={23}
+                                    className="w-4 xl:w-5 aspect-4/2"
+                                  />
                                 </ActionButton>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </motion.div>
                   </Suspense>
                 </div>
               ) : (
-                <div key={"news" + index} className="w-full sm:w-1/2 lg:w-1/3">
+                <motion.div
+                  key={"news" + index}
+                  whileHover={{ scale: 1.02 }}
+                  className="w-full sm:w-1/2 lg:w-1/3"
+                >
                   <NewsCard index={index} data={item} page={"news"} />
-                </div>
+                </motion.div>
               );
             })}
           </div>

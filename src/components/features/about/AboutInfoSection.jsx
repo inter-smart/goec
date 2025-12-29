@@ -27,12 +27,21 @@ const aboutInfoData = {
     "<h2>We’re not just building charging stations—we’re driving India’s transition to clean, smart, and sustainable mobility. Born in 2020 with a handful of chargers and a big dream, we’ve grown into one of India’s fastest-growing EV charging networks, committed to making electric vehicle charging effortless, reliable, and accessible.</h2>",
 };
 
-export default function AboutInfoSection({ data = aboutInfoData, description, media }) {
+export default function AboutInfoSection({
+  data = aboutInfoData,
+  description,
+  media,
+}) {
   const animatedTextRef = useRef(null);
   const sanitizedText = DOMPurify.sanitize(description);
 
   const splitTextIntoWords = (element) => {
-    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false
+    );
 
     const textNodes = [];
     let node;
@@ -112,28 +121,42 @@ export default function AboutInfoSection({ data = aboutInfoData, description, me
   return (
     <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px]">
       <div className="container">
-        <div
-          ref={animatedTextRef}
-          className="typography [&_h2]:font-normal mb-[40px] sm:mb-[80px] xl:mb-[100px] 2xl:mb-[140px]"
-          // dangerouslySetInnerHTML={{ __html: sanitizedText }}
-        />
+        <div className="typography [&_h2]:font-normal mb-[40px] sm:mb-[80px] xl:mb-[100px] 2xl:mb-[140px]">
+          <h2>
+            <div ref={animatedTextRef} />
+          </h2>
+        </div>
       </div>
       <div className="w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1220px] 2xl:max-w-[1380] 3xl:max-w-[1820px] mx-auto">
         <div className="w-full aspect-[1360/520] overflow-hidden rounded-[20px] xl:rounded-[25px] relative z-0">
-          <Image
-            src="/images/icon-play.svg"
-            alt="icon-play"
-            width={78}
-            height={78}
-            className="w-[60px] xl:w-[70px] 2xl:w-[78px] aspect-square absolute z-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition hover:scale-105"
-          />
+          {media?.desktop?.media_type === "video" && (
+            <Image
+              src="/images/icon-play.svg"
+              alt="icon-play"
+              width={78}
+              height={78}
+              className="w-[60px] xl:w-[70px] 2xl:w-[78px] aspect-square absolute z-0 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transition hover:scale-105"
+            />
+          )}
           {media?.desktop?.media_type === "video" ? (
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover absolute -z-2 inset-0">
-              <source src={generateMediaUrl(media?.desktop?.media_path)} type="video/mp4" />
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover absolute -z-2 inset-0"
+            >
+              <source
+                src={generateMediaUrl(media?.desktop?.media_path)}
+                type="video/mp4"
+              />
             </video>
           ) : (
             <picture className="absolute -z-1 inset-0">
-              <source media="(max-width: 640px)" srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`} />
+              <source
+                media="(max-width: 640px)"
+                srcSet={`${MEDIA_URL}${media?.mobile?.media_path}`}
+              />
               <Image
                 src={`${MEDIA_URL}${media?.desktop?.media_path}`}
                 alt={media?.desktop?.media_alt || "hero image"}

@@ -197,16 +197,16 @@ const footerData = {
 };
 
 const placeholders = [
-  "Enter your mail id",
-  "Enter your mail id",
-  "Enter your mail id",
+  "Enter your email id",
+  // "Enter your mail id",
+  // "Enter your mail id",
 ];
 
 export default function Footer({ data = footerData, footer_section }) {
   return (
     <footer
       id="footer"
-      className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#1e1e1e]"
+      className="w-full p-[10px] sm:p-[15px] xl:p-[20px] bg-[#030303]"
     >
       <div className="w-full border border-white/30 rounded-[16px]">
         <div className="container">

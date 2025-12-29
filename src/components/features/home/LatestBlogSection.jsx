@@ -102,7 +102,7 @@ export default function LatestBlogSection({
   type = "home",
 }) {
   return (
-    <section className="w-full h-auto block py-[30px] sm:py-[80px_60px] xl:py-[100px_80px] 2xl:py-[120px_90px]">
+    <section className="w-full h-auto block py-[15px_30px] sm:py-[40px_80px] xl:py-[80px_80px] 2xl:py-[100px_90px]">
       <div className="container">
         <div className="flex flex-wrap items-center gap-[20px] mb-[15px] sm:mb-[30px] xl:mb-[40px] 2xl:mb-[60px] 3xl:mb-[80px]">
           <div
@@ -194,7 +194,9 @@ export default function LatestBlogSection({
         >
           {blogs.map((item, index) => {
             return (
-              <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}>
+              <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}
+              className="h-auto!"
+              >
                 <NewsCard
                   index={index}
                   data={item}

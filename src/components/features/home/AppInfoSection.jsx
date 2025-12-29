@@ -69,7 +69,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
   );
 
   return (
-    <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[30px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+    <section className="w-full h-auto sm:min-h-[468px] md:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex sm:items-center bg-[#303030] relative z-0 py-[40px] sm:py-[40px] md:py-[80px] xl:py-[100px] 2xl:py-[120px] overflow-hidden">
       <Image
         src="/images/app_info-bg2.png"
         alt="app_info-bg"
@@ -78,10 +78,23 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
         className="-z-3 object-cover pointer-events-none"
       />
 
-      <div className="w-[176px] 3xs:w-[220px] sm:w-[276px] md:w-[376px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[620px] h-auto block absolute z-1 bottom-0 left-[20%] sm:left-[45%] -translate-x-1/2 pointer-events-none">
-        <div className="w-full h-full relative z-0">
-          <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" />
-          <div className="w-[72px] 3xs:w-[90px] sm:w-[112px] md:w-[152px] xl:w-[190px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[15px] sm:rounded-[20px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.8%] 3xl:right-[7.6%]">
+      <div className="w-[176px] sm:w-[276px] md:w-[376px] xl:w-[440px] 2xl:w-[576px] 3xl:w-[620px] h-auto block absolute z-1 bottom-0 left-[20%] sm:left-[45%] -translate-x-1/2 pointer-events-none">
+        <motion.div
+          initial={{ y: 100, scale: 0 }}
+          whileInView={{
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: "linear",
+            repeat: false,
+          }}
+          viewport={{ once: false }}
+          className="w-full h-full relative z-0"
+        >
+          {/* <div className="w-[20px] sm:w-[30px] xl:w-[40px] 2xl:w-[50px] h-[6px] sm:h-[10px] xl:h-[14px] rounded-full bg-black absolute z-2 top-[6px] sm:xl:top-[8px] xl:top-[12px] right-[23%] pointer-events-none" /> */}
+          <div className="w-[72px] sm:w-[112px] md:w-[152px] xl:w-[178px] 2xl:w-[235px] 3xl:w-[252px] aspect-[255/544] overflow-hidden rounded-[10px] sm:rounded-[18px] xl:rounded-[30px] 2xl:rounded-[35px] 3xl:rounded-[40px] absolute z-1 top-[1%] right-[7.6%] 3xl:right-[7.6%]">
             <video autoPlay loop muted playsInline className="w-full h-full">
               <source
                 src={generateMediaUrl(appFeatures?.hand_video)}
@@ -96,7 +109,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
             height={500}
             className="w-full h-full"
           />
-        </div>
+        </motion.div>
       </div>
 
       <div className="container">
@@ -245,7 +258,20 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
             </motion.div>
           </div>
           <div className="w-full sm:w-[320px] lg:w-[468px] xl:w-[580px] 2xl:w-[768px] 3xl:w-[860px]">
-            <div className="w-full h-full relative z-0">
+            <motion.div
+              initial={{ y: 100, scale: 0 }}
+              whileInView={{
+                y: 0,
+                scale: 1,
+              }}
+              transition={{
+                duration: 0.6,
+                ease: "linear",
+                repeat: false,
+              }}
+              viewport={{ once: false }}
+              className="w-[268px] sm:w-full h-full relative z-0 mx-auto"
+            >
               <Image
                 src="/images/app_info-spec-bg2.svg"
                 alt="app_info-spec-bg"
@@ -269,7 +295,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
               <div className="absolute top-[88.5%] left-[62%] w-[24%] sm:w-[75px] lg:w-[100px] xl:w-[135px] 2xl:w-[176px] 3xl:w-[200px]">
                 <SpecItem className="" texts={groupedSpecs[3]} />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -301,7 +327,7 @@ function SpecItem({ texts, duration = 3000 }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="absolute flex items-center gap-1 text-[8px] sm:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-none font-normal line-clamp-1 text-left text-white truncate"
+          className="absolute flex items-center gap-1 text-[7px] sm:text-[9px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] leading-none font-normal line-clamp-1 text-left text-white truncate"
         >
           {current}
         </motion.div>

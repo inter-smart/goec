@@ -125,7 +125,7 @@ export default function TripSection({
                 ease: "easeOut",
                 delay: 0.2,
               }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0 }}
             >
               <ActionButton
                 size={"lg"}

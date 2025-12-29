@@ -67,7 +67,7 @@ export default function CareerTestimonialSection({ data = local_data }) {
             </Heading>
           </div>
           <div>
-            <div className="[--bx-xy:35px] sm:[--bx-xy:45px] xl:[--bx-xy:55px] 2xl:[--bx-xy:60px] flex gap-x-[6px] xl:gap-x-[8px] 2xl:gap-x-[10px]">
+            <div className="[--bx-xy:35px] sm:[--bx-xy:40px] xl:[--bx-xy:45px] 2xl:[--bx-xy:55px] flex gap-x-[6px] xl:gap-x-[8px] 2xl:gap-x-[10px]">
               <button
                 onClick={scrollPrev}
                 disabled={!scrollPrev}

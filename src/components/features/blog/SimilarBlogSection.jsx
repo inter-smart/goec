@@ -7,11 +7,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 
-export default function SimilarBlogSection({ similar_section, footer_section, variant }) {
+export default function SimilarBlogSection({
+  similar_section,
+  footer_section,
+  variant,
+}) {
   return (
     <section className="w-full h-auto block py-[20px] sm:py-[30px_40px] xl:py-[60px_120px] 2xl:py-[80px_140px]">
       <div className="container">
-        <Heading as="h2" size="heading3" className="text-center text-[#303030] mb-[15px] xl:mb-[40px] 2xl:mb-[60px]">
+        <Heading
+          as="h2"
+          size="heading3"
+          className="text-center text-[#303030] mb-[15px] xl:mb-[40px] 2xl:mb-[60px]"
+        >
           {similar_section?.title}
         </Heading>
         <Swiper
@@ -53,7 +61,11 @@ export default function SimilarBlogSection({ similar_section, footer_section, va
         >
           {similar_section?.list?.map((item, index) => {
             return (
-              <SwiperSlide key={variant + index} style={{ width: "33.333%" }}>
+              <SwiperSlide
+                key={variant + index}
+                style={{ width: "33.333%" }}
+                className="h-auto!"
+              >
                 <NewsCard data={item} variant={"blog_details"} page={variant} />
               </SwiperSlide>
             );

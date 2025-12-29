@@ -158,7 +158,6 @@ export default function AboutGrowthSection({ growthData }) {
                     {item?.title}
                   </Heading>
                 </motion.div>
-
                 <div className="w-full h-full bg-black absolute -z-1 inset-0 [mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)] [-webkit-mask-image:linear-gradient(to_bottom,white_0%,transparent_10%,transparent_90%,white_100%)]" />
               </motion.div>
             </AnimatePresence>

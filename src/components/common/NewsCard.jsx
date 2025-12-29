@@ -9,9 +9,12 @@ import { Text } from "../utils/Text";
 import { motion } from "framer-motion";
 import { renderHtml } from "../utils/parseHtml";
 
-
-
-export default function NewsCard({ data, index = 1, variant = "news", page="" }) {
+export default function NewsCard({
+  data,
+  index = 1,
+  variant = "news",
+  page = "",
+}) {
   const formattedDate = data?.published_on
     ? format(new Date(data?.published_on), "dd MMMM yyyy")
     : format(new Date(), "dd MMMM yyyy");
@@ -19,7 +22,7 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
   return (
     <Suspense fallback={<NewsCardSkeleton />}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{
           opacity: 1,
           y: 0,
@@ -27,50 +30,40 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
         transition={{
           duration: 0.4,
           ease: "easeOut",
-          delay: index * 0.2,
+          repeat: false,
+          delay: index * 0.1,
         }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="w-full h-full flex flex-col rounded-[20px] sm:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+        viewport={{ once: false }}
+        className="w-full h-full flex flex-col rounded-[20px] xl:rounded-[25px] 2xl:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
       >
         <Link
-          href={
-           page=== "news"?
-            `/news/${data?.slug}`:
-            `/blog/${data?.slug}`
-          }
+          href={page === "news" ? `/news/${data?.slug}` : `/blog/${data?.slug}`}
           className={cn(
             "w-full h-auto block aspect-[4/2] overflow-hidden relative z-0",
             variant === "blog" ||
               variant === `blog_details` ||
               variant === "home"
-              ? "rounded-t-[20px] sm:rounded-t-[30px]"
-              : "rounded-[20px] sm:rounded-[30px]"
+              ? "rounded-t-[20px] xl:rounded-t-[25px] 2xl:rounded-t-[30px]"
+              : "rounded-[20px] xl:rounded-[25px] 2xl:rounded-[30px]"
           )}
         >
           <Image
             src={generateMediaUrl(data?.media?.media_path)}
-            alt={data?.media?.media_alt|| "News Image"}
+            alt={data?.media?.media_alt || "News Image"}
             fill
             sizes="512px"
-            // width={512}
-            // height={320}
             className="w-full h-full object-cover transition hover:scale-105"
             placeholder="blur"
             blurDataURL="/images/placeholder.jpg"
           />
         </Link>
-        <div className="flex-1 flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]">
+        <Link
+          href={page === "news" ? `/news/${data?.slug}` : `/blog/${data?.slug}`}
+          className="flex-1 flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]"
+        >
           <div>
             <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
-              <Link
-                href={
-                 page=== "news"?
-                  `/news/${data?.slug}`:
-                  `/blog/${data?.slug}`
-                }
-              >
-                {data?.title}
-              </Link>
+              {data?.title}
             </div>
             {variant === "blog_details" && (
               <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
@@ -98,25 +91,18 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
               <>
                 <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center">
                   {formattedDate}
-                  {variant === "blog" && (
+                  {variant === "blog" && data?.reading_time && (
                     <>
                       <span className="w-[4px] h-[4px] inline-block bg-[#757575] rounded"></span>
                       {data?.reading_time}
                     </>
                   )}
                 </div>
-                <div>
-                  <ActionButton
-                    variant="link"
-                    className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
-                    asChild
-                  >
-                    <Link
-                      href={
-                        page=== "news"?
-                        `/news/${data?.slug}`:
-                        `/blog/${data?.slug}`
-                      }
+                {variant !== "blog" && (
+                  <div>
+                    <ActionButton
+                      variant="link"
+                      className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                     >
                       Read now
                       <svg
@@ -142,13 +128,13 @@ export default function NewsCard({ data, index = 1, variant = "news", page="" })
                           mask="url(#path-2-inside-1_1293_11217)"
                         />
                       </svg>
-                    </Link>
-                  </ActionButton>
-                </div>
+                    </ActionButton>
+                  </div>
+                )}
               </>
             )}
           </div>
-        </div>
+        </Link>
       </motion.div>
     </Suspense>
   );

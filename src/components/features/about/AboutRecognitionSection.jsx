@@ -73,7 +73,7 @@ export default function AboutRecognitionSection({ title, description, list }) {
                       <div
                         ref={ref}
                         onClick={open}
-                        className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
+                        className="w-full h-auto aspect-[48/36] bg-gray-200 rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
                       >
                         <video
                           autoPlay
@@ -116,7 +116,7 @@ export default function AboutRecognitionSection({ title, description, list }) {
                     alt={item?.media_alt || "gallery"}
                   >
                     {({ ref, open }) => (
-                      <div className="w-full h-auto aspect-[48/36] rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
+                      <div className="w-full h-auto aspect-[48/36] bg-gray-200 rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
                         <Image
                           ref={ref}
                           onClick={open}

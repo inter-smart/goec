@@ -5,27 +5,6 @@ import Image from "next/image";
 import CountUp from "react-countup";
 import { motion } from "motion/react";
 
-// const aboutInfoData = {
-//   title:
-//     "We transform the future of electric automobiles by building a strategic and collective network of Electric Vehicle (EV) charging stations across India.",
-//   item_specs: [
-//     {
-//       title: "Hours of Charging",
-//       value: "85000",
-//       sufix: "+",
-//     },
-//     {
-//       title: "Active Users",
-//       value: "25000",
-//       sufix: "+",
-//     },
-//     {
-//       title: "Charging Stations",
-//       value: "225",
-//       sufix: "+",
-//     },
-//   ],
-// };
 export default function AboutInfoSection({
   description,
   milestones = aboutInfoData,

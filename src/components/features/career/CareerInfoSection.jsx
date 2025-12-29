@@ -34,18 +34,18 @@ const local_data = {
 };
 
 export default function CareerInfoSection({ slug, data = local_data }) {
- const copyLink = () => {
-  const link = typeof window !== "undefined" ? window.location.href : "";
+  const copyLink = () => {
+    const link = typeof window !== "undefined" ? window.location.href : "";
 
-  navigator.clipboard
-    .writeText(link)
-    .then(() => {
-     toast.success("Link copied!");
-    })
-    .catch(() => {
-     toast.success("Failed to copy link.");
-    });
- }
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        toast.success("Link copied!");
+      })
+      .catch(() => {
+        toast.success("Failed to copy link.");
+      });
+  };
   const isHover = false;
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[40px] xl:py-[70px_100px] 2xl:py-[100px_120px] mt-(--header-y)">
@@ -103,10 +103,12 @@ export default function CareerInfoSection({ slug, data = local_data }) {
                   <ActionButton
                     size={"lg"}
                     variant={"blue"}
-                    className="text-white min-w-[120px] xl:min-w-[140px] 2xl:min-w-[160px]"
-                    asChild
+                    className={cn(
+                      "text-white min-w-[120px] xl:min-w-[140px] 2xl:min-w-[160px]",
+                      "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]"
+                    )}
                   >
-                    <Link href={"#"}>Apply Now</Link>
+                    Apply Now
                   </ActionButton>
                 </CareerModal>
               </div>
@@ -182,42 +184,33 @@ export default function CareerInfoSection({ slug, data = local_data }) {
         </div>
         <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
           <CareerModal data={data}>
-            <ActionButton size="lg" variant={"blue"} className="w-full" asChild>
-              <Link href={"#"}>
-                Apply Now
-                <svg
-                  width="55"
-                  height="31"
-                  viewBox="0 0 55 31"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={cn(
-                    "size-[15px] xl:size-[30px] 3xl:size-[40px] transition-all duration-500 ease-in-out"
-                  )}
-                >
-                  <path
-                    d="M42.6667 15.332L36 11.483V19.181L42.6667 15.332ZM0 15.332L0 15.9987L36.6667 15.9987V15.332V14.6654L0 14.6654L0 15.332Z"
-                    fill={isHover ? "white" : "white"}
-                  />
-                  <mask
-                    id="path-2-inside-1_3026_25027"
-                    fill={isHover ? "white" : "white"}
-                  >
-                    <path d="M24.4924 11.4789C25.4273 7.87914 27.6387 4.74188 30.7148 2.6514C33.7909 0.560913 37.5219 -0.340281 41.213 0.115651C44.9042 0.571583 48.3038 2.35356 50.7787 5.12971C53.2537 7.90586 54.6353 11.4869 54.6661 15.206C54.697 18.9251 53.3751 22.5286 50.9466 25.3455C48.5181 28.1623 45.1486 30.0005 41.4655 30.5177C37.7825 31.0349 34.037 30.1958 30.9266 28.1567C27.8162 26.1176 25.553 23.0175 24.5584 19.4337L25.8811 19.0666C26.7867 22.3296 28.8473 25.1521 31.6792 27.0087C34.5111 28.8652 37.9213 29.6292 41.2746 29.1584C44.628 28.6875 47.6959 27.0138 49.907 24.4491C52.1181 21.8844 53.3216 18.6035 53.2935 15.2174C53.2654 11.8313 52.0075 8.57079 49.7541 6.04317C47.5007 3.51554 44.4055 1.8931 41.0448 1.47798C37.6841 1.06287 34.287 1.88338 31.4863 3.78672C28.6856 5.69006 26.6722 8.54646 25.821 11.824L24.4924 11.4789Z" />
-                  </mask>
-                  <path
-                    d="M24.4924 11.4789C25.4273 7.87914 27.6387 4.74188 30.7148 2.6514C33.7909 0.560913 37.5219 -0.340281 41.213 0.115651C44.9042 0.571583 48.3038 2.35356 50.7787 5.12971C53.2537 7.90586 54.6353 11.4869 54.6661 15.206C54.697 18.9251 53.3751 22.5286 50.9466 25.3455C48.5181 28.1623 45.1486 30.0005 41.4655 30.5177C37.7825 31.0349 34.037 30.1958 30.9266 28.1567C27.8162 26.1176 25.553 23.0175 24.5584 19.4337L25.8811 19.0666C26.7867 22.3296 28.8473 25.1521 31.6792 27.0087C34.5111 28.8652 37.9213 29.6292 41.2746 29.1584C44.628 28.6875 47.6959 27.0138 49.907 24.4491C52.1181 21.8844 53.3216 18.6035 53.2935 15.2174C53.2654 11.8313 52.0075 8.57079 49.7541 6.04317C47.5007 3.51554 44.4055 1.8931 41.0448 1.47798C37.6841 1.06287 34.287 1.88338 31.4863 3.78672C28.6856 5.69006 26.6722 8.54646 25.821 11.824L24.4924 11.4789Z"
-                    fill="#D9D9D9"
-                    stroke="white"
-                    strokeWidth="2.66667"
-                    mask="url(#path-2-inside-1_3026_25027)"
-                    className={cn(
-                      "transition-all duration-500 ease-in-out origin-center",
-                      isHover ? "scale-105" : "scale-0"
-                    )}
-                  />
-                </svg>
-              </Link>
+            <ActionButton
+              size={"lg"}
+              variant={"blue"}
+              className={cn(
+                "w-full",
+                "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]",
+                "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+              )}
+            >
+              Apply Now
+              <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                <Image
+                  src="/images/icon-btn-arrow-light.svg"
+                  alt="icon-btn-arrow-light"
+                  width={41}
+                  height={23}
+                  className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                />
+                <Image
+                  src="/images/icon-btn-arrow-hover.svg"
+                  alt="icon-btn-arrow-hover"
+                  width={41}
+                  height={23}
+                  className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                />
+              </span>
             </ActionButton>
           </CareerModal>
         </div>

@@ -5,102 +5,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-// const partnersData = {
-//   title: "Our Associate Partners",
-//   item_partners: [
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-0.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-1.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-2.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-3.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-4.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-5.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-6.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-7.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-8.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-9.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-10.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-11.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-12.png",
-//         alt: "partners",
-//       },
-//     },
-//   ],
-// };
 
 export default function PartnersSection({ title, associates }) {
   const containerRef = useRef(null);
@@ -136,11 +40,11 @@ export default function PartnersSection({ title, associates }) {
   };
   const getSpeed = () => {
     if (containerRef.current) {
-      containerRef.current.style.setProperty("--animation-duration", "80s");
+      containerRef.current.style.setProperty("--animation-duration", "60s");
     }
   };
   return (
-    <section className="w-full h-auto block bg-[#030303] relative z-0 py-[40px_20px] sm:py-[100px_25px] xl:py-[120px_30px] 2xl:py-[160px_40px] overflow-hidden">
+    <section className="w-full h-auto block bg-[#030303] relative z-0 py-[40px_10px] sm:py-[100px_15px] xl:py-[120px_30px] 2xl:py-[160px_40px] overflow-hidden">
       <Image
         src="/images/partner-bg2.svg"
         alt="partners-bg"

@@ -137,7 +137,7 @@ export default function InnerHero({
                     <BrochureModal key={index}>
                       <ActionButton
                         size={"lg"}
-                        className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                        className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px] hover:text-white"
                       >
                         Get Brochure
                       </ActionButton>
@@ -149,7 +149,7 @@ export default function InnerHero({
                       size={"lg"}
                       variant={"default"}
                       target="_blank"
-                      className="max-w-[150px] text-black bg-white 3xs:max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px]"
+                      className="max-w-[150px] text-black bg-white 3xs:max-w-[160px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[240px] hover:text-white"
                       asChild
                     >
                       <Link href={buttonItem?.link}>{buttonItem?.label}</Link>
@@ -159,7 +159,7 @@ export default function InnerHero({
                     <ActionButton
                       key={index}
                       size={"lg"}
-                      className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px]"
+                      className="text-black bg-white max-w-[130px] 3xs:max-w-[140px] sm:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[220px] hover:text-white"
                       asChild
                     >
                       <Link href={buttonItem?.link}>{buttonItem?.label}</Link>

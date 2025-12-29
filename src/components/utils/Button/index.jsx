@@ -9,15 +9,13 @@ const buttonVariants = cva(
       variant: {
         default:
           "text-white bg-white/40 border border-white/40 backdrop-blur-md shadow-xs hover:border-white/80 hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]",
-        blue: "text-white bg-transparent bg-gradient-to-r from-[#0f51a9] via-[#0055e0] to-[#0f51a9]",
+        blue: "text-white bg-transparent bg-gradient-to-r from-[#0f51a9] via-[#0055e0] to-[#0f51a9] hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default:
           "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[16px] leading-none font-normal text-center has-[>svg, >img]:px-3",
-        // sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[16px] leading-none font-normal text-center w-full h-[30px] sm:h-[35px] xl:h-[50px] 2xl:h-[60px] p-2 rounded-full",
-        // icon: "size-9",
       },
     },
     defaultVariants: {

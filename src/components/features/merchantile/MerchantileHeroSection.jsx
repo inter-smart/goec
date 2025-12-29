@@ -89,7 +89,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
         <div className="flex flex-wrap space-y-[5px] space-x-[5px] sm:space-x-[10px] xl:space-x-[15px]">
           <ActionButton
             size={"lg"}
-            className="text-black bg-white max-w-[160px] 2xs:max-w-[180px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[280px]"
+            className="text-black bg-white max-w-[160px] 2xs:max-w-[180px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[280px] hover:text-white"
             asChild
           >
             <Link href={data?.primaryButton?.link}>{data?.primaryButton?.text}</Link>

@@ -479,7 +479,8 @@ export default function ChargingStationForm({ variant, chargerId }) {
               variant={variant === "about" ? "none" : "blue"}
               className={cn(
                 "max-w-[90px] sm:max-w-[100px] xl:max-w-[120px] 2xl:max-w-[140px] mt-[10px] xl:mt-[15px] 2xl:mt-[20px] ml-auto",
-                variant === "about" && "text-black bg-white"
+                variant === "about" && "text-black bg-white",
+                "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c] hover:text-white"
               )}
               type="submit"
               disabled={isSubmitting}
