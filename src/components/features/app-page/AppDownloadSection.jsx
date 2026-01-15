@@ -57,6 +57,7 @@ export default function AppDownloadSection({ appDownloadData }) {
                   <div key={"app_download" + index}>
                     <a
                       href={item?.button_link}
+                      target="_blank"
                       className="w-[80px] sm:w-[100px] xl:w-[130px] 2xl:w-[140px] h-auto aspect-[4/2] block transition hover:scale-105"
                     >
                       <Image

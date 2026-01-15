@@ -112,6 +112,7 @@ export default function MerchantileGallerySection({ data = local_data }) {
                           loop
                           muted
                           playsInline
+                          poster={generateMediaUrl(item?.thumbnail?.media_path)}
                           className="w-full h-full object-cover transition group-hover:scale-105"
                         >
                           <source src={generateMediaUrl(item?.media?.media_path)} type="video/mp4" />

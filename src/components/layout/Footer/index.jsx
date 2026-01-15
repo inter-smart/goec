@@ -89,8 +89,8 @@ const footerData = {
           label: "Shop",
         },
         {
-          link: "/charging-stations",
-          label: "Apply for charging station",
+          link: "/investment",
+          label: "Invest in GO EC",
         },
       ],
     },

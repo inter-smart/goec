@@ -188,7 +188,7 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await fetchFromAPI("newsletter-subscription", {
+      const { data, error, message } = await fetchFromAPI("newsletter-subscription", {
         method: "POST",
         body: JSON.stringify({
           email_id: email,
@@ -202,13 +202,7 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
           "Successfully subscribed to our newsletter! Thank you for joining us."
         );
       } else {
-        if (error?.message) {
-          toast.error(error.message);
-        } else if (error?.errors && error.errors.length > 0) {
-          toast.error(error.errors[0].msg || "Subscription failed");
-        } else {
-          toast.error("Subscription failed. Please try again.");
-        }
+          toast.error(message);
       }
     } catch (error) {
       console.error("Newsletter subscription error:", error);
