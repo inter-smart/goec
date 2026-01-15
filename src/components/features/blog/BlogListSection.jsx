@@ -131,9 +131,9 @@ export default function BlogListSection({
       dragFree: false,
       // loop: true,
       breakpoints: {
-        "(min-width: 768px)": { axis: "y", dragFree: true, },
+        "(min-width: 768px)": { axis: "y", dragFree: true },
       },
-    },
+    }
     // [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
@@ -247,7 +247,7 @@ export default function BlogListSection({
                     <Text
                       as="div"
                       size="none"
-                      className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center"
+                      className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center"
                     >
                       {format(
                         new Date(firstItem?.published_on),
@@ -260,7 +260,7 @@ export default function BlogListSection({
                       <div>
                         <ActionButton
                           variant="link"
-                          className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
+                          className="text-[14px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                           asChild
                         >
                           <Link href={`${variant}/${firstItem?.slug}`}>
@@ -305,7 +305,7 @@ export default function BlogListSection({
               <Heading
                 as="h3"
                 size="none"
-                className="text-[20px] md:text-[16px] lg:text-[18px] xl:text-[22px] 2xl:text-[24px] 3xl:text-[32px] leading-tight font-semibold text-[#030303] max-md:text-center mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
+                className="text-[26px] md:text-[16px] lg:text-[18px] xl:text-[22px] 2xl:text-[24px] 3xl:text-[32px] leading-tight font-semibold text-[#030303] max-md:text-center mb-[15px] xl:mb-[20px] 2xl:mb-[30px]"
               >
                 {popular_blogs_section?.title}
               </Heading>
@@ -320,7 +320,7 @@ export default function BlogListSection({
                       return (
                         <div
                           key={index}
-                          className="flex-[0_0_276px] xs:flex-[0_0_50%] md:flex-[0_0_120px] lg:flex-[0_0_33.333%] min-h-0 max-md:p-[5px] md:py-1 xl:py-2 md:border-b border-[#f0f0f0] group-last:border-white"
+                          className="flex-[0_0_320px] xs:flex-[0_0_50%] md:flex-[0_0_120px] lg:flex-[0_0_33.333%] min-h-0 max-md:p-[5px] md:py-1 xl:py-2 md:border-b border-[#f0f0f0] group-last:border-white"
                         >
                           <div className="w-full h-full block ">
                             <div className="h-full flex flex-wrap mx-[-5px] xl:mx-[-8px] 2xl:mx-[-10px] [&>*]:px-[5px] xl:[&>*]:px-[8px] 2xl:[&>*]:px-[10px] max-md:flex-col">
@@ -360,7 +360,7 @@ export default function BlogListSection({
                                         <Text
                                           as="div"
                                           size="none"
-                                          className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[15px] leading-none font-normal text-[#757575]"
+                                          className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[15px] leading-none font-normal text-[#757575]"
                                         >
                                           {item?.category || "Blog"}
                                           <span>&nbsp;-&nbsp;</span>
@@ -379,7 +379,7 @@ export default function BlogListSection({
                                         <Text
                                           as="div"
                                           size="none"
-                                          className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[15px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center"
+                                          className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[15px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center"
                                         >
                                           {formattedDate}
                                           <span className="w-[4px] h-[4px] inline-block bg-[#757575] rounded"></span>
@@ -387,7 +387,7 @@ export default function BlogListSection({
                                         </Text>
                                         <ActionButton
                                           variant="link"
-                                          className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-black hover:[>svg]:translate-x-1"
+                                          className="text-[12px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] text-black hover:[>svg]:translate-x-1"
                                           asChild
                                         >
                                           <Link
@@ -434,125 +434,6 @@ export default function BlogListSection({
                     })}
                   </div>
                 </div>
-
-                {/* {otherItems?.map((item, index) => {
-                  const formattedDate = format(
-                    new Date(item.published_on),
-                    "dd MMMM yyyy"
-                  );
-                  return (
-                    <div
-                      key={"news" + index}
-                      className="group w-full xs:w-1/2 md:w-full mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
-                    >
-                      <div className="w-full h-full block md:pb-[10px] xl:pb-[15px] 2xl:pb-[20px] md:border-b border-[#f0f0f0] group-last:border-white">
-                        <div className="h-full flex flex-wrap mx-[-5px] xl:mx-[-10px] 2xl:mx-[-12px] [&>*]:px-[5px] xl:[&>*]:px-[10px] 2xl:[&>*]:px-[12px]">
-                          <div className="w-full md:w-[100px] lg:w-[140px] xl:w-[170px] 2xl:w-[200px] 3xl:w-[250px]">
-                            <Link
-                              href={`${variant}/${item?.slug}`}
-                              className="w-full h-full block aspect-[2/1] md:aspect-[240/220] rounded-[20px] xl:rounded-[30px] overflow-hidden relative z-0"
-                            >
-                              <Image
-                                src={`${MEDIA_URL}${item?.media?.media_path}`}
-                                alt={item?.media?.media_alt}
-                                fill
-                                sizes="512px"
-                                className="object-cover transition hover:scale-105"
-                              />
-                            </Link>
-                          </div>
-                          <div className="w-full md:w-[calc(100%-100px)] lg:w-[calc(100%-140px)] xl:w-[calc(100%-170px)] 2xl:w-[calc(100%-200px)] 3xl:w-[calc(100%-250px)]">
-                            <div className="h-full flex flex-col justify-between py-[10px] 2xl:py-[15px] 3xl:py-[30px]">
-                              <div>
-                                <div className="text-[14px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[24px] leading-tight font-semibold text-black line-clamp-2 mb-[2px] xl:mb-[4px] 3xl:mb-[8px]">
-                                  <Link href={`${variant}/${item?.slug}`}>
-                                    {item?.title}
-                                  </Link>
-                                </div>
-                                <Text
-                                  as="div"
-                                  size="text3"
-                                  className="line-clamp-2 text-[#373737] mb-[5px] xl:mb-[10px] 3xl:mb-[15px]"
-                                >
-                                  {parse(item?.description)}
-                                </Text>
-                              </div>
-                              <div className="flex justify-between items-center">
-                                {variant === "blog" ? (
-                                  <>
-                                    <Text
-                                      as="div"
-                                      size="none"
-                                      className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575]"
-                                    >
-                                      {item?.category || "Blog"}
-                                      <span>&nbsp;-&nbsp;</span>
-                                      {item?.reading_time}
-                                    </Text>
-                                    <Text
-                                      as="div"
-                                      size="none"
-                                      className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575]"
-                                    >
-                                      {formattedDate}
-                                    </Text>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Text
-                                      as="div"
-                                      size="none"
-                                      className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center"
-                                    >
-                                      {formattedDate}
-                                      <span className="w-[4px] h-[4px] inline-block bg-[#757575] rounded"></span>
-                                      {item?.reading_time}
-                                    </Text>
-                                    <ActionButton
-                                      variant="link"
-                                      className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
-                                      asChild
-                                    >
-                                      <Link href={`${variant}/${item?.slug}`}>
-                                        Read now
-                                        <svg
-                                          width="32"
-                                          height="8"
-                                          viewBox="0 0 32 8"
-                                          fill="none"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          className="size-[10px] sm:size-[15px] xl:size-[20px] 3xl:size-[25px]"
-                                        >
-                                          <path
-                                            d="M32 3.84766L25.3333 -0.00134566V7.69666L32 3.84766ZM0 3.84766L0 4.51432L26 4.51432V3.84766V3.18099L0 3.18099L0 3.84766Z"
-                                            fill="#151515"
-                                          />
-                                          <mask
-                                            id="path-2-inside-1_1293_11217"
-                                            fill="white"
-                                          >
-                                            <path d="M30.6874 3.67877C30.7281 3.52226 30.8242 3.38586 30.958 3.29497C31.0917 3.20408 31.2539 3.16489 31.4144 3.18472C31.5749 3.20454 31.7227 3.28202 31.8303 3.40272C31.9379 3.52342 31.998 3.67912 31.9993 3.84082C32.0007 4.00252 31.9432 4.15919 31.8376 4.28166C31.732 4.40414 31.5855 4.48406 31.4254 4.50654C31.2653 4.52903 31.1024 4.49255 30.9672 4.40389C30.8319 4.31523 30.7335 4.18045 30.6903 4.02463L30.7478 4.00867C30.7872 4.15054 30.8768 4.27326 30.9999 4.35398C31.123 4.4347 31.2713 4.46791 31.4171 4.44744C31.5629 4.42697 31.6963 4.3542 31.7924 4.24269C31.8885 4.13118 31.9409 3.98854 31.9396 3.84131C31.9384 3.69409 31.8837 3.55233 31.7858 3.44243C31.6878 3.33254 31.5532 3.262 31.4071 3.24395C31.261 3.2259 31.1133 3.26157 30.9915 3.34433C30.8697 3.42708 30.7822 3.55127 30.7452 3.69377L30.6874 3.67877Z" />
-                                          </mask>
-                                          <path
-                                            d="M30.6874 3.67877C30.7281 3.52226 30.8242 3.38586 30.958 3.29497C31.0917 3.20408 31.2539 3.16489 31.4144 3.18472C31.5749 3.20454 31.7227 3.28202 31.8303 3.40272C31.9379 3.52342 31.998 3.67912 31.9993 3.84082C32.0007 4.00252 31.9432 4.15919 31.8376 4.28166C31.732 4.40414 31.5855 4.48406 31.4254 4.50654C31.2653 4.52903 31.1024 4.49255 30.9672 4.40389C30.8319 4.31523 30.7335 4.18045 30.6903 4.02463L30.7478 4.00867C30.7872 4.15054 30.8768 4.27326 30.9999 4.35398C31.123 4.4347 31.2713 4.46791 31.4171 4.44744C31.5629 4.42697 31.6963 4.3542 31.7924 4.24269C31.8885 4.13118 31.9409 3.98854 31.9396 3.84131C31.9384 3.69409 31.8837 3.55233 31.7858 3.44243C31.6878 3.33254 31.5532 3.262 31.4071 3.24395C31.261 3.2259 31.1133 3.26157 30.9915 3.34433C30.8697 3.42708 30.7822 3.55127 30.7452 3.69377L30.6874 3.67877Z"
-                                            fill="#151515"
-                                            stroke="#151515"
-                                            strokeWidth="0.115942"
-                                            mask="url(#path-2-inside-1_1293_11217)"
-                                          />
-                                        </svg>
-                                      </Link>
-                                    </ActionButton>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })} */}
               </div>
             </div>
           )}

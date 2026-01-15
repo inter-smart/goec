@@ -64,14 +64,14 @@ export default function DetailHeroSection({ station = header_station }) {
                 <Text
                   as="div"
                   size="none"
-                  className="text-[10px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-white"
+                  className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-white"
                 >
                   <Image
                     src={"/images/icon-location.svg"}
                     alt={"icon-location"}
                     width={24}
                     height={24}
-                    className="w-[14px] xl:w-[16px] 2xl:w-[18px] mr-[4px] xl:mr-[8px] inline-block"
+                    className="w-[15px] xl:w-[16px] 2xl:w-[18px] mr-[4px] xl:mr-[8px] inline-block"
                   />
                   {station?.place}
                 </Text>
@@ -80,14 +80,14 @@ export default function DetailHeroSection({ station = header_station }) {
                 <Text
                   as="div"
                   size="none"
-                  className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-white"
+                  className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-white"
                 >
                   <Image
                     src={"/images/icon-clock.svg"}
                     alt={"icon-clock"}
                     width={24}
                     height={24}
-                    className="w-[14px] xl:w-[16px] 2xl:w-[18px] mr-[8px] inline-block"
+                    className="w-[15px] xl:w-[16px] 2xl:w-[18px] mr-[8px] inline-block"
                   />
                   Open {station?.opening_time} hours
                 </Text>
@@ -107,7 +107,7 @@ export default function DetailHeroSection({ station = header_station }) {
             <div>
               <ActionButton
                 size={"lg"}
-                className="text-black bg-white min-w-[120px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] ml-auto hover:text-white"
+                className="text-black bg-white min-w-[140px] sm:min-w-[140px] xl:min-w-[160px] 2xl:min-w-[180px] ml-auto hover:text-white"
                 asChild
               >
                 <a
@@ -138,7 +138,7 @@ export default function DetailHeroSection({ station = header_station }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[10px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block"
+                    className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-center text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block"
                   >
                     Total chargers : <span>{station?.total_units}</span>
                   </Text>
@@ -152,7 +152,7 @@ export default function DetailHeroSection({ station = header_station }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
+                    className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
                   >
                     Charger Types : <span>{station?.charger_type}</span>
                   </Text>
@@ -166,7 +166,7 @@ export default function DetailHeroSection({ station = header_station }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
+                    className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
                   >
                     Power : <span>{station?.power}</span>
                   </Text>
@@ -180,7 +180,7 @@ export default function DetailHeroSection({ station = header_station }) {
                   <Text
                     as="div"
                     size="none"
-                    className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
+                    className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-tight font-medium text-[#a9a9a9] [&>span]:text-[102%] [&>span]:text-medium [&>span]:text-white sm:[&>span]:text-black max-xl:[&>span]:block max-xl:text-center"
                   >
                     Socket Types : <span>{station?.socket_type}</span>
                   </Text>

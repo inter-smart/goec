@@ -225,73 +225,75 @@ export default function HeroSection({ heroBanner = heroData }) {
                   >
                     {item?.description}
                   </Text>
-                  <div className="flex space-x-[10px] xl:space-x-[15px]">
+                  <div className="flex flex-wrap space-x-[10px] xl:space-x-[15px] gap-y-2">
                     {item?.button?.map((buttonItem, index) =>
                       buttonItem?.type === "primary" ? (
-                        <ActionButton
-                          key={index}
-                          size={"lg"}
-                          className={cn(
-                            "max-w-[120px] sm:max-w-[120px] xl:max-w-[170px] 2xl:max-w-[180px] ",
-                            "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
-                            "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
-                          )}
-                          asChild
-                        >
-                          <Link href={buttonItem?.link}>
-                            {buttonItem?.text}
+                        <div key={"cta-" + index}>
+                          <ActionButton
+                            size={"lg"}
+                            className={cn(
+                              "min-w-[150px] sm:min-w-[120px] xl:min-w-[170px] 2xl:min-w-[180px] ",
+                              "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                              "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                            )}
+                            asChild
+                          >
+                            <Link href={buttonItem?.link}>
+                              {buttonItem?.text}
 
-                            <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
-                              <Image
-                                src="/images/icon-btn-arrow-light.svg"
-                                alt="icon-btn-arrow-light"
-                                width={41}
-                                height={23}
-                                className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
-                              />
-                              <Image
-                                src="/images/icon-btn-arrow-hover.svg"
-                                alt="icon-btn-arrow-hover"
-                                width={41}
-                                height={23}
-                                className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
-                              />
-                            </span>
-                          </Link>
-                        </ActionButton>
+                              <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                                <Image
+                                  src="/images/icon-btn-arrow-light.svg"
+                                  alt="icon-btn-arrow-light"
+                                  width={41}
+                                  height={23}
+                                  className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                                />
+                                <Image
+                                  src="/images/icon-btn-arrow-hover.svg"
+                                  alt="icon-btn-arrow-hover"
+                                  width={41}
+                                  height={23}
+                                  className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                                />
+                              </span>
+                            </Link>
+                          </ActionButton>
+                        </div>
                       ) : (
-                        <ActionButton
-                          key={index}
-                          size={"lg"}
-                          className={cn(
-                            "text-black bg-white max-w-[140px] sm:max-w-[160px] xl:max-w-[190px] 2xl:max-w-[220px]",
-                            "hover:text-white",
-                            "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
-                            "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
-                          )}
-                          asChild
-                        >
-                          <Link href={buttonItem?.link}>
-                            {buttonItem?.text}
+                        <div key={"secondary-cta-" + index}>
+                          <ActionButton
+                            size={"lg"}
+                            className={cn(
+                              "text-black bg-white min-w-[160px] sm:min-w-[160px] xl:min-w-[190px] 2xl:min-w-[220px]",
+                              "hover:text-white",
+                              "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
+                              "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
+                            )}
+                            asChild
+                          >
+                            <Link href={buttonItem?.link}>
+                              {buttonItem?.text}
 
-                            <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
-                              <Image
-                                src="/images/icon-btn-arrow-dark.svg"
-                                alt="icon-btn-arrow-dark"
-                                width={41}
-                                height={23}
-                                className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
-                              />
-                              <Image
-                                src="/images/icon-btn-arrow-hover.svg"
-                                alt="icon-btn-arrow-hover"
-                                width={41}
-                                height={23}
-                                className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
-                              />
-                            </span>
-                          </Link>
-                        </ActionButton>
+                              <span className="w-6 xl:w-8 aspect-4/2 relative z-0">
+                                <Image
+                                  src="/images/icon-btn-arrow-dark.svg"
+                                  alt="icon-btn-arrow-dark"
+                                  width={41}
+                                  height={23}
+                                  className="max-w-[75%] block notHover transition duration-600 absolute z-0 inset-0 m-auto ml-0"
+                                />
+                                <Image
+                                  src="/images/icon-btn-arrow-hover.svg"
+                                  alt="icon-btn-arrow-hover"
+                                  width={41}
+                                  height={23}
+                                  className="block isHover transition duration-600 absolute z-0 inset-0 m-auto"
+                                />
+                              </span>
+                            </Link>
+                          </ActionButton>
+                        </div>
                       )
                     )}
                   </div>

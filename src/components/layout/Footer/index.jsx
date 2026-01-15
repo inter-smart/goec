@@ -258,10 +258,10 @@ export default function Footer({ data = footerData, footer_section }) {
                     >
                       Address - {item?.title}
                     </Heading>
-                    <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px] max-w-[75%]">
+                    <div className="text-[13px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px] max-w-[75%]">
                       {item?.description}
                     </div>
-                    <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px] flex transition hover:text-primary">
+                    <div className="text-[13px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] mb-[10px] xl:mb-[15px] 2xl:mb-[20px] flex transition hover:text-primary">
                       <Image
                         src="/images/footer-call.svg"
                         alt="icon-call"
@@ -301,7 +301,7 @@ export default function Footer({ data = footerData, footer_section }) {
                           <Link
                             href={linkItem?.link}
                             target={linkItem?.external? "_blank" : "_self"}
-                            className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] transition hover:text-primary block"
+                            className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737] transition hover:text-primary block"
                           >
                             {linkItem?.label}
                           </Link>
@@ -345,7 +345,7 @@ export default function Footer({ data = footerData, footer_section }) {
             <hr />
             <div className="flex flex-wrap justify-between py-[15px] sm:py-[20px] xl:py-[30px] 2xl:py-[40px] -mx-[10px] [&>*]:p-[10px]">
               <div>
-                <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737]">
+                <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight font-normal text-[#373737]">
                   {data?.copyright}
                 </div>
               </div>

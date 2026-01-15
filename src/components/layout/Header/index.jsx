@@ -43,140 +43,18 @@ import {
 } from "@/components/ui/menubar";
 import { usePathname } from "next/navigation";
 
-// const headerData = {
-//   brand: {
-//     media: {
-//       type: "image",
-//       path: "/static/brand.png",
-//       alt: "logo",
-//     },
-//   },
-//   navigation: [
-//     {
-//       label: "Home",
-//       link: "/",
-//     },
-//     {
-//       label: "Company",
-//       link: "/about",
-//       item_company: [
-//         {
-//           label: "About us",
-//           link: "/about",
-//           item_about: [
-//             {
-//               label: "More about us",
-//               link: "/about#about-more",
-//             },
-//             {
-//               label: "Our Values",
-//               link: "/about#our-values",
-//             },
-//             {
-//               label: "Our Journey",
-//               link: "/about#our-journey",
-//             },
-//             {
-//               label: "Meet our team",
-//               link: "/about#meet-team",
-//             },
-
-//             {
-//               label: "Our Associates",
-//               link: "/about#our-associates",
-//             },
-//             {
-//               label: "Media & Recognit",
-//               link: "/about#media-recognition",
-//             },
-//           ],
-//         },
-//         {
-//           label: "About us",
-//           link: "/about",
-//           item_about: [
-//             {
-//               label: "More about us",
-//               link: "/about#about-more",
-//             },
-//             {
-//               label: "Our Values",
-//               link: "/about#our-values",
-//             },
-//             {
-//               label: "Our Journey",
-//               link: "/about#our-journey",
-//             },
-//             {
-//               label: "Meet our team",
-//               link: "/about#meet-team",
-//             },
-//             {
-//               label: "Our Associates",
-//               link: "/about#our-associates",
-//             },
-//             {
-//               label: "Media & Recognit",
-//               link: "/about#media-recognition",
-//             },
-//           ],
-//         },
-//         {
-//           label: "Careers",
-//           link: "/career",
-//         },
-//         {
-//           label: "Privacy Policy",
-//           link: "/privacy-policy",
-//         },
-//         {
-//           label: "Terms and conditions",
-//           link: "/terms-conditions",
-//         },
-//       ],
-//     },
-//     {
-//       label: "Invest in GO EC",
-//       link: "/invest",
-//     },
-//     {
-//       label: "Solutions",
-//       link: "/solutions",
-//       item_solution: [
-//         {
-//           label: "GOEC Charging Hub",
-//           link: "/about",
-//         },
-//         {
-//           label: "GOEC Exclusive",
-//           link: "/about",
-//         },
-//         {
-//           label: "Public Commercial Parking",
-//           link: "/about",
-//         },
-//       ],
-//     },
-//   ],
-// };
-
 export default function Header({ header_section }) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
+  
+  const [bg, setBg] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
-      let direction = current - scrollYProgress.getPrevious();
-
-      if (scrollYProgress.get() < 0.05) {
-        setVisible(true);
-      } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
-      }
+      const direction = current - scrollYProgress.getPrevious();
+      const atTop = scrollYProgress.get() < 0.05;
+      setVisible(atTop || direction < 0);
+      setBg(!atTop && direction < 0);
     }
   });
 
@@ -196,7 +74,8 @@ export default function Header({ header_section }) {
         }}
         className={cn(
           "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/20 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center ",
-          visible && "bg-[#030303]/20"
+          visible ? "bg-[#030303]/20 backdrop-blur-sm" : "bg-black/10 backdrop-blur-xl",
+          bg && "bg-black/90"
         )}
       >
         <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
@@ -222,7 +101,7 @@ export default function Header({ header_section }) {
                   <MenubarMenu className="p-0 bg-none">
                     <MenubarTrigger
                       className={cn(
-                        "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white! focus:text-white w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[130px] 2xl:min-w-[155px] 3xl:min-w-[176px] h-[40px] xl:h-[42px] 2xl:h-[46px] p-2 rounded-full focus:bg-white/20 hover:bg-white/30 border border-white/20 flex items-center justify-center data-[state=open]:bg-white/20 data-[state=open]:text-white",
+                        "text-[14px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white! focus:text-white w-full min-w-[130px] sm:min-w-[120px] xl:min-w-[130px] 2xl:min-w-[155px] 3xl:min-w-[176px] h-[40px] xl:h-[42px] 2xl:h-[46px] p-2 rounded-full focus:bg-white/20 hover:bg-white/30 border border-white/20 flex items-center justify-center data-[state=open]:bg-white/20 data-[state=open]:text-white",
                         visible && "focus:text-white"
                       )}
                     >
@@ -240,7 +119,7 @@ export default function Header({ header_section }) {
               <div>
                 <Sheet>
                   <SheetTrigger className="select-none">
-                    <div className="lg:hidden text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
+                    <div className="lg:hidden text-[14px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white w-full flex items-center justify-center ">
                       <Image
                         src="/images/header-hamburger.svg"
                         alt="hamburger"
@@ -272,279 +151,6 @@ export default function Header({ header_section }) {
     </AnimatePresence>
   );
 }
-
-// function MegaNavigationMenubar() {
-//   const company_data = {
-//     label: "Company",
-//     sub_item: [
-//       {
-//         id: 1,
-//         label: "About us",
-//         link: "/about",
-//         sub_sub_item: [
-//           {
-//             label: "More about us",
-//             link: "/about#about-more",
-//           },
-//           {
-//             label: "Our Values",
-//             link: "/about#our-values",
-//           },
-//           {
-//             label: "Our Journey",
-//             link: "/about#our-journey",
-//           },
-//           {
-//             label: "Meet our team",
-//             link: "/about#meet-team",
-//           },
-//           {
-//             label: "Our Associates",
-//             link: "/about#our-associates",
-//           },
-//           {
-//             label: "Media & Recognition",
-//             link: "/about#media-recognition",
-//           },
-//         ],
-//       },
-//       {
-//         id: 3,
-//         label: "Careers",
-//         link: "/career",
-//         sub_sub_item: [],
-//       },
-//       {
-//         id: 4,
-//         label: "Privacy Policy",
-//         link: "/privacy-policy",
-//         sub_sub_item: [],
-//       },
-//       {
-//         id: 5,
-//         label: "Terms and conditions",
-//         link: "/terms-and-conditions",
-//         sub_sub_item: [],
-//       },
-//     ],
-//   };
-//   const invest_data = {
-//     label: "Invest in GO EC",
-//     sub_item: [
-//       {
-//         id: 1,
-//         label: "Investment",
-//         link: "/investment",
-//       },
-//       {
-//         id: 2,
-//         label: "Merchantile",
-//         link: "/merchantile",
-//       },
-//     ],
-//   };
-//   const solution_data = {
-//     label: "Solutions",
-//     sub_item: [
-//       {
-//         id: 1,
-//         label: "Find charging stations",
-//         link: "/ev-charging-stations",
-//       },
-//       {
-//         id: 2,
-//         label: "Charging Hub",
-//         link: "/charging-stations",
-//       },
-//     ],
-//   };
-
-//   return (
-//     <NavigationMenu
-//       viewport={false}
-//       className={"max-w-full justify-normal [&>div]:w-full"}
-//     >
-//       <NavigationMenuList
-//         className={
-//           "max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px] "
-//         }
-//       >
-//         <NavigationMenuItem>
-//           <NavigationMenuLink asChild className={navigationMenuTriggerStyle}>
-//             <Link href="/">Home</Link>
-//           </NavigationMenuLink>
-//         </NavigationMenuItem>
-//         <NavigationMenuItem>
-//           <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
-//             Company
-//           </NavigationMenuTrigger>
-//           <NavigationMenuContent className={"p-0"}>
-//             <MegaNavigationMenuContent data={company_data} />
-//           </NavigationMenuContent>
-//         </NavigationMenuItem>
-//         <NavigationMenuItem>
-//           <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
-//             Invest in GO EC
-//           </NavigationMenuTrigger>
-//           <NavigationMenuContent className={"p-0"}>
-//             <SmNavigationMenuContent data={invest_data} />
-//           </NavigationMenuContent>
-//         </NavigationMenuItem>
-//         <NavigationMenuItem>
-//           <NavigationMenuTrigger className={navigationMenuTriggerStyle}>
-//             Solutions
-//           </NavigationMenuTrigger>
-//           <NavigationMenuContent className={"p-0"}>
-//             <SmNavigationMenuContent data={solution_data} />
-//           </NavigationMenuContent>
-//         </NavigationMenuItem>
-//       </NavigationMenuList>
-//     </NavigationMenu>
-//   );
-// }
-
-// function MegaNavigationMenuContent({ data }) {
-//   const [activeId, setActiveId] = useState(data?.sub_item?.[0]?.id || 1);
-
-//   // Filter sub items based on the active category
-//   const filteredItems = useMemo(() => {
-//     const activeItem = data?.sub_item?.find((item) => item.id === activeId);
-//     return activeItem?.sub_sub_item || [];
-//   }, [data, activeId]);
-
-//   return (
-//     <div className="w-full lg:w-[420px] xl:w-[576px] 2xl:w-[620px] 3xl:w-[668px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
-//       <div className="flex flex-wrap">
-//         <div className="w-full lg:w-[168px] xl:w-[200px] 2xl:w-[240px] bg-[#fafafa] p-[8px] xl:p-[10px] 2xl:p-[20px]">
-//           <div className="flex flex-col">
-//             {data?.sub_item?.map((item, index) => {
-//               const hasSubItems =
-//                 item?.sub_sub_item && item.sub_sub_item.length > 0;
-
-//               return (
-//                 <div key={"navigation" + index} className="max-lg:mb-[10px]">
-//                   {hasSubItems ? (
-//                     <button
-//                       onClick={() => setActiveId(item.id)}
-//                       className={cn(
-//                         "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-black w-full h-auto flex justify-between items-center p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition-all",
-//                         activeId === item.id
-//                           ? "text-white bg-black max-lg:rounded-[8px_8px_0_0]"
-//                           : "hover:bg-[#e0e0e0]"
-//                       )}
-//                     >
-//                       {item?.label}
-//                       <Image
-//                         src="/images/header-arrow.svg"
-//                         alt="arrow"
-//                         width={8}
-//                         height={8}
-//                         className={cn(
-//                           "w-[6px] xl:w-[8px] transition",
-//                           activeId === item.id
-//                             ? "lg:opacity-100 rotate-0"
-//                             : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
-//                         )}
-//                       />
-//                     </button>
-//                   ) : (
-//                     <Link
-//                       href={item.link || "#"}
-//                       className={cn(
-//                         "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-black w-full h-auto flex justify-between items-center p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition-all",
-//                         "hover:bg-[#e0e0e0]"
-//                       )}
-//                     >
-//                       {item?.label}
-//                     </Link>
-//                   )}
-
-//                   <div
-//                     className={cn(
-//                       "lg:hidden ",
-//                       activeId === item.id ? "h-auto visible" : "h-0 invisible"
-//                     )}
-//                   >
-//                     <div
-//                       className={cn(
-//                         "w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]"
-//                       )}
-//                     >
-//                       {item?.sub_sub_item?.map((subItem, subIndex) => (
-//                         <div key={subIndex} className="w-full max-w-full">
-//                           <Link
-//                             href={subItem.link}
-//                             className={cn(
-//                               "text-[14px] leading-normal font-normal truncate text-[#373737] w-full h-auto block p-[4px_10px] rounded-[8px] transition",
-//                               "hover:bg-[#fafafa] hover:text-[#030303]"
-//                             )}
-//                           >
-//                             {subItem.label}
-//                           </Link>
-//                         </div>
-//                       ))}
-//                     </div>
-//                   </div>
-//                 </div>
-//               );
-//             })}
-//           </div>
-//         </div>
-
-//         <div className="w-full lg:w-[calc(100%_-_168px)] xl:w-[calc(100%_-_200px)] 2xl:w-[calc(100%_-_240px)] p-[8px] xl:p-[10px] 2xl:p-[20px] max-lg:hidden">
-//           {filteredItems.length > 0 ? (
-//             <div className="w-full block columns-2 gap-2 2xl:gap-4">
-//               {filteredItems?.map((item, index) => (
-//                 <div
-//                   key={index}
-//                   className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] break-inside-avoid"
-//                 >
-//                   <Link
-//                     href={item.link || "#"}
-//                     className={cn(
-//                       "text-[14px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal truncate text-[#373737] w-full h-auto block p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition",
-//                       "hover:bg-[#fafafa] hover:text-[#030303]"
-//                     )}
-//                   >
-//                     {item.label}
-//                   </Link>
-//                 </div>
-//               ))}
-//             </div>
-//           ) : (
-//             <div className="text-center text-[#999] py-8">
-//               <p className="text-[14px] xl:text-[14px] 2xl:text-[16px]">
-//                 No sub-items available
-//               </p>
-//             </div>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// function SmNavigationMenuContent({ data }) {
-//   return (
-//     <div className="w-full lg:w-[200px] xl:w-[220px] 2xl:w-[268px] 3xl:w-[320px] bg-white rounded-[15px] 2xl:rounded-[30px] overflow-hidden p-[10px_5px] 2xl:p-[15px_10px] shadow-lg">
-//       <div className="w-full block">
-//         {data?.sub_item?.map((item, index) => (
-//           <div key={index} className="">
-//             <Link
-//               href={item.link || "#"}
-//               className={cn(
-//                 "text-[14px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal truncate text-[#373737] w-full h-auto block p-[6px_8px] xl:p-[8px_10px] 2xl:p-[10px_20px] rounded-[8px] transition",
-//                 "hover:bg-[#fafafa] hover:text-[#030303]"
-//               )}
-//             >
-//               {item.label}
-//             </Link>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
 
 function MegaNavigationMenubar() {
   const pathname = usePathname();
@@ -764,7 +370,10 @@ function MegaNavigationMenuContent({ data }) {
                   ));
 
               return (
-                <div key={"navigation" + index} className="lg:my-1 2xl:my-1.5 max-lg:mb-[10px]">
+                <div
+                  key={"navigation" + index}
+                  className="lg:my-1 2xl:my-1.5 max-lg:mb-[10px]"
+                >
                   {hasSubItems ? (
                     <button
                       onClick={() => setActiveId(item.id)}

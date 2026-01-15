@@ -292,12 +292,12 @@ export default function ChargingStationForm({ variant, chargerId }) {
 
   // Shared styles
   const labelStyle = cn(
-    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737",
+    "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737",
     variant === "about" && "text-white"
   );
 
   const inputStyle = cn(
-    "text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737] placeholder:text-[#a9a9a9] w-full !h-[35px] xl:!h-[40px] 2xl:!h-[45px] bg-white border-[#a2a2a2] px-[15px] 2xl:px-[20px] focus:outline-none focus:ring-0 focus-visible:ring-1 focus-visible:border-transparent selection:bg-black selection:text-white appearance-none rounded-[7px] 2xl:rounded-[10px]",
+    "text-[14px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-none font-normal text-[#373737] placeholder:text-[#a9a9a9] w-full !h-[35px] xl:!h-[40px] 2xl:!h-[45px] bg-white border-[#a2a2a2] px-[15px] 2xl:px-[20px] focus:outline-none focus:ring-0 focus-visible:ring-1 focus-visible:border-transparent selection:bg-black selection:text-white appearance-none rounded-[7px] 2xl:rounded-[10px]",
     variant === "about" &&
       "bg-white/10 border-white/20 text-white placeholder:text-[#a0bae5] data-[placeholder]:text-[#a0bae5] [&_svg]:[filter:_brightness(0)_saturate(100%)_invert(81%)_sepia(16%)_saturate(494%)_hue-rotate(181deg)_brightness(88%)_contrast(92%)]"
   );

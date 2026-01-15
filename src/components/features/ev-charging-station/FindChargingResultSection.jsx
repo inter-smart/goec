@@ -146,7 +146,7 @@ const local_data = {
 };
 
 const textStyle = `
-  text-[9px] sm:text-[11px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-tight font-medium text-[#030303]
+  text-[13px] sm:text-[11px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-tight font-medium text-[#030303]
 `
   .replace(/\s+/g, " ")
   .trim();
@@ -258,7 +258,7 @@ export default function FindChargingResultSection({
           )}
           <div className="w-full max-sm:overflow-x-auto">
             {resultItems.length > 0 ? (
-              <div className="w-full min-w-[468px]">
+              <div className="w-full min-w-[576px]">
                 <div className="flex max-xl:px-[10px] [&>*]:p-[5px] xl:[&>*]:p-[15px_20px] 2xl:[&>*]:p-[20px_30px] ">
                   {[
                     "Station",
@@ -287,7 +287,9 @@ export default function FindChargingResultSection({
                     }
                   >
                     <div className={cn(textStyle, "w-2/12 sm:w-2/12")}>
-                      <Link href={`/ev-charging-stations/${item?.slug}`}>
+                      <Link href={`/ev-charging-stations/${item?.slug}`}
+                      className="underline"
+                      >
                         {item?.station}
                       </Link>
                     </div>

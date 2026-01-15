@@ -22,6 +22,8 @@ export default function SimilarBlogSection({
         >
           {similar_section?.title}
         </Heading>
+        </div>
+        <div className="container max-sm:pr-0">
         <Swiper
           loop
           spaceBetween={30}
@@ -37,7 +39,7 @@ export default function SimilarBlogSection({
               spaceBetween: 10,
             },
             384: {
-              slidesPerView: 2,
+              slidesPerView: 1.2,
               spaceBetween: 10,
             },
             640: {

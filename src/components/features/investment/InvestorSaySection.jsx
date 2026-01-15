@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCreative} from "swiper/modules";
+import { EffectCreative, Autoplay } from "swiper/modules";
 import { useRef, useState } from "react";
 
 // Import Swiper styles
@@ -98,11 +98,12 @@ export default function InvestorSaySection({
                 },
               }}
               autoplay={{
-                delay: 5000,
+                speed: 3000,
+                // delay:3000,
                 disableOnInteraction: false,
-                pauseOnMouseEnter: true,
+                pauseOnMouseEnter: false,
               }}
-              modules={[EffectCreative]}
+              modules={[EffectCreative, Autoplay]}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
             >
@@ -120,7 +121,7 @@ export default function InvestorSaySection({
                     <Text
                       as="div"
                       size="text1"
-                      className="text-[#373737] h-[80px] sm:h-[120px] xl:h-[150px] 2xl:h-[200px] overflow-y-auto [mask-image:linear-gradient(to_bottom,black_0%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_95%,transparent_100%)] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
+                      className="text-[#373737] h-[140px] sm:h-[120px] xl:h-[150px] 2xl:h-[200px] overflow-y-auto [mask-image:linear-gradient(to_bottom,black_0%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_95%,transparent_100%)] mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
                     >
                       {parse(item?.description)}
                     </Text>
