@@ -328,7 +328,6 @@ export default async function Home() {
         milestones={milestone_section?.list || []}
       />
 
-      {/* Below-the-fold content - lazy loaded with Suspense */}
       <Suspense fallback={<SectionLoader />}>
         <AboutGrowthSection growthData={company_growth_section?.list || []} />
       </Suspense>

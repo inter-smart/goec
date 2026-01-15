@@ -108,7 +108,7 @@ export default function AboutMoreSection({ data = aboutMoreData, aboutMore, part
                 <ActionButton
                   size={"lg"}
                   variant={"blue"}
-                  className="w-[130px] sm:w-[140px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px]"
+                  className="w-[150px] sm:w-[140px] xl:w-[160px] 2xl:w-[200px] 3xl:w-[220px]"
                   asChild
                 >
                   <Link href={data?.button?.link}>{data?.button?.label}</Link>

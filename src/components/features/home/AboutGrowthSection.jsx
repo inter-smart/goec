@@ -24,7 +24,7 @@ export default function AboutGrowthSection({ growthData }) {
     <section className="w-full h-auto block bg-black relative z-0">
       <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
         <Swiper
-          modules={[Thumbs]}
+          modules={[Thumbs, Autoplay]}
           onSwiper={setThumbsSwiper}
           loop={false}
           spaceBetween={0}
@@ -33,7 +33,7 @@ export default function AboutGrowthSection({ growthData }) {
           autoplay={{
             delay: 6000,
             disableOnInteraction: true,
-            pauseOnMouseEnter: true,
+            pauseOnMouseEnter: false,
           }}
           navigation={false}
           direction={"vertical"}
@@ -176,7 +176,7 @@ export default function AboutGrowthSection({ growthData }) {
         slidesPerView={1}
         navigation={false}
         speed={600}
-        autoplay={false}
+        autoplay={true}
         noSwiping={true}
         longSwipes={false}
         className="max-h-[1080px]"
@@ -240,7 +240,7 @@ export default function AboutGrowthSection({ growthData }) {
                 <Heading
                   as="h3"
                   size="heading3"
-                  className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%] max-2xs:text-[14px]"
+                  className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%]"
                 >
                   {item?.title}
                 </Heading>

@@ -17,7 +17,12 @@ import { Gallery, Item } from "react-photoswipe-gallery";
 
 export default function AboutRecognitionSection({ title, description, list }) {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 3000, stopOnInteraction: false }),
+    Autoplay({ speed: 1.2, delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }),
+    // AutoScroll({
+    //   speed: 1.2,          // 👈 control rolling speed
+    //   stopOnInteraction: false,
+    //   stopOnMouseEnter: true, // optional
+    // }),
   ]);
 
   return (
@@ -36,7 +41,7 @@ export default function AboutRecognitionSection({ title, description, list }) {
               {title}
             </Heading>
           </div>
-          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
+          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[400px] 2xl:w-[476px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
             <Text as="div" size="text2" className="text-[#373737]">
               {parse(description)}
             </Text>
@@ -50,7 +55,7 @@ export default function AboutRecognitionSection({ title, description, list }) {
             {list?.map((item, index) => (
               <div
                 key={"gallery" + index}
-                className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_35%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
+                className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_45%] 3xl:flex-[0_0_25%] px-1 lg:px-2"
               >
                 {item?.media?.media_type === "video" ? (
                   <Item
@@ -73,7 +78,7 @@ export default function AboutRecognitionSection({ title, description, list }) {
                       <div
                         ref={ref}
                         onClick={open}
-                        className="w-full h-auto aspect-[48/36] bg-gray-200 rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
+                        className="w-full h-auto aspect-[16/9] bg-gray-200 rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer relative group"
                       >
                         <video
                           autoPlay
@@ -116,7 +121,7 @@ export default function AboutRecognitionSection({ title, description, list }) {
                     alt={item?.media_alt || "gallery"}
                   >
                     {({ ref, open }) => (
-                      <div className="w-full h-auto aspect-[48/36] bg-gray-200 rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
+                      <div className="w-full h-auto aspect-[16/9] bg-gray-200 rounded-[10px] xl:rounded-[20px] overflow-hidden cursor-pointer">
                         <Image
                           ref={ref}
                           onClick={open}

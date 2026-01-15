@@ -176,7 +176,9 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
             </ActionButton>
           </motion.div>
         </div>
-        {isMobile ? (
+      </div>
+      {isMobile ? (
+        <div className="container pr-0">
           <Swiper
             loop
             spaceBetween={10}
@@ -192,7 +194,7 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                 spaceBetween: 10,
               },
               384: {
-                slidesPerView: 2,
+                slidesPerView: 1.2,
                 spaceBetween: 10,
               },
               640: {
@@ -218,7 +220,9 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
               );
             })}
           </Swiper>
-        ) : (
+        </div>
+      ) : (
+        <div className="container">
           <div className="flex flex-wrap mx-[-4px] xl:mx-[-6px] 2xl:mx-[-12px] [&>*]:p-[4px] xl:[&>*]:p-[6px] 2xl:[&>*]:p-[12px]">
             {news?.map((item, index) => {
               const formattedDate = format(
@@ -312,8 +316,8 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
               );
             })}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }

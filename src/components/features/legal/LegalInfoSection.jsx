@@ -116,10 +116,16 @@ export default function LegalInfoSection({ data, variant }) {
 
   return (
     <section className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px]">
-      <div className="container">
+      <div
+        className={cn(
+          "container",
+          variant != "privacy-policy" &&
+            "xl:px-[80px] 2xl:px-[100px]"
+        )}
+      >
         <div className="flex flex-wrap sm:mx-[-20px] xl:mx-[-30px] 2xl:mx-[-40px] sm:[&>*]:px-[20px] xl:[&>*]:px-[30px] 2xl:[&>*]:px-[40px]">
           {variant === "privacy-policy" && (
-            <div className="w-full h-full sm:w-[220px] xl:w-[368px] 2xl:w-[440px] sticky top-[var(--header-y)] self-start max-sm:hidden">
+            <div className="w-full h-full sm:w-[220px] xl:w-[400px] 2xl:w-[440px] sticky top-[var(--header-y)] self-start max-sm:hidden">
               <nav className="w-full h-auto">
                 {toc.length > 0 ? (
                   <ul className="block">
@@ -132,7 +138,7 @@ export default function LegalInfoSection({ data, variant }) {
                           href={`#${item.id}`}
                           onClick={(e) => handleTocClick(e, item.id)}
                           className={cn(
-                            "text-[12px] sm:text-[14px] xl:text-[16px] 2xl:text-[18px] leading-tight line-clamp-1 w-full h-auto flex items-center gap-[4px] xl:gap-[8px] transition-all duration-300",
+                            "text-[12px] sm:text-[14px] xl:text-[19px] 2xl:text-[23px] leading-tight line-clamp-1 w-full h-auto flex items-center gap-[4px] xl:gap-[8px] transition-all duration-300",
                             activeId === item.id
                               ? "font-semibold text-[#0055e0]"
                               : "font-medium text-[#373737] hover:text-[#0055e0]"
@@ -182,12 +188,12 @@ export default function LegalInfoSection({ data, variant }) {
             className={cn(
               "w-full",
               variant === "privacy-policy" &&
-                "sm:w-[calc(100%-220px)] xl:w-[calc(100%-368px)] 2xl:w-[calc(100%-440px)]"
+                "sm:w-[calc(100%-220px)] xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-440px)]"
             )}
           >
             <div
               ref={contentRef}
-              className="typography [&,_&>p]:text-[#373737] [&>p]:mb-[15px] xl:[&>p]:mb-[20px] 2xl:[&>p]:mb-[30px]"
+              className="typography [--text-color:#373737] xl:[&_p]:text-[17px] 2xl:[&_p]:text-[21px] [&_p]:mb-[15px] xl:[&_p]:mb-[30px] 2xl:[&_p]:mb-[40px] [&_h1,&_h2,&_h3,&_h4,&_h5,&_h6]:font-medium"
             >
               {renderHtml(description.content)}
             </div>

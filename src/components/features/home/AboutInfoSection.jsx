@@ -41,7 +41,7 @@ export default function AboutInfoSection({
       <div className="container">
         <Heading
           as="h2"
-          className="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[52px] leading-tight font-normal text-center text-white max-w-[85%] mx-auto mb-[20px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px] 3xl:mb-[160px]"
+          className="text-[24px] sm:text-[22px] lg:text-[28px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[52px] leading-tight font-normal text-center text-white max-w-[85%] mx-auto mb-[20px] sm:mb-[40px] xl:mb-[80px] 2xl:mb-[120px] 3xl:mb-[160px]"
         >
           {description}
         </Heading>

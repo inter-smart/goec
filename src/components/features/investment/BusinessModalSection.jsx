@@ -85,7 +85,7 @@ export default function BusinessModalSection({ title, list }) {
         </Heading>
         <div className="flex flex-wrap mx-[-15px] sm:mx-[-20px] xl:mx-[-25px] 2xl:mx-[-30px] [&>*]:px-[15px] sm:[&>*]:px-[20px] xl:[&>*]:px-[25px] 2xl:[&>*]:px-[30px]">
           {!isMobile && (
-            <div className="w-full h-full sm:w-[200px] md:w-[276px] xl:w-[300px] 2xl:w-[420px] 3xl:w-[476px] sticky top-[var(--header-y)]">
+            <div className="w-full h-full sm:w-[200px] md:w-[276px] xl:w-[276px] 2xl:w-[340px] 3xl:w-[476px] sticky top-[var(--header-y)]">
               <div className="w-full h-full">
                 {list?.map((item, index) => (
                   <div key={"business-modal" + index} className="w-full">
@@ -125,7 +125,7 @@ export default function BusinessModalSection({ title, list }) {
               </div>
             </div>
           )}
-          <div className="w-full sm:w-[calc(100%-200px)] md:w-[calc(100%-276px)] xl:w-[calc(100%-300px)] 2xl:w-[calc(100%-420px)] 3xl:w-[calc(100%-476px)]">
+          <div className="w-full sm:w-[calc(100%-200px)] md:w-[calc(100%-276px)] xl:w-[calc(100%-276px)] 2xl:w-[calc(100%-340px)] 3xl:w-[calc(100%-476px)]">
             {list?.map((item, index) => (
               <div key={"business-modal" + index} className="not-last:mb-[20px] xl:not-last:mb-[60px] 2xl:not-last:mb-[60px]">
                 <div
@@ -148,7 +148,7 @@ export default function BusinessModalSection({ title, list }) {
                     </Heading>
                     <div className="-p-[20px_15px] sm:-p-[25px_20px] xl:-p-[35px_40px] 2xl:-p-[40px_50px]">
                       <div
-                        className="typography [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-between [&_ul>li]:w-full sm:[&_ul>li]:w-[45%] [&_ul>li]:list-none [&_ul>li]:relative [&_ul>li]:before:content-[''] [&_ul>li:before]:bg-[url('/images/icon-list.svg')] [&_ul>li]:before:w-[15px] xl:[&_ul>li]:before:w-[20px] 2xl:[&_ul>li]:before:w-[25px] [&_ul>li]:before:aspect-square [&_ul>li]:before:block [&_ul>li]:before:absolute [&_ul>li]:before:top-[1px] sm:[&_ul>li]:before:top-[8px] [&_ul>li]:before:left-[-20px] sm:[&_ul>li]:before:left-[-20px] lg:[&_ul>li]:before:left-[-30px] [&_ul>li]:before:bg-no-repeat [&_ul>li]:before:bg-cover [&_ul>li]:before:bg-center bg-ima"
+                        className="typography [&_ul]:flex [&_ul]:flex-wrap [&_ul]:justify-between [&_ul>li]:w-full sm:[&_ul>li]:w-[45%] [&_ul>li]:list-none [&_ul>li]:relative [&_ul>li]:before:content-[''] [&_ul>li:before]:bg-[url('/images/icon-list.svg')] [&_ul>li]:before:w-[15px] xl:[&_ul>li]:before:w-[20px] 2xl:[&_ul>li]:before:w-[25px] [&_ul>li]:before:aspect-square [&_ul>li]:before:block [&_ul>li]:before:absolute [&_ul>li]:before:top-[1px] sm:[&_ul>li]:before:top-[8px] [&_ul>li]:before:left-[-20px] sm:[&_ul>li]:before:left-[-20px] lg:[&_ul>li]:before:left-[-30px] [&_ul>li]:before:bg-no-repeat [&_ul>li]:before:bg-cover [&_ul>li]:before:bg-center [&_ul>li>p]:m-0"
                         dangerouslySetInnerHTML={{ __html: item?.description }}
                       />
                     </div>

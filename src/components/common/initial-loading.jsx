@@ -74,7 +74,7 @@ export default function InitialLoading() {
             }}
           >
             {progress < 90 ? (
-              <div className="text-[22px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px] leading-none font-light text-center text-white transition duration-300 ease-out">
+              <div className="text-[34px] sm:text-[28px] lg:text-[36px] xl:text-[48px] 2xl:text-[56px] 3xl:text-[72px] leading-none font-light text-center text-white transition duration-300 ease-out">
                 {progress}%
               </div>
             ) : (
@@ -83,7 +83,7 @@ export default function InitialLoading() {
                 alt="logo"
                 width={90}
                 height={45}
-                className="w-[80px] xl:w-[120px]"
+                className="w-[140px] sm:w-[80px] xl:w-[120px]"
                 priority
               />
             )}
@@ -106,7 +106,7 @@ export default function InitialLoading() {
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <div className="text-[10px] xl:text-[12px] 2xl:text-[14px] leading-none font-thin text-center text-white">
+            <div className="text-[18px] xl:text-[12px] 2xl:text-[14px] leading-none font-thin text-center text-white">
               {progress < 90 ? "LOADING..." : "READY TO GO"}
             </div>
           </motion.div>

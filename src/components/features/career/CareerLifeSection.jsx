@@ -50,14 +50,14 @@ export default function CareerLifeSection({ data = local_data }) {
         </Heading>
       </div>
 
-      <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1280px] 2xl:max-w-[1536px] 3xl:max-w-[1920px] mx-auto px-2">
+      <div className="w-full sm:w-[95%] sm:max-w-[860px] lg:max-w-[1080px] xl:max-w-[1280px] 2xl:max-w-[1536px] 3xl:max-w-[1920px] mx-auto sm:px-2">
         <Gallery>
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex -mx-1 lg:-mx-2 cursor-grab">
               {data?.list?.map((item, index) => (
                 <div
                   key={"gallery" + index}
-                  className="flex-[0_0_40%] sm:flex-[0_0_40%] xl:flex-[0_0_40%] 3xl:flex-[0_0_50%] px-1 lg:px-2"
+                  className="flex-[0_0_300px] sm:flex-[0_0_40%] xl:flex-[0_0_40%] 3xl:flex-[0_0_50%] px-1 lg:px-2"
                 >
                   {item?.media?.media_type === "video" ? (
                     <Item
