@@ -30,34 +30,39 @@ export default function CareerModal({ children, data }) {
   };
 
   return (
-    <Dialog modal={false} className="p-0" onOpenChange={handleDialogChange}>
+    <Dialog className="p-0" onOpenChange={handleDialogChange}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[576px] xl:max-w-[820px] 2xl:max-w-[1024px] p-0 rounded-[15px] xl:rounded-[24px] gap-2 2xl:gap-4">
-        <DialogHeader className={"sr-only"}>
-          <DialogTitle>Apply Now!</DialogTitle>
-          <DialogDescription>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa, id.
-          </DialogDescription>
-        </DialogHeader>
-        {!isSuccess ? (
-          <div className="w-full p-[20px] xl:p-[40px] 2xl:p-[60px] max-h-[85vh] overflow-y-auto">
-            <div className="mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
-              <Heading
-                as="div"
-                size="heading4"
-                className="font-medium text-start text-[#030303]"
-              >
-                Apply Now!
-              </Heading>
+
+      <DialogPortal>
+        <DialogOverlay className={"bg-black/40 backdrop-blur-[4px]"} />
+        <DialogContent className="sm:max-w-[576px] xl:max-w-[820px] 2xl:max-w-[1024px] p-0 rounded-[15px] xl:rounded-[24px] gap-2 2xl:gap-4">
+          <DialogHeader className={"sr-only"}>
+            <DialogTitle>Apply Now!</DialogTitle>
+            <DialogDescription>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+              id.
+            </DialogDescription>
+          </DialogHeader>
+          {!isSuccess ? (
+            <div className="w-full p-[20px] xl:p-[40px] 2xl:p-[60px] max-h-[85vh] overflow-y-auto">
+              <div className="mb-[15px] xl:mb-[20px] 2xl:mb-[30px]">
+                <Heading
+                  as="div"
+                  size="heading4"
+                  className="font-medium text-start text-[#030303]"
+                >
+                  Apply Now!
+                </Heading>
+              </div>
+              <RecaptchaProvider>
+                <ApplyForm careerData={data} onSuccess={handleFormSuccess} />
+              </RecaptchaProvider>
             </div>
-            <RecaptchaProvider>
-              <ApplyForm careerData={data} onSuccess={handleFormSuccess} />
-            </RecaptchaProvider>
-          </div>
-        ) : (
-          <SuccessComp />
-        )}
-      </DialogContent>
+          ) : (
+            <SuccessComp />
+          )}
+        </DialogContent>
+      </DialogPortal>
     </Dialog>
   );
 }

@@ -228,8 +228,8 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
   return (
     <form
       className={cn(
-        "w-full relative z-0 max-w-xl mx-auto bg-[#1e1e1e] dark:bg-zinc-800 h-[40px] sm:h-[40px] xl:h-[60px] 2xl:h-[80px] 3xl:h-[100px] rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 border border-white/30",
-        value && "bg-black-50"
+        "w-full relative z-0 max-w-xl mx-auto bg-black-50 dark:bg-zinc-800 h-[40px] sm:h-[40px] xl:h-[60px] 2xl:h-[80px] 3xl:h-[100px] rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200 border border-white/30",
+        // value ? "bg-black-50" : "bg-[#1e1e1e]"
       )}
       onSubmit={handleSubmit}
     >
@@ -256,7 +256,7 @@ export function PlaceholdersAndVanishInput({ placeholders, onChange, data }) {
         type="text"
         id="subscribe-field"
         className={cn(
-          "w-full relative text-sm sm:text-base z-0 border-none dark:text-white bg-transparent text-white h-full rounded-full focus:outline-none focus:ring-0 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] 3xl:pl-[40px] pr-20",
+          "w-full relative text-sm sm:text-base z-0 border-none dark:text-white bg-transparent text-white h-full rounded-full focus:outline-none focus:ring-0 pl-[15px] xl:pl-[20px] 2xl:pl-[30px] 3xl:pl-[40px] pr-20 selection:bg-blue-800",
           animating && "text-white dark:text-black"
         )}
       />

@@ -43,125 +43,122 @@ import {
 } from "@/components/ui/menubar";
 import { usePathname } from "next/navigation";
 
-const headerData = {
-  brand: {
-    media: {
-      type: "image",
-      path: "/static/brand.png",
-      alt: "logo",
-    },
-  },
-  navigation: [
-    {
-      label: "Home",
-      link: "/",
-    },
-    {
-      label: "Company",
-      link: "/about",
-      item_company: [
-        {
-          label: "About us",
-          link: "/about",
-          item_about: [
-            {
-              label: "More about us",
-              link: "/about#about-more",
-            },
-            {
-              label: "Our Values",
-              link: "/about#our-values",
-            },
-            {
-              label: "Our Journey",
-              link: "/about#our-journey",
-            },
-            {
-              label: "Meet our team",
-              link: "/about#meet-team",
-            },
+// const headerData = {
+//   brand: {
+//     media: {
+//       type: "image",
+//       path: "/static/brand.png",
+//       alt: "logo",
+//     },
+//   },
+//   navigation: [
+//     {
+//       label: "Home",
+//       link: "/",
+//     },
+//     {
+//       label: "Company",
+//       link: "/about",
+//       item_company: [
+//         {
+//           label: "About us",
+//           link: "/about",
+//           item_about: [
+//             {
+//               label: "More about us",
+//               link: "/about#about-more",
+//             },
+//             {
+//               label: "Our Values",
+//               link: "/about#our-values",
+//             },
+//             {
+//               label: "Our Journey",
+//               link: "/about#our-journey",
+//             },
+//             {
+//               label: "Meet our team",
+//               link: "/about#meet-team",
+//             },
 
-            {
-              label: "Our Associates",
-              link: "/about#our-associates",
-            },
-            {
-              label: "Media & Recognit",
-              link: "/about#media-recognition",
-            },
-          ],
-        },
-        {
-          label: "About us",
-          link: "/about",
-          item_about: [
-            {
-              label: "More about us",
-              link: "/about#about-more",
-            },
-            {
-              label: "Our Values",
-              link: "/about#our-values",
-            },
-            {
-              label: "Our Journey",
-              link: "/about#our-journey",
-            },
-            {
-              label: "Meet our team",
-              link: "/about#meet-team",
-            },
-            {
-              label: "Our Associates",
-              link: "/about#our-associates",
-            },
-            {
-              label: "Media & Recognit",
-              link: "/about#media-recognition",
-            },
-          ],
-        },
-        {
-          label: "Careers",
-          link: "/career",
-        },
-        {
-          label: "Privacy Policy",
-          link: "/privacy-policy",
-        },
-        {
-          label: "Terms and conditions",
-          link: "/terms-conditions",
-        },
-      ],
-    },
-    {
-      label: "Invest in GO EC",
-      link: "/invest",
-    },
-    {
-      label: "Solutions",
-      link: "/solutions",
-      item_solution: [
-        {
-          label: "GOEC Charging Hub",
-          link: "/about",
-        },
-        {
-          label: "GOEC Exclusive",
-          link: "/about",
-        },
-        {
-          label: "Public Commercial Parking",
-          link: "/about",
-        },
-      ],
-    },
-  ],
-};
-
-const navigationMenuTriggerStyle =
-  "text-[20px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium lg:font-normal text-start lg:text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[15px_20px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10";
+//             {
+//               label: "Our Associates",
+//               link: "/about#our-associates",
+//             },
+//             {
+//               label: "Media & Recognit",
+//               link: "/about#media-recognition",
+//             },
+//           ],
+//         },
+//         {
+//           label: "About us",
+//           link: "/about",
+//           item_about: [
+//             {
+//               label: "More about us",
+//               link: "/about#about-more",
+//             },
+//             {
+//               label: "Our Values",
+//               link: "/about#our-values",
+//             },
+//             {
+//               label: "Our Journey",
+//               link: "/about#our-journey",
+//             },
+//             {
+//               label: "Meet our team",
+//               link: "/about#meet-team",
+//             },
+//             {
+//               label: "Our Associates",
+//               link: "/about#our-associates",
+//             },
+//             {
+//               label: "Media & Recognit",
+//               link: "/about#media-recognition",
+//             },
+//           ],
+//         },
+//         {
+//           label: "Careers",
+//           link: "/career",
+//         },
+//         {
+//           label: "Privacy Policy",
+//           link: "/privacy-policy",
+//         },
+//         {
+//           label: "Terms and conditions",
+//           link: "/terms-conditions",
+//         },
+//       ],
+//     },
+//     {
+//       label: "Invest in GO EC",
+//       link: "/invest",
+//     },
+//     {
+//       label: "Solutions",
+//       link: "/solutions",
+//       item_solution: [
+//         {
+//           label: "GOEC Charging Hub",
+//           link: "/about",
+//         },
+//         {
+//           label: "GOEC Exclusive",
+//           link: "/about",
+//         },
+//         {
+//           label: "Public Commercial Parking",
+//           link: "/about",
+//         },
+//       ],
+//     },
+//   ],
+// };
 
 export default function Header({ header_section }) {
   const { scrollYProgress } = useScroll();
@@ -198,14 +195,14 @@ export default function Header({ header_section }) {
           duration: 0.2,
         }}
         className={cn(
-          "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/10 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center ",
+          "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/20 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center ",
           visible && "bg-[#030303]/20"
         )}
       >
         <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
         <div className="container">
           <div className="flex justify-between">
-            <div className="w-[80px] xl:w-[90px] 2xl:w-[100px]">
+            <div className="w-[80px] xl:w-[80px] 2xl:w-[100px]">
               <Link href="/">
                 <Image
                   src={generateMediaUrl(header_section?.logo?.media_path)}
@@ -225,7 +222,7 @@ export default function Header({ header_section }) {
                   <MenubarMenu className="p-0 bg-none">
                     <MenubarTrigger
                       className={cn(
-                        "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white! focus:text-white w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[130px] 2xl:min-w-[155px] 3xl:min-w-[176px] h-[40px] xl:h-[45px] 2xl:h-[48px] p-2 rounded-full focus:bg-white/20 hover:bg-white/30 border border-white/20 flex items-center justify-center data-[state=open]:bg-white/20 data-[state=open]:text-white",
+                        "text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white! focus:text-white w-full min-w-[110px] sm:min-w-[120px] xl:min-w-[130px] 2xl:min-w-[155px] 3xl:min-w-[176px] h-[40px] xl:h-[42px] 2xl:h-[46px] p-2 rounded-full focus:bg-white/20 hover:bg-white/30 border border-white/20 flex items-center justify-center data-[state=open]:bg-white/20 data-[state=open]:text-white",
                         visible && "focus:text-white"
                       )}
                     >
@@ -664,6 +661,10 @@ function MegaNavigationMenubar() {
   const isInvestActive = isMenuActive(invest_data);
   const isSolutionActive = isMenuActive(solution_data);
 
+  const navigationMenuTriggerStyle = cn(
+    "text-[20px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium lg:font-normal text-start lg:text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[10px_18px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10"
+  );
+
   return (
     <NavigationMenu
       viewport={false}
@@ -671,7 +672,7 @@ function MegaNavigationMenubar() {
     >
       <NavigationMenuList
         className={
-          "max-lg:flex-col max-lg:items-start max-lg:gap-[20px] max-lg:py-[20px] "
+          "max-lg:flex-col max-lg:items-start gap-[20px] lg:gap-4 max-lg:py-[20px] gap-"
         }
       >
         <NavigationMenuItem>
@@ -679,7 +680,7 @@ function MegaNavigationMenubar() {
             asChild
             className={cn(
               navigationMenuTriggerStyle,
-              isHomeActive && "bg-white/20 text-white border-white/20"
+              isHomeActive && "bg-white/10 text-white border-white/0"
             )}
           >
             <Link href="/">Home</Link>
@@ -689,7 +690,7 @@ function MegaNavigationMenubar() {
           <NavigationMenuTrigger
             className={cn(
               navigationMenuTriggerStyle,
-              isCompanyActive && "bg-white/20 text-white border-white/20"
+              isCompanyActive && "bg-white/10 text-white border-white/0"
             )}
           >
             Company
@@ -702,7 +703,7 @@ function MegaNavigationMenubar() {
           <NavigationMenuTrigger
             className={cn(
               navigationMenuTriggerStyle,
-              isInvestActive && "bg-white/20 text-white border-white/20"
+              isInvestActive && "bg-white/10 text-white border-white/0"
             )}
           >
             Invest in GO EC
@@ -715,7 +716,7 @@ function MegaNavigationMenubar() {
           <NavigationMenuTrigger
             className={cn(
               navigationMenuTriggerStyle,
-              isSolutionActive && "bg-white/20 text-white border-white/20"
+              isSolutionActive && "bg-white/10 text-white border-white/0"
             )}
           >
             Solutions
@@ -748,7 +749,7 @@ function MegaNavigationMenuContent({ data }) {
   }, [data, activeId]);
 
   return (
-    <div className="w-full lg:w-[420px] xl:w-[576px] 2xl:w-[620px] 3xl:w-[668px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg">
+    <div className="w-full lg:w-[420px] xl:w-[586px] 2xl:w-[640px] 3xl:w-[668px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden shadow-lg lg:mt-1.5 2xl:mt-2.5">
       <div className="flex flex-wrap">
         <div className="w-full lg:w-[168px] xl:w-[200px] 2xl:w-[240px] bg-[#fafafa] p-[8px] xl:p-[10px] 2xl:p-[20px]">
           <div className="flex flex-col">
@@ -763,7 +764,7 @@ function MegaNavigationMenuContent({ data }) {
                   ));
 
               return (
-                <div key={"navigation" + index} className="max-lg:mb-[10px]">
+                <div key={"navigation" + index} className="lg:my-1 2xl:my-1.5 max-lg:mb-[10px]">
                   {hasSubItems ? (
                     <button
                       onClick={() => setActiveId(item.id)}
@@ -777,12 +778,7 @@ function MegaNavigationMenuContent({ data }) {
                       )}
                     >
                       {item?.label}
-                      <div
-                        className={cn(
-                          "inline-block",
-                          "w-[8px] h-[8px]"
-                        )}
-                      >
+                      <div className={cn("inline-block", "w-[8px] h-[8px]")}>
                         <Image
                           src="/images/header-arrow.svg"
                           alt="arrow"
@@ -854,7 +850,7 @@ function MegaNavigationMenuContent({ data }) {
                 return (
                   <div
                     key={index}
-                    className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] break-inside-avoid"
+                    className="w-full max-w-full mb-[10px] xl:mb-[10px] 2xl:mb-[15px] lg:pt-1 2xl:pt-1.5 break-inside-avoid"
                   >
                     <Link
                       href={item.link || "#"}
@@ -895,7 +891,7 @@ function SmNavigationMenuContent({ data }) {
   };
 
   return (
-    <div className="w-full lg:w-[200px] xl:w-[220px] 2xl:w-[268px] 3xl:w-[320px] bg-white rounded-[15px] 2xl:rounded-[30px] overflow-hidden p-[10px_5px] 2xl:p-[15px_10px] shadow-lg">
+    <div className="w-full lg:w-[200px] xl:w-[220px] 2xl:w-[268px] 3xl:w-[320px] bg-white rounded-[15px] 2xl:rounded-[25px] overflow-hidden p-[10px_5px] 2xl:p-[15px_10px] shadow-lg lg:mt-1.5 2xl:mt-2.5">
       <div className="w-full block">
         {data?.sub_item?.map((item, index) => {
           const isActive = isLinkActive(item.link);
@@ -928,7 +924,7 @@ function AppDownloadDropdown({ qrData }) {
           <div>
             <Heading
               as={"div"}
-              size="heading4"
+              size="heading3"
               className="line-clamp-3 text-center lg:text-start text-transparent bg-linear-to-r from-[#999] via-50% via-black to-black bg-clip-text xl:max-w-[80%] mb-[15px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px]"
             >
               {qrData?.qr_code?.title}

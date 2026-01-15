@@ -232,7 +232,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                           key={index}
                           size={"lg"}
                           className={cn(
-                            "max-w-[120px] sm:max-w-[120px] xl:max-w-[150px] 2xl:max-w-[180px] ",
+                            "max-w-[120px] sm:max-w-[120px] xl:max-w-[170px] 2xl:max-w-[180px] ",
                             "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
                             "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
                           )}
@@ -264,7 +264,7 @@ export default function HeroSection({ heroBanner = heroData }) {
                           key={index}
                           size={"lg"}
                           className={cn(
-                            "text-black bg-white max-w-[140px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[220px]",
+                            "text-black bg-white max-w-[140px] sm:max-w-[160px] xl:max-w-[190px] 2xl:max-w-[220px]",
                             "hover:text-white",
                             "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
                             "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"

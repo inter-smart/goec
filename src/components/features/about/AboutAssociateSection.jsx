@@ -4,165 +4,6 @@ import { MEDIA_URL } from "@/lib/api";
 import parse from "html-react-parser";
 import Image from "next/image";
 
-// const AboutAssociateData = {
-//   title: "Our Associates",
-//   description:
-//     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed accumsan quam vitae.</p>",
-//   media: {
-//     desktop: {
-//       type: "image",
-//       path: "/images/about-team-1.jpg",
-//       alt: "about-team",
-//     },
-//     mobile: {
-//       type: "image",
-//       path: "/images/about-team-1.jpg",
-//       alt: "about-team",
-//     },
-//   },
-//   item_associate: [
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-0.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-1.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-2.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-3.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-4.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-5.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-6.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-7.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-8.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-9.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-10.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-11.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-12.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-7.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-8.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-9.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-10.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-11.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-12.png",
-//         alt: "partners",
-//       },
-//     },
-//     {
-//       media: {
-//         type: "image",
-//         path: "/images/partner-11.png",
-//         alt: "partners",
-//       },
-//     },
-//   ],
-// };
 
 export default function AboutAssociateSection({
   title,
@@ -182,7 +23,7 @@ export default function AboutAssociateSection({
               {title}
             </Heading>
           </div>
-          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
+          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[400px] 2xl:w-[476px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
             <Text as="div" size="text2" className="text-[#373737]">
               {parse(description)}
             </Text>
@@ -191,13 +32,13 @@ export default function AboutAssociateSection({
         <div className="flex flex-wrap justify-center sm:justify-start mx-[-5px] xl:mx-[-10px] 2xl:mx-[-15px] [&>*]:p-[5px] xl:[&>*]:p-[10px] 2xl:[&>*]:p-[15px]">
           {list?.map((item, index) => (
             <div key={"associate" + index} className="w-1/2 3xs:w-1/3 sm:w-1/5">
-              <div className="w-full aspect-[4/2] rounded-[20px] xl:rounded-[25px] flex items-center justify-center overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0] transition hover:bg-primary/10">
+              <div className="w-full aspect-[4/2] rounded-[20px] xl:rounded-[25px] flex items-center justify-center overflow-hidden bg-[#fcfcfc] border border-[#f0f0f0] transition hover:border-primary/10">
                 <Image
                   src={`${MEDIA_URL}${item?.media?.media_path}`}
                   alt={item?.media?.media_alt}
                   width={220}
                   height={60}
-                  className="w-full max-w-[80px] sm:max-w-[120px] xl:w-[140px] 2xl:max-w-[176px] h-[25px] sm:h-[30px] xl:h-[50px] 2xl:h-[60px] aspect-[4/2] object-contain filter brightness-0 saturate-100"
+                  className="w-full max-w-[80px] sm:max-w-[120px] xl:w-[140px] 2xl:max-w-[176px] h-[25px] sm:h-[30px] xl:h-[40px] 2xl:h-[50px] aspect-[4/2] object-contain filter brightness-0 saturate-100"
                 />
               </div>
             </div>

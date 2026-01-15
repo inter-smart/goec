@@ -147,8 +147,8 @@
 
   /* Header Sizes */
   --header-y-sm: 65px;
-  --header-y-lg: 82px;
-  --header-y-2xl: 100px;
+  --header-y-lg: 76px;
+  --header-y-2xl: 80px;
   --header-y-3xl: 100px;
 
   --animate-scroll: scroll var(--animation-duration, 40s)

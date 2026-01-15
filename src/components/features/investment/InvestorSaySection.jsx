@@ -129,8 +129,8 @@ export default function InvestorSaySection({
                         <Image
                           src={`${MEDIA_URL}${item?.media?.media_path}`}
                           alt={item?.media?.media_alt}
-                          width={100}
-                          height={100}
+                          width={200}
+                          height={200}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
                         />
                       </div>
