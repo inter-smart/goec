@@ -138,7 +138,7 @@ export default function CareerTestimonialSection({ data = local_data }) {
                       <Text
                         as="div"
                         size="text1"
-                        className="text-[#373737] w-full h-[80px] sm:h-[120px] xl:h-[150px] 2xl:h-[200px] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px] overflow-y-auto [mask-image:linear-gradient(to_bottom,black_0%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_95%,transparent_100%)]"
+                        className="text-[#373737] w-full h-[120px] sm:h-[120px] xl:h-[150px] 2xl:h-[200px] mb-[10px] sm:mb-[20px] xl:mb-[30px] 2xl:mb-[40px] overflow-y-auto [mask-image:linear-gradient(to_bottom,black_0%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_95%,transparent_100%)]"
                       >
                         {parse(item?.testimonial)}
                       </Text>

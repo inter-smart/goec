@@ -130,7 +130,7 @@ export default function TripSection({
               <ActionButton
                 size={"lg"}
                 className={cn(
-                  "text-black bg-white min-w-[140px] sm:min-w-[160px] xl:min-w-[180px] 2xl:min-w-[200px]",
+                  "text-black bg-white min-w-[160px] sm:min-w-[160px] xl:min-w-[180px] 2xl:min-w-[200px]",
                   "hover:text-white",
                   "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
                   "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"

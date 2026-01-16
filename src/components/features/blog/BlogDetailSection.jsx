@@ -41,7 +41,7 @@ export default function BlogDetailSection({ data, variant }) {
           <Text
             as="div"
             size="none"
-            className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium text-[#373737] flex gap-[4px] lg:gap-[6px] items-center mb-[15px] xl:mb-[30px] 2xl:mb-[40px]"
+            className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium text-[#373737] flex gap-[4px] lg:gap-[6px] items-center mb-[15px] xl:mb-[30px] 2xl:mb-[40px]"
           >
             <Image
               src={"/images/icon-calendar.svg"}

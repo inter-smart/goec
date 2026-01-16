@@ -74,7 +74,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
           <Text
             as="div"
             size="text1"
-            className="line-clamp-2 text-center sm:text-start text-transparent bg-linear-to-r from-white via-50% via-white to-[#999] bg-clip-text "
+            className="line-clamp-2 text-transparent bg-linear-to-r from-white via-50% via-white to-[#999] bg-clip-text "
           >
             {parse(data?.logoTitle)}
           </Text>
@@ -82,14 +82,14 @@ export default function MerchantileHeroSection({ data = local_data }) {
         <Heading
           as="h1"
           size="heading1"
-          className="line-clamp-2 text-center sm:text-start text-transparent bg-linear-to-r from-white via-50% via-white to-[#999] bg-clip-text mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[40px] inline-block"
+          className="line-clamp-2 text-transparent bg-linear-to-r from-white via-50% via-white to-[#999] bg-clip-text mb-[10px] sm:mb-[15px] xl:mb-[20px] 2xl:mb-[40px] inline-block"
         >
           {parse(data?.title)}
         </Heading>
         <div className="flex flex-wrap space-y-[5px] space-x-[5px] sm:space-x-[10px] xl:space-x-[15px]">
           <ActionButton
             size={"lg"}
-            className="text-black bg-white max-w-[160px] 2xs:max-w-[180px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[280px] hover:text-white"
+            className="text-black bg-white max-w-[190px] 2xs:max-w-[180px] sm:max-w-[200px] xl:max-w-[220px] 2xl:max-w-[280px] hover:text-white"
             asChild
           >
             <Link href={data?.primaryButton?.link}>{data?.primaryButton?.text}</Link>
@@ -98,7 +98,7 @@ export default function MerchantileHeroSection({ data = local_data }) {
           <ActionButton
             size={"lg"}
             variant={"blue"}
-            className="max-w-[140px] 3xs:max-w-[160px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[240px]"
+            className="max-w-[145px] 3xs:max-w-[160px] sm:max-w-[180px] xl:max-w-[200px] 2xl:max-w-[240px]"
             asChild
           >
             <Link href={data?.secondaryButton?.link}>{data?.secondaryButton?.text}</Link>

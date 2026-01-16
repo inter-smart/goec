@@ -83,7 +83,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
                 <ActionButton
                   size={"lg"}
                   variant={"link"}
-                  className="text-[#0055e0]"
+                  className="xl:text-[16px] 2xl:text-[19px] font-medium! text-[#0055e0]"
                   asChild
                 >
                   <div>
@@ -104,7 +104,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
                     size={"lg"}
                     variant={"blue"}
                     className={cn(
-                      "text-white min-w-[120px] xl:min-w-[140px] 2xl:min-w-[160px]",
+                      "text-white min-w-[120px] xl:min-w-[135px] 2xl:min-w-[160px] transition",
                       "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]"
                     )}
                   >
@@ -120,8 +120,8 @@ export default function CareerInfoSection({ slug, data = local_data }) {
             <>
               <Text
                 as="div"
-                size="text3"
-                className={cn("!font-medium text-[#373737]")}
+                size="text2"
+                className={cn("font-medium! text-[#373737]")}
               >
                 {data?.experience}
               </Text>
@@ -132,8 +132,8 @@ export default function CareerInfoSection({ slug, data = local_data }) {
             <>
               <Text
                 as="div"
-                size="text3"
-                className={cn("!font-medium text-[#373737]")}
+                size="text2"
+                className={cn("font-medium! text-[#373737]")}
               >
                 {data?.job_type}
               </Text>
@@ -144,8 +144,8 @@ export default function CareerInfoSection({ slug, data = local_data }) {
             <>
               <Text
                 as="div"
-                size="text3"
-                className={cn("!font-medium text-[#373737]")}
+                size="text2"
+                className={cn("font-medium! text-[#373737]")}
               >
                 {data?.job_location}
               </Text>
@@ -159,7 +159,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
         >
           About
         </Heading>
-        <div className="typography mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
+        <div className="typography [--text-color:#373737] xl:[&_p]:text-[16px] 2xl:[&_p]:text-[20px] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
           {parse(data?.description)}
         </div>
         <Heading
@@ -169,7 +169,7 @@ export default function CareerInfoSection({ slug, data = local_data }) {
         >
           Responsibilities
         </Heading>
-        <div className="typography mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
+        <div className="typography [--text-color:#373737] xl:[&_p]:text-[16px] 2xl:[&_p]:text-[20px] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
           {parse(data?.responsibilities)}
         </div>
         <Heading
@@ -179,17 +179,17 @@ export default function CareerInfoSection({ slug, data = local_data }) {
         >
           Requirements
         </Heading>
-        <div className="typography mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
+        <div className="typography [--text-color:#373737] xl:[&_p]:text-[16px] 2xl:[&_p]:text-[20px] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]">
           {parse(data?.requirements)}
         </div>
-        <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
+        <div className="mt-5 sm:mt-6 xl:mt-7 2xl:mt-10">
           <CareerModal data={data}>
             <ActionButton
               size={"lg"}
               variant={"blue"}
               className={cn(
                 "w-full",
-                "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c]",
+                "hover:bg-transparent hover:bg-gradient-to-r hover:from-[#2cc59c] hover:via-[#00eea8] hover:to-[#2cc59c] transition",
                 "not-hover:[&_.notHover]:scale-100 not-hover:[&_.isHover]:scale-0",
                 "hover:[&_.notHover]:scale-0 hover:[&_.isHover]:scale-100"
               )}

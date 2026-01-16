@@ -11,7 +11,7 @@ export default function AboutBecomePartnerSection({ title, description }) {
         src="/images/about-contact-bg.jpg"
         alt="about-contact-bg"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+        sizes="100vw"
         className="-z-1 object-cover"
         quality={100}
       />

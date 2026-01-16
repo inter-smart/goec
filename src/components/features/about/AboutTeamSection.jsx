@@ -24,7 +24,7 @@ import Image from "next/image";
 
 export default function AboutTeamSection({ title, description, media }) {
   return (
-    <section  id="meet-team" className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_50px] 2xl:py-[140px_70px]">
+    <section id="meet-team" className="w-full h-auto block py-[40px_20px] sm:py-[60px_30px] xl:py-[100px_50px] 2xl:py-[140px_70px]">
       <div className="container">
         <div className="flex flex-wrap mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px] 3xl:mb-[100px] max-sm:flex-col">
           <div className="flex-1 max-sm:mb-[15px]">
@@ -36,7 +36,7 @@ export default function AboutTeamSection({ title, description, media }) {
               {title}
             </Heading>
           </div>
-          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
+          <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[400px] 2xl:w-[476px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
             <Text as="div" size="text2" className="text-[#373737]">
               {parse(description)}
             </Text>

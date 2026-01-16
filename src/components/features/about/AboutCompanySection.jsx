@@ -100,11 +100,17 @@ import { MEDIA_URL } from "@/lib/api";
 //   },
 // };
 
-export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
+export default function AboutCompanySection({
+  ourValues = [],
+  ourJourney = [],
+}) {
   const valueData = ourValues;
   const journeyData = ourJourney;
   return (
-    <section id="our-values" className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#0048bf] relative z-0">
+    <section
+      id="our-values"
+      className="w-full h-auto block py-[40px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px] bg-[#0048bf] relative z-0"
+    >
       <Image
         src="/images/about-value-bg.svg"
         alt="about-value-bg"
@@ -160,7 +166,7 @@ export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
               },
               1024: {
                 slidesPerView: 3,
-                spaceBetween: 20,
+                spaceBetween: 25,
               },
               1536: {
                 slidesPerView: 3,
@@ -170,8 +176,10 @@ export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
           >
             {valueData?.list?.map((item, index) => {
               return (
-                <SwiperSlide key={"value" + index} style={{ width: "33.333%" }}>
-                  <div className="group w-full h-full min-h-[176px] sm:min-h-[268px] xl:min-h-[376px] 3xl:min-h-[468px] flex flex-col justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-md backdrop-blur-sm">
+                <SwiperSlide key={"value" + index} style={{ width: "33.333%" }}
+                className="xl:h-auto!"
+                >
+                  <div className="group w-full h-full min-h-[176px] sm:min-h-[268px] xl:min-h-[340px] 3xl:min-h-[440px] flex flex-col max-xl:justify-between border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 p-[15px] sm:p-[20px] xl:p-[30px] 2xl:p-[40px] relative z-0 shadow-md backdrop-blur-sm">
                     <Image
                       src="/images/about-value_card-bg.png"
                       alt="about-value-bg"
@@ -182,7 +190,7 @@ export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
                     <Heading
                       as="h3"
                       size="heading3"
-                      className="font-medium text-white xl:max-w-[60%] mb-[20px] sm:mb-[40px] xl:mb-[60px] 2xl:mb-[80px]"
+                      className="font-medium text-white xl:max-w-[60%] mb-[20px] sm:mb-[40px] xl:mb-0 xl:min-h-[180px] 2xl:min-h-[200px]"
                     >
                       {item?.title}
                     </Heading>
@@ -209,18 +217,21 @@ export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
                 {journeyData?.title}
               </Heading>
             </div>
-            <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[420px] 2xl:w-[576px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
+            <div className="w-[80%] sm:w-[300px] md:w-[368px] xl:w-[400px] 2xl:w-[476px] 3xl:w-[640px] max-sm:mx-auto max-sm:text-center">
               <Text as="div" size="text2" className="text-[#ced1c0]">
                 {parse(journeyData?.description)}
               </Text>
             </div>
           </div>
-          <div className="flex flex-wrap mx-[-5px] sm:mx-[-10px] xl:mx-[-15px] 2xl:mx-[-20px] [&>*]:p-[5px] sm:[&>*]:p-[10px] xl:[&>*]:p-[15px] 2xl:[&>*]:p-[20px]">
+          <div className="flex flex-wrap mx-[-5px] sm:mx-[-10px] xl:mx-[-12px] 2xl:mx-[-15px] [&>*]:p-[5px] sm:[&>*]:p-[10px] xl:[&>*]:p-[12px] 2xl:[&>*]:p-[15px]">
             {journeyData?.list?.map((item, index) => {
               return (
-                <div key={"journey" + index} className="w-full 3xs:w-1/2 sm:w-full">
+                <div
+                  key={"journey" + index}
+                  className="w-full 3xs:w-1/2 sm:w-full"
+                >
                   <div
-                    className={`w-full h-full flex flex-wrap items-center border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 shadow-md backdrop-blur-sm
+                    className={`w-full h-full flex flex-wrap items-center border border-[#f0f0f0]/20 rounded-[20px] xl:rounded-[25px] overflow-hidden bg-white/4 shadow-md backdrop-blur-sm xl:p-1
                     ${index % 2 === 1 && "sm:flex-row-reverse"}
                     `}
                   >
@@ -249,7 +260,7 @@ export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
                       </div>
                     </div>
                     <div className="w-full sm:w-[320px] md:w-[368px] xl:w-[468px] 2xl:w-[576px] 3xl:w-[700px]">
-                      <div className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1">
+                      <div className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[25px] relative z-1">
                         <div className="w-full h-full">
                           <Image
                             src={`${MEDIA_URL}${item?.media?.media_path}`}
@@ -257,8 +268,6 @@ export default function AboutCompanySection({ ourValues=[], ourJourney=[] }) {
                             width={876}
                             height={676}
                             className="w-full h-full object-cover hover:scale-105 transition"
-                            
-                            
                           />
                         </div>
                       </div>

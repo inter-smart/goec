@@ -155,6 +155,8 @@ export default function LatestBlogSection({
             </div>
           )}
         </div>
+      </div>
+      <div className="container max-sm:pr-0">
         <Swiper
           loop
           spaceBetween={30}
@@ -170,7 +172,7 @@ export default function LatestBlogSection({
               spaceBetween: 10,
             },
             384: {
-              slidesPerView: 2,
+              slidesPerView: 1.2,
               spaceBetween: 10,
             },
             640: {
@@ -194,8 +196,10 @@ export default function LatestBlogSection({
         >
           {blogs.map((item, index) => {
             return (
-              <SwiperSlide key={"blog" + index} style={{ width: "33.333%" }}
-              className="h-auto!"
+              <SwiperSlide
+                key={"blog" + index}
+                style={{ width: "33.333%" }}
+                className="h-auto!"
               >
                 <NewsCard
                   index={index}

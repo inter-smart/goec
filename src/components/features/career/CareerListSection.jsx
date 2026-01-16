@@ -280,7 +280,7 @@ const departmentCounts = useMemo(() => {
               {parse(data?.title)}
             </Heading>
           </div>
-          <div className="w-[268px] sm:w-[320px] xl:w-[360px] 2xl:w-[468px] 3xl:w-[520px]">
+          <div className="w-[268px] sm:w-[300px] xl:w-[320px] 2xl:w-[468px] 3xl:w-[520px]">
             <div className="w-full bg-[#f0f0f0] rounded-full p-[6px_10px] xl:p-[10px_15px] 2xl:p-[12px_20px] flex items-center gap-[10px]">
               <Search className="size-[15px] xl:size-[18px] 2xl:size-[22px]" />
               <input
@@ -312,19 +312,19 @@ const departmentCounts = useMemo(() => {
             </select>
           </div>
 
-          <aside className="hidden sm:block w-[220px] xl:w-[260px] 2xl:w-[368px] flex-shrink-0">
+          <aside className="hidden sm:block w-[220px] xl:w-[260px] 2xl:w-[280px] flex-shrink-0">
             <ul className="sticky top-[var(--header-y)]">
               {categoriesWithAll?.map((dep, index) => (
                 <div
                   key={dep.id}
                   onClick={() => setSelected(index)}
-                  className={`flex justify-between items-center text-sm py-2.5 px-3 rounded-md cursor-pointer transition-colors ${
+                  className={`flex justify-between items-center text-sm py-2.5 xl:py-3 rounded-md cursor-pointer transition-colors ${
                     index === selected
-                      ? "text-[#0055E0] bg-[#F3F7FF]"
+                      ? "text-[#0055E0] bg-none"
                       : "text-[#030303] hover:bg-gray-50"
                   }`}
                 >
-                  <Text as="div" size="text2" className="flex items-center">
+                  <Text as="div" size="text2" className="font-medium! flex items-center">
                     <span className="w-4 flex justify-center">
                       {index === selected && <FaCaretRight />}
                     </span>
@@ -342,7 +342,7 @@ const departmentCounts = useMemo(() => {
                 No jobs found.
               </p>
             ) : (
-              <div className="space-y-2 xl:space-y-4">
+              <div className="space-y-2 xl:space-y-4 2xl:space-y-5">
                 {currentItems.map((job, i) => (
                   <div key={job.id || i}>
                     <JobCard job={job} />
@@ -437,18 +437,18 @@ const departmentCounts = useMemo(() => {
 
 function JobCard({ job }) {
   return (
-    <div className="w-full h-auto block bg-[#FCFCFC] group border border-[#F0F0F0] rounded-[15px] xl:rounded-[30px] p-[15px] sm:p-[20px] xl:p-[30px] hover:shadow-lg transition-all duration-200">
+    <div className="w-full h-auto block bg-[#FCFCFC] group border border-[#F0F0F0] rounded-[15px] xl:rounded-[25px] p-[15px] sm:p-[20px] xl:p-[30px] hover:shadow-lg transition-all duration-200">
       <Heading
         as={"h3"}
         size={"none"}
-        className="text-[14px] sm:text-[18px] lg:text-[24px] xl:text-[30px] 2xl:text-[36px] 3xl:text-[42px] leading-tight font-normal text-[#030303] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
+        className="text-[14px] sm:text-[18px] lg:text-[24px] xl:text-[30px] 2xl:text-[36px] 3xl:text-[42px] leading-tight font-medium text-[#030303] mb-2.5 xl:mb-3.5 2xl:mb-5"
       >
         {job.title}
       </Heading>
       <Text
         as={"div"}
         size={"text2"}
-        className="[&>p,&]:line-clamp-2 text-[#757575] mb-[10px] xl:mb-[20px] 2xl:mb-[30px]"
+        className="[&>p,&]:line-clamp-2 [&>p+p]:hidden text-[#757575] mb-[10px] xl:mb-[20px] 2xl:mb-[30px]"
       >
         {parse(job.description)}
       </Text>
@@ -469,7 +469,7 @@ function JobCard({ job }) {
           <ActionButton
             variant="link"
             size="lg"
-            className="text-black !h-auto hover:[>svg]:translate-x-1"
+            className="group font-medium! text-black !h-auto hover:[>svg]:translate-x-1 hover:text-[#0048BF] "
             asChild
           >
             <Link href={`/career/${job.slug}`}>
@@ -479,7 +479,7 @@ function JobCard({ job }) {
                 alt="arrow"
                 width={18}
                 height={18}
-                className="w-[15px] xl:w-[18px]"
+                className="w-[15px] xl:w-[18px] group-hover:invert-[.13] group-hover:sepia-[.95] group-hover:saturate-[31.7] group-hover:hue-rotate-[213deg] group-hover:brightness-[1.12] group-hover:contrast-[1.02]"
               />
             </Link>
           </ActionButton>

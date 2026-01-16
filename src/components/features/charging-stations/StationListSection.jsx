@@ -132,7 +132,7 @@ const local_data = {
 };
 
 const className =
-  "text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[22px] leading-tight font-medium text-[#373737] p-[4px_10px] xl:p-[6px_15px] 2xl:p-[10px_20px] rounded-full border border-[#eee] hover:border-primary transition flex";
+  "text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[18px] 3xl:text-[22px] leading-tight font-medium text-[#373737] p-[4px_10px] xl:p-[6px_15px] 2xl:p-[10px_20px] rounded-full border border-[#eee] hover:border-primary transition flex";
 export default function StationListSection({ data = local_data }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[140px]">
@@ -164,7 +164,7 @@ export default function StationListSection({ data = local_data }) {
                   </div>
                   <div className="flex-1 flex flex-col justify-between p-[10px] sm:p-[15px] xl:p-[30px] 2xl:p-[40px]">
                     <div>
-                      <Heading as="div" size="heading3" className="max-sm:text-[12px] text-[#030303] mb-[2px] sm:mb-[5px] xl:mb-[15px]">
+                      <Heading as="div" size="heading3" className="max-sm:text-[18px] text-[#030303] mb-[2px] sm:mb-[5px] xl:mb-[15px]">
                         {parse(item?.title)}
                       </Heading>
                       <ul className="flex flex-wrap mx-[-2px] xl:mx-[-4px] [&>*]:p-[2px] xl:[&>*]:p-[4px]">

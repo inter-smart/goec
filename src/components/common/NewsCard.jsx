@@ -62,11 +62,11 @@ export default function NewsCard({
           className="flex-1 flex flex-col justify-between p-[15px_15px] sm:p-[15px_20px] xl:p-[20px_30px] 2xl:p-[30px_40px]"
         >
           <div>
-            <div className="text-[12px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+            <div className="text-[16px] sm:text-[14px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[26px] leading-tight font-medium text-black line-clamp-2 mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
               {data?.title}
             </div>
             {variant === "blog_details" && (
-              <div className="text-[10px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
+              <div className="text-[12px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[20px] leading-tight line-clamp-2 font-normal text-[#757575] mb-[10px] xl:mb-[15px] 2xl:mb-[20px]">
                 {renderHtml(data?.description)}
               </div>
             )}
@@ -77,19 +77,19 @@ export default function NewsCard({
                 <Text
                   as="div"
                   size="none"
-                  className="text-[8px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#373737]"
+                  className="text-[12px] sm:text-[10px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-[#373737]"
                 >
                   {variant === "blog" ? "Blog" : "News"}
                   <span>&nbsp;-&nbsp;</span>
                   {data?.reading_time}
                 </Text>
-                <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#373737] flex gap-[4px] lg:gap-[6px] items-center">
+                <div className="text-[12px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#373737] flex gap-[4px] lg:gap-[6px] items-center">
                   {formattedDate}
                 </div>
               </>
             ) : (
               <>
-                <div className="text-[8px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center">
+                <div className="text-[12px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] leading-none font-normal text-[#757575] flex gap-[4px] lg:gap-[6px] items-center">
                   {formattedDate}
                   {variant === "blog" && data?.reading_time && (
                     <>
@@ -102,7 +102,7 @@ export default function NewsCard({
                   <div>
                     <ActionButton
                       variant="link"
-                      className="text-[10px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
+                      className="text-[14px] sm:text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[18px] text-black hover:[>svg]:translate-x-1"
                     >
                       Read now
                       <svg
