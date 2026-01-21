@@ -46,7 +46,7 @@ import { usePathname } from "next/navigation";
 export default function Header({ header_section }) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
-  
+
   const [bg, setBg] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
@@ -74,8 +74,10 @@ export default function Header({ header_section }) {
         }}
         className={cn(
           "w-full h-[var(--header-y)] fixed z-50 top-0 inset-x-0 border-b border-white/10 dark:bg-black bg-[#030303]/20 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] backdrop-blur-sm flex items-center ",
-          visible ? "bg-[#030303]/20 backdrop-blur-sm" : "bg-black/10 backdrop-blur-xl",
-          bg && "bg-black/90"
+          visible
+            ? "bg-[#030303]/20 backdrop-blur-sm"
+            : "bg-black/10 backdrop-blur-xl",
+          bg && "bg-black/90",
         )}
       >
         <div className="w-full h-px absolute z-0 inset-x-0  -bottom-px mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-10" />
@@ -102,7 +104,7 @@ export default function Header({ header_section }) {
                     <MenubarTrigger
                       className={cn(
                         "text-[14px] sm:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-normal text-center text-white! focus:text-white w-full min-w-[130px] sm:min-w-[120px] xl:min-w-[130px] 2xl:min-w-[155px] 3xl:min-w-[176px] h-[40px] xl:h-[42px] 2xl:h-[46px] p-2 rounded-full focus:bg-white/20 hover:bg-white/30 border border-white/20 flex items-center justify-center data-[state=open]:bg-white/20 data-[state=open]:text-white",
-                        visible && "focus:text-white"
+                        visible && "focus:text-white",
                       )}
                     >
                       Download App
@@ -268,7 +270,7 @@ function MegaNavigationMenubar() {
   const isSolutionActive = isMenuActive(solution_data);
 
   const navigationMenuTriggerStyle = cn(
-    "text-[20px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium lg:font-normal text-start lg:text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[10px_18px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10"
+    "text-[20px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] leading-none font-medium lg:font-normal text-start lg:text-center text-white w-full h-auto p-[5px_10px] xl:p-[10px_15px] xl:p-[10px_18px] bg-transparent rounded-full border border-transparent hover:text-white focus:text-white hover:bg-black/10 focus:bg-black/50 ring-0 hover:border-white/10 data-[state=open]:border-white/10 data-[state=open]:hover:bg-black/10 data-[state=open]:text-white data-[state=open]:focus:bg-black/10 data-[state=open]:bg-black/10",
   );
 
   return (
@@ -286,7 +288,7 @@ function MegaNavigationMenubar() {
             asChild
             className={cn(
               navigationMenuTriggerStyle,
-              isHomeActive && "bg-white/10 text-white border-white/0"
+              isHomeActive && "bg-white/10 text-white border-white/0",
             )}
           >
             <Link href="/">Home</Link>
@@ -296,7 +298,7 @@ function MegaNavigationMenubar() {
           <NavigationMenuTrigger
             className={cn(
               navigationMenuTriggerStyle,
-              isCompanyActive && "bg-white/10 text-white border-white/0"
+              isCompanyActive && "bg-white/10 text-white border-white/0",
             )}
           >
             Company
@@ -309,7 +311,7 @@ function MegaNavigationMenubar() {
           <NavigationMenuTrigger
             className={cn(
               navigationMenuTriggerStyle,
-              isInvestActive && "bg-white/10 text-white border-white/0"
+              isInvestActive && "bg-white/10 text-white border-white/0",
             )}
           >
             Invest in GO EC
@@ -322,7 +324,7 @@ function MegaNavigationMenubar() {
           <NavigationMenuTrigger
             className={cn(
               navigationMenuTriggerStyle,
-              isSolutionActive && "bg-white/10 text-white border-white/0"
+              isSolutionActive && "bg-white/10 text-white border-white/0",
             )}
           >
             Solutions
@@ -366,7 +368,7 @@ function MegaNavigationMenuContent({ data }) {
                 isLinkActive(item.link) ||
                 (item.sub_sub_item &&
                   item.sub_sub_item.some((subItem) =>
-                    isLinkActive(subItem.link)
+                    isLinkActive(subItem.link),
                   ));
 
               return (
@@ -383,7 +385,7 @@ function MegaNavigationMenuContent({ data }) {
                           ? "text-white bg-black max-lg:rounded-[8px_8px_0_0]"
                           : isActive
                             ? " bg-[#f0f0f0]"
-                            : "hover:bg-[#e0e0e0]"
+                            : "hover:bg-[#e0e0e0]",
                       )}
                     >
                       {item?.label}
@@ -396,8 +398,8 @@ function MegaNavigationMenuContent({ data }) {
                           className={cn(
                             "w-[6px] xl:w-[8px] transition",
                             activeId === item.id || isActive
-                              ? "lg:opacity-100 rotate-0"
-                              : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 -rotate-90"
+                              ? "lg:opacity-100 -rotate-90"
+                              : "[filter:_brightness(0)_saturate(100%)] lg:opacity-10 rotate-0 transition",
                           )}
                         />
                       </div>
@@ -407,7 +409,7 @@ function MegaNavigationMenuContent({ data }) {
                       href={item.link || "#"}
                       className={cn(
                         "text-[16px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal text-black w-full h-auto flex justify-between items-center p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition-all",
-                        isActive ? "bg-[#f0f0f0]" : "hover:bg-[#e0e0e0]"
+                        isActive ? "bg-[#f0f0f0]" : "hover:bg-[#e0e0e0]",
                       )}
                     >
                       {item?.label}
@@ -417,12 +419,12 @@ function MegaNavigationMenuContent({ data }) {
                   <div
                     className={cn(
                       "lg:hidden ",
-                      activeId === item.id ? "h-auto visible" : "h-0 invisible"
+                      activeId === item.id ? "h-auto visible" : "h-0 invisible",
                     )}
                   >
                     <div
                       className={cn(
-                        "w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]"
+                        "w-full block columns-1 gap-2 p-[10px] bg-black/10 rounded-b-[8px]",
                       )}
                     >
                       {item?.sub_sub_item?.map((subItem, subIndex) => {
@@ -435,7 +437,7 @@ function MegaNavigationMenuContent({ data }) {
                                 "text-[14px] leading-normal font-normal truncate w-full h-auto block p-[4px_10px] rounded-[8px] transition",
                                 isSubActive
                                   ? "bg-black text-white font-medium"
-                                  : "text-[#373737] hover:bg-[#fafafa] hover:text-[#030303]"
+                                  : "text-[#373737] hover:bg-[#fafafa] hover:text-[#030303]",
                               )}
                             >
                               {subItem.label}
@@ -467,7 +469,7 @@ function MegaNavigationMenuContent({ data }) {
                         "text-[14px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal truncate w-full h-auto block p-[6px_10px] xl:p-[8px_15px] 2xl:p-[10px_15px] rounded-[8px] transition",
                         isActive
                           ? "bg-[#f0f0f0]"
-                          : "text-[#373737] hover:bg-[#fafafa] hover:text-[#030303]"
+                          : "text-[#373737] hover:bg-[#fafafa] hover:text-[#030303]",
                       )}
                     >
                       {item.label}
@@ -512,7 +514,7 @@ function SmNavigationMenuContent({ data }) {
                   "text-[14px] lg:text-[12px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-normal font-normal truncate w-full h-auto block p-[6px_8px] xl:p-[8px_10px] 2xl:p-[10px_20px] rounded-[8px] transition",
                   isActive
                     ? "bg-[#f0f0f0]"
-                    : "text-[#373737] hover:bg-[#fafafa] hover:text-[#030303]"
+                    : "text-[#373737] hover:bg-[#fafafa] hover:text-[#030303]",
                 )}
               >
                 {item.label}
@@ -571,7 +573,7 @@ function AppDownloadDropdown({ qrData }) {
                 >
                   <Image
                     src={generateMediaUrl(
-                      qrData?.play_store?.media?.media_path
+                      qrData?.play_store?.media?.media_path,
                     )}
                     alt={qrData?.play_store?.media?.media_alt}
                     width={176}

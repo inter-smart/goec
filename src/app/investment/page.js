@@ -131,6 +131,7 @@ export default async function Page() {
         title={banner_section?.title}
         media={banner_section?.media}
         varient="investment"
+        backgroundMedia="/images/hero-investment-bg-1.jpg"
       />
 
       <InvestmentInfoSection

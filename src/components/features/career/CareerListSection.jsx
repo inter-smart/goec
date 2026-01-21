@@ -164,9 +164,9 @@ export default function CareerListSection({ data = local_data }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const categoriesWithAll = useMemo(
-  () => [{ id: 0, title: "All positions" }, ...data.job_categories],
-  [data.job_categories]
-);
+    () => [{ id: 0, title: "All positions" }, ...data.job_categories],
+    [data.job_categories],
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const paginationRef = useRef(null);
 
@@ -174,43 +174,43 @@ export default function CareerListSection({ data = local_data }) {
   const allJobs = data.jobs;
 
   // 🧮 Filter jobs based on search & department
-const filteredJobs = useMemo(() => {
-  const activeCategory = categoriesWithAll[selected];
+  const filteredJobs = useMemo(() => {
+    const activeCategory = categoriesWithAll[selected];
 
-  return allJobs.filter((job) => {
-    const matchesCategory =
-      activeCategory.title === "All positions" ||
-      job.category === activeCategory.title ||
-      job.category === activeCategory.id;
+    return allJobs.filter((job) => {
+      const matchesCategory =
+        activeCategory.title === "All positions" ||
+        job.category === activeCategory.title ||
+        job.category === activeCategory.id;
 
-    const matchesSearch = job.title
-      ?.toLowerCase()
-      .includes(searchTerm.toLowerCase());
+      const matchesSearch = job.title
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase());
 
-    return matchesCategory && matchesSearch;
-  });
-}, [selected, searchTerm, allJobs, categoriesWithAll]);
+      return matchesCategory && matchesSearch;
+    });
+  }, [selected, searchTerm, allJobs, categoriesWithAll]);
 
   useMemo(() => {
     setCurrentPage(1);
   }, [selected, searchTerm]);
-const departmentCounts = useMemo(() => {
-  const counts = {};
+  const departmentCounts = useMemo(() => {
+    const counts = {};
 
-  counts["All positions"] = allJobs.filter((job) =>
-    job.title?.toLowerCase().includes(searchTerm.toLowerCase())
-  ).length;
-
-  data.job_categories.forEach((cat) => {
-    counts[cat.title] = allJobs.filter(
-      (job) =>
-        (job.category === cat.title || job.category === cat.id) &&
-        job.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    counts["All positions"] = allJobs.filter((job) =>
+      job.title?.toLowerCase().includes(searchTerm.toLowerCase()),
     ).length;
-  });
+
+    data.job_categories.forEach((cat) => {
+      counts[cat.title] = allJobs.filter(
+        (job) =>
+          (job.category === cat.title || job.category === cat.id) &&
+          job.title?.toLowerCase().includes(searchTerm.toLowerCase()),
+      ).length;
+    });
 
     return counts;
-}, [allJobs, searchTerm, data.job_categories]);
+  }, [allJobs, searchTerm, data.job_categories]);
 
   // Pagination calculations
   const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
@@ -324,7 +324,11 @@ const departmentCounts = useMemo(() => {
                       : "text-[#030303] hover:bg-gray-50"
                   }`}
                 >
-                  <Text as="div" size="text2" className="font-medium! flex items-center">
+                  <Text
+                    as="div"
+                    size="text2"
+                    className="font-medium! flex items-center"
+                  >
                     <span className="w-4 flex justify-center">
                       {index === selected && <FaCaretRight />}
                     </span>
@@ -358,7 +362,7 @@ const departmentCounts = useMemo(() => {
                     <div
                       className={cn(
                         "text-[9px] sm:text-[11px] xl:text-[14px] 2xl:text-[16px] 3xl:text-[18px] leading-tight font-medium text-[#7b7b75]",
-                        ""
+                        "",
                       )}
                     >
                       Showing {indexOfFirstItem + 1} to{" "}
@@ -469,18 +473,24 @@ function JobCard({ job }) {
           <ActionButton
             variant="link"
             size="lg"
-            className="group font-medium! text-black !h-auto hover:[>svg]:translate-x-1 hover:text-[#0048BF] "
+            className="font-medium! text-black !h-auto hover:[>svg]:translate-x-1 hover:text-[#0048BF] [&>svg]:text-[#282828] hover:[&>svg]:text-[#0048BF]"
             asChild
           >
             <Link href={`/career/${job.slug}`}>
               Read More
-              <Image
-                src="/images/Arrow.png"
-                alt="arrow"
-                width={18}
-                height={18}
-                className="w-[15px] xl:w-[18px] group-hover:invert-[.13] group-hover:sepia-[.95] group-hover:saturate-[31.7] group-hover:hue-rotate-[213deg] group-hover:brightness-[1.12] group-hover:contrast-[1.02]"
-              />
+              <svg
+                width="24"
+                height="6"
+                viewBox="0 0 24 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-[15px] xl:w-[18px] transition-colors"
+              >
+                <path
+                  d="M24 2.88672L19 -3.26633e-05V5.77347L24 2.88672ZM0 2.88672V3.38672H19.5V2.88672V2.38672H0V2.88672Z"
+                  fill="currentColor"
+                />
+              </svg>
             </Link>
           </ActionButton>
         </div>

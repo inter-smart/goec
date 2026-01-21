@@ -34,7 +34,7 @@ export default function NewsCard({
           delay: index * 0.1,
         }}
         viewport={{ once: false }}
-        className="w-full h-full flex flex-col rounded-[20px] xl:rounded-[25px] 2xl:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+        className="w-full h-full flex flex-col rounded-[20px] xl:rounded-[25px] 2xl:rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0] transition-border-color duration-300 hover:border-primary/10"
       >
         <Link
           href={page === "news" ? `/news/${data?.slug}` : `/blog/${data?.slug}`}
@@ -52,7 +52,7 @@ export default function NewsCard({
             alt={data?.media?.media_alt || "News Image"}
             fill
             sizes="512px"
-            className="w-full h-full object-cover transition hover:scale-105"
+            className="w-full h-full object-cover"
             placeholder="blur"
             blurDataURL="/images/placeholder.jpg"
           />

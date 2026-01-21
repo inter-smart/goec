@@ -238,17 +238,13 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
                         opacity: 1,
                         y: 0,
                       }}
-                      whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.1 },
-                      }}
                       transition={{
                         duration: 0.4,
                         ease: "easeOut",
                         repeat: false,
                       }}
                       viewport={{ once: false, amount: 0.2 }}
-                      className="w-full h-full block rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0]"
+                      className="w-full h-full block rounded-[30px] bg-[#fcfcfc] border border-[#f0f0f0] hover:border-primary/10"
                     >
                       <Link
                         href={`/news/${item?.slug}`}
@@ -308,7 +304,6 @@ export default function LatestNewsSection({ data = newsData, title, news }) {
               ) : (
                 <motion.div
                   key={"news" + index}
-                  whileHover={{ scale: 1.02 }}
                   className="w-full sm:w-1/2 lg:w-1/3"
                 >
                   <NewsCard index={index} data={item} page={"news"} />

@@ -8,7 +8,6 @@ import KeyBenefitSection from "@/components/features/nfc-card/KeyBenefitSection"
 import { fetchFromAPI } from "@/lib/api";
 import Error from "../error";
 
-
 async function getMetaData() {
   try {
     const { data } = await fetchFromAPI(`meta-tags/go-ec-smart-card`);
@@ -102,9 +101,6 @@ export async function generateMetadata() {
   };
 }
 
-
-
-
 export default async function Page() {
   const { data, error } = await fetchFromAPI("nfc-card");
 
@@ -112,16 +108,31 @@ export default async function Page() {
     return <Error path={"/nfc-card"} />;
   }
 
-  const { banner_section, description, key_values, steps, bottom_card } = data || {};
+  const { banner_section, description, key_values, steps, bottom_card } =
+    data || {};
 
   return (
     <>
-      <InnerHero title={banner_section?.title} button={banner_section?.button} media={banner_section.media}/>
+      <InnerHero
+        title={banner_section?.title}
+        button={banner_section?.button}
+        media={banner_section.media}
+        backgroundMedia="/images/hero-nfc-bg-1.jpg"
+      />
 
       <AppDetailSection description={description} />
       <KeyBenefitSection title={key_values?.title} values={key_values?.list} />
-      <HowChargeSection title={steps?.title} description={steps?.description} list={steps?.list} variant={"nfc-card"} />
-      <AppDownloadSection title={bottom_card?.description} button={bottom_card?.button} media={bottom_card?.media} />
+      <HowChargeSection
+        title={steps?.title}
+        description={steps?.description}
+        list={steps?.list}
+        variant={"nfc-card"}
+      />
+      <AppDownloadSection
+        title={bottom_card?.description}
+        button={bottom_card?.button}
+        media={bottom_card?.media}
+      />
     </>
   );
 }

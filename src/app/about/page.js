@@ -90,12 +90,12 @@ export default async function AboutPage() {
     background_media: {
       mobile: {
         type: "image",
-        path: "/images/hero-about-bg-1.jpg",
+        path: "/images/hero-about-bg-1.svg",
         alt: "hero",
       },
       desktop: {
         type: "image",
-        path: "/images/hero-about-bg-1.jpg",
+        path: "/images/hero-about-bg-1.svg",
         alt: "hero",
       },
     },
@@ -140,6 +140,7 @@ export default async function AboutPage() {
         title={banner_section?.title || ""}
         media={banner_section?.media || {}}
         button={heroData.button}
+        backgroundMedia="/images/hero-about-bg-2.jpg"
       />
 
       {/* About Info */}

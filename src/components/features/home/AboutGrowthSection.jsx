@@ -240,7 +240,7 @@ export default function AboutGrowthSection({ growthData }) {
                 <Heading
                   as="h3"
                   size="heading3"
-                  className="text-white max-w-[80%] xl:max-w-[60%] 2xl:max-w-[50%]"
+                  className="text-white max-w-[80%] sm:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[50%]"
                 >
                   {item?.title}
                 </Heading>

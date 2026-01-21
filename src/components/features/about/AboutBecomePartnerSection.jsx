@@ -8,12 +8,11 @@ export default function AboutBecomePartnerSection({ title, description }) {
   return (
     <section className="w-full h-auto block py-[30px] sm:py-[60px] xl:py-[100px] 2xl:py-[120px] bg-[#0055e0] relative z-0">
       <Image
-        src="/images/about-contact-bg.jpg"
+        src="/images/about-contact-bg1.svg"
         alt="about-contact-bg"
         fill
         sizes="100vw"
         className="-z-1 object-cover"
-        quality={100}
       />
       <div className="container max-sm:px-8">
         <div className="flex flex-wrap flex-col sm:flex-row gap-[10px] sm:gap-[15px] xl:gap-[20px] 2xl:gap-[30px]">
