@@ -40,7 +40,7 @@ export default function PartnersSection({ title, associates }) {
   };
   const getSpeed = () => {
     if (containerRef.current) {
-      containerRef.current.style.setProperty("--animation-duration", "60s");
+      containerRef.current.style.setProperty("--animation-duration", "80s");
     }
   };
   return (
@@ -49,7 +49,7 @@ export default function PartnersSection({ title, associates }) {
         src="/images/partner-bg.svg"
         alt="partners-bg"
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
         className="-z-1 object-cover"
       />
       <div

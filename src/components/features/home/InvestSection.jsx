@@ -116,7 +116,7 @@ export default function InvestSection({
       <div className="container">
         <Accordion
           type="single"
-          collapsible
+          collapsible={false}
           value={activeItem}
           onValueChange={setActiveItem}
         >
@@ -127,9 +127,10 @@ export default function InvestSection({
                 key={"invest" + index}
                 value={"item-" + index}
                 className="border-0"
-                onMouseEnter={() => setActiveItem(`item-${index}`)}
               >
-                <AccordionTrigger className="hover:no-underline [&>svg]:w-0 [&>svg]:hidden py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[50px]">
+                <AccordionTrigger 
+                onMouseEnter={() => setActiveItem(`item-${index}`)}
+                className="hover:no-underline [&>svg]:w-0 [&>svg]:hidden py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[50px]">
                   <div className="w-full flex items-center space-x-[15px] sm:space-x-[20px] xl:space-x-[60px] 2xl:space-x-[80px]">
                     <div className="w-[10%] sm:w-[12%]">
                       <div className="text-[12px] sm:text-[22px] lg:text-[26px] xl:text-[34px] 2xl:text-[40px] 3xl:text-[48px] leading-none font-medium whitespace-nowrap text-ellipsis text-[#030303] w-[30px] sm:w-[80px] xl:w-[120px] 2xl:w-[140px] aspect-square bg-white border border-[#030303]/20 rounded-full flex items-center justify-center">
@@ -149,12 +150,12 @@ export default function InvestSection({
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="w-[85%] sm:w-[88%] xl:w-[84%] ml-auto bg-[#fbfbfb] rounded-[20px] sm:rounded-[30px] p-[20px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px]">
+                  <div className="w-[85%] sm:w-[88%] xl:w-[84%] ml-auto bg-[#fbfbfb] rounded-[20px] sm:rounded-[30px] p-[20px] xl:p-[30px] 2xl:p-[40px] 3xl:p-[50px] pointer-events-none">
                     <div
                       className="typography"
                       dangerouslySetInnerHTML={{ __html: sanitizedText }}
                     />
-                    <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px]">
+                    <div className="mt-[20px] sm:mt-[30px] xl:mt-[40px] 2xl:mt-[50px] pointer-events-auto">
                       <ActionButton
                         size={"lg"}
                         variant={"blue"}
