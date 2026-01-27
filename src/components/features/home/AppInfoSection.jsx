@@ -222,7 +222,7 @@ export default function AppInfoSection({ appFeatures = appInfoData }) {
                 size="heading5"
                 className="text-white mb-[10px] xl:mb-[15px] 2xl:mb-[20px]"
               >
-                {appFeatures.title}
+                {appFeatures.sub_title}
               </Heading>
               <div className="flex flex-wrap space-x-[5px] xl:space-x-[10px] max-sm:justify-center">
                 <div key={"app_store"}>
