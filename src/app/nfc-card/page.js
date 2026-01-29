@@ -120,7 +120,7 @@ export default async function Page() {
         backgroundMedia="/images/hero-nfc-bg-1.jpg"
       />
 
-      <AppDetailSection description={description} />
+      <AppDetailSection data={description} />
       <KeyBenefitSection title={key_values?.title} values={key_values?.list} />
       <HowChargeSection
         title={steps?.title}
