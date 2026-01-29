@@ -118,7 +118,7 @@ export default async function Page() {
     <>
       <InnerHero title={banner_section?.title} button={banner_section?.button} media={banner_section.media}/>
 
-      <AppDetailSection description={description} />
+      <AppDetailSection data={description} />
       <KeyBenefitSection title={key_values?.title} values={key_values?.list} />
       <HowChargeSection title={steps?.title} description={steps?.description} list={steps?.list} variant={"nfc-card"} />
       <AppDownloadSection title={bottom_card?.description} button={bottom_card?.button} media={bottom_card?.media} />
