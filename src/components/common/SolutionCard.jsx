@@ -158,24 +158,11 @@ export default function SolutionCard({
             "w-full sm:w-[calc(100%-420px)] md:w-[calc(100%-468px)] xl:w-[calc(100%-468px)] 2xl:w-[calc(100%-576px)] 3xl:w-[calc(100%-700px)]"
           )}
         >
-          {/* <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{
-              scaleX: 1,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.25, 0.46, 0.45, 0.94],
-              delay: 0.1,
-            }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="w-full h-full xl:h-auto aspect-[4/3] overflow-hidden rounded-[20px] sm:rounded-[30px] relative z-1 origin-right"
-          > */}
           <motion.div
-            initial={index === 0 ? { scaleX: 0, opacity: 0 } : false}
-            whileInView={index === 0 ? { scaleX: 1, opacity: 1 } : false}
+            initial={index === 0 ? { translateX: "100%", opacity: 0 } : false}
+            whileInView={index === 0 ? { translateX: 0, opacity: 1 } : false}
             transition={{
-              duration: 0.8,
+              duration: 0.4,
               ease: [0.25, 0.46, 0.45, 0.94],
               delay: 0.1,
             }}
