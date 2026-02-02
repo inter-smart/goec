@@ -3,15 +3,14 @@ import { Heading } from "@/components/utils/Heading";
 import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Thumbs, Autoplay } from "swiper/modules";
+import { EffectFade, Thumbs } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 
-import { AnimatePresence, motion } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import { useRef, useState } from "react";
-import { MEDIA_URL } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { generateMediaUrl } from "@/lib/utils";
 
@@ -20,23 +19,47 @@ export default function AboutGrowthSection({ growthData }) {
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Scroll-hijacking refs and calculations
+  const containerRef = useRef(null);
+  const slideCount = growthData?.length || 1;
+
+  // Track scroll progress within the scroll container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Map scroll progress to slide changes
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (!swiperRef.current || slideCount <= 1) return;
+
+    const slideProgress = Math.min(progress, 0.999);
+    const targetSlide = Math.floor(slideProgress * slideCount);
+
+    if (targetSlide !== swiperRef.current.activeIndex) {
+      swiperRef.current.slideTo(targetSlide);
+    }
+  });
+
   return (
-    <section className="w-full h-auto block bg-black relative z-0">
+    <div
+      ref={containerRef}
+      className="relative z-0"
+      style={{ height: `${100 * slideCount}vh` }}
+    >
+      <section className="w-full h-screen block bg-black sticky top-0 z-0 overflow-hidden">
       <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
         <Swiper
-          modules={[Thumbs, Autoplay]}
+          modules={[Thumbs]}
           onSwiper={setThumbsSwiper}
           loop={false}
           spaceBetween={0}
           slidesPerView={3}
           speed={600}
-          autoplay={{
-            delay: 6000,
-            disableOnInteraction: true,
-            pauseOnMouseEnter: false,
-          }}
+          autoplay={false}
           navigation={false}
           direction={"vertical"}
+          allowTouchMove={false}
           className="h-[200px] sm:h-[276px] 2xl:h-[320px]"
         >
           {growthData?.map((item, index) => (
@@ -167,7 +190,7 @@ export default function AboutGrowthSection({ growthData }) {
 
       <Swiper
         effect={"fade"}
-        modules={[EffectFade, Thumbs, Autoplay]}
+        modules={[EffectFade, Thumbs]}
         thumbs={{ swiper: thumbsSwiper }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
@@ -176,14 +199,15 @@ export default function AboutGrowthSection({ growthData }) {
         slidesPerView={1}
         navigation={false}
         speed={600}
-        autoplay={true}
+        autoplay={false}
         noSwiping={true}
         longSwipes={false}
-        className="max-h-[1080px]"
+        allowTouchMove={false}
+        className="h-full"
       >
         {growthData?.map((item, index) => (
           <SwiperSlide key={"growth" + index}>
-            <div className="w-full h-full min-h-[376px] sm:min-h-[576px] xl:min-h-[640px] 2xl:min-h-[868px] 3xl:min-h-[992px] flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
+            <div className="w-full h-screen flex items-center bg-black relative z-0 py-[30px] sm:py-[80px] xl:py-[100px] 2xl:py-[120px]">
               {/* Background Media */}
               <motion.div
                 key={`media-${index}`}
@@ -252,6 +276,7 @@ export default function AboutGrowthSection({ growthData }) {
           </SwiperSlide>
         ))}
       </Swiper>
-    </section>
+      </section>
+    </div>
   );
 }
