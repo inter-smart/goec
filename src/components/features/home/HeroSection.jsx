@@ -212,7 +212,7 @@ export default function HeroSection({ heroBanner = heroData }) {
               <div className="w-full h-[520px] sm:h-[576px] xl:h-screen min-h-[520px] sm:min-h-[468px] xl:min-h-[576px] 2xl:min-h-[768px] 3xl:min-h-[900px] flex items-center py-[calc(40px+var(--header-y))_40px] sm:py-[calc(60px+var(--header-y))_60px] xl:py-[calc(100px+var(--header-y))_100px] 2xl:py-[calc(120px+var(--header-y))_120px] xl:max-w-[720px] 2xl:max-w-[768px] 3xl:max-w-[1080px]">
                 <div>
                   <Heading
-                    as="h1"
+                    as="h2"
                     size="heading1"
                     className="line-clamp-2 text-transparent bg-linear-to-r from-[#999] via-50% via-white to-white bg-clip-text mb-[15px] xl:mb-[20px] 2xl:mb-[40px]"
                   >

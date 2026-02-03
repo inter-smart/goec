@@ -43,7 +43,7 @@ export default function InvestSection({
             className="flex-1 max-sm:mb-[20px]"
           >
             <Heading
-              as="h2"
+              as="h1"
               size="heading2"
               className="text-[#303030] xl:max-w-[568px] 2xl:max-w-[800px]"
             >
