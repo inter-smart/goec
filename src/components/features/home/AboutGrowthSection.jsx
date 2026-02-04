@@ -10,7 +10,7 @@ import "swiper/css/thumbs";
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { generateMediaUrl } from "@/lib/utils";
 
@@ -18,10 +18,16 @@ export default function AboutGrowthSection({ growthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [arrowPosition, setArrowPosition] = useState(0); // Pixel position for arrow
 
   // Scroll-hijacking refs and calculations
   const containerRef = useRef(null);
   const slideCount = growthData?.length || 1;
+
+  // 5 lines per slide (1 large + 4 small), arrow snaps to each line
+  const LINES_PER_SLIDE = 5;
+  const LINE_SPACING = 14; // ~14px between each line in rendered size
+  const DWELL_STEPS = 2; // Extra steps where arrow stays at year position
 
   // Track scroll progress within the scroll container
   const { scrollYProgress } = useScroll({
@@ -29,24 +35,61 @@ export default function AboutGrowthSection({ growthData }) {
     offset: ["start start", "end end"],
   });
 
-  // Map scroll progress to slide changes
+  // Map scroll progress to slide changes and arrow snapping to lines
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     if (!swiperRef.current || slideCount <= 1) return;
 
-    const slideProgress = Math.min(progress, 0.999);
-    const targetSlide = Math.floor(slideProgress * slideCount);
+    // Each slide has: DWELL_STEPS at year bar + LINES_PER_SLIDE for movement
+    const stepsPerSlide = LINES_PER_SLIDE + DWELL_STEPS;
+    const totalSteps = slideCount * stepsPerSlide;
+    const currentStep = Math.min(
+      Math.max(Math.floor(progress * totalSteps), 0),
+      totalSteps - 1
+    );
 
+    const targetSlide = Math.floor(currentStep / stepsPerSlide);
+    const stepWithinSlide = currentStep % stepsPerSlide;
+
+    // First DWELL_STEPS keep arrow at position 0 (year bar)
+    // Remaining steps move through lines 0-4
+    const lineIndex =
+      stepWithinSlide < DWELL_STEPS
+        ? 0
+        : Math.min(stepWithinSlide - DWELL_STEPS, LINES_PER_SLIDE - 1);
+
+    // Change slide when needed
     if (targetSlide !== swiperRef.current.activeIndex) {
       swiperRef.current.slideTo(targetSlide);
     }
+
+    // Snap arrow to current line position
+    setArrowPosition(lineIndex * LINE_SPACING);
   });
+
+  // Calculate total snap points (LINES_PER_SLIDE + DWELL_STEPS per slide)
+  const stepsPerSlide = LINES_PER_SLIDE + DWELL_STEPS;
+  const totalSnapPoints = slideCount * stepsPerSlide;
 
   return (
     <div
       ref={containerRef}
       className="relative z-0"
-      style={{ height: `${100 * slideCount}vh` }}
+      style={{ height: `${(100 / stepsPerSlide) * totalSnapPoints}vh` }}
     >
+      {/* Invisible snap points for scroll-snap behavior */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {Array.from({ length: totalSnapPoints }).map((_, i) => (
+          <div
+            key={`snap-${i}`}
+            className="scroll-snap-point"
+            style={{
+              height: `${100 / totalSnapPoints}%`,
+              scrollSnapAlign: "start",
+            }}
+          />
+        ))}
+      </div>
+
       <section className="w-full h-screen block bg-black sticky top-0 z-0 overflow-hidden">
         <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
           <Swiper
@@ -83,8 +126,11 @@ export default function AboutGrowthSection({ growthData }) {
                     alt="about_growth-vector-2"
                     width={10}
                     height={10}
+                    style={{
+                      transform: `translateY(${arrowPosition}px)`,
+                    }}
                     className={cn(
-                      "w-[8px] sm:w-[10px] aspect-square transition absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px]",
+                      "w-[8px] sm:w-[10px] aspect-square absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px] transition-transform duration-200",
                       currentSlide === index ? "opacity-100" : "opacity-0",
                     )}
                   />
