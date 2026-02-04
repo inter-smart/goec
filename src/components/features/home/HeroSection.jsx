@@ -15,6 +15,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 
 import { cn, generateMediaUrl } from "@/lib/utils";
+import { useLoading } from "@/context/LoadingContext";
 
 const titleVariants = {
   initial: {
@@ -40,6 +41,7 @@ const titleVariants = {
 
 export default function HeroSection({ heroBanner = heroData }) {
   const swiperRef = useRef(null);
+  const { isLoadingComplete } = useLoading();
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -91,6 +93,29 @@ export default function HeroSection({ heroBanner = heroData }) {
     };
   }, []);
 
+
+
+  // Start autoplay after loading animation completes
+  useEffect(() => {
+    if (isLoadingComplete && swiperRef.current) {
+      const swiper = swiperRef.current;
+      // Configure autoplay parameters
+      swiper.params.autoplay = {
+        delay: 5000,
+        disableOnInteraction: false,
+      };
+      // Start autoplay
+      swiper.autoplay.start();
+      // Trigger the first progress bar animation
+      const firstBullet = document.querySelector(
+        ".custom-pagination .swiper-pagination-bullet-active .progress-bar"
+      );
+      if (firstBullet) {
+        firstBullet.classList.add("progress-active");
+      }
+    }
+  }, [isLoadingComplete]);
+
   return (
     <section className="w-full h-auto block bg-black relative z-0">
       <Swiper
@@ -109,10 +134,6 @@ export default function HeroSection({ heroBanner = heroData }) {
           },
         }}
         autoplay={false}
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
         speed={1000}
         pagination={{
           el: ".custom-pagination",
@@ -123,7 +144,10 @@ export default function HeroSection({ heroBanner = heroData }) {
             </span>`,
         }}
         modules={[EffectCreative, Pagination, Autoplay]}
-        onSlideChange={() => {
+        onSlideChange={(swiper) => {
+          // Only animate progress bar if autoplay is running (loading complete)
+          if (!swiper.autoplay.running) return;
+
           setTimeout(() => {
             const bullets = document.querySelectorAll(
               ".custom-pagination .swiper-pagination-bullet .progress-bar"
@@ -142,14 +166,6 @@ export default function HeroSection({ heroBanner = heroData }) {
         }}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
-          setTimeout(() => {
-            const firstBullet = document.querySelector(
-              ".custom-pagination .swiper-pagination-bullet-active .progress-bar"
-            );
-            if (firstBullet) {
-              firstBullet.classList.add("progress-active");
-            }
-          }, 100);
         }}
       >
         {heroBanner?.map((item, index) => (

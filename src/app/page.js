@@ -4,6 +4,7 @@ import AboutInfoSection from "@/components/features/home/AboutInfoSection";
 import HeroSection from "@/components/features/home/HeroSection";
 import { fetchFromAPI } from "@/lib/api";
 import InitialLoading from "../components/common/initial-loading";
+import { LoadingProvider } from "@/context/LoadingContext";
 
 // Lazy load below-the-fold sections with dynamic imports
 const AboutGrowthSection = dynamic(
@@ -159,7 +160,7 @@ export default async function Home() {
   } = data;
 
   return (
-    <>
+    <LoadingProvider>
       <InitialLoading />
 
       {/* Critical above-the-fold content - loaded immediately */}
@@ -224,6 +225,6 @@ export default async function Home() {
           type="home"
         />
       </Suspense>
-    </>
+    </LoadingProvider>
   );
 }

@@ -3,11 +3,13 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useLoading } from "@/context/LoadingContext";
 
 export default function InitialLoading() {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [shouldHide, setShouldHide] = useState(false);
+  const { setLoadingComplete } = useLoading();
 
   useEffect(() => {
     const startTime = Date.now();
@@ -23,11 +25,17 @@ export default function InitialLoading() {
           if (elapsed >= minDuration) {
             setIsComplete(true);
             // Trigger hide after a brief delay
-            setTimeout(() => setShouldHide(true), 100);
+            setTimeout(() => {
+              setShouldHide(true);
+              setLoadingComplete(true);
+            }, 100);
           } else {
             setTimeout(() => {
               setIsComplete(true);
-              setTimeout(() => setShouldHide(true), 100);
+              setTimeout(() => {
+                setShouldHide(true);
+                setLoadingComplete(true);
+              }, 100);
             }, minDuration - elapsed);
           }
 
