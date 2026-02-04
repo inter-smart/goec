@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { cn } from "@/lib/utils";
@@ -19,6 +19,7 @@ export default function AboutGrowthSection({ growthData }) {
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [arrowPositions, setArrowPositions] = useState({}); // Per-slide pixel positions for arrow
+  const [currentStep, setCurrentStep] = useState(0); // Track discrete scroll steps
 
   // Scroll-hijacking refs and calculations
   const containerRef = useRef(null);
@@ -27,25 +28,34 @@ export default function AboutGrowthSection({ growthData }) {
   // 5 lines per slide (1 large + 4 small), arrow snaps to each line
   const LINES_PER_SLIDE = 5;
   const LINE_SPACING = 14; // ~14px between each line in rendered size
-  const DWELL_STEPS = 2; // Extra steps where arrow stays at year position
+  const DWELL_STEPS = 4; // Extra steps where arrow stays at year position
 
-  // Track scroll progress within the scroll container
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+  // Calculate total steps
+  const stepsPerSlide = LINES_PER_SLIDE + DWELL_STEPS;
+  const totalSteps = slideCount * stepsPerSlide;
 
-  // Map scroll progress to slide changes and arrow snapping to lines
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+  // Wheel handler - one step per scroll tick
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e) => {
+      e.preventDefault();
+
+      setCurrentStep((prev) => {
+        const direction = e.deltaY > 0 ? 1 : -1;
+        const next = prev + direction;
+        return Math.max(0, Math.min(next, totalSteps - 1));
+      });
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, [totalSteps]);
+
+  // Update slide and arrow position based on currentStep
+  useEffect(() => {
     if (!swiperRef.current || slideCount <= 1) return;
-
-    // Each slide has: DWELL_STEPS at year bar + LINES_PER_SLIDE for movement
-    const stepsPerSlide = LINES_PER_SLIDE + DWELL_STEPS;
-    const totalSteps = slideCount * stepsPerSlide;
-    const currentStep = Math.min(
-      Math.max(Math.floor(progress * totalSteps), 0),
-      totalSteps - 1
-    );
 
     const targetSlide = Math.floor(currentStep / stepsPerSlide);
     const stepWithinSlide = currentStep % stepsPerSlide;
@@ -63,37 +73,18 @@ export default function AboutGrowthSection({ growthData }) {
     }
 
     // Snap arrow to current line position (per-slide)
-    setArrowPositions(prev => ({
+    setArrowPositions((prev) => ({
       ...prev,
-      [targetSlide]: lineIndex * LINE_SPACING
+      [targetSlide]: lineIndex * LINE_SPACING,
     }));
-  });
-
-  // Calculate total snap points (LINES_PER_SLIDE + DWELL_STEPS per slide)
-  const stepsPerSlide = LINES_PER_SLIDE + DWELL_STEPS;
-  const totalSnapPoints = slideCount * stepsPerSlide;
+  }, [currentStep, stepsPerSlide, slideCount, DWELL_STEPS, LINES_PER_SLIDE, LINE_SPACING]);
 
   return (
     <div
       ref={containerRef}
-      className="relative z-0"
-      style={{ height: `${(100 / stepsPerSlide) * totalSnapPoints}vh` }}
+      className="relative z-0 h-screen"
     >
-      {/* Invisible snap points for scroll-snap behavior */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {Array.from({ length: totalSnapPoints }).map((_, i) => (
-          <div
-            key={`snap-${i}`}
-            className="scroll-snap-point"
-            style={{
-              height: `${100 / totalSnapPoints}%`,
-              scrollSnapAlign: "start",
-            }}
-          />
-        ))}
-      </div>
-
-      <section className="w-full h-screen block bg-black sticky top-0 z-0 overflow-hidden">
+      <section className="w-full h-screen block bg-black z-0 overflow-hidden">
         <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
           <Swiper
             modules={[Thumbs]}
@@ -133,7 +124,7 @@ export default function AboutGrowthSection({ growthData }) {
                       transform: `translateY(${arrowPositions[index] || 0}px)`,
                     }}
                     className={cn(
-                      "w-[8px] sm:w-[10px] aspect-square absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px] transition-transform duration-200",
+                      "w-[8px] sm:w-[10px] aspect-square absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px]",
                       currentSlide === index ? "opacity-100" : "opacity-0",
                     )}
                   />
