@@ -18,7 +18,7 @@ export default function AboutGrowthSection({ growthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [arrowPosition, setArrowPosition] = useState(0); // Pixel position for arrow
+  const [arrowPositions, setArrowPositions] = useState({}); // Per-slide pixel positions for arrow
 
   // Scroll-hijacking refs and calculations
   const containerRef = useRef(null);
@@ -62,8 +62,11 @@ export default function AboutGrowthSection({ growthData }) {
       swiperRef.current.slideTo(targetSlide);
     }
 
-    // Snap arrow to current line position
-    setArrowPosition(lineIndex * LINE_SPACING);
+    // Snap arrow to current line position (per-slide)
+    setArrowPositions(prev => ({
+      ...prev,
+      [targetSlide]: lineIndex * LINE_SPACING
+    }));
   });
 
   // Calculate total snap points (LINES_PER_SLIDE + DWELL_STEPS per slide)
@@ -127,7 +130,7 @@ export default function AboutGrowthSection({ growthData }) {
                     width={10}
                     height={10}
                     style={{
-                      transform: `translateY(${arrowPosition}px)`,
+                      transform: `translateY(${arrowPositions[index] || 0}px)`,
                     }}
                     className={cn(
                       "w-[8px] sm:w-[10px] aspect-square absolute z-0 left-0 top-[1px] sm:top-[2px] xl:top-[7px] transition-transform duration-200",
