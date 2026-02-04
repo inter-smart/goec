@@ -17,12 +17,14 @@ import { generateMediaUrl } from "@/lib/utils";
 export default function AboutGrowthSection({ growthData }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const swiperRef = useRef(null);
+  const thumbsSwiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [arrowPositions, setArrowPositions] = useState({}); // Per-slide pixel positions for arrow
   const [currentStep, setCurrentStep] = useState(0); // Track discrete scroll steps
 
   // Scroll-hijacking refs and calculations
   const containerRef = useRef(null);
+  const wrapperRef = useRef(null);
   const slideCount = growthData?.length || 1;
 
   // 5 lines per slide (1 large + 4 small), arrow snaps to each line
@@ -34,23 +36,30 @@ export default function AboutGrowthSection({ growthData }) {
   const stepsPerSlide = LINES_PER_SLIDE + DWELL_STEPS;
   const totalSteps = slideCount * stepsPerSlide;
 
-  // Wheel handler - one step per scroll tick
+  // Calculate wrapper height for scroll runway
+  const wrapperHeight = totalSteps * 100; // 100px per step
+
+  // Scroll position handler - drives year navigation based on scroll position
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const handleScroll = () => {
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
 
-    const handleWheel = (e) => {
-      e.preventDefault();
+      const rect = wrapper.getBoundingClientRect();
+      const scrollProgress = -rect.top; // How far into the wrapper we've scrolled
+      const maxScroll = wrapper.offsetHeight - window.innerHeight;
 
-      setCurrentStep((prev) => {
-        const direction = e.deltaY > 0 ? 1 : -1;
-        const next = prev + direction;
-        return Math.max(0, Math.min(next, totalSteps - 1));
-      });
+      if (maxScroll <= 0) return;
+
+      // Calculate step based on scroll progress
+      const progress = Math.max(0, Math.min(scrollProgress / maxScroll, 1));
+      const step = Math.round(progress * (totalSteps - 1));
+
+      setCurrentStep(step);
     };
 
-    container.addEventListener("wheel", handleWheel, { passive: false });
-    return () => container.removeEventListener("wheel", handleWheel);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [totalSteps]);
 
   // Update slide and arrow position based on currentStep
@@ -72,6 +81,11 @@ export default function AboutGrowthSection({ growthData }) {
       swiperRef.current.slideTo(targetSlide);
     }
 
+    // Sync thumbs swiper to keep active year centered/visible
+    if (thumbsSwiperRef.current && thumbsSwiperRef.current.activeIndex !== targetSlide) {
+      thumbsSwiperRef.current.slideTo(targetSlide);
+    }
+
     // Snap arrow to current line position (per-slide)
     setArrowPositions((prev) => ({
       ...prev,
@@ -81,17 +95,26 @@ export default function AboutGrowthSection({ growthData }) {
 
   return (
     <div
-      ref={containerRef}
-      className="relative z-0 h-screen"
+      ref={wrapperRef}
+      style={{ height: `${wrapperHeight}px` }}
+      className="relative z-0"
     >
-      <section className="w-full h-screen block bg-black z-0 overflow-hidden">
+      <div
+        ref={containerRef}
+        className="sticky top-0 h-screen"
+      >
+        <section className="w-full h-screen block bg-black z-0 overflow-hidden">
         <div className="w-[120px] h-auto absolute z-2 -translate-y-1/2 top-[54%] left-[0.5rem] sm:left-[calc((100%-var(--container-sm))/2)] md:left-[calc((100%-var(--container-md))/2)] lg:left-[calc((100%-var(--container-lg))/2)] xl:left-[calc((100%-var(--container-xl))/2)] 2xl:left-[calc((100%-var(--container-2xl))/2)] 3xl:left-[calc((100%-var(--container-3xl))/2)] [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] ">
           <Swiper
             modules={[Thumbs]}
-            onSwiper={setThumbsSwiper}
+            onSwiper={(swiper) => {
+              setThumbsSwiper(swiper);
+              thumbsSwiperRef.current = swiper;
+            }}
             loop={false}
             spaceBetween={0}
             slidesPerView={3}
+            centeredSlides={true}
             speed={600}
             autoplay={false}
             navigation={false}
@@ -323,6 +346,7 @@ export default function AboutGrowthSection({ growthData }) {
           ))}
         </Swiper>
       </section>
+      </div>
     </div>
   );
 }
