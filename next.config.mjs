@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+     qualities: [100],
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
